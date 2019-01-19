@@ -41,3 +41,14 @@ The following packages were added:
   com.unity.modules.vr@1.0.0
   com.unity.modules.wind@1.0.0
   com.unity.modules.xr@1.0.0
+
+=== Fri Jan 18 19:24:23 2019
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were added:
+  com.unity.analytics@3.2.2
+  com.unity.purchasing@2.0.3
+  com.unity.ads@2.3.1
+  com.unity.collab-proxy@1.2.15
