@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class LevelLoader : MonoBehaviour
 {
+    //place holder in future custom type may be needed for world state
+    private GameObject WorldState;
 
     private void Start()
     {
@@ -15,5 +17,15 @@ public class LevelLoader : MonoBehaviour
         
     }
 
+
+    public static void LoadLevel(GameObject Level)
+    {
+
+    }
+
+    void unloadWorld()
+    {
+
+    }
 
 }

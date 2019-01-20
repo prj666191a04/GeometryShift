@@ -122,6 +122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 429287622}
   - component: {fileID: 429287621}
+  - component: {fileID: 429287623}
   m_Layer: 0
   m_Name: System
   m_TagString: Untagged
@@ -155,6 +156,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &429287623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429287620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c037a474fbf86a44e96786fb5ab436e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1078983065
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,12 +282,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f95bcfadf82053b47979b5506f329a12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  obj: []
+  targetObj: {fileID: 0}
+  targetInteraction: {fileID: 0}
   mask:
     serializedVersion: 2
     m_Bits: 512
   radius: 1
   maxDistance: 1
   direction: {x: 0, y: 0, z: 0}
+  distance: 0
 --- !u!1 &1823446796
 GameObject:
   m_ObjectHideFlags: 0
@@ -355,11 +372,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Portal
-      objectReference: {fileID: 0}
-    - target: {fileID: 5478368221195467976, guid: ec2b2811831bf9546b44b3274fc16dbe,
-        type: 3}
-      propertyPath: m_Layer
-      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5152255464087094519, guid: ec2b2811831bf9546b44b3274fc16dbe,
         type: 3}
