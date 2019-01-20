@@ -257,6 +257,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   h: 0
   v: 0
+--- !u!114 &1153873139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1153873133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f95bcfadf82053b47979b5506f329a12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mask:
+    serializedVersion: 2
+    m_Bits: 512
+  radius: 1
+  maxDistance: 1
+  direction: {x: 0, y: 0, z: 0}
 --- !u!1 &1823446796
 GameObject:
   m_ObjectHideFlags: 0
