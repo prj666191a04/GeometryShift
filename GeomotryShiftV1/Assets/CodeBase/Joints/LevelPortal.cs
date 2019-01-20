@@ -2,8 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Le : MonoBehaviour
+public class LevelPortal : MonoBehaviour
 {
+
+    public GameObject levelObject;
+    public Transform exitLocation;
+
     // Start is called before the first frame update
     void Start()
     {

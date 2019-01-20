@@ -24,4 +24,30 @@ public class TriMovementA : CMotor
         this.rBody.velocity = myVector;
 
     }
+    protected override void ConfigurePhysics()
+    {
+        rBody.useGravity = true;
+        rBody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+      
+    }
+
+    void OnEnable()
+    {
+        //On first enable this object will be null but 
+        //we need to be able to run the following code
+        //if it is to be enabled multiple times
+        if (rBody != null)
+        {
+            ConfigurePhysics();
+        }
+        
+    }
+
+    void OnDisable()
+    {
+        rBody.constraints = RigidbodyConstraints.None;
+    }
+
+
+
 }

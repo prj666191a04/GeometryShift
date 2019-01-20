@@ -12,6 +12,13 @@ public class CMotor : MonoBehaviour {
    public virtual void SetPhysics(Rigidbody phys)
    {
         rBody = phys;
+        ConfigurePhysics();
    }
-    
+   
+   protected virtual void ConfigurePhysics()
+   {
+
+
+   }
+
 }

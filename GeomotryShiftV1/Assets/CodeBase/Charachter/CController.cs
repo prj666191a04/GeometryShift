@@ -13,9 +13,6 @@ public class CController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         //TODO: motor selector
-        //motor = gameObject.AddComponent<CDummyMotor>();
-        // Destroy(rBody);
-        // rBody = gameObject.AddComponent(t.Name.ToString());
         motor = this.gameObject.AddComponent<TriMovementA>();
         if (this.gameObject.GetComponent<Rigidbody>())
         {
@@ -39,7 +36,7 @@ public class CController : MonoBehaviour {
         motor.v_ = v;
 	}
 
-    void changeMotor()
+    void ChangeMotor()
     {
 
     }
