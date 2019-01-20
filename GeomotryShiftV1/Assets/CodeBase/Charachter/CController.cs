@@ -10,9 +10,10 @@ public class CController : MonoBehaviour {
     CMotor motor;
     Rigidbody rBody;
 
-	// Use this for initialization
-	void Start () {
-        //TODO: motor selector
+    public bool autoInit = true;
+
+    void DefaultInitialization()
+    {
         motor = this.gameObject.AddComponent<TriMovementA>();
         if (this.gameObject.GetComponent<Rigidbody>())
         {
@@ -24,6 +25,23 @@ public class CController : MonoBehaviour {
             this.rBody.useGravity = true;
         }
         motor.SetPhysics(rBody);
+    }
+
+    //placeholder concept
+    public void ExternalInitalization(CMotor motor)
+    {
+        
+    }
+
+
+	// Use this for initialization
+	void Start () {
+        //TODO: motor selector
+        if(autoInit)
+        {
+            DefaultInitialization();
+        }
+       
 	}
 	// Update is called once per frame
 	void Update () {

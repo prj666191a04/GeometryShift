@@ -21,6 +21,11 @@ public class CInteraction : MonoBehaviour
     private Vector3 pos;
     public Vector3 direction;
     public float distance;
+
+
+    private bool uiSet = false;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -64,16 +69,20 @@ public class CInteraction : MonoBehaviour
         {
             targetObj = null;
         }
-
-
-
     }
 
     void Scan()
     {
 
     }
+    void SetUI()
+    {
 
+    }
+    void UnsetUI()
+    {
+
+    }
     //For debug purposes only - remove for finished product
     private void OnDrawGizmosSelected()
     {
