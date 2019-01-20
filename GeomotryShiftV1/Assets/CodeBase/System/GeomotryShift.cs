@@ -9,7 +9,8 @@ public class GeomotryShift : MonoBehaviour
     {
         MainMenue,
         WorldMap,
-        InLevel
+        InLevel,
+        Loading
     }
 
     // Start is called before the first frame update
