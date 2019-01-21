@@ -1,15 +1,63 @@
 fileFormatVersion: 2
-guid: df07edd6d2286584d8f39f7576b330a4
+guid: 226d151a6bd862e49810bfcd08e792bc
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
+    100000: Cylinder001
+    100002: Cylinder002
+    100004: Cylinder003
+    100006: Cylinder004
+    100008: //RootNode
+    100010: Sphere001
+    100012: Sphere002
+    100014: Sphere003
+    100016: Sphere004
+    400000: Cylinder001
+    400002: Cylinder002
+    400004: Cylinder003
+    400006: Cylinder004
+    400008: //RootNode
+    400010: Sphere001
+    400012: Sphere002
+    400014: Sphere003
+    400016: Sphere004
     2100000: No Name
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Box001
-    6400000: //RootNode
+    2300000: Cylinder001
+    2300002: Cylinder002
+    2300004: Cylinder003
+    2300006: Cylinder004
+    2300008: //RootNode
+    2300010: Sphere001
+    2300012: Sphere002
+    2300014: Sphere003
+    2300016: Sphere004
+    3300000: Cylinder001
+    3300002: Cylinder002
+    3300004: Cylinder003
+    3300006: Cylinder004
+    3300008: //RootNode
+    3300010: Sphere001
+    3300012: Sphere002
+    3300014: Sphere003
+    3300016: Sphere004
+    4300000: Platform
+    4300002: Cylinder001
+    4300004: Sphere001
+    4300006: Cylinder002
+    4300008: Sphere002
+    4300010: Cylinder003
+    4300012: Sphere003
+    4300014: Cylinder004
+    4300016: Sphere004
+    6400000: Cylinder001
+    6400002: Cylinder002
+    6400004: Cylinder003
+    6400006: Cylinder004
+    6400008: //RootNode
+    6400010: Sphere001
+    6400012: Sphere002
+    6400014: Sphere003
+    6400016: Sphere004
   externalObjects: {}
   materials:
     importMaterials: 1
