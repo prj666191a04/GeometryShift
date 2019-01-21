@@ -2,8 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+//INPORTANT values ending with Prefab Should not be modified at runtime.
+
 public class LevelLoader : MonoBehaviour
 {
+    public delegate void LoadEvent();
+    public static event LoadEvent OnLevelLoaded;
+
+
+
+
 
     public static LevelLoader instance;
 
@@ -52,9 +61,12 @@ public class LevelLoader : MonoBehaviour
         GameObject.Instantiate(Level, EnvironmentContainer);
         Debug.Log("LevelLoader.cs " + System.Environment.NewLine + "finished levelLoad of " + Level.name);
         GeomotryShift.systemState = GeomotryShift.SystemState.WorldMap;
+        if(OnLevelLoaded != null)
+        {
+            OnLevelLoaded();
+        }
 
     }
-
     void UnloadWorld()
     {
         if(loadedEnvironment != null)

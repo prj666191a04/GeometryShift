@@ -7,14 +7,18 @@ public class CController : MonoBehaviour {
 
     public float h;
     public float v;
-    CMotor motor;
-    Rigidbody rBody;
+    public CMotor motor;
+    public Rigidbody rBody;
 
-    public bool autoInit = true;
+    public CMotor[] motorPool;
+
+    public bool autoInit = false;
 
     void DefaultInitialization()
     {
+        motorPool = new CMotor[1];
         motor = this.gameObject.AddComponent<TriMovementA>();
+        motorPool[0] = motor;
         if (this.gameObject.GetComponent<Rigidbody>())
         {
             rBody = this.gameObject.GetComponent<Rigidbody>();
@@ -27,12 +31,16 @@ public class CController : MonoBehaviour {
         motor.SetPhysics(rBody);
     }
 
-    //placeholder concept
-    public void ExternalInitalization(CMotor motor)
+    public void AssignMotor(CMotor m)
     {
-        
+        motor = m;
+        motor.SetPhysics(rBody);
     }
 
+    public void ChangeMotor(int index)
+    {
+
+    }
 
 	// Use this for initialization
 	void Start () {
@@ -54,9 +62,6 @@ public class CController : MonoBehaviour {
         motor.v_ = v;
 	}
 
-    void ChangeMotor()
-    {
 
-    }
 
 }
