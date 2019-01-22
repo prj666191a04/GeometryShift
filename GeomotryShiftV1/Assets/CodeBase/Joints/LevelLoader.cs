@@ -58,7 +58,7 @@ public class LevelLoader : MonoBehaviour
         Debug.Log("LevelLoader.cs " + System.Environment.NewLine + "Starting levelLoad of " + Level.name);
         GeomotryShift.systemState = GeomotryShift.SystemState.Loading;
         UnloadWorld();
-        GameObject.Instantiate(Level, EnvironmentContainer);
+        loadedEnvironment = GameObject.Instantiate(Level, EnvironmentContainer);
         Debug.Log("LevelLoader.cs " + System.Environment.NewLine + "finished levelLoad of " + Level.name);
         GeomotryShift.systemState = GeomotryShift.SystemState.WorldMap;
         if(OnLevelLoaded != null)
@@ -74,6 +74,7 @@ public class LevelLoader : MonoBehaviour
             GameObject.Destroy(loadedEnvironment);
             loadedEnvironment = null;
         }
+
     }
 
     void LoadWorld()

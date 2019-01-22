@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 1
+    path: Assets/Scenes/LevelLoadTestB.unity
+    guid: bac9c3d3e08a2454c961d4adfcc308b0
+  - enabled: 1
     path: Assets/Scenes/LevelLoadTest.unity
     guid: cff43dae5e416614ca57af60712a2171
   m_configObjects: {}
