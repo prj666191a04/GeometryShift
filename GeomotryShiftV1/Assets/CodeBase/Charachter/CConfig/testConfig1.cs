@@ -2,34 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//This needs to be made into an abtract class with children
-public class LevelStart : MonoBehaviour
+public class testConfig1 : CConfig
 {
 
-    public GameObject playerPrefab;
-    public Transform spawnPoint; //this will be replaced with save data later for open world map
-    public GameObject parentObject;
-
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        SetupCharacter();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void SetupCharacter()
+    public override void SetupCharacter(GameObject playerPrefab, Transform spawnPoint, GameObject parentObject)
     {
         GameObject player = GameObject.Instantiate(playerPrefab, spawnPoint.position, Quaternion.identity, parentObject.transform);
         CController cc = player.GetComponent<CController>();
         //in future will call a configure script for next step this is a hard coded and temporary solution
-        
+
         if (player.GetComponent<Rigidbody>())
         {
             cc.rBody = player.GetComponent<Rigidbody>();
@@ -46,6 +27,8 @@ public class LevelStart : MonoBehaviour
         cc.motor.SetPhysics(cc.rBody);
         Debug.Log("Character Ready");
 
-
     }
+
+
+
 }

@@ -1,18 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
-public class CConfig : MonoBehaviour
+[Serializable]
+public abstract class CConfig : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public abstract void SetupCharacter(GameObject playerPrefab, Transform spawnPoint, GameObject parentObject);
+   
 }

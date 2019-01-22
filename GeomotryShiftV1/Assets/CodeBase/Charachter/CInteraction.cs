@@ -10,9 +10,7 @@ public class CInteraction : MonoBehaviour
     //Many of these values are redundant and for testing purposes only
     public Collider[] obj;
     public GameObject targetObj;
-    public CInteractable targetInteraction;
-
-
+    
 
     public LayerMask mask;
     public float radius = 1f;
@@ -55,6 +53,7 @@ public class CInteraction : MonoBehaviour
         
         //TODO: Remove hard coded key
         //TODO: Create link to user interface
+        //TODO: Refactor following code into scan function
         obj = Physics.OverlapSphere(pos, radius, mask);
         if (obj.Length > 0)
         {

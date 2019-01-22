@@ -15,6 +15,9 @@ public class GSInput : MonoBehaviour {
     private KeyCode WestKey = KeyCode.A;
 
 
+   
+
+
 	// Use this for initialization
 	void Start () {
 		

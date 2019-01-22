@@ -7,8 +7,10 @@ using UnityEngine;
 
 public class GeomotryShift : MonoBehaviour
 {
+    public static Camera mainCamera;
 
-    public GeomotryShift instance;
+
+    public static GeomotryShift instance;
 
     public static SystemState systemState = SystemState.MainMenue;
     public enum SystemState
@@ -44,8 +46,5 @@ public class GeomotryShift : MonoBehaviour
     {
         
     }
-
-   
- 
-
+    
 }

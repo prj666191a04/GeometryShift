@@ -21,6 +21,7 @@ public class LevelPortal : CInteractable
     public override void Trigger()
     {
         Debug.Log("portal triggered");
+        LevelLoader.LoadLevelExternalCall(levelObject);
     }
 
 

@@ -616,6 +616,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: System
       objectReference: {fileID: 0}
+    - target: {fileID: 4186783359682332449, guid: 42506a4054ff6b84c9e27633d61c6c65,
+        type: 3}
+      propertyPath: EnvironmentContainer
+      value: 
+      objectReference: {fileID: 1091413623}
+    - target: {fileID: 4186783359682332449, guid: 42506a4054ff6b84c9e27633d61c6c65,
+        type: 3}
+      propertyPath: OpenWorldPreFab
+      value: 
+      objectReference: {fileID: 9136896069521930519, guid: 3fc533ecef89967468323308c9ee1d08,
+        type: 3}
     - target: {fileID: 4186783359682332448, guid: 42506a4054ff6b84c9e27633d61c6c65,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -671,17 +682,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4186783359682332449, guid: 42506a4054ff6b84c9e27633d61c6c65,
-        type: 3}
-      propertyPath: EnvironmentContainer
-      value: 
-      objectReference: {fileID: 1091413623}
-    - target: {fileID: 4186783359682332449, guid: 42506a4054ff6b84c9e27633d61c6c65,
-        type: 3}
-      propertyPath: OpenWorldPreFab
-      value: 
-      objectReference: {fileID: 9136896069521930519, guid: 3fc533ecef89967468323308c9ee1d08,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42506a4054ff6b84c9e27633d61c6c65, type: 3}
 --- !u!1 &2145552195
