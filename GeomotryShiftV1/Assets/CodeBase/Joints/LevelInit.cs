@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//This needs to be made into an abtract class with children
+/// <summary>
+/// Its starting to look like this class might not be needed. currently a class of type cconfig could be used directly
+/// but we are keeping it for the time being for orginization It will be removed once the system is compleete if there is still no need for it.
+/// </summary>
 public class LevelInit : MonoBehaviour
 {
 

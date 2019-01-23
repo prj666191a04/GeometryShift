@@ -7,6 +7,8 @@ using UnityEngine;
 
 public class LevelLoader : MonoBehaviour
 {
+
+    public Camera mainCamera;
     public delegate void LoadEvent();
     public static event LoadEvent OnLevelLoaded;
 
@@ -35,6 +37,7 @@ public class LevelLoader : MonoBehaviour
         if(instance == null)
         {
             instance = this;
+            GeomotryShift.mainCamera = this.mainCamera;
         }
         else
         {
@@ -43,6 +46,24 @@ public class LevelLoader : MonoBehaviour
         }
     }
 
+
+    private void OnEnable()
+    {
+        SubscribeEvents();
+    }
+    private void OnDisable()
+    {
+        UnsubscribeEvents();
+    }
+
+    void SubscribeEvents()
+    {
+        //todo: add events
+    }
+    void UnsubscribeEvents()
+    {
+        //todo: ^
+    }
     private void Update()
     {
         
