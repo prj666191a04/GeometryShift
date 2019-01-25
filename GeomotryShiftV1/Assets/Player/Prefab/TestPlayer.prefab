@@ -110,7 +110,7 @@ MonoBehaviour:
   motor: {fileID: 0}
   rBody: {fileID: 0}
   motorPool: []
-  autoInit: 1
+  autoInit: 0
 --- !u!114 &297406170897133786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,7 +125,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obj: []
   targetObj: {fileID: 0}
-  targetInteraction: {fileID: 0}
   mask:
     serializedVersion: 2
     m_Bits: 512
