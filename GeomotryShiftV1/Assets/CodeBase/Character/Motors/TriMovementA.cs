@@ -6,11 +6,6 @@ public class TriMovementA : CMotor
 {
     public float speedMultiplier = 6;
     public float jumpForce = 8f;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()

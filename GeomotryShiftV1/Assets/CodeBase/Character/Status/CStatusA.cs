@@ -45,13 +45,19 @@ public class CStatusA : CStatus
 
     private void LerpDsp()
     {
-        if(value_ != dspValue_)
+        if (value_ != dspValue_)
         {
-            dspValue_ = Mathf.Lerp(dspValue_, value_, Time.deltaTime * lerpSpeed); 
-            if(value_ < 1)
+            float decentValue = dspValue_ - Time.deltaTime * lerpSpeed;
+            if (dspValue_ < value_)
             {
-                dspValue_ = 0;
+                dspValue_ = value_;
             }
+            else
+            {
+                dspValue_ = decentValue;
+            }
+
+
         }
     }
 

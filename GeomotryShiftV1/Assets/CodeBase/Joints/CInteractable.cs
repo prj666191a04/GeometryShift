@@ -5,5 +5,6 @@ using UnityEngine;
 public abstract class CInteractable : MonoBehaviour
 {
     public abstract void Trigger();
+    public string interactText;
 
 }

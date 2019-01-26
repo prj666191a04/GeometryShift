@@ -5,6 +5,7 @@ using UnityEngine;
 public class LevelPortal : CInteractable
 {
     public GameObject levelObject;
+    
 
     public Transform exitLocation;
     // Start is called before the first frame update

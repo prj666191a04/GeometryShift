@@ -9,7 +9,8 @@ public class CInteraction : MonoBehaviour
 
     //Many of these values are redundant and for testing purposes only
     public Collider[] obj;
-    public GameObject targetObj;
+    public CInteractable targetObj;
+
     
 
     public LayerMask mask;
@@ -33,9 +34,13 @@ public class CInteraction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //TODO: This code is messy and must be cleaned up and factored
+        Scan();
+       
+    }
 
-
+    void Scan()
+    {
+     //TODO: This code is messy and must be cleaned up and factored
         //RaycastHit hit;
         pos = transform.position;
         //direction = Vector3.zero;
@@ -52,35 +57,33 @@ public class CInteraction : MonoBehaviour
         //}
         
         //TODO: Remove hard coded key
-        //TODO: Create link to user interface
-        //TODO: Refactor following code into scan function
         obj = Physics.OverlapSphere(pos, radius, mask);
         if (obj.Length > 0)
         {
-            targetObj = obj[0].gameObject;
+            if(targetObj != obj[0])
+            {
+                targetObj = obj[0].gameObject.GetComponent<CInteractable>();
+                SetUI();
+            }
             if (Input.GetKeyDown(KeyCode.E))
             {
-                targetObj.GetComponent<CInteractable>().Trigger();
-
+                targetObj.Trigger();
+                UnsetUI();    
             }       
         }
-        else
+        else if (targetObj != null)
         {
             targetObj = null;
+            UnsetUI();
         }
-    }
-
-    void Scan()
-    {
-
     }
     void SetUI()
     {
-
+        GeomotryShift.instance.interactionUI.Apear(targetObj.interactText);
     }
     void UnsetUI()
     {
-
+        GeomotryShift.instance.interactionUI.Hide();
     }
     //For debug purposes only - remove for finished product
     private void OnDrawGizmosSelected()

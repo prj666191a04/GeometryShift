@@ -293,6 +293,11 @@ PrefabInstance:
       propertyPath: exitLocation
       value: 
       objectReference: {fileID: 946716756583410927}
+    - target: {fileID: 4515027484206737836, guid: ec2b2811831bf9546b44b3274fc16dbe,
+        type: 3}
+      propertyPath: interactText
+      value: Enter Test Level
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec2b2811831bf9546b44b3274fc16dbe, type: 3}
 --- !u!4 &6367567776164497557 stripped
