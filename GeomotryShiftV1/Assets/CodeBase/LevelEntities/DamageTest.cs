@@ -18,7 +18,7 @@ public class DamageTest : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-       if(collision.gameObject.GetComponent<CStatus>())
+       if(collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.GetComponent<CStatus>().Damage(1f);
         }

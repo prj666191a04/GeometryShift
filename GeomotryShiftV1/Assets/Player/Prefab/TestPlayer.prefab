@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 297406170897133786}
   m_Layer: 0
   m_Name: TestPlayer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -110,7 +110,9 @@ MonoBehaviour:
   motor: {fileID: 0}
   rBody: {fileID: 0}
   motorPool: []
+  activeStatus: {fileID: 0}
   autoInit: 0
+  movementDisabled: 0
 --- !u!114 &297406170897133786
 MonoBehaviour:
   m_ObjectHideFlags: 0
