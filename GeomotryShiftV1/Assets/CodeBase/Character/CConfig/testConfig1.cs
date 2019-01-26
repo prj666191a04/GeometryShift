@@ -25,6 +25,8 @@ public class testConfig1 : CConfig
         cc.motorPool[0] = player.AddComponent<TriMovementA>();
         cc.AssignMotor(cc.motorPool[0]);
         cc.motor.SetPhysics(cc.rBody);
+
+        GeomotryShift.playerStatus = player.AddComponent<CStatusA>();
         Debug.Log("Character Ready");
 
     }

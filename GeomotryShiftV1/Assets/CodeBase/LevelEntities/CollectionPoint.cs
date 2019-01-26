@@ -22,7 +22,6 @@ public class CollectionPoint : MonoBehaviour
                     collected++;
                 }
             }
-
         }
         CheckCompletion();
     }

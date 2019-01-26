@@ -9,10 +9,14 @@ public class CController : MonoBehaviour {
     public float v;
     public CMotor motor;
     public Rigidbody rBody;
-
     public CMotor[] motorPool;
+    public CStatus activeStatus;
 
     public bool autoInit = false;
+    public bool movementDisabled = false;
+
+
+
 
     void DefaultInitialization()
     {

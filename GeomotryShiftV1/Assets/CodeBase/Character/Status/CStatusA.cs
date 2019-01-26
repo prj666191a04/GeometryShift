@@ -2,17 +2,62 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CStatusA : MonoBehaviour
+
+//Default healthbased status script
+public class CStatusA : CStatus
 {
+    private float lerpSpeed = 2f;
+    private float minLerpSpeed = 1f;
+    private float maxLerpSpeed = 6f;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        value_ = 10;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        LerpDsp();
     }
+
+    public override void Damage(float ammount)
+    {
+        if(value_ > 0)
+        {
+            value_ -= ammount;
+        }
+        else
+        {
+            value_ = 0;
+        }
+    }
+    public override void Recover(float ammount)
+    {
+        throw new System.NotImplementedException();
+    }
+    public override void Initialize(float ammount)
+    {
+        throw new System.NotImplementedException();
+    }
+
+
+    private void LerpDsp()
+    {
+        if(value_ != dspValue_)
+        {
+            dspValue_ = Mathf.Lerp(dspValue_, value_, Time.deltaTime * lerpSpeed); 
+            if(value_ < 1)
+            {
+                dspValue_ = 0;
+            }
+        }
+    }
+
+
+
+
+
+
 }

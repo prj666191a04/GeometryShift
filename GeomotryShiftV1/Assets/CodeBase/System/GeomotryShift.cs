@@ -9,8 +9,8 @@ public class GeomotryShift : MonoBehaviour
 {
     public static Camera mainCamera;
 
-
     public static GeomotryShift instance;
+    public static CStatus playerStatus;
 
     public static SystemState systemState = SystemState.MainMenue;
     public enum SystemState

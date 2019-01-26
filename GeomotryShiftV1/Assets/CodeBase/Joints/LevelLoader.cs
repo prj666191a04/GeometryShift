@@ -81,6 +81,11 @@ public class LevelLoader : MonoBehaviour
 
     }
 
+    private void ReturnFromFailedLevel()
+    {
+        //Todo:: implement;
+    }
+
     public void LoadLevel(GameObject Level)
     {
         Debug.Log("LevelLoader.cs " + System.Environment.NewLine + "Starting levelLoad of " + Level.name);

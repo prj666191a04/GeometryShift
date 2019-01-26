@@ -2,20 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CStatus : MonoBehaviour
+public abstract class CStatus : MonoBehaviour
 {
-   float value;
-   public virtual void Damage(float ammount)
-   {
-      
-   }
-   public virtual void Recover(float ammount)
-   {
+   public float value_;
+   public float dspValue_;
 
-   }
-   public virtual void Initialize(float ammount)
-   {
+    public abstract void Damage(float ammount);
 
-   }
+    public abstract void Recover(float ammount);
+
+    public abstract void Initialize(float ammount);
 
 }

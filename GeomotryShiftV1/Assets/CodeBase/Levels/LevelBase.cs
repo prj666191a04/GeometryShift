@@ -11,7 +11,7 @@ public class LevelBase : MonoBehaviour
     public delegate void LevelEvent();
     public static event LevelMessage OnLevelCompleeted;
     public static event LevelEvent OnLevelFailed;
-    public int levelId = 0;
+    public int levelId_ = 0;
 
 
 
@@ -25,7 +25,7 @@ public class LevelBase : MonoBehaviour
     {
         if(OnLevelCompleeted != null)
         {
-            OnLevelCompleeted(levelId, code);
+            OnLevelCompleeted(levelId_, code);
         }
         else
         {

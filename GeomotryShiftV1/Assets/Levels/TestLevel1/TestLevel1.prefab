@@ -81,7 +81,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f9a6a27d4172604d906373221500ed5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelId: 0
+  levelId_: 0
   cameraPoint: {fileID: 5023990248695275105}
 --- !u!1 &1245940012806439514
 GameObject:
@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 4728511131731690857}
   - component: {fileID: 5593542081017982384}
   - component: {fileID: 4485293931929001970}
+  - component: {fileID: 504885557107861020}
   m_Layer: 0
   m_Name: TestObsticle
   m_TagString: Untagged
@@ -174,6 +175,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &504885557107861020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1245940012806439514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11b493fa9218bf64fb26935b746ffa9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1632285024593515402
 GameObject:
   m_ObjectHideFlags: 0
