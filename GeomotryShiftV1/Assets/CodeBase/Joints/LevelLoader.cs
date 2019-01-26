@@ -17,21 +17,16 @@ public class LevelLoader : MonoBehaviour
 
 
     public static LevelLoader instance;
+    public static Vector3 levelExitPoint;
 
     //place holder in future custom type may be needed for world state
     private GameObject WorldState;
 
-    
     public Transform EnvironmentContainer;
-    public GameObject OpenWorldPreFab;
-
-
+    public GameObject openWorldPreFab;
     private GameObject loadedEnvironment;
     
-    
-
-
-
+  
     private void Start()
     {
         if(instance == null)
@@ -46,7 +41,6 @@ public class LevelLoader : MonoBehaviour
         }
     }
 
-
     private void OnEnable()
     {
         SubscribeEvents();
@@ -58,11 +52,11 @@ public class LevelLoader : MonoBehaviour
 
     void SubscribeEvents()
     {
-        //todo: add events
+        LevelBase.OnLevelCompleeted += ReturnFromCompleetedLevel;
     }
     void UnsubscribeEvents()
     {
-        //todo: ^
+        LevelBase.OnLevelCompleeted += ReturnFromCompleetedLevel;
     }
     private void Update()
     {
@@ -74,6 +68,19 @@ public class LevelLoader : MonoBehaviour
     {
         instance.LoadLevel(Level);
     }
+    
+    private void ReturnFromCompleetedLevel(int id, int code)
+    {
+        Debug.Log("LevelLoader.cs: returning from level with id of " + id);
+        UnloadWorld();
+        GeomotryShift.systemState = GeomotryShift.SystemState.Loading;
+        loadedEnvironment = GameObject.Instantiate(openWorldPreFab, EnvironmentContainer);
+        //TODO: Save id and completion code to save state object
+
+        //TODO: Call auto save, (not yet implemented)
+
+    }
+
     public void LoadLevel(GameObject Level)
     {
         Debug.Log("LevelLoader.cs " + System.Environment.NewLine + "Starting levelLoad of " + Level.name);

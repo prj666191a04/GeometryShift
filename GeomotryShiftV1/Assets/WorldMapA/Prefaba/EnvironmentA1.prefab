@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1336896387683007948
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 946716756583410927}
+  m_Layer: 9
+  m_Name: Portal Exit
+  m_TagString: Untagged
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &946716756583410927
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1336896387683007948}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1.91}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6367567776164497557}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4535945839593289350
 GameObject:
   m_ObjectHideFlags: 0
@@ -258,6 +288,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 243329377784867678, guid: 063664e690c6de14e8f048c12f4bcd1e,
         type: 3}
+    - target: {fileID: 4515027484206737836, guid: ec2b2811831bf9546b44b3274fc16dbe,
+        type: 3}
+      propertyPath: exitLocation
+      value: 
+      objectReference: {fileID: 946716756583410927}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec2b2811831bf9546b44b3274fc16dbe, type: 3}
 --- !u!4 &6367567776164497557 stripped

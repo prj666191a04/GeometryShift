@@ -8,19 +8,11 @@ public class LevelPortal : CInteractable
 
     public Transform exitLocation;
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public override void Trigger()
     {
         Debug.Log("portal triggered");
+        LevelLoader.levelExitPoint = exitLocation.position;
         LevelLoader.LoadLevelExternalCall(levelObject);
     }
 

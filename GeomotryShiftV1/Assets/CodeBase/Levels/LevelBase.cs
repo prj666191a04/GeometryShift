@@ -4,24 +4,34 @@ using UnityEngine;
 
 public class LevelBase : MonoBehaviour
 {
+
+    public static LevelBase instance;
+    
     public delegate void LevelMessage(int id, int code);
     public delegate void LevelEvent();
     public static event LevelMessage OnLevelCompleeted;
     public static event LevelEvent OnLevelFailed;
-    public int levelId;
+    public int levelId = 0;
+
+
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     //id is the id number of the level, code is the return value for how the level was compleeted, return 0 if no special conditions exist
-    protected void AcknowledgeLevelCompletion(int id, int code = 0)
+    public void AcknowledgeLevelCompletion(int code = 0)
     {
         if(OnLevelCompleeted != null)
         {
-            OnLevelCompleeted(id, code);
+            OnLevelCompleeted(levelId, code);
         }
         else
         {
             Debug.LogError("LevelBase.cs: On Level Compleeted has no subscribers!");
         }
     }
-
     protected void TerminateLevelAttempt()
     {
         if(OnLevelFailed != null)

@@ -19,45 +19,24 @@ public class LevelInit : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // test = new CConfig();
-        //test.playerPrefab = playerPrefab;
-        //test.spawnPoint = spawnPoint;
-        //test.parentObject = parentObject;
-        //test.SetupCharacter();
-
         cconfig.SetupCharacter(playerPrefab, spawnPoint, parentObject);
-
-        //SetupCharacter();
     }
+
+    void ConfigureSpawnPoint()
+    {
+        //if last exit point is not null that means we have exited from a level before and we have not just loaded the save file
+        if(LevelLoader.levelExitPoint != null)
+        {
+            spawnPoint.position = LevelLoader.levelExitPoint;
+        }
+        //Todo load player position from save file if it is first load for the session
+    }
+
 
     // Update is called once per frame
     void Update()
     {
         
     }
-
-    public void SetupCharacter()
-    {
-        GameObject player = GameObject.Instantiate(playerPrefab, spawnPoint.position, Quaternion.identity, parentObject.transform);
-        CController cc = player.GetComponent<CController>();
-        //in future will call a configure script for next step this is a hard coded and temporary solution
-        
-        if (player.GetComponent<Rigidbody>())
-        {
-            cc.rBody = player.GetComponent<Rigidbody>();
-        }
-        else
-        {
-            cc.rBody = player.AddComponent<Rigidbody>();
-            cc.rBody.useGravity = true;
-        }
-
-        cc.motorPool = new CMotor[1];
-        cc.motorPool[0] = player.AddComponent<TriMovementA>();
-        cc.AssignMotor(cc.motorPool[0]);
-        cc.motor.SetPhysics(cc.rBody);
-        Debug.Log("Character Ready");
-
-
-    }
+    
 }
