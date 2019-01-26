@@ -33,7 +33,7 @@ public class ItemSlot : MonoBehaviour
 
     public void handleClick()
     {
-        inventory.tryTransferItem(item);
+        //inventory.tryTransferItem(item);
     }
 
 

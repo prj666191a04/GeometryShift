@@ -16,13 +16,20 @@ public class TestItem
 
 public class Inventory : MonoBehaviour
 {
-
+    //Main inventory variable
     public List<TestItem> itemlist;
-    public Transform contenetPanel;
-    public Inventory otherinventory;
-    public Text goldDisplay;
     public SimpleObjectPool buttonpool;
-    public float gold = 20f;
+    public Transform itemContenetPanel;
+
+    //public Inventory otherinventory;
+    //public Text goldDisplay;
+    //public float gold = 20f;
+
+    //Description box variables
+    public GameObject descriptionPanel;
+    public Transform descriptionContenetPanel;
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,7 +39,7 @@ public class Inventory : MonoBehaviour
 
     public void refreshDispaly()
     {
-        goldDisplay.text = "Gold: " + gold.ToString();
+        //goldDisplay.text = "Gold: " + gold.ToString();
         removeButton();
         addButton();
 
@@ -45,7 +52,7 @@ public class Inventory : MonoBehaviour
             TestItem item = itemlist[i];
             GameObject newbutton = buttonpool.GetObject();//grabs an opbject from the pool to use
             newbutton.transform.SetParent(contenetPanel); // assigns the object to the inventory panel 
-
+            
             ItemSlot itemSlot = newbutton.GetComponent<ItemSlot>(); // gets the new game instance 
             itemSlot.setup(item, this); // sents to inner function to assign values
         }
@@ -60,20 +67,27 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void tryTransferItem(TestItem item)
+    //public void tryTransferItem(TestItem item)
+    //{
+    //    if (otherinventory.gold >= item.value)
+    //    {
+    //        gold += item.value;
+    //        otherinventory.gold -= item.value;
+
+    //        addItem(item, otherinventory);
+    //        removeItem(item, this);
+
+    //        refreshDispaly();
+    //        otherinventory.refreshDispaly();
+    //    }
+    //}
+
+    public void loadItemDescription()
     {
-        if (otherinventory.gold >= item.value)
-        {
-            gold += item.value;
-            otherinventory.gold -= item.value;
 
-            addItem(item, otherinventory);
-            removeItem(item, this);
-
-            refreshDispaly();
-            otherinventory.refreshDispaly();
-        }
     }
+
+
 
     private void addItem(TestItem itemToAdd, Inventory inventory)
     {
