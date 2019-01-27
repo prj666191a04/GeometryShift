@@ -47,6 +47,7 @@ public class CController : MonoBehaviour {
         {
             motor.enabled = false;
             motor = motorPool[index];
+            motor.SetPhysics(rBody);
             motor.enabled = true;
         }
         else

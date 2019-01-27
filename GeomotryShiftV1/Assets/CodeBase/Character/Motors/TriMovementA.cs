@@ -22,8 +22,9 @@ public class TriMovementA : CMotor
     protected override void ConfigurePhysics()
     {
         rBody.useGravity = true;
+
         rBody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
-      
+        rBody.collisionDetectionMode = CollisionDetectionMode.Continuous;
     }
 
     void OnEnable()
@@ -38,10 +39,7 @@ public class TriMovementA : CMotor
         
     }
 
-    void OnDisable()
-    {
-        rBody.constraints = RigidbodyConstraints.None;
-    }
+    
 
 
 
