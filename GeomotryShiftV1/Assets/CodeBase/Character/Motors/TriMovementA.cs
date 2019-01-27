@@ -25,6 +25,7 @@ public class TriMovementA : CMotor
 
         rBody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
         rBody.collisionDetectionMode = CollisionDetectionMode.Continuous;
+        rBody.interpolation = RigidbodyInterpolation.Interpolate;
     }
 
     void OnEnable()

@@ -5,7 +5,7 @@ using UnityEngine;
 //script used to test motor change
 public class TriMovementB : CMotor
 {
-    public float speedMultiplier = 6;
+    public float speedMultiplier = 15;
     public float jumpForce = 8f;
 
     // Start is called before the first frame update
@@ -33,6 +33,7 @@ public class TriMovementB : CMotor
         rBody.useGravity = true;
         rBody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
         rBody.collisionDetectionMode = CollisionDetectionMode.Continuous;
+        rBody.interpolation = RigidbodyInterpolation.Interpolate;
 
     }
 }
