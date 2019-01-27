@@ -10,6 +10,7 @@ public class TriMovementA : CMotor
     // Update is called once per frame
     void Update()
     {
+        // rBody.MovePosition(transform.position + (transform.forward * v_ + transform.right * h_) * (Time.deltaTime * 2));
         Vector3 myVector = new Vector3(0, 0, 0);
         myVector.x = h_;
         myVector.y = rBody.velocity.y;
