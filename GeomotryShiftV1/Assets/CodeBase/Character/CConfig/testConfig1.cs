@@ -21,10 +21,14 @@ public class testConfig1 : CConfig
             cc.rBody.useGravity = true;
         }
 
-        cc.motorPool = new CMotor[1];
+        
+        cc.motorPool = new CMotor[2];
         cc.motorPool[0] = player.AddComponent<TriMovementA>();
         cc.AssignMotor(cc.motorPool[0]);
         cc.motor.SetPhysics(cc.rBody);
+
+        cc.motorPool[1] = player.AddComponent<TriMovementB>();
+        cc.motorPool[1].enabled = false;
 
         GeomotryShift.playerStatus = player.AddComponent<CStatusA>();
         Debug.Log("Character Ready");

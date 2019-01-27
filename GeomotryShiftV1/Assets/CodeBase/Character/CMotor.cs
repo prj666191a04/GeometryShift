@@ -15,6 +15,7 @@ public class CMotor : MonoBehaviour {
         ConfigurePhysics();
    }
    
+   
    protected virtual void ConfigurePhysics()
    {
 

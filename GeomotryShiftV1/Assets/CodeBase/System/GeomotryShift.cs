@@ -11,7 +11,7 @@ public class GeomotryShift : MonoBehaviour
 
     public static GeomotryShift instance;
 
-    //referance might be removed from this script
+    //referance might be removed from this script but for now it seems like a good place to store it.
     public static CStatus playerStatus;
 
     public static SystemState systemState = SystemState.MainMenue;

@@ -17,7 +17,7 @@ public class CController : MonoBehaviour {
 
 
 
-
+    //Can be removed later for testing only
     void DefaultInitialization()
     {
         motorPool = new CMotor[1];
@@ -43,6 +43,16 @@ public class CController : MonoBehaviour {
 
     public void ChangeMotor(int index)
     {
+        if(index <= motorPool.Length - 1 && index >= 0 && motorPool[index] != null)
+        {
+            motor.enabled = false;
+            motor = motorPool[index];
+            motor.enabled = true;
+        }
+        else
+        {
+            Debug.LogWarning("Motor not changed invalid index was provided to ChangeMotor Please compare the indexes of the chosen CConfig with the index passed");
+        }
 
     }
 
