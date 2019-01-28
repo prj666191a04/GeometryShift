@@ -11,8 +11,7 @@ public class CInteraction : MonoBehaviour
     public Collider[] obj;
     public CInteractable targetObj;
 
-    
-
+   
     public LayerMask mask;
     public float radius = 1f;
     public float maxDistance = 1f;

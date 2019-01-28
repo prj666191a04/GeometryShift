@@ -10,6 +10,8 @@ public class CController : MonoBehaviour {
     public CMotor motor;
     public Rigidbody rBody;
     public CMotor[] motorPool;
+
+    //ignore the value for now
     public CStatus activeStatus;
 
     public bool autoInit = false;
@@ -34,13 +36,13 @@ public class CController : MonoBehaviour {
         }
         motor.SetPhysics(rBody);
     }
-
+    //used to set the first motor for the level
     public void AssignMotor(CMotor m)
     {
         motor = m;
         motor.SetPhysics(rBody);
     }
-
+    //used to change motor in level
     public void ChangeMotor(int index)
     {
         if(index <= motorPool.Length - 1 && index >= 0 && motorPool[index] != null)

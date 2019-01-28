@@ -9,6 +9,12 @@ public class CMotor : MonoBehaviour {
     public float v_ = 0f;
     protected Rigidbody rBody;
 
+    private void FixedUpdate()
+    {
+        OnFixedUpdate();
+    }
+
+
    public virtual void SetPhysics(Rigidbody phys)
    {
         rBody = phys;
@@ -19,6 +25,11 @@ public class CMotor : MonoBehaviour {
    protected virtual void ConfigurePhysics()
    {
 
+
+   }
+
+   protected virtual void OnFixedUpdate()
+   {
 
    }
 

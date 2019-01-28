@@ -34,6 +34,7 @@ public class TriMovementB : CMotor
         rBody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
         rBody.collisionDetectionMode = CollisionDetectionMode.Continuous;
         rBody.interpolation = RigidbodyInterpolation.Interpolate;
+        rBody.velocity = Vector3.zero;
 
     }
 }
