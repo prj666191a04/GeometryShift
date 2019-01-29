@@ -19,9 +19,9 @@ public class TriMovementA : CMotor
     public Vector3 addedForce;
 
     //real speed in meters per seccond
-    public float metersPerSeccond = 0;
+    public float speed = 0;
     //ground speed only for meters per seccond, no verticle velocoty is included
-    public float metersPerSeccondGroundSpeed = 0;
+    public float groundSpeed = 0;
     public Vector3 lastPosition;
 
 
@@ -35,8 +35,8 @@ public class TriMovementA : CMotor
         Vector3 lastGroundPosition = new Vector3(lastPosition.x, 0, lastPosition.z);
         Vector3 currentGroundPosition = new Vector3(transform.position.x, 0, transform.position.z);
 
-        metersPerSeccond = Vector3.Distance(lastPosition, transform.position) / Time.deltaTime;
-        metersPerSeccondGroundSpeed = Vector3.Distance(lastGroundPosition, currentGroundPosition) / Time.deltaTime;
+        speed = Vector3.Distance(lastPosition, transform.position) / Time.deltaTime;
+        groundSpeed = Vector3.Distance(lastGroundPosition, currentGroundPosition) / Time.deltaTime;
 
         lastPosition = transform.position;
         CalculateAccelerationForce();
@@ -50,8 +50,8 @@ public class TriMovementA : CMotor
         //makes sure the player is not granted extra force for moving in a diaginal direction
         if (combinedInput >= 2)
         {
-            h_ *= 0.5f;
-            v_ *= 0.5f;
+            h_ *= 0.7f;
+            v_ *= 0.7f;
         }
 
         movementVector = new Vector3(h_, 0, v_);
@@ -64,7 +64,7 @@ public class TriMovementA : CMotor
             addedForce = (movementVector * ((accelerationRate * 1000) * rBody.mass)) * Time.fixedDeltaTime;
             //only exists for viewing in inspector
         }
-        else if (metersPerSeccondGroundSpeed > 3)
+        else if (groundSpeed > 3)
         {
             rBody.AddForce((-rBody.velocity.normalized * ((5 * 1000) * rBody.mass)) * Time.fixedDeltaTime);
         }
@@ -74,7 +74,7 @@ public class TriMovementA : CMotor
 
     void CalculateAccelerationForce()
     {
-        accelerationRate = 1; //maxSpeed - metersPerSeccondGroundSpeed;
+        accelerationRate = 1;//maxSpeed - metersPerSeccondGroundSpeed;
         //Material mat = transform.gameObject.GetComponent<MeshRenderer>().material;
 
        // mat.color = Color.white;
