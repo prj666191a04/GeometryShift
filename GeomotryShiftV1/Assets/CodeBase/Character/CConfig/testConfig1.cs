@@ -30,7 +30,7 @@ public class testConfig1 : CConfig
         cc.motorPool[1] = player.AddComponent<TriMovementB>();
         cc.motorPool[1].enabled = false;
 
-        GeomotryShift.playerStatus = player.AddComponent<CStatusA>();
+        player.AddComponent<CStatusA>();
         Debug.Log("Character Ready");
 
     }

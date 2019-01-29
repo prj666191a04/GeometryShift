@@ -13,4 +13,9 @@ public abstract class CStatus : MonoBehaviour
 
     public abstract void Initialize(float ammount);
 
+    private void OnEnable()
+    {
+        GeomotryShift.playerStatus = this;
+    }
+
 }
