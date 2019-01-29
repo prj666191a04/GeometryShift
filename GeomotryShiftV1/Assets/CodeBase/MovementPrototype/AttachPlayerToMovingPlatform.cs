@@ -8,7 +8,7 @@ public class AttachPlayerToMovingPlatform : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == Player)
+        if (other.gameObject.CompareTag("Player"))
         {
             Player.transform.parent = transform.parent;
         }
@@ -16,13 +16,12 @@ public class AttachPlayerToMovingPlatform : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject == Player)
+        if (other.gameObject.CompareTag("Player"))
         {
             Player.transform.parent = null;
         }
     }
-
-
+    
     // Start is called before the first frame update
     void Start()
     {

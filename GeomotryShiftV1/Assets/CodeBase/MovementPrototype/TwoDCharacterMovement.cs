@@ -15,7 +15,12 @@ public class TwoDCharacterMovement : MonoBehaviour
     void Start()
     {
         theRB = GetComponent<Rigidbody>();
-        theRB.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationZ;
+        theRB.constraints =
+            RigidbodyConstraints.FreezePositionZ |
+            RigidbodyConstraints.FreezeRotationZ |
+            RigidbodyConstraints.FreezeRotationX |
+            RigidbodyConstraints.FreezeRotationY |
+            RigidbodyConstraints.FreezeRotationZ;
 
     }
 
