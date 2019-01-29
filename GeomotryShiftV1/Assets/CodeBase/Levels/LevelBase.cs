@@ -21,7 +21,7 @@ public class LevelBase : MonoBehaviour
     }
 
     //id is the id number of the level, code is the return value for how the level was compleeted, return 0 if no special conditions exist
-    public void AcknowledgeLevelCompletion(int code = 0)
+    public virtual void AcknowledgeLevelCompletion(int code = 0)
     {
         if(OnLevelCompleeted != null)
         {
@@ -32,7 +32,7 @@ public class LevelBase : MonoBehaviour
             Debug.LogError("LevelBase.cs: On Level Compleeted has no subscribers!");
         }
     }
-    protected void TerminateLevelAttempt()
+    protected virtual void TerminateLevelAttempt()
     {
         if(OnLevelFailed != null)
         {

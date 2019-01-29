@@ -14,6 +14,11 @@ public class TriMovementB : CMotor
         
     }
 
+    private void Update()
+    {
+        OnInput();
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -26,6 +31,14 @@ public class TriMovementB : CMotor
         //myVector.x *= speedMultiplier;
         //myVector.z *= speedMultiplier;
         //this.rBody.velocity = myVector;
+    }
+
+    void OnInput()
+    {
+        if(Input.GetKeyDown(KeyCode.H))
+        {
+
+        }
     }
 
     protected override void ConfigurePhysics()

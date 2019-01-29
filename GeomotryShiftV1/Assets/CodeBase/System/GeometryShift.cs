@@ -5,11 +5,11 @@ using UnityEngine;
 
 //INPORTANT values ending with Prefab Should not be modified at runtime.
 
-public class GeomotryShift : MonoBehaviour
+public class GeometryShift : MonoBehaviour
 {
     public static Camera mainCamera;
 
-    public static GeomotryShift instance;
+    public static GeometryShift instance;
 
     //referance might be removed from this script but for now it seems like a good place to store it.
     public static CStatus playerStatus;

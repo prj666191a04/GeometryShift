@@ -15,7 +15,7 @@ public abstract class CStatus : MonoBehaviour
 
     private void OnEnable()
     {
-        GeomotryShift.playerStatus = this;
+        GeometryShift.playerStatus = this;
     }
 
 }

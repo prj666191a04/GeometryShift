@@ -32,7 +32,7 @@ public class LevelLoader : MonoBehaviour
         if(instance == null)
         {
             instance = this;
-            GeomotryShift.mainCamera = this.mainCamera;
+            GeometryShift.mainCamera = this.mainCamera;
         }
         else
         {
@@ -73,7 +73,7 @@ public class LevelLoader : MonoBehaviour
     {
         Debug.Log("LevelLoader.cs: returning from level with id of " + id);
         UnloadWorld();
-        GeomotryShift.systemState = GeomotryShift.SystemState.Loading;
+        GeometryShift.systemState = GeometryShift.SystemState.Loading;
         loadedEnvironment = GameObject.Instantiate(openWorldPreFab, EnvironmentContainer);
         //TODO: Save id and completion code to save state object
 
@@ -89,11 +89,11 @@ public class LevelLoader : MonoBehaviour
     public void LoadLevel(GameObject Level)
     {
         Debug.Log("LevelLoader.cs " + System.Environment.NewLine + "Starting levelLoad of " + Level.name);
-        GeomotryShift.systemState = GeomotryShift.SystemState.Loading;
+        GeometryShift.systemState = GeometryShift.SystemState.Loading;
         UnloadWorld();
         loadedEnvironment = GameObject.Instantiate(Level, EnvironmentContainer);
         Debug.Log("LevelLoader.cs " + System.Environment.NewLine + "finished levelLoad of " + Level.name);
-        GeomotryShift.systemState = GeomotryShift.SystemState.WorldMap;
+        GeometryShift.systemState = GeometryShift.SystemState.WorldMap;
         if(OnLevelLoaded != null)
         {
             OnLevelLoaded();

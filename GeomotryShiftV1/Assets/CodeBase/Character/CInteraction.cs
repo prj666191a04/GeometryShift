@@ -78,11 +78,11 @@ public class CInteraction : MonoBehaviour
     }
     void SetUI()
     {
-        GeomotryShift.instance.interactionUI.Apear(targetObj.interactText);
+        GeometryShift.instance.interactionUI.Apear(targetObj.interactText);
     }
     void UnsetUI()
     {
-        GeomotryShift.instance.interactionUI.Hide();
+        GeometryShift.instance.interactionUI.Hide();
     }
     //For debug purposes only - remove for finished product
     private void OnDrawGizmosSelected()

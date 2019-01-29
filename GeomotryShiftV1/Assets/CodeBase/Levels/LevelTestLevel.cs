@@ -8,8 +8,8 @@ public class LevelTestLevel : LevelBase
     // Start is called before the first frame update
     void Start()
     {
-        GeomotryShift.mainCamera.transform.position = cameraPoint.position;
-        GeomotryShift.mainCamera.transform.rotation = cameraPoint.rotation;
+        //GeomotryShift.mainCamera.transform.position = cameraPoint.position;
+        //GeomotryShift.mainCamera.transform.rotation = cameraPoint.rotation;
     }
 
     // Update is called once per frame
