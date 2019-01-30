@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//Smart inventroy allowed to add and remove items
+
 
 [System.Serializable]
 public class TestItem
@@ -21,21 +23,16 @@ public class Inventory : MonoBehaviour
     public SimpleObjectPool buttonpool;
     public Transform itemContenetPanel;
 
-    //public Inventory otherinventory;
-    //public Text goldDisplay;
-    //public float gold = 20f;
 
-    //Description box variables
-    public GameObject descriptionPanel;
-    public Transform descriptionContenetPanel;
-    
+    //Desc stuff
+    public SimpleObjectPool descriptionPool;
+    public Transform descContenetPanel;
 
     // Start is called before the first frame update
     void Start()
     {
         refreshDispaly();
     }
-
 
     public void refreshDispaly()
     {
@@ -51,7 +48,7 @@ public class Inventory : MonoBehaviour
         {
             TestItem item = itemlist[i];
             GameObject newbutton = buttonpool.GetObject();//grabs an opbject from the pool to use
-            newbutton.transform.SetParent(contenetPanel); // assigns the object to the inventory panel 
+            newbutton.transform.SetParent(itemContenetPanel); // assigns the object to the inventory panel 
             
             ItemSlot itemSlot = newbutton.GetComponent<ItemSlot>(); // gets the new game instance 
             itemSlot.setup(item, this); // sents to inner function to assign values
@@ -60,48 +57,43 @@ public class Inventory : MonoBehaviour
 
     private void removeButton()
     {
-        while (contenetPanel.childCount > 0)
+        while (itemContenetPanel.childCount > 0)
         {
-            GameObject toRemover = transform.GetChild(0).gameObject; //Aslong as there is an object in the invetory there will always b a child (0)
-            buttonpool.ReturnObject(toRemover); // Returns the object back to the object pool for later use
+            GameObject toRemove = itemContenetPanel.transform.GetChild(0).gameObject; //Aslong as there is an object in the invetory there will always b a child (0)
+            buttonpool.ReturnObject(toRemove); // Returns the object back to the object pool for later use
         }
     }
 
-    //public void tryTransferItem(TestItem item)
-    //{
-    //    if (otherinventory.gold >= item.value)
-    //    {
-    //        gold += item.value;
-    //        otherinventory.gold -= item.value;
-
-    //        addItem(item, otherinventory);
-    //        removeItem(item, this);
-
-    //        refreshDispaly();
-    //        otherinventory.refreshDispaly();
-    //    }
-    //}
-
-    public void loadItemDescription()
+    
+    public void loadDescription(TestItem item)
     {
 
-    }
+        
+        if (descContenetPanel.childCount > 0)
+        {
+            GameObject toRemove = descContenetPanel.transform.GetChild(0).gameObject; //Aslong as there is an object in the invetory there will always b a child (0)
+            descriptionPool.ReturnObject(toRemove); // Returns the object back to the object pool for later use
+        }
 
+        GameObject newDescPoolObj = descriptionPool.GetObject();
+        newDescPoolObj.transform.SetParent(descContenetPanel);
+
+        descriptionBox newDesc = newDescPoolObj.GetComponent<descriptionBox>();
+        newDesc.setup(item);
+    }
 
 
     private void addItem(TestItem itemToAdd, Inventory inventory)
     {
         inventory.itemlist.Add(itemToAdd);
     }
-    private void removeItem (TestItem itemToRemove, Inventory inventory)
+    private void removeItem(TestItem itemToRemove, Inventory inventory)
     {
-        for (int i = inventory.itemlist.Count -1;  i >=0; i--)//Allows for safe item removal. Will not mess up the count and cause an overflow/out of index crash
+        for (int i = inventory.itemlist.Count - 1; i >= 0; i--)//Allows for safe item removal. Will not mess up the count and cause an overflow/out of index crash
         {
             if (inventory.itemlist[i] == itemToRemove)
                 inventory.itemlist.RemoveAt(i);
         }
     }
-
-
 
 }

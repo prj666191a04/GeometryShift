@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//Semi smart item slot
+//Holds info of item for smarter inventory
+//Decription is accessed through the item slot its self
 
 public class ItemSlot : MonoBehaviour
 {
@@ -11,9 +14,14 @@ public class ItemSlot : MonoBehaviour
     public Text itemName;
     public Text itemDesc;
     public Image icon;
+    public GameObject descriptionPannel;
 
     private TestItem item;
     private Inventory inventory;
+    private descriptionBox description;
+    
+
+    //public GameObject descriptionPanel; // UI Panel - used to show and hide the UI
 
     void Start()
     {
@@ -33,7 +41,7 @@ public class ItemSlot : MonoBehaviour
 
     public void handleClick()
     {
-        //inventory.tryTransferItem(item);
+        inventory.loadDescription(item);
     }
 
 
