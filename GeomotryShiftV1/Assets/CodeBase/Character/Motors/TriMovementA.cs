@@ -10,7 +10,7 @@ public class TriMovementA : CMotor
     //minimum required acceleration rate is 0.6f any lower and there is not enough force to move the object
     public float accelerationRate = 0f;
     private const int maxSpeed = 15;
-    private const int maxAcceleration = 5;
+    private const int maxAcceleration = 15;
     private const int maxBreakingForce = 10;
 
     public Vector3 velocityDirection;
@@ -50,31 +50,59 @@ public class TriMovementA : CMotor
         //makes sure the player is not granted extra force for moving in a diaginal direction
         if (combinedInput >= 2)
         {
-            h_ *= 0.7f;
-            v_ *= 0.7f;
+            h_ *= 0.7071067812f;
+            v_ *= 0.7071067812f;
         }
 
         movementVector = new Vector3(h_, 0, v_);
 
+        
         if (movementVector != Vector3.zero)
         {
-            rBody.AddForce((movementVector * ((accelerationRate * 1000) * rBody.mass)) * Time.fixedDeltaTime);
+            
+            if (h_ !=0 && v_ == 0 && (rBody.velocity.z >= 0 || rBody.velocity.z <= 0)){
+
+                rBody.velocity = (new Vector3(rBody.velocity.x, 0, 0));
+                movementVector = new Vector3(h_, 0, 0);
+            }
+            if (v_ != 0 && h_ == 0 && (rBody.velocity.x >= 0 || rBody.velocity.x <= 0))
+            {
+                rBody.velocity = (new Vector3(0, 0, rBody.velocity.z));
+                movementVector = new Vector3(0, 0, v_);
+            }
+
+            /*
+
+             Concept to fix:
+                 Zero velocity in direction player isnt going             
+             */
+            
+        
+
+            Debug.Log("Vector3 != 0");
+            rBody.AddForce((movementVector * ((accelerationRate *1000 ) * rBody.mass)) * Time.fixedDeltaTime);
             
             //this only exists to view the value in the inspector - remove for finished
-            addedForce = (movementVector * ((accelerationRate * 1000) * rBody.mass)) * Time.fixedDeltaTime;
+            addedForce = (movementVector * ((accelerationRate *1000) * rBody.mass) *Time.fixedDeltaTime);
             //only exists for viewing in inspector
         }
         else if (groundSpeed > 3)
         {
-            rBody.AddForce((-rBody.velocity.normalized * ((5 * 1000) * rBody.mass)) * Time.fixedDeltaTime);
+            Debug.Log("Ground > 3");
+            rBody.AddForce((-rBody.velocity.normalized * ((5 *1000) * rBody.mass)) * Time.fixedDeltaTime);
         }
+
+        
         velocityDirection = rBody.velocity.normalized;
         normalizedMovementDirection = movementVector.normalized;
     }
 
     void CalculateAccelerationForce()
     {
-        accelerationRate = 1;//maxSpeed - metersPerSeccondGroundSpeed;
+        if (groundSpeed > maxSpeed)
+            groundSpeed = maxSpeed;
+        accelerationRate = maxSpeed - groundSpeed;// maxSpeed - metersPerSeccondGroundSpeed;
+
         //Material mat = transform.gameObject.GetComponent<MeshRenderer>().material;
 
        // mat.color = Color.white;
