@@ -10,7 +10,6 @@ public class LoadHubWithoutPressingButton : MonoBehaviour
     void Start()
     {
         LevelLoader a = new LevelLoader();
-        theLevelToBeLoadedImmediately.transform.parent = theEnvironmentContainer.transform;
         a.EnvironmentContainer = theEnvironmentContainer.transform;
         a.LoadLevel(theLevelToBeLoadedImmediately);
     }
