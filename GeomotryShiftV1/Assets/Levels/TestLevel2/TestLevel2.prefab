@@ -132,8 +132,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8994128927899733405}
   - component: {fileID: 3298262523121125573}
-  - component: {fileID: 4057124376980535375}
   - component: {fileID: 4196698428541383970}
+  - component: {fileID: 3233668231183008340}
   m_Layer: 0
   m_Name: TestLevel2
   m_TagString: Untagged
@@ -174,19 +174,7 @@ MonoBehaviour:
     type: 3}
   spawnPoint: {fileID: 6598105217755729773}
   parentObject: {fileID: 146370700630448324}
-  cconfig: {fileID: 4057124376980535375}
---- !u!114 &4057124376980535375
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7433140906425336721}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3d43aefb4623c246a04ade7a158a185, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  cconfig: {fileID: 0}
 --- !u!114 &4196698428541383970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,6 +189,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelId_: 0
   cameraPoint: {fileID: 0}
+--- !u!114 &3233668231183008340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7433140906425336721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe0fd67fe1508f446ba0d2590c6b8453, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8846099512305692367
 GameObject:
   m_ObjectHideFlags: 0
