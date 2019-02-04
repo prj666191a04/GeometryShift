@@ -70,17 +70,36 @@ public class CameraControllerA : MonoBehaviour
     void UpdateTargetInfo()
     {
         anchorPoint = target.position + offset;
-       
+        if (Vector3.Distance(transform.position, anchorPoint) >= borderDistance)
+        {
+            targetPoistion = anchorPoint;
+            if(transform.position.x > targetPoistion.x)
+            {
+                targetPoistion.x += borderDistance;
+            }
+            if(transform.position.y > targetPoistion.y)
+            {
+                targetPoistion.y += borderDistance;
+            }
+            if (transform.position.x < targetPoistion.x)
+            {
+                targetPoistion.x -= borderDistance;
+            }
+            if (transform.position.y < targetPoistion.y)
+            {
+                targetPoistion.y -= borderDistance;
+            }
+        }
     }
 
     void MoveToPosition()
     {
-        if (Vector3.Distance(transform.position, anchorPoint) >= borderDistance)
-        {
+        //if (Vector3.Distance(transform.position, anchorPoint) >= borderDistance)
+        //{
             //currentPos = Vector3.Lerp(transform.position, anchorPoint, 3 * Time.deltaTime);
-            currentPos = Vector3.SmoothDamp(transform.position, anchorPoint, ref velocity, 0.1f);
+            currentPos = Vector3.SmoothDamp(transform.position, targetPoistion, ref velocity, 0.1f);
             transform.position = currentPos;
-        }
+        //}
         //transform.position = anchorPoint;
 
     }
