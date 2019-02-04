@@ -7,7 +7,6 @@ public class AlternatingPlatform : MonoBehaviour
     public Material state1Material;
     public Material state2Material;
     
-    bool state1 = true;
     Collider[] collidersArray;
     MeshRenderer meshRenderer;
     float secondsPassed;
@@ -44,7 +43,6 @@ public class AlternatingPlatform : MonoBehaviour
                 c.enabled = true;
             }
             meshRenderer.material = state1Material;
-            state1 = true;
         }
     }
 }

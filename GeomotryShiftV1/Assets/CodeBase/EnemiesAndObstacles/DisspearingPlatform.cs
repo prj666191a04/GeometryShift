@@ -43,7 +43,6 @@ public class DisspearingPlatform : MonoBehaviour
         if (dissapearing)
         {
             secondsSinceTouchedByPlayer += Time.deltaTime;
-            print(secondsSinceTouchedByPlayer);
         }
         if (secondsSinceTouchedByPlayer > 1)
         {
