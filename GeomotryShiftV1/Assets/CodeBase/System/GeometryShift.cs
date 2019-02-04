@@ -7,7 +7,11 @@ using UnityEngine;
 
 public class GeometryShift : MonoBehaviour
 {
+    //tmp
     public static Camera mainCamera;
+
+    //tmp
+    public CameraControllerA cameraController;
 
     public static GeometryShift instance;
 
