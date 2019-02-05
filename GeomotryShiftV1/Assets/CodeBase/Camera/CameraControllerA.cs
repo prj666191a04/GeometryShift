@@ -12,11 +12,12 @@ public class CameraControllerA : MonoBehaviour
     public Vector3 targetPoistion;
 
     public Vector3 velocity = Vector3.one;
-
     //Set to 0 to remove border follow effect
     public float borderDistance = 5f;
 
     public float smoothSpeed = 0.125f;
+
+   
 
 
     private void OnEnable()
@@ -47,62 +48,102 @@ public class CameraControllerA : MonoBehaviour
         Init();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(target != null)
-        {
-            //UpdateTargetInfo();
-            //MoveToPosition();
-        }
-    }
 
     private void LateUpdate()
     {
         if(target != null)
         {
-            UpdateTargetInfo();
-            MoveToPosition();
+            UpdateTargetInfo2();
+            MoveToPosition2();
+            
         }
         
     }
 
-    void UpdateTargetInfo()
+    void UpdateTargetInfo2()
     {
         anchorPoint = target.position + offset;
-        if (Vector3.Distance(transform.position, anchorPoint) >= borderDistance)
+        Vector3 xVector = new Vector3(transform.position.x, 0, 0);
+        Vector3 zVector = new Vector3(0, 0, transform.position.z);
+        Vector3 xAnchor = new Vector3(anchorPoint.x, 0, 0);
+        Vector3 zAnchor = new Vector3(0, 0, anchorPoint.z);
+        float xDist = Vector3.Distance(xVector, xAnchor);
+        float zDist = Vector3.Distance(zVector, zAnchor);
+
+        currentPos.y = anchorPoint.y;
+
+        if(xDist > borderDistance)
         {
-            targetPoistion = anchorPoint;
-            if(transform.position.x > targetPoistion.x)
+            //currentPos.x = Mathf.Lerp(currentPos.x, anchorPoint.z, 3 * Time.deltaTime);
+            currentPos.x = anchorPoint.x;
+            if(transform.position.x > anchorPoint.x)
             {
-                targetPoistion.x += borderDistance;
+                currentPos.x += borderDistance;
             }
-            if(transform.position.y > targetPoistion.y)
+            if(transform.position.x < anchorPoint.x)
             {
-                targetPoistion.y += borderDistance;
-            }
-            if (transform.position.x < targetPoistion.x)
-            {
-                targetPoistion.x -= borderDistance;
-            }
-            if (transform.position.y < targetPoistion.y)
-            {
-                targetPoistion.y -= borderDistance;
+                currentPos.x -= borderDistance;
             }
         }
+        if(zDist > borderDistance)
+        {
+            //currentPos.z = Mathf.Lerp(currentPos.z, anchorPoint.z, 3 * Time.deltaTime);
+            currentPos.z = anchorPoint.z;
+            if (transform.position.z > anchorPoint.z)
+            {
+                currentPos.z += borderDistance;
+            }
+            if (transform.position.z < anchorPoint.z)
+            {
+                currentPos.z -= borderDistance;
+            }
+
+        }
+
     }
 
-    void MoveToPosition()
+    void MoveToPosition2()
     {
-        //if (Vector3.Distance(transform.position, anchorPoint) >= borderDistance)
-        //{
-            //currentPos = Vector3.Lerp(transform.position, anchorPoint, 3 * Time.deltaTime);
-            currentPos = Vector3.SmoothDamp(transform.position, targetPoistion, ref velocity, 0.1f);
-            transform.position = currentPos;
-        //}
-        //transform.position = anchorPoint;
-
+        transform.position = Vector3.SmoothDamp(transform.position, currentPos, ref velocity, 0.1f);
     }
+
+
+    //void UpdateTargetInfo()
+    //{
+    //    anchorPoint = target.position + offset;
+    //    if (Vector3.Distance(transform.position, anchorPoint) >= borderDistance)
+    //    {
+    //        targetPoistion = anchorPoint;
+    //        if(transform.position.x > targetPoistion.x)
+    //        {
+    //            targetPoistion.x += borderDistance;
+    //        }
+    //        if(transform.position.z > targetPoistion.z)
+    //        {
+    //            targetPoistion.y += borderDistance;
+    //        }
+    //        if (transform.position.x < targetPoistion.x)
+    //        {
+    //            targetPoistion.x -= borderDistance;
+    //        }
+    //        if (transform.position.z < targetPoistion.z)
+    //        {
+    //            targetPoistion.z -= borderDistance;
+    //        }
+    //    }
+    //}
+
+    //void MoveToPosition()
+    //{
+    //    //if (Vector3.Distance(transform.position, anchorPoint) >= borderDistance)
+    //    //{
+    //        //currentPos = Vector3.Lerp(transform.position, anchorPoint, 3 * Time.deltaTime);
+    //        currentPos = Vector3.SmoothDamp(transform.position, targetPoistion, ref velocity, 0.1f);
+    //        transform.position = currentPos;
+    //    //}
+    //    //transform.position = anchorPoint;
+
+    //}
 
     public void LookAt(GameObject t)
     {

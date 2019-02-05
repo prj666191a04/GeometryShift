@@ -36,7 +36,7 @@ public class testConfig1 : CConfig
         //PlayerReady(player);
 
         GeometryShift.instance.cameraController.SetTarget(player);
-        GeometryShift.instance.cameraController.Init(new Vector3(0f, 15f, -5f));
+        GeometryShift.instance.cameraController.Init(new Vector3(0f, 45f, -20f));
         
 
     }
