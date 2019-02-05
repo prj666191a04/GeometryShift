@@ -105,4 +105,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1.5
-  speed: 3
+  speed: 2
+  maximumLifespanAllowed: 4

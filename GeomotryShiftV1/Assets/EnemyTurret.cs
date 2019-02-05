@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyTurret : MonoBehaviour
 {
     float secondsPassed = 0f;
+    float attackInterval = 1.5f;
     public GameObject thePrefab;
     public GameObject theTarget;
     public bool trackTarget = true;
@@ -16,7 +17,7 @@ public class EnemyTurret : MonoBehaviour
         {
             transform.LookAt(theTarget.transform);
         }
-        Instantiate(thePrefab, transform.position, transform.rotation);
+        Instantiate(thePrefab, transform.position, transform.rotation, transform.parent);
     }
 
     // Start is called before the first frame update
@@ -29,7 +30,7 @@ public class EnemyTurret : MonoBehaviour
     void Update()
     {
         secondsPassed += Time.deltaTime;
-        if (secondsPassed > 1)
+        if (secondsPassed > attackInterval)
         {
             secondsPassed = 0;
             Shoot();

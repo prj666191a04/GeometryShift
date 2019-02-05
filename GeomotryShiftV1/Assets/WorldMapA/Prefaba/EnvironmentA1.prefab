@@ -351,7 +351,7 @@ MonoBehaviour:
     type: 3}
   theTarget: {fileID: 297406171275806821, guid: 3f5f9be168c7f8946bead014cc1f95e8,
     type: 3}
-  trackTarget: 1
+  trackTarget: 0
 --- !u!1 &3696679915975426417
 GameObject:
   m_ObjectHideFlags: 0

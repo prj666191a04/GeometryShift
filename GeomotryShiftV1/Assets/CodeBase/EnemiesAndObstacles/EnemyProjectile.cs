@@ -6,6 +6,8 @@ public class EnemyProjectile : MonoBehaviour
 {
     public float damage = 1.5f;
     public float speed = 2f;
+    public float maximumLifespanAllowed = 4f;
+    float timeExistedInSeconds = 0f;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -26,7 +28,11 @@ public class EnemyProjectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        timeExistedInSeconds += Time.deltaTime;
+        if (timeExistedInSeconds > maximumLifespanAllowed)
+        {
+            Destroy(gameObject);
+        }
         transform.position += transform.forward * Time.deltaTime * speed;
         
     }
