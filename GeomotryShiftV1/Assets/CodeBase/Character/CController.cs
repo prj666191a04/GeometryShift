@@ -71,8 +71,8 @@ public class CController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         
-        h = GSInput.GetHAxis();
-        v = GSInput.GetVAxis();
+        h = GSInput.GetHAxis() *3;
+        v = GSInput.GetVAxis() *3;
         //TODO manipulate data
 
         motor.h_ = h;
