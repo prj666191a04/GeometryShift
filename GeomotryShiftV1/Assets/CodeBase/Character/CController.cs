@@ -75,8 +75,8 @@ public class CController : MonoBehaviour {
         v = GSInput.GetVAxis();
         //TODO manipulate data
 
-        motor.h_ = h;
-        motor.v_ = v;
+        motor.h_ = h*3;
+        motor.v_ = v*3;
 	}
 
 
