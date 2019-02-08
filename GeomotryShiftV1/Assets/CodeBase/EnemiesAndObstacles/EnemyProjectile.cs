@@ -6,19 +6,18 @@ public class EnemyProjectile : MonoBehaviour
 {
     public float damage = 1.5f;
     public float speed = 2f;
-    public float maximumLifespanAllowed = 4f;
+    public float maximumLifespanAllowed = 2f;
     public float timeExistedInSeconds = 0f;
-    public bool goThroughWalls = true;
+    public bool goThroughWalls = false;
 
     public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            print("player was hit by enemy projectile OnTriggerEnter");
             other.gameObject.GetComponent<CStatus>().Damage(damage);
             Destroy(gameObject);
         }
-        print("on collision enter name " + other.gameObject.name);
+
         if (!goThroughWalls)
         {
             if (!other.gameObject.name.Contains("Enemy"))

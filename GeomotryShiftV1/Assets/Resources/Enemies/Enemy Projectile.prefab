@@ -121,8 +121,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1.5
   speed: 2
-  maximumLifespanAllowed: 4
+  maximumLifespanAllowed: 2
   timeExistedInSeconds: 0
+  goThroughWalls: 0
 --- !u!54 &6006496324486752084
 Rigidbody:
   m_ObjectHideFlags: 0
