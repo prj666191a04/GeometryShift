@@ -26,6 +26,8 @@ public class CConfig2DTest : CConfig
         cc.AssignMotor(cc.motorPool[0]);
         cc.motor.SetPhysics(cc.rBody);
 
+        
+
         player.AddComponent<CStatusA>();
         Debug.Log("Character Ready");
 

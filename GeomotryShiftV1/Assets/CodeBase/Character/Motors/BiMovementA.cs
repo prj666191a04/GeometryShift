@@ -8,7 +8,7 @@ public class BiMovementA : CMotor
 {
     public Rigidbody theRB;
     public float speedMultiplier_ = 6;
-    public float jumpForce_ = 5.5f;
+    public float jumpForce_ = 10.5f;
     public int numberOfMidairJumpsAllowed_ = 1;//0 = no midair jump, 1 = double jump, 2 = triple jump, etc
     public int numberOfMidairJumpsRemaining_ = 1;
     float sqrtOfZeroPointFive_ = 0.7071067811865475f;
