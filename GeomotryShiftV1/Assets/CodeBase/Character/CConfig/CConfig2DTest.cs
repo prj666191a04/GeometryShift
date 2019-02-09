@@ -31,5 +31,12 @@ public class CConfig2DTest : CConfig
         player.AddComponent<CStatusA>();
         Debug.Log("Character Ready");
 
+        GeometryShift.instance.cameraController.SetTarget(player);
+        GeometryShift.instance.cameraController.Init(new Vector3(player.transform.position.x , player.transform.position.y, -player.transform.position.z));
+        
+        GeometryShift.instance.cameraController.offset = (new Vector3(0f, 0f, -20f));
+        GeometryShift.instance.cameraController.LookAt(new Vector3(1f, 1f,-.22f));
+        //GeometryShift.instance.cameraController.LookAt(player);
+
     }
 }
