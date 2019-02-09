@@ -207,6 +207,10 @@ public class TriMovementC : CMotor
     protected override void ConfigurePhysics()
     { 
         theRB = GetComponent<Rigidbody>();
+        theRB.constraints =
+            RigidbodyConstraints.FreezeRotationZ |
+            RigidbodyConstraints.FreezeRotationX |
+            RigidbodyConstraints.FreezeRotationY;
     }
 
 }

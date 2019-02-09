@@ -174,7 +174,7 @@ MonoBehaviour:
     type: 3}
   spawnPoint: {fileID: 6598105217755729773}
   parentObject: {fileID: 146370700630448324}
-  cconfig: {fileID: 0}
+  cconfig: {fileID: 3233668231183008340}
 --- !u!114 &4196698428541383970
 MonoBehaviour:
   m_ObjectHideFlags: 0
