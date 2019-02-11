@@ -8,13 +8,8 @@ using UnityEngine;
 public class LevelLoader : MonoBehaviour
 {
 
-    public Camera mainCamera;
     public delegate void LoadEvent();
     public static event LoadEvent OnLevelLoaded;
-
-
-
-
 
     public static LevelLoader instance;
     public static Vector3 levelExitPoint;
@@ -32,7 +27,7 @@ public class LevelLoader : MonoBehaviour
         if(instance == null)
         {
             instance = this;
-            GeometryShift.mainCamera = this.mainCamera;
+            //GeometryShift.mainCamera = this.mainCamera;
         }
         else
         {
@@ -83,7 +78,17 @@ public class LevelLoader : MonoBehaviour
 
     private void ReturnFromFailedLevel()
     {
-        //Todo:: implement;
+        //Todo:: implement
+    }
+
+
+    public void LoadWorldMap(int map = 0)
+    {
+        GeometryShift.systemState = GeometryShift.SystemState.Loading;
+        UnloadWorld();
+        loadedEnvironment = GameObject.Instantiate(openWorldPreFab, EnvironmentContainer);
+        GeometryShift.systemState = GeometryShift.SystemState.WorldMap;
+
     }
 
     public void LoadLevel(GameObject Level)
@@ -93,7 +98,7 @@ public class LevelLoader : MonoBehaviour
         UnloadWorld();
         loadedEnvironment = GameObject.Instantiate(Level, EnvironmentContainer);
         Debug.Log("LevelLoader.cs " + System.Environment.NewLine + "finished levelLoad of " + Level.name);
-        GeometryShift.systemState = GeometryShift.SystemState.WorldMap;
+        GeometryShift.systemState = GeometryShift.SystemState.InLevel;
         if(OnLevelLoaded != null)
         {
             OnLevelLoaded();

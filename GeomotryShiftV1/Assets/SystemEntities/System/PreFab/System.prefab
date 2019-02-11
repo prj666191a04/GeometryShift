@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 4186783359682332448}
   - component: {fileID: 4186783359682332451}
   - component: {fileID: 4186783359682332449}
-  - component: {fileID: 4186783359682332462}
+  - component: {fileID: 1753948464}
   m_Layer: 0
   m_Name: System
   m_TagString: Untagged
@@ -88,7 +88,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c037a474fbf86a44e96786fb5ab436e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4186783359682332462
+  EnvironmentContainer: {fileID: 4186783359648922641}
+  openWorldPreFab: {fileID: 9136896069521930519, guid: 3fc533ecef89967468323308c9ee1d08,
+    type: 3}
+--- !u!114 &1753948464
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -100,3 +103,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3759b2b4462f5d1469b850b017ccbd53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraController: {fileID: 0}
+  interactionUIContainer: {fileID: 0}
+  activeUIContainer: {fileID: 0}
+  mainMenuePrefab: {fileID: 556050751965116233, guid: b25a94f01949bb24291ac9a4ff21b8fe,
+    type: 3}
+  openWorldUiPrefab: {fileID: 9136896069521930519, guid: 3fc533ecef89967468323308c9ee1d08,
+    type: 3}
+  interactionUI: {fileID: 0}
