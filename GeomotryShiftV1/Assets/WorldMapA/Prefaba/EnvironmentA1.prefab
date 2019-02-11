@@ -510,6 +510,7 @@ MonoBehaviour:
     type: 3}
   spawnPoint: {fileID: 5051023153323553838}
   parentObject: {fileID: 9136896069521930519}
+  mainMap: 1
   cconfig: {fileID: 7167203321045347687}
 --- !u!114 &7167203321045347687
 MonoBehaviour:

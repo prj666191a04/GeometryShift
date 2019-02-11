@@ -14,6 +14,7 @@ public class LevelPortal : CInteractable
     {
         Debug.Log("portal triggered");
         LevelLoader.levelExitPoint = exitLocation.position;
+        Debug.Log("exit position set to " + LevelLoader.levelExitPoint);
         LevelLoader.LoadLevelExternalCall(levelObject);
     }
 

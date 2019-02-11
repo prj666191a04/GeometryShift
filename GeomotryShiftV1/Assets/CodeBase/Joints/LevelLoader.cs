@@ -13,6 +13,7 @@ public class LevelLoader : MonoBehaviour
 
     public static LevelLoader instance;
     public static Vector3 levelExitPoint;
+    public static bool initialBoot = true;
 
     //place holder in future custom type may be needed for world state
     private GameObject WorldState;
