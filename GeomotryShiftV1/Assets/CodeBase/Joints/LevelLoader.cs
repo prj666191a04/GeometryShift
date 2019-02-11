@@ -68,12 +68,16 @@ public class LevelLoader : MonoBehaviour
     private void ReturnFromCompleetedLevel(int id, int code)
     {
         Debug.Log("LevelLoader.cs: returning from level with id of " + id);
+        GeometryShift.instance.StateChange(GeometryShift.SystemState.Loading);
         UnloadWorld();
-        GeometryShift.systemState = GeometryShift.SystemState.Loading;
         loadedEnvironment = GameObject.Instantiate(openWorldPreFab, EnvironmentContainer);
+
+        GeometryShift.instance.StateChange(GeometryShift.SystemState.WorldMap);
         //TODO: Save id and completion code to save state object
 
         //TODO: Call auto save, (not yet implemented)
+
+
 
     }
 
@@ -85,22 +89,22 @@ public class LevelLoader : MonoBehaviour
 
     public void LoadWorldMap(int map = 0)
     {
-        GeometryShift.systemState = GeometryShift.SystemState.Loading;
+        GeometryShift.instance.StateChange(GeometryShift.SystemState.Loading);
         UnloadWorld();
         loadedEnvironment = GameObject.Instantiate(openWorldPreFab, EnvironmentContainer);
-        GeometryShift.systemState = GeometryShift.SystemState.WorldMap;
+        GeometryShift.instance.StateChange(GeometryShift.SystemState.WorldMap);
 
     }
 
     public void LoadLevel(GameObject Level)
     {
         Debug.Log("LevelLoader.cs " + System.Environment.NewLine + "Starting levelLoad of " + Level.name);
-        GeometryShift.systemState = GeometryShift.SystemState.Loading;
+        GeometryShift.instance.StateChange(GeometryShift.SystemState.Loading);
         UnloadWorld();
         loadedEnvironment = GameObject.Instantiate(Level, EnvironmentContainer);
         Debug.Log("LevelLoader.cs " + System.Environment.NewLine + "finished levelLoad of " + Level.name);
-        GeometryShift.systemState = GeometryShift.SystemState.InLevel;
-        if(OnLevelLoaded != null)
+        GeometryShift.instance.StateChange(GeometryShift.SystemState.InLevel);
+        if (OnLevelLoaded != null)
         {
             OnLevelLoaded();
         }

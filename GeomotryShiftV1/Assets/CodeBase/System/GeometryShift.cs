@@ -21,7 +21,7 @@ public class GeometryShift : MonoBehaviour
 
   
 
-    public static SystemState systemState = SystemState.MainMenue;
+    private static SystemState systemState = SystemState.MainMenue;
     public enum SystemState
     {
         MainMenue,
@@ -44,6 +44,11 @@ public class GeometryShift : MonoBehaviour
 
     public InteractionUI interactionUI;
 
+    public static SystemState GetSystemState()
+    {
+        return systemState;
+    }
+
     public void StateChange(SystemState state)
     {
         SystemState prevoiusState = systemState;
@@ -53,12 +58,17 @@ public class GeometryShift : MonoBehaviour
         switch (state) {
 
             case SystemState.Loading:
+                DistroyLoadedUISet();
+                //TODO: Display Loading screen (does not yet exist)
                 break;
             case SystemState.MainMenue:
+                DistroyLoadedUISet();
                 break;
             case SystemState.WorldMap:
+                DistroyLoadedUISet();
                 break;
             case SystemState.InLevel:
+                DistroyLoadedUISet();
                 break;
         }
 
@@ -67,11 +77,17 @@ public class GeometryShift : MonoBehaviour
     private void ChangeUISet( GameObject UISet)
     {
 
-        Destroy(loadedUiSet);
+        DistroyLoadedUISet();
         Instantiate(UISet, activeUIContainer);
         
     }
-
+    private void DistroyLoadedUISet()
+    {
+        if(loadedUiSet != null)
+        {
+            Destroy(loadedUiSet);
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
