@@ -9,17 +9,11 @@ public class BiMoementForced : CMotor
 
     void FixedUpdate()
     {
-        Vector3 movementVector = new Vector3(0, 0, 0);
-        movementVector.y = Input.GetAxis("Vertical");
+        Vector3 movementVector = new Vector3(speedMultiplier_, 0, 0);
 
-        //Add forced X movemnt 
-       // movementVector.x;
-
-        movementVector.x *= speedMultiplier_;
+        movementVector.y = Input.GetAxis("Vertical")*speedMultiplier_;
 
         theRB.velocity = movementVector;
-
-       
 
     }
 
@@ -29,8 +23,11 @@ public class BiMoementForced : CMotor
         theRB = GetComponent<Rigidbody>();
         theRB.constraints =
             RigidbodyConstraints.FreezePositionZ |
+            RigidbodyConstraints.FreezeRotationZ |
             RigidbodyConstraints.FreezeRotationX |
-            RigidbodyConstraints.FreezeRotationY;
+            RigidbodyConstraints.FreezeRotationY |
+            RigidbodyConstraints.FreezePositionZ;
+        
         theRB.useGravity = false;
     }
 }

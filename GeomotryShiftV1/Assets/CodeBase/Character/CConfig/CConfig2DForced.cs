@@ -22,7 +22,7 @@ public class CConfig2DForced : CConfig
 
 
         cc.motorPool = new CMotor[1];
-        cc.motorPool[0] = player.AddComponent<BiMovementA>();
+        cc.motorPool[0] = player.AddComponent<BiMoementForced>();
         cc.AssignMotor(cc.motorPool[0]);
         cc.motor.SetPhysics(cc.rBody);
 
