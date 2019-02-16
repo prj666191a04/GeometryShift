@@ -17,7 +17,7 @@ public class CConfig2DForced : CConfig
         else
         {
             cc.rBody = player.AddComponent<Rigidbody>();
-            cc.rBody.useGravity = true;
+            cc.rBody.useGravity = false;
         }
 
 
