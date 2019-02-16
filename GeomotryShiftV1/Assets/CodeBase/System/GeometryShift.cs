@@ -18,8 +18,9 @@ public class GeometryShift : MonoBehaviour
     //referance might be removed from this script but for now it seems like a good place to store it.
     public static CStatus playerStatus;
 
+    public PMTopLevel pauseMenue;
+    bool pauseMenueActive = false;
 
-  
 
     private static SystemState systemState = SystemState.MainMenue;
     public enum SystemState
@@ -30,17 +31,14 @@ public class GeometryShift : MonoBehaviour
         Loading
     }
 
-
     //UI- this code might need to be moved to a ui manager class later on
     public Transform interactionUIContainer;
     public Transform activeUIContainer;
-
 
     public GameObject mainMenuePrefab;
     public GameObject openWorldUiPrefab;
 
     private GameObject loadedUiSet;
-
 
     public InteractionUI interactionUI;
 
@@ -63,6 +61,7 @@ public class GeometryShift : MonoBehaviour
                 break;
             case SystemState.MainMenue:
                 DistroyLoadedUISet();
+                loadedUiSet = Instantiate(mainMenuePrefab, activeUIContainer);
                 break;
             case SystemState.WorldMap:
                 DistroyLoadedUISet();
@@ -104,6 +103,11 @@ public class GeometryShift : MonoBehaviour
         Initalize();
     }
 
+    private void Update()
+    {
+        SystemInput();
+    }
+
     //Starts the game
     private void Initalize()
     {
@@ -119,11 +123,34 @@ public class GeometryShift : MonoBehaviour
 
 
     }
-
     public void QuitGame()
     {
         Application.Quit();
     }
 
-    
+    private void SystemInput()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (systemState == SystemState.InLevel || systemState == SystemState.WorldMap)
+            {
+                pauseMenueActive = !pauseMenueActive;
+
+                if (pauseMenueActive)
+                    Time.timeScale = 0;
+                else
+                    Time.timeScale = 1;
+
+                pauseMenue.Toggle(pauseMenueActive);
+            }
+            else
+            {
+                pauseMenue.Hide();
+                pauseMenueActive = false;
+
+            }
+        }
+    }
+
+
 }

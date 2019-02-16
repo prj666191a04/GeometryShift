@@ -32,7 +32,7 @@ public class LevelBase : MonoBehaviour
             Debug.LogError("LevelBase.cs: On Level Compleeted has no subscribers!");
         }
     }
-    protected virtual void TerminateLevelAttempt()
+    public virtual void TerminateLevelAttempt()
     {
         if(OnLevelFailed != null)
         {

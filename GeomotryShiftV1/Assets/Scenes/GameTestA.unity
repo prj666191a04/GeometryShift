@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 269222051}
   - component: {fileID: 269222052}
   m_Layer: 0
-  m_Name: Selection1 (1)
+  m_Name: SelectionStats
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -232,7 +232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 240d940d3b3de96468476ff6418e5de7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  position: 0
+  position: 1
   subMenue: {fileID: 0}
   subContainer: {fileID: 0}
 --- !u!1 &321460794
@@ -249,7 +249,7 @@ GameObject:
   - component: {fileID: 321460798}
   - component: {fileID: 321460799}
   m_Layer: 0
-  m_Name: Selection1 (2)
+  m_Name: SelectionExit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -352,12 +352,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 321460794}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 240d940d3b3de96468476ff6418e5de7, type: 3}
+  m_Script: {fileID: 11500000, guid: b71343405a80b104db06eaec873c0306, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  position: 0
+  position: 2
   subMenue: {fileID: 0}
-  subContainer: {fileID: 0}
+  subContainer: {fileID: 1020460535}
+  text: {fileID: 695100960}
 --- !u!1 &389989671
 GameObject:
   m_ObjectHideFlags: 0
@@ -375,7 +376,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &389989672
 RectTransform:
   m_ObjectHideFlags: 0
@@ -550,6 +551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bba2a400fb422654d805185550feca48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menueObject: {fileID: 389989671}
 --- !u!114 &548204190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -813,9 +815,9 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
+  m_overflowMode: 3
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
@@ -847,11 +849,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -887,7 +889,7 @@ GameObject:
   - component: {fileID: 783728169}
   - component: {fileID: 783728170}
   m_Layer: 0
-  m_Name: Selection1
+  m_Name: SelectionInventory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1358,7 +1360,7 @@ GameObject:
   - component: {fileID: 1143140519}
   - component: {fileID: 1143140520}
   m_Layer: 0
-  m_Name: Selection1 (3)
+  m_Name: SelectionSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1464,7 +1466,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 240d940d3b3de96468476ff6418e5de7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  position: 0
+  position: 3
   subMenue: {fileID: 4180448692747728099, guid: b0acfb0747e6eb947af2ad9a26e01b47,
     type: 3}
   subContainer: {fileID: 1020460535}
@@ -1613,6 +1615,14 @@ PrefabInstance:
       propertyPath: interactionUI
       value: 
       objectReference: {fileID: 979247014}
+    - target: {fileID: 1753948464, guid: 42506a4054ff6b84c9e27633d61c6c65, type: 3}
+      propertyPath: interactionUIContainer
+      value: 
+      objectReference: {fileID: 541063465}
+    - target: {fileID: 1753948464, guid: 42506a4054ff6b84c9e27633d61c6c65, type: 3}
+      propertyPath: pauseMenue
+      value: 
+      objectReference: {fileID: 548204189}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42506a4054ff6b84c9e27633d61c6c65, type: 3}
 --- !u!1 &1639161035

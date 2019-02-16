@@ -49,14 +49,12 @@ public class LevelLoader : MonoBehaviour
     void SubscribeEvents()
     {
         LevelBase.OnLevelCompleeted += ReturnFromCompleetedLevel;
+        LevelBase.OnLevelFailed += ReturnFromFailedLevel;
     }
     void UnsubscribeEvents()
     {
-        LevelBase.OnLevelCompleeted += ReturnFromCompleetedLevel;
-    }
-    private void Update()
-    {
-        
+        LevelBase.OnLevelCompleeted -= ReturnFromCompleetedLevel;
+        LevelBase.OnLevelFailed -= ReturnFromFailedLevel;
     }
 
     //Allows LoadLevel to be staticly called
@@ -77,15 +75,22 @@ public class LevelLoader : MonoBehaviour
 
         //TODO: Call auto save, (not yet implemented)
 
-
-
     }
 
     private void ReturnFromFailedLevel()
     {
-        //Todo:: implement
+        GeometryShift.instance.StateChange(GeometryShift.SystemState.Loading);
+        UnloadWorld();
+        loadedEnvironment = GameObject.Instantiate(openWorldPreFab, EnvironmentContainer);
+        GeometryShift.instance.StateChange(GeometryShift.SystemState.WorldMap);
     }
 
+    public void ReturnToMainMenue()
+    {
+        UnloadWorld();
+        GeometryShift.instance.StateChange(GeometryShift.SystemState.MainMenue);
+        initialBoot = true;
+    }
 
     public void LoadWorldMap(int map = 0)
     {
@@ -120,9 +125,6 @@ public class LevelLoader : MonoBehaviour
 
     }
 
-    void LoadWorld()
-    {
 
-    }
 
 }

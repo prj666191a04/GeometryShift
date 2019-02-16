@@ -6,15 +6,22 @@ public class PMTopLevel : MonoBehaviour
 {
 
     public static GameObject loadedSubMenue;
+    public GameObject menueObject;
     // Start is called before the first frame update
-    void Start()
+    public void Apear()
     {
-        
+        menueObject.SetActive(true);        
+    }
+    public void Hide()
+    {
+        menueObject.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Toggle(bool active)
     {
-        
+
+        menueObject.SetActive(active);
     }
+
+
 }
