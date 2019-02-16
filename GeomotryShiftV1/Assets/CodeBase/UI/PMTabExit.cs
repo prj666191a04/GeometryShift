@@ -33,13 +33,14 @@ public class PMTabExit : PMTab
         {
             LevelBase.instance.TerminateLevelAttempt();
             GeometryShift.instance.pauseMenue.Hide();
+            GeometryShift.instance.pauseMenueActive = false;
             Time.timeScale = 1;
         }
         else
         {
-            Debug.Log("else");
             LevelLoader.instance.ReturnToMainMenue();
             GeometryShift.instance.pauseMenue.Hide();
+            GeometryShift.instance.pauseMenueActive = false;
             Time.timeScale = 1;  
         }
     }

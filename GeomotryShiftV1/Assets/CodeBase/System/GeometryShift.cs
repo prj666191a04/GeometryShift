@@ -19,7 +19,7 @@ public class GeometryShift : MonoBehaviour
     public static CStatus playerStatus;
 
     public PMTopLevel pauseMenue;
-    bool pauseMenueActive = false;
+    public bool pauseMenueActive = false;
 
 
     private static SystemState systemState = SystemState.MainMenue;
