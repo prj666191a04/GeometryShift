@@ -1618,12 +1618,17 @@ PrefabInstance:
     - target: {fileID: 8840479983566990645, guid: da767e642c698884a86cca3fbe4e1802,
         type: 3}
       propertyPath: maxDistance
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8840479983566990645, guid: da767e642c698884a86cca3fbe4e1802,
         type: 3}
       propertyPath: layerMask.m_Bits
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 8840479983566990645, guid: da767e642c698884a86cca3fbe4e1802,
+        type: 3}
+      propertyPath: degreesToTurnPerSecond
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da767e642c698884a86cca3fbe4e1802, type: 3}
