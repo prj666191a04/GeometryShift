@@ -44,6 +44,7 @@ public class EnemyProjectile : MonoBehaviour
         }
         //transform.position += transform.forward * Time.deltaTime * speed;
         transform.Translate(Vector3.forward * Time.deltaTime * speed);
+        
 
     }
 }

@@ -14,6 +14,10 @@ public class AlternatingPlatform : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        state1Material = Resources.Load("Obstacles/AlternatingPlatform/AlternatingBlockDefaultMaterial") as Material;
+        state2Material = Resources.Load("Obstacles/AlternatingPlatform/AlternatingBlockAltMaterial") as Material;
+
+
         meshRenderer = GetComponent<MeshRenderer>();
         meshRenderer.material = state1Material;
         collidersArray = GetComponents<Collider>();

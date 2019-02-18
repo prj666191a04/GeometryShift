@@ -32,9 +32,14 @@ public class DisspearingPlatform : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GetComponent<MeshRenderer>().material = defaultMaterial;
-        collidersArray = GetComponents<Collider>();
         meshRenderer = GetComponent<MeshRenderer>();
+        collidersArray = GetComponents<Collider>();
+
+        defaultMaterial = Resources.Load("Obstacles/DisspearingPlatform/DissapearingPlatformDefaultMaterial") as Material;
+        aboutToDissapearMaterial = Resources.Load("Obstacles/DisspearingPlatform/DissapearingPlatformAboutToDissapear") as Material;
+        hasDissapearedMaterial = Resources.Load("Obstacles/DisspearingPlatform/DissapearingPlatformHasDissapeared") as Material;
+
+        meshRenderer.material = defaultMaterial;
     }
 
     // Update is called once per frame

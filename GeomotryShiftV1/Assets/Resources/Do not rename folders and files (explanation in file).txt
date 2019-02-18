@@ -1,0 +1,8 @@
+Files and folders in the "Resources" folder are referred to by file name in
+some scripts. For example, the enemy turret uses a function to decide what
+to shoot as a projectile:
+
+Resources.Load("Enemies/EnemyTurretFolder/Enemy Projectile")
+
+Changing the name or folder names will cause the script to break, so leave
+file and folder names alone, even if they are misspelled.
