@@ -10,6 +10,10 @@ public class CStatusA : CStatus
     private float minLerpSpeed = 1f;
     private float maxLerpSpeed = 6f;
 
+    private float secondsSinceLastTookDamage = 1;
+
+    public Material t1;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +23,11 @@ public class CStatusA : CStatus
     // Update is called once per frame
     void Update()
     {
+        secondsSinceLastTookDamage += Time.deltaTime;
+        if (secondsSinceLastTookDamage > 0.3)
+        {
+            GetComponent<MeshRenderer>().material = Resources.Load("Materials/LightGray") as Material;
+        }
         LerpDsp();
     }
 
@@ -27,6 +36,8 @@ public class CStatusA : CStatus
         if(value_ > 0)
         {
             value_ -= ammount;
+            GetComponent<MeshRenderer>().material = Resources.Load("Materials/PlayerInjuredColor") as Material;
+            secondsSinceLastTookDamage = 0;
         }
         else
         {

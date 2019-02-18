@@ -25,7 +25,7 @@ public class EnemyTurret : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        thePrefab = Resources.Load("Enemies/Enemy Projectile") as GameObject;
+        thePrefab = Resources.Load("Enemies/EnemyTurretFolder/Enemy Projectile") as GameObject;
     }
 
     // Update is called once per frame
