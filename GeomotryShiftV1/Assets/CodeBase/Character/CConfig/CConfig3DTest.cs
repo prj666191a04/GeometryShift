@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class testConfig1 : CConfig
+public class CConfig3DTest : CConfig
 {
-
     public override void SetupCharacter(GameObject playerPrefab, Transform spawnPoint, GameObject parentObject)
     {
         GameObject player = GameObject.Instantiate(playerPrefab, spawnPoint.position, Quaternion.identity, parentObject.transform);
@@ -21,27 +20,14 @@ public class testConfig1 : CConfig
             cc.rBody.useGravity = true;
         }
 
-        
-        cc.motorPool = new CMotor[2];
-        cc.motorPool[0] = player.AddComponent<TriMovementA>();
+
+        cc.motorPool = new CMotor[1];
+        cc.motorPool[0] = player.AddComponent<TriMovementC>();
         cc.AssignMotor(cc.motorPool[0]);
         cc.motor.SetPhysics(cc.rBody);
 
-        cc.motorPool[1] = player.AddComponent<TriMovementB>();
-        cc.motorPool[1].enabled = false;
-
         player.AddComponent<CStatusA>();
         Debug.Log("Character Ready");
-        //temporary
-        //PlayerReady(player);
-
-        GeometryShift.instance.cameraController.SetTarget(player);
-        GeometryShift.instance.cameraController.Init(new Vector3(0f, 45f, -20f));
-        GeometryShift.instance.cameraController.LookAt(new Vector3(68.931f, 0f, 0f));
-        
 
     }
-
-
-
 }

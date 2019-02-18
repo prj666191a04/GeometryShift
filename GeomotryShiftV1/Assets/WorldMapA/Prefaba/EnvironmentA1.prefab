@@ -899,7 +899,7 @@ PrefabInstance:
         type: 3}
       propertyPath: levelObject
       value: 
-      objectReference: {fileID: 3061818116162670706, guid: 2b01ae099af91aa418844303e5ae1497,
+      objectReference: {fileID: 7536404259338692135, guid: c400816c183de794b9d02ab699134a0b,
         type: 3}
     - target: {fileID: 4515027484206737836, guid: ec2b2811831bf9546b44b3274fc16dbe,
         type: 3}
@@ -909,7 +909,7 @@ PrefabInstance:
     - target: {fileID: 4515027484206737836, guid: ec2b2811831bf9546b44b3274fc16dbe,
         type: 3}
       propertyPath: interactText
-      value: Enter LevelF1
+      value: Enter LevelC
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec2b2811831bf9546b44b3274fc16dbe, type: 3}

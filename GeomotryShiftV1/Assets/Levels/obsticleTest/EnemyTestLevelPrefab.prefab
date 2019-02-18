@@ -58,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0487696f9834f8f4f9df2bdfa3c382ab, type: 2}
+  - {fileID: 2100000, guid: be50f509fb24aa64c977b05340937498, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -320,6 +320,7 @@ MonoBehaviour:
     type: 3}
   spawnPoint: {fileID: 8793578844215859141}
   parentObject: {fileID: 2051773548260377063}
+  mainMap: 0
   cconfig: {fileID: 2645756180263687562}
 --- !u!114 &7468693388303536116
 MonoBehaviour:
@@ -488,6 +489,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5421414213873297794}
     m_Modifications:
+    - target: {fileID: 275212751151654663, guid: da767e642c698884a86cca3fbe4e1802,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: aca5aa6ed2f80974590715e54597634f, type: 2}
+    - target: {fileID: 5430794630893222609, guid: da767e642c698884a86cca3fbe4e1802,
+        type: 3}
+      propertyPath: m_Name
+      value: Enemy Turret
+      objectReference: {fileID: 0}
     - target: {fileID: 7031584960354078444, guid: da767e642c698884a86cca3fbe4e1802,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -543,16 +554,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5430794630893222609, guid: da767e642c698884a86cca3fbe4e1802,
-        type: 3}
-      propertyPath: m_Name
-      value: Enemy Turret
-      objectReference: {fileID: 0}
-    - target: {fileID: 275212751151654663, guid: da767e642c698884a86cca3fbe4e1802,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: aca5aa6ed2f80974590715e54597634f, type: 2}
     - target: {fileID: 8840479983566990645, guid: da767e642c698884a86cca3fbe4e1802,
         type: 3}
       propertyPath: degreesToTurnPerSecond
