@@ -48,11 +48,11 @@ public class Inventory : MonoBehaviour
         {
             
             TestItem item = itemlist[i];
-            GameObject newbutton = buttonpool.GetObject();//grabs an opbject from the pool to use
+            GameObject newbutton = buttonpool.GetObject();//grabs an opbject from the pool to use  
 
-            //Transform prefab = newbutton.transform;
-            
-            newbutton.transform.SetParent(itemContenetPanel); // assigns the object to the inventory panel 
+            Instantiate(newbutton, itemContenetPanel);
+
+            //newbutton.transform.SetParent(itemContenetPanel); // assigns the object to the inventory panel 
             
             
             
