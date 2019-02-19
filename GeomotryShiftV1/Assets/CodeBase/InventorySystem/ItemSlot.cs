@@ -36,6 +36,9 @@ public class ItemSlot : MonoBehaviour
         icon.sprite = item.icon;
 
         inventory = currentInventory;
+        Debug.Log("In Setup");
+        Debug.Log(item.itemName);
+        Debug.Log(item.value.ToString());
 
     }
 

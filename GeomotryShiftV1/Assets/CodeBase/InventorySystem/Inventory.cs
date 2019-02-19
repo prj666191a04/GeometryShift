@@ -22,6 +22,7 @@ public class Inventory : MonoBehaviour
     public List<TestItem> itemlist;
     public SimpleObjectPool buttonpool;
     public Transform itemContenetPanel;
+    public GameObject prefab;
 
 
     //Desc stuff
@@ -48,15 +49,15 @@ public class Inventory : MonoBehaviour
         {
             
             TestItem item = itemlist[i];
-            GameObject newbutton = buttonpool.GetObject();//grabs an opbject from the pool to use  
+            //GameObject newbutton = buttonpool.GetObject();//grabs an opbject from the pool to use  
 
-            Instantiate(newbutton, itemContenetPanel);
+            Instantiate(prefab, itemContenetPanel);
 
             //newbutton.transform.SetParent(itemContenetPanel); // assigns the object to the inventory panel 
             
             
             
-            ItemSlot itemSlot = newbutton.GetComponent<ItemSlot>(); // gets the new game instance 
+            ItemSlot itemSlot = prefab.GetComponent<ItemSlot>(); // gets the new game instance 
             itemSlot.setup(item, this); // sents to inner function to assign values
         }
     }
