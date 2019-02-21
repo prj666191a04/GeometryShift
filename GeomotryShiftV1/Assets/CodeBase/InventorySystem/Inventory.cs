@@ -54,9 +54,7 @@ public class Inventory : MonoBehaviour
             Instantiate(prefab, itemContenetPanel);
 
             //newbutton.transform.SetParent(itemContenetPanel); // assigns the object to the inventory panel 
-            
-            
-            
+                        
             ItemSlot itemSlot = prefab.GetComponent<ItemSlot>(); // gets the new game instance 
             itemSlot.setup(item, this); // sents to inner function to assign values
         }

@@ -2038,23 +2038,15 @@ MonoBehaviour:
   - itemName: Dog
     icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     value: 12
-  - itemName: cat
+  - itemName: Cat
     icon: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-    value: 1
+    value: 2
   - itemName: Stick
     icon: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
-    value: 999
-  - itemName: Stick
-    icon: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
-    value: 999
-  - itemName: Stick
-    icon: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
-    value: 999
-  - itemName: Stick
-    icon: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
-    value: 999
+    value: 2
   buttonpool: {fileID: 1918382070}
   itemContenetPanel: {fileID: 1331668361}
+  prefab: {fileID: 7537554550287217249, guid: dc34fa8a3b03866458b41652323f0ca0, type: 3}
   descriptionPool: {fileID: 664091626}
   descContenetPanel: {fileID: 1084350422}
 --- !u!1 &1527310289
