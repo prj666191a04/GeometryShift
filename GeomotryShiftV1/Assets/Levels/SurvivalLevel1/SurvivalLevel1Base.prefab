@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60e27392c5ec54345ac557e6466de8ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  secondsNeededToSurviveToWin: 15
+  secondsNeededToSurviveToWin: 25
 --- !u!114 &3720899935461838645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -341,4 +341,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73c832fee157cae4db6f0608348ee3a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  orange: {fileID: 2100000, guid: 40e50ccd392c0b94ab0f8f14a962cdfd, type: 2}
+  red: {fileID: 2100000, guid: eb9de06d029932947a489a875e07ce45, type: 2}
   basicEnemyProjectile: {fileID: 0}
