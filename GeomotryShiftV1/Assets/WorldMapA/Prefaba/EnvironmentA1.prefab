@@ -1630,6 +1630,12 @@ PrefabInstance:
       propertyPath: degreesToTurnPerSecond
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8840479983566990645, guid: da767e642c698884a86cca3fbe4e1802,
+        type: 3}
+      propertyPath: thePrefab
+      value: 
+      objectReference: {fileID: 5901642169511132173, guid: 394871e8025c24a4c9ae6f770c4b4ebe,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da767e642c698884a86cca3fbe4e1802, type: 3}
 --- !u!4 &1734455914773869040 stripped

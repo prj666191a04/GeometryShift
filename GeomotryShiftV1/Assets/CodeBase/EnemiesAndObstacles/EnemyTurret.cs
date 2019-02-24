@@ -7,8 +7,8 @@ public class EnemyTurret : MonoBehaviour
     float secondsPassed = 0f;
     public float attackInterval = 0.2f;
     public float projectileSpeed = 12f;
-    public GameObject thePrefab;
-    public GameObject theTarget;
+    public GameObject thePrefab;//what projectile does the turret fire
+    public GameObject theTarget;//optional
     public bool trackTarget = false;
     public float degreesToTurnPerSecond = 180f;
 
@@ -34,7 +34,6 @@ public class EnemyTurret : MonoBehaviour
 
             foreach (RaycastHit theHit in raycastHits)
             {
-                print("spherecast hit " + theHit.transform.gameObject.name);
                 if (theHit.transform.gameObject.name.Contains("Player"))
                 {
                     theTarget = theHit.transform.gameObject;
@@ -61,7 +60,7 @@ public class EnemyTurret : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        thePrefab = Resources.Load("Enemies/EnemyTurretFolder/Enemy Projectile") as GameObject;
+        //thePrefab = Resources.Load("Enemies/EnemyTurretFolder/Enemy Projectile") as GameObject;
     }
 
     // Update is called once per frame
