@@ -46,7 +46,7 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
         {
             phase = (int)timeToPhase[secondsPassedInt];
         }
-        print("time passed int is " + secondsPassedInt + " phase num is " + phase);
+        //print("time passed int is " + secondsPassedInt + " phase num is " + phase);
     }
 
     void whatEnemiesShouldSpawn()//60 times a second, no matter the FPS

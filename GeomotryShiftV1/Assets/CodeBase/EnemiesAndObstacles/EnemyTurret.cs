@@ -12,41 +12,31 @@ public class EnemyTurret : MonoBehaviour
     public bool trackTarget = false;
     public float degreesToTurnPerSecond = 180f;
 
-
-    public GameObject currentHitObject;
-    private Vector3 origin;
-    public float sphereRadius;
-    private Vector3 direction;
-    public float maxDistance;
-    public LayerMask layerMask;
+    public float maxRange = 8;
+    
 
     void Shoot()
     {
         thePrefab.GetComponent<EnemyProjectile>().speed = projectileSpeed;
         if (trackTarget)
         {
-            origin = transform.position;
-            direction = transform.forward;
-            RaycastHit[] raycastHits;
-            raycastHits = Physics.SphereCastAll(origin, sphereRadius, direction, maxDistance, layerMask, QueryTriggerInteraction.UseGlobal);
 
-            theTarget = null;
 
-            foreach (RaycastHit theHit in raycastHits)
-            {
-                if (theHit.transform.gameObject.name.Contains("Player"))
-                {
-                    theTarget = theHit.transform.gameObject;
-                }
-            }
+            //using two opposite if statements instead of if else is intended
             if (theTarget == null)
             {
-                //no targets in sight
+                theTarget = GeometryShift.playerStatus.gameObject;
+                
             }
-            else
+
+            if (theTarget != null)
             {
-                transform.LookAt(theTarget.transform);                                               //look at
-                Instantiate(thePrefab, transform.position, transform.rotation, transform.parent);    //shoot
+                float dist = Vector3.Distance(theTarget.transform.position, transform.position);
+                if (dist <= maxRange)
+                {
+                    transform.LookAt(theTarget.transform);                                               //look at
+                    Instantiate(thePrefab, transform.position, transform.rotation, transform.parent);    //shoot
+                }
             }
         }
         else
