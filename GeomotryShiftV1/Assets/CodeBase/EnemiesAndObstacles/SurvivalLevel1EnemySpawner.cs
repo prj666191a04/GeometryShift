@@ -30,10 +30,7 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
         if (Random.Range(0f, 11f) <= 0.8)
         {
             basicEnemyProjectile.gameObject.GetComponent<EnemyProjectile>().speed = 5f + secondsPassed / 3f;
-            basicEnemyProjectile.gameObject.GetComponent<MeshRenderer>().material = orange;
-
-            basicEnemyProjectile.gameObject.transform.localScale = new Vector3(weakProjectileScale, weakProjectileScale, weakProjectileScale);
-
+            
             float variance = 9.5f;
 
             Vector3 spawnPosition = new Vector3(Random.Range(-variance, variance), 0f, -9f);
@@ -43,12 +40,7 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
         else if (Random.Range(0f, 11f) <= 0.2)
         {
             basicEnemyProjectile.gameObject.GetComponent<EnemyProjectile>().speed = 9f + secondsPassed / 2f;
-            basicEnemyProjectile.gameObject.GetComponent<MeshRenderer>().material = red;
-
-            basicEnemyProjectile.gameObject.transform.localScale = new Vector3(strongProjectileScale, strongProjectileScale, strongProjectileScale);
-
-
-
+            
             float variance = 9.5f;
 
             Vector3 spawnPosition = new Vector3(Random.Range(-variance, variance), 0f, -9f);
