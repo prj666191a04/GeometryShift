@@ -14,31 +14,50 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
     public Material red;
 
     public GameObject basicEnemyProjectile;//what projectile does the turret fire
+    public GameObject slowEnemyProjectile;//what projectile does the turret fire
 
+    Hashtable timeToPhase;
 
     // Start is called before the first frame update
     void Start()
     {
+        
         basicEnemyProjectile = Resources.Load("Enemies/EnemyTurretFolder/Enemy Projectile") as GameObject;
         basicEnemyProjectile.gameObject.GetComponent<EnemyProjectile>().maximumLifespanAllowed = 12;
+
+
+        slowEnemyProjectile = Resources.Load("Enemies/EnemyTurretFolder/Enemy Projectile") as GameObject;
+        slowEnemyProjectile.gameObject.GetComponent<EnemyProjectile>().maximumLifespanAllowed = 12;
+
+        timeToPhase = new Hashtable();
+
+        timeToPhase.Add(1, "One");
+        timeToPhase.Add(2, "Teu");
+        timeToPhase.Add(3, "Threa!");
+
 
     }
 
     void whatEnemiesShouldSpawn()//60 times a second, no matter the FPS
     {
-        
+        print("key is 1, value is " + timeToPhase[1]);
+        print("key is 2, value is " + timeToPhase[2]);
+        print("key is 3, value is " + timeToPhase[3]);
+        print("key is 4, value is " + timeToPhase[4]);
         if (Random.Range(0f, 11f) <= 0.8)
         {
-            basicEnemyProjectile.gameObject.GetComponent<EnemyProjectile>().speed = 5f + secondsPassed / 3f;
+            //slow
+            slowEnemyProjectile.gameObject.GetComponent<EnemyProjectile>().speed = 5f + secondsPassed / 3f;
             
             float variance = 9.5f;
 
             Vector3 spawnPosition = new Vector3(Random.Range(-variance, variance), 0f, -9f);
             Quaternion spawnRotation = new Quaternion();
-            Instantiate(basicEnemyProjectile, spawnPosition, spawnRotation, transform.parent);
+            Instantiate(slowEnemyProjectile, spawnPosition, spawnRotation, transform.parent);
         }
         else if (Random.Range(0f, 11f) <= 0.2)
         {
+            //fast
             basicEnemyProjectile.gameObject.GetComponent<EnemyProjectile>().speed = 9f + secondsPassed / 2f;
             
             float variance = 9.5f;
