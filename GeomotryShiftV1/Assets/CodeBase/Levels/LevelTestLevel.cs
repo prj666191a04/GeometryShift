@@ -10,6 +10,7 @@ public class LevelTestLevel : LevelBase
     {
         //GeomotryShift.mainCamera.transform.position = cameraPoint.position;
         //GeomotryShift.mainCamera.transform.rotation = cameraPoint.rotation;
+        
     }
 
     // Update is called once per frame

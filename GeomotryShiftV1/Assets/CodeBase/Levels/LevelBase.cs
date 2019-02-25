@@ -5,6 +5,11 @@ using UnityEngine;
 public class LevelBase : MonoBehaviour
 {
 
+    public LayerMask layerSet0;
+    public LayerMask layerSet1;
+    public LayerMask layerSet2;
+    public LayerMask layerSet3;
+
     public static LevelBase instance;
     
     public delegate void LevelMessage(int id, int code);

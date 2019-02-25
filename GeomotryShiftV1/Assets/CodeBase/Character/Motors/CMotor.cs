@@ -13,14 +13,22 @@ public class CMotor : MonoBehaviour {
     {
         OnFixedUpdate();
     }
+    private void Update()
+    {
+        CollectCustomInput();
+    }
 
 
-   public virtual void SetPhysics(Rigidbody phys)
+    public virtual void SetPhysics(Rigidbody phys)
    {
         rBody = phys;
         ConfigurePhysics();
    }
    
+    public virtual void CollectCustomInput()
+    {
+
+    }
    
    protected virtual void ConfigurePhysics()
    {

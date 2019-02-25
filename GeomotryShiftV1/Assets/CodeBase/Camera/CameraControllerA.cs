@@ -48,7 +48,6 @@ public class CameraControllerA : MonoBehaviour
         Init();
     }
 
-
     private void LateUpdate()
     {
         if(target != null)
@@ -104,7 +103,7 @@ public class CameraControllerA : MonoBehaviour
 
     void MoveToPosition2()
     {
-        transform.position = Vector3.SmoothDamp(transform.position, currentPos, ref velocity, 0.1f);
+        transform.position = Vector3.SmoothDamp(transform.position, currentPos, ref velocity, 0f);
     }
 
 
