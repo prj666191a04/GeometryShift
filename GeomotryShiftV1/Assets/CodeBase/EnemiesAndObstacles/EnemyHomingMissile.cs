@@ -21,26 +21,14 @@ public class EnemyHomingMissile: MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        missileRigidBody = GetComponent<Rigidbody>();
     }
 
     private void FixedUpdate()
     {
         if (target == null)
         {
-            origin = transform.position;
-            direction = transform.forward;
-            RaycastHit[] raycastHits;
-            raycastHits = Physics.SphereCastAll(origin, sphereRadius, direction, maxDistance, layerMask, QueryTriggerInteraction.UseGlobal);
-
-            foreach (RaycastHit theHit in raycastHits)
-            {
-                if (theHit.transform.gameObject.name.Contains("Player"))
-                {
-                    target = theHit.transform.gameObject;
-                    break;
-                }
-            }
+            target = GeometryShift.playerStatus.gameObject;
         }
    
 

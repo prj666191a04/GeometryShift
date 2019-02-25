@@ -122,15 +122,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  missileRigidBody: {fileID: 4225069047112909771}
-  turnSpeed: 2
-  speed: 3
+  missileRigidBody: {fileID: 0}
+  turnSpeed: 1
+  speed: 6
   currentHitObject: {fileID: 0}
-  sphereRadius: 8
+  sphereRadius: 100
   maxDistance: 0
   layerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
 --- !u!54 &4225069047112909771
 Rigidbody:
   m_ObjectHideFlags: 0
