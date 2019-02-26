@@ -343,5 +343,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orange: {fileID: 2100000, guid: 40e50ccd392c0b94ab0f8f14a962cdfd, type: 2}
   red: {fileID: 2100000, guid: eb9de06d029932947a489a875e07ce45, type: 2}
-  basicEnemyProjectile: {fileID: 0}
+  fastEnemyProjectile: {fileID: 0}
   slowEnemyProjectile: {fileID: 0}
+  homingMissile: {fileID: 0}
+  planarExplosion: {fileID: 0}

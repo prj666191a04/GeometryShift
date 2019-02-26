@@ -28,20 +28,29 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
 
         fastEnemyProjectile = Resources.Load("Enemies/EnemyTurretFolder/Enemy Projectile") as GameObject;
         fastEnemyProjectile.gameObject.GetComponent<EnemyProjectile>().maximumLifespanAllowed = 12;
-
+        fastEnemyProjectile.gameObject.GetComponent<EnemyProjectile>().speed = 10f;
 
         slowEnemyProjectile = Resources.Load("Enemies/EnemyTurretFolder/Enemy Projectile Slow") as GameObject;
         slowEnemyProjectile.gameObject.GetComponent<EnemyProjectile>().maximumLifespanAllowed = 12;
+        slowEnemyProjectile.gameObject.GetComponent<EnemyProjectile>().speed = 6f;
 
         homingMissile = Resources.Load("Enemies/HomingMissile/Enemy Homing Missile") as GameObject;
         homingMissile.gameObject.GetComponent<EnemyHomingMissile>().maximumLifespanAllowed = 12;
 
 
+        planarExplosion = Resources.Load("Enemies/PlanarExplosion/PlanarExplosion") as GameObject;
+
+
         timeToPhase = new Hashtable();
+
+        //use: timeToPhase.Add(secondsPassed, phaseNumber);
+        //starts at phase 1, so having timeToPhase.Add(0, 1) is unnessecary
 
         timeToPhase.Add(5, 2);
         timeToPhase.Add(10, 3);
         timeToPhase.Add(15, 4);
+        timeToPhase.Add(20, 5);
+        timeToPhase.Add(25, 6);
 
 
     }
@@ -52,7 +61,6 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
         {
             phase = (int)timeToPhase[secondsPassedInt];
         }
-        //print("time passed int is " + secondsPassedInt + " phase num is " + phase);
     }
 
     void whatEnemiesShouldSpawn()//60 times a second, no matter the FPS
@@ -60,36 +68,30 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
         switch (phase)
         {
             case 1:
-                if (Random.Range(0f, 11f) <= 1.2)
+                if (Random.Range(0f, 60f) <= 5)
                 {
                     //slow
-                    slowEnemyProjectile.gameObject.GetComponent<EnemyProjectile>().speed = 5f + secondsPassed / 3f;
-
                     float variance = 9.5f;
 
                     Vector3 spawnPosition = new Vector3(Random.Range(-variance, variance), 0f, -9f);
                     Quaternion spawnRotation = new Quaternion();
                     Instantiate(slowEnemyProjectile, spawnPosition, spawnRotation, transform.parent);
-                    Instantiate(homingMissile, spawnPosition, spawnRotation, transform.parent);
+                    
                 }
                 break;
             case 2:
-                if (Random.Range(0f, 11f) <= 0.6)
+                if (Random.Range(0f, 60f) <= 3)
                 {
                     //slow
-                    slowEnemyProjectile.gameObject.GetComponent<EnemyProjectile>().speed = 5f + secondsPassed / 3f;
-
                     float variance = 9.5f;
 
                     Vector3 spawnPosition = new Vector3(Random.Range(-variance, variance), 0f, -9f);
                     Quaternion spawnRotation = new Quaternion();
                     Instantiate(slowEnemyProjectile, spawnPosition, spawnRotation, transform.parent);
                 }
-                else if (Random.Range(0f, 11f) <= 0.4)
+                if (Random.Range(0f, 60f) <= 2)
                 {
                     //fast
-                    fastEnemyProjectile.gameObject.GetComponent<EnemyProjectile>().speed = 9f + secondsPassed / 2f;
-
                     float variance = 9.5f;
 
                     Vector3 spawnPosition = new Vector3(Random.Range(-variance, variance), 0f, -9f);
@@ -99,17 +101,37 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
                 }
                 break;
             case 3:
-                if (Random.Range(0f, 11f) <= 0.9)
+                if (Random.Range(0f, 60f) <= 3)
                 {
                     //fast
-                    fastEnemyProjectile.gameObject.GetComponent<EnemyProjectile>().speed = 9f + secondsPassed / 2f;
-
                     float variance = 9.5f;
 
                     Vector3 spawnPosition = new Vector3(Random.Range(-variance, variance), 0f, -9f);
                     Quaternion spawnRotation = new Quaternion();
                     spawnRotation = Quaternion.Euler(0f, Random.Range(-40f, 40f), 0f);
                     Instantiate(fastEnemyProjectile, spawnPosition, spawnRotation, transform.parent);
+                }
+                if (Random.Range(0f, 60f) <= 1.2)
+                {
+                    //planar explosion!
+                    float variance = 9.5f;
+
+                    Vector3 spawnPosition = new Vector3(Random.Range(-variance, variance), 0f, Random.Range(-variance, variance));
+                    Quaternion spawnRotation = new Quaternion();
+                    planarExplosion.GetComponent<PlanarExplosion>().theEnemyToSpawn = slowEnemyProjectile;
+                    Instantiate(planarExplosion, spawnPosition, spawnRotation, transform.parent);
+                }
+                break;
+            case 4:
+                if (Random.Range(0f, 100f) <= 5)
+                {
+                    //homing missile
+                    float variance = 9.5f;
+
+                    Vector3 spawnPosition = new Vector3(Random.Range(-variance, variance), 0f, -9f);
+                    Quaternion spawnRotation = new Quaternion();
+                    spawnRotation = Quaternion.Euler(0f, Random.Range(-40f, 40f), 0f);
+                    Instantiate(homingMissile, spawnPosition, spawnRotation, transform.parent);
                 }
                 break;
             default:
