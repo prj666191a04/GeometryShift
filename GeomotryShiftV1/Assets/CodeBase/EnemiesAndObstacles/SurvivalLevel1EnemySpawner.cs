@@ -16,6 +16,8 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
 
     public GameObject fastEnemyProjectile;//what projectile does the turret fire
     public GameObject slowEnemyProjectile;//what projectile does the turret fire
+    public GameObject homingMissile;//what projectile does the turret fire
+    public GameObject planarExplosion;//what projectile does the turret fire
 
     Hashtable timeToPhase;
     int phase = 1;
@@ -30,6 +32,10 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
 
         slowEnemyProjectile = Resources.Load("Enemies/EnemyTurretFolder/Enemy Projectile Slow") as GameObject;
         slowEnemyProjectile.gameObject.GetComponent<EnemyProjectile>().maximumLifespanAllowed = 12;
+
+        homingMissile = Resources.Load("Enemies/HomingMissile/Enemy Homing Missile") as GameObject;
+        homingMissile.gameObject.GetComponent<EnemyHomingMissile>().maximumLifespanAllowed = 12;
+
 
         timeToPhase = new Hashtable();
 
@@ -64,6 +70,7 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
                     Vector3 spawnPosition = new Vector3(Random.Range(-variance, variance), 0f, -9f);
                     Quaternion spawnRotation = new Quaternion();
                     Instantiate(slowEnemyProjectile, spawnPosition, spawnRotation, transform.parent);
+                    Instantiate(homingMissile, spawnPosition, spawnRotation, transform.parent);
                 }
                 break;
             case 2:
