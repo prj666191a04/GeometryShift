@@ -6,12 +6,14 @@ public class SmovTest : MonoBehaviour
 {
     float h_;
     float v_;
-    Vector2 screenBounds;
+   public Vector2 screenBounds;
     public Vector3 moveDirection;
+    public Vector2 characterExtants;
     // Start is called before the first frame update
     void Start()
     {
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
+        characterExtants = Camera.main.ScreenToWorldPoint(new Vector3 (0.5f, 0.5f, Camera.main.transform.position.z));
     }
 
     // Update is called once per frame
@@ -24,9 +26,11 @@ public class SmovTest : MonoBehaviour
         {
             transform.Translate((moveDirection * Time.deltaTime) * 5);
         }
+
+        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.scaledPixelWidth, Camera.main.scaledPixelHeight, Camera.main.transform.position.z));
         Vector3 cpos = transform.position;
-        cpos.x = Mathf.Clamp(cpos.x, screenBounds.x, screenBounds.x * -1);
-        cpos.y = Mathf.Clamp(cpos.y, screenBounds.y, screenBounds.x * -1);
+        cpos.x = Mathf.Clamp(cpos.x, (screenBounds.x + 0.5f), (screenBounds.x) * -1 - 0.5f);
+        cpos.y = Mathf.Clamp(cpos.y, (screenBounds.y + 0.5f), (screenBounds.y) * -1 - 0.5f) ;
         transform.position = cpos;
     }
 }

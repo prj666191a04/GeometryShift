@@ -9,7 +9,7 @@ public class FloatMotorA : CMotor
     public LayerMask doNotPassThrogh;
     public LayerMask teleportMask;
 
-    public GameObject asda;
+    public GameObject lookIndicator;
 
     Quaternion newRotation;
     Quaternion targetRotation;
@@ -17,17 +17,30 @@ public class FloatMotorA : CMotor
     public Vector3 pos;
     public Vector3 screemPos;
 
-    public Vector2 screenBounds;
+    public Vector3 screenBounds;
+    public Vector3 mouseWorldPos;
+    public Vector3 targetAhead;
+    public Vector3 lookPos;
+
+
 
     private void Start()
     {
+        lookIndicator = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        lookIndicator.transform.localScale.Set(0.5f, 0.5f, 0.5f);
+        lookIndicator.GetComponent<MeshRenderer>().material.color = Color.red;
+        Destroy(lookIndicator.GetComponent<SphereCollider>());
+
+
+
+        transform.forward = Vector3.up;
         newRotation = transform.rotation;
         targetRotation = transform.rotation;
         doNotPassThrogh = LevelBase.instance.layerSet0;
         teleportMask = LevelBase.instance.layerSet1;
 
-        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
-        
+        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.scaledPixelWidth, Camera.main.scaledPixelHeight, Camera.main.transform.position.z));
+
     }
 
     private void Update()
@@ -37,7 +50,7 @@ public class FloatMotorA : CMotor
 
     void FixedUpdate()
     {
-        Vector3 moveDirection = new Vector3(h_, 0, v_);
+        Vector3 moveDirection = new Vector3(h_, v_, 0 );
         if (moveDirection != null)
         {
             RaycastHit hitInfo;
@@ -58,7 +71,7 @@ public class FloatMotorA : CMotor
 
     private void LateUpdate()
     {
-        //ClampToScreen();
+        ClampToScreen();
          pos = Camera.main.WorldToViewportPoint(transform.position);
           
         if (pos.x < 0.0) Debug.Log("left");
@@ -70,17 +83,32 @@ public class FloatMotorA : CMotor
 
     void ClampToScreen()
     {
-        Vector3 clampedPosition = transform.position;
-        clampedPosition.x = Mathf.Clamp(clampedPosition.x, screenBounds.x, screenBounds.x * -1);
-        //clampedPosition.y = Mathf.Clamp(clampedPosition.y, screenBounds.y, screenBounds.y * -1);
-        transform.position = clampedPosition;
+        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.scaledPixelWidth ,  Camera.main.scaledPixelHeight, Camera.main.transform.position.z ));
+        Vector3 cpos = transform.position;
+        cpos.x = Mathf.Clamp(cpos.x, (screenBounds.x + 1f), (screenBounds.x) * -1 - 1f);
+        cpos.y = Mathf.Clamp(cpos.y, (screenBounds.y + 1f), (screenBounds.y) * -1 - 1f);
+        transform.position = cpos;
     }
 
     void RotateToDirection()
     {
 
+        //0 up 0 , 1
+        //90 left -1, 0
+        //-90 right 1, 0
+        //180 down 0 -1
         //Get direction of input
-        targetDirection = new Vector3(h_, 0, v_);
+
+
+
+        targetDirection = new Vector3(h_, v_, 0);
+
+        switch (h_)
+        {
+            case 1:
+                break;
+        }
+
 
         if (targetDirection != Vector3.zero)
         {
@@ -92,7 +120,9 @@ public class FloatMotorA : CMotor
             //targetRotation = Quaternion.LookRotation(relativeDirection, Vector3.up);
 
             //temporary until above code is fixed
+
             targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
+            
 
             //Preform this frames rotation
             
@@ -100,14 +130,39 @@ public class FloatMotorA : CMotor
 
         //Apply the value
         newRotation = Quaternion.Lerp(newRotation, targetRotation, Time.deltaTime * 10);
-        transform.rotation = newRotation;
+        //transform.rotation = newRotation;
+
+
+        mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, Camera.main.transform.position.z *-1));
+
+        if(targetDirection != Vector3.zero)
+            targetAhead = transform.position + targetDirection *2;
+        
+        //targetAhead.z = 0;
+        Vector3 target = mouseWorldPos;
+        target = targetAhead;
+
+        lookIndicator.transform.position = target;
+
+        Vector3 newLook = target - transform.position;
+        newLook.z = 0;
+
+        newLook = Vector3.Lerp(lookPos, newLook, Time.deltaTime * 5);
+        
+        Quaternion rotation = Quaternion.LookRotation(lookPos);
+        //rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 5f);
+        //transform.rotation = rotation;
+
+        transform.rotation = rotation;
+
+        lookPos = newLook;
     }
 
 
     protected override void ConfigurePhysics()
     {
         rBody.useGravity = false;
-        rBody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionY;
+        rBody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ ;
         rBody.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
         rBody.interpolation = RigidbodyInterpolation.Interpolate;
         rBody.mass = 1;
