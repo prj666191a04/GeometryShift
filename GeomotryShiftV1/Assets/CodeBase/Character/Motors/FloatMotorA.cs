@@ -51,6 +51,7 @@ public class FloatMotorA : CMotor
     private void Update()
     {
         RotateToDirection();
+        mapFlow.transform.Translate((Vector3.right * 3) * Time.deltaTime);
     }
 
     void FixedUpdate()
