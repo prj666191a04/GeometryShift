@@ -9,15 +9,34 @@ public class PlanarExplosion : MonoBehaviour
     public float angle = 0f;
     public int numberOfEnemiesSpawned = 6;
 
+    float secondsSinceLastMatChange = 0f;
+    float secondsBetweenMatChange = 0.2f;
+
+    public Material material1;
+    public Material material2;
+
+    public bool usingMat1 = true;
+
     public GameObject theEnemyToSpawn;
+
+    MeshRenderer meshRenderer;
 
     // Start is called before the first frame update
     void Start()
     {
+        meshRenderer = GetComponent<MeshRenderer>();
         if (theEnemyToSpawn == null)
         {
             theEnemyToSpawn = Resources.Load("Enemies/EnemyTurretFolder/Enemy Projectile") as GameObject;
         }   
+        if (material1 == null)
+        {
+            material1 = Resources.Load("Materials/TransparentOrange") as Material;
+        }
+        if (material2 == null)
+        {
+            material2 = Resources.Load("Materials/TransparentRed") as Material;
+        }
     }
 
     void Explode()
@@ -39,7 +58,23 @@ public class PlanarExplosion : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //print("dolar " + );
         timeExistedInSeconds += Time.deltaTime;
+        secondsSinceLastMatChange += Time.deltaTime;
+        if (secondsSinceLastMatChange > secondsBetweenMatChange)
+        {
+            secondsSinceLastMatChange -= secondsBetweenMatChange;
+            if (usingMat1)
+            {
+                usingMat1 = false;
+                meshRenderer.material = material2;
+            }
+            else
+            {
+                usingMat1 = true;
+                meshRenderer.material = material1;
+            }
+        }
         if (timeExistedInSeconds > maximumLifespanAllowed)
         {
             Explode();

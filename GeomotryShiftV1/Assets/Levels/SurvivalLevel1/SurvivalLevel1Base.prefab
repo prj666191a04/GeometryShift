@@ -341,8 +341,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73c832fee157cae4db6f0608348ee3a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orange: {fileID: 2100000, guid: 40e50ccd392c0b94ab0f8f14a962cdfd, type: 2}
-  red: {fileID: 2100000, guid: eb9de06d029932947a489a875e07ce45, type: 2}
+  widthOfLevel: 32
+  lengthOfLevel: 32
+  orange: {fileID: 0}
+  red: {fileID: 2100000, guid: db14044ec7cdf5d4eb41cb54b92c5926, type: 2}
   fastEnemyProjectile: {fileID: 0}
   slowEnemyProjectile: {fileID: 0}
   homingMissile: {fileID: 0}

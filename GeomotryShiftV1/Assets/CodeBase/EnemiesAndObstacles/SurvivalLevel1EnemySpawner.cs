@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class SurvivalLevel1EnemySpawner : MonoBehaviour
 {
+    float widthOfLevel = 22f;
+    float lengthOfLevel = 22f;
+
+    float secondsSinceLastPlanarExplosion = 0;
+    float secondsBetweenEachPlanarExplosion = 0.8f;
+
     float secondsPassed = 0;
     int secondsPassedInt = 0;
     float enemySpawnTimer = 0;
@@ -11,13 +17,11 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
     float strongProjectileScale = 1.3f;
     Random random = new Random();
 
-    public Material orange;
-    public Material red;
 
-    public GameObject fastEnemyProjectile;//what projectile does the turret fire
-    public GameObject slowEnemyProjectile;//what projectile does the turret fire
-    public GameObject homingMissile;//what projectile does the turret fire
-    public GameObject planarExplosion;//what projectile does the turret fire
+    GameObject fastEnemyProjectile;
+    GameObject slowEnemyProjectile;
+    GameObject homingMissile;
+    GameObject planarExplosion;
 
     Hashtable timeToPhase;
     int phase = 1;
@@ -51,6 +55,7 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
         timeToPhase.Add(15, 4);
         timeToPhase.Add(20, 5);
         timeToPhase.Add(25, 6);
+        timeToPhase.Add(30, 7);
 
 
     }
@@ -60,7 +65,42 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
         if (timeToPhase.ContainsKey(secondsPassedInt))
         {
             phase = (int)timeToPhase[secondsPassedInt];
+            timeToPhase.Remove(secondsPassedInt);
+            secondsSinceLastPlanarExplosion = 0;
         }
+    }
+
+    void spawnPlanarExplosion(GameObject projectile)
+    {
+        Vector3 spawnPosition = new Vector3(Random.Range(-(widthOfLevel / 2), (widthOfLevel / 2)), 0f, Random.Range(-(lengthOfLevel / 2), (lengthOfLevel / 2)));
+        Quaternion spawnRotation = new Quaternion();
+        planarExplosion.GetComponent<PlanarExplosion>().theEnemyToSpawn = projectile;
+        Instantiate(planarExplosion, spawnPosition, spawnRotation, transform.parent);
+    }
+
+    void spawnWave(GameObject projectile,
+        int side = 3, //1 = top, 2 = right, 3 = bottom, 4 = left
+        int numberOfFlankingProjectilesOnEachSide = 2,
+        float widthSpacing = 0.6f,
+        float distanceSpacing = 0.2f)
+    {
+        
+        float x = Random.Range(-(widthOfLevel / 2), (widthOfLevel / 2));
+        float y = -(lengthOfLevel / 2);
+
+        Vector3 spawnPosition = new Vector3(x, 0f, y);
+        Quaternion spawnRotation = new Quaternion();
+
+        Instantiate(projectile, spawnPosition, spawnRotation, transform.parent);
+
+        for (int i = 1; i <= numberOfFlankingProjectilesOnEachSide; i++)
+        {
+            spawnPosition = new Vector3(x + (i * widthSpacing), 0f, y - (i * distanceSpacing));
+            Instantiate(projectile, spawnPosition, spawnRotation, transform.parent);
+            spawnPosition = new Vector3(x - (i * widthSpacing), 0f, y - (i * distanceSpacing));
+            Instantiate(projectile, spawnPosition, spawnRotation, transform.parent);
+        }
+
     }
 
     void whatEnemiesShouldSpawn()//60 times a second, no matter the FPS
@@ -71,30 +111,27 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
                 if (Random.Range(0f, 60f) <= 5)
                 {
                     //slow
-                    float variance = 9.5f;
 
-                    Vector3 spawnPosition = new Vector3(Random.Range(-variance, variance), 0f, -9f);
+                    Vector3 spawnPosition = new Vector3(Random.Range(-(widthOfLevel / 2), (widthOfLevel / 2)), 0f, -(lengthOfLevel / 2));
                     Quaternion spawnRotation = new Quaternion();
                     Instantiate(slowEnemyProjectile, spawnPosition, spawnRotation, transform.parent);
-                    
+
                 }
                 break;
             case 2:
                 if (Random.Range(0f, 60f) <= 3)
                 {
                     //slow
-                    float variance = 9.5f;
 
-                    Vector3 spawnPosition = new Vector3(Random.Range(-variance, variance), 0f, -9f);
+                    Vector3 spawnPosition = new Vector3(Random.Range(-(widthOfLevel / 2), (widthOfLevel / 2)), 0f, -(lengthOfLevel / 2));
                     Quaternion spawnRotation = new Quaternion();
                     Instantiate(slowEnemyProjectile, spawnPosition, spawnRotation, transform.parent);
                 }
                 if (Random.Range(0f, 60f) <= 2)
                 {
                     //fast
-                    float variance = 9.5f;
 
-                    Vector3 spawnPosition = new Vector3(Random.Range(-variance, variance), 0f, -9f);
+                    Vector3 spawnPosition = new Vector3(Random.Range(-(widthOfLevel / 2), (widthOfLevel / 2)), 0f, -(lengthOfLevel / 2));
                     Quaternion spawnRotation = new Quaternion();
                     spawnRotation = Quaternion.Euler(0f, Random.Range(-30f, 30f), 0f);
                     Instantiate(fastEnemyProjectile, spawnPosition, spawnRotation, transform.parent);
@@ -104,44 +141,56 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
                 if (Random.Range(0f, 60f) <= 3)
                 {
                     //fast
-                    float variance = 9.5f;
 
-                    Vector3 spawnPosition = new Vector3(Random.Range(-variance, variance), 0f, -9f);
+                    Vector3 spawnPosition = new Vector3(Random.Range(-(widthOfLevel / 2), (widthOfLevel / 2)), 0f, -(lengthOfLevel / 2));
                     Quaternion spawnRotation = new Quaternion();
                     spawnRotation = Quaternion.Euler(0f, Random.Range(-40f, 40f), 0f);
                     Instantiate(fastEnemyProjectile, spawnPosition, spawnRotation, transform.parent);
                 }
-                if (Random.Range(0f, 60f) <= 1.2)
+                secondsSinceLastPlanarExplosion += Time.deltaTime;
+                if (secondsSinceLastPlanarExplosion > secondsBetweenEachPlanarExplosion)
                 {
-                    //planar explosion!
-                    float variance = 9.5f;
-
-                    Vector3 spawnPosition = new Vector3(Random.Range(-variance, variance), 0f, Random.Range(-variance, variance));
-                    Quaternion spawnRotation = new Quaternion();
-                    planarExplosion.GetComponent<PlanarExplosion>().theEnemyToSpawn = slowEnemyProjectile;
-                    Instantiate(planarExplosion, spawnPosition, spawnRotation, transform.parent);
+                    //planar explosion
+                    secondsSinceLastPlanarExplosion -= secondsBetweenEachPlanarExplosion;
+                    spawnPlanarExplosion(slowEnemyProjectile);
                 }
                 break;
             case 4:
-                if (Random.Range(0f, 100f) <= 5)
+                if (Random.Range(0f, 60f) <= 3)
                 {
                     //homing missile
-                    float variance = 9.5f;
 
-                    Vector3 spawnPosition = new Vector3(Random.Range(-variance, variance), 0f, -9f);
+                    Vector3 spawnPosition = new Vector3(Random.Range(-(widthOfLevel / 2), (widthOfLevel / 2)), 0f, -(lengthOfLevel / 2));
                     Quaternion spawnRotation = new Quaternion();
                     spawnRotation = Quaternion.Euler(0f, Random.Range(-40f, 40f), 0f);
                     Instantiate(homingMissile, spawnPosition, spawnRotation, transform.parent);
+
                 }
+                break;
+            case 5:
+                secondsBetweenEachPlanarExplosion = 1.5f;
+
+                secondsSinceLastPlanarExplosion += Time.deltaTime;
+                if (secondsSinceLastPlanarExplosion > secondsBetweenEachPlanarExplosion)
+                {
+                    //planar explosion
+                    secondsSinceLastPlanarExplosion -= secondsBetweenEachPlanarExplosion;
+                    spawnPlanarExplosion(homingMissile);
+                }
+                break;
+            case 6:
+                //waves
+
+                if (Random.Range(0f, 60f) <= 5)
+                {
+                    spawnWave(slowEnemyProjectile);
+                }
+
                 break;
             default:
                 print("phase error. phase is " + phase);
                 break;
         }
-
-
-
-
 
     }
 

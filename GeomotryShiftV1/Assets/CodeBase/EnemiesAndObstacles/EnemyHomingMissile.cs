@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyHomingMissile: MonoBehaviour
 {
+
     public GameObject target = null;
     public Rigidbody missileRigidBody;
 
@@ -55,10 +56,12 @@ public class EnemyHomingMissile: MonoBehaviour
         }
         if (target != null && fuelTime > 0)//rotate towards the target
         {
-            missileRigidBody.velocity = transform.forward * speed * Time.deltaTime * 60;
             var rocketTargetRotation = Quaternion.LookRotation(target.transform.position - transform.position);
             missileRigidBody.MoveRotation(Quaternion.RotateTowards(transform.rotation, rocketTargetRotation, turnSpeed));
         }
+
+        transform.Translate(Vector3.forward * Time.deltaTime * speed);//move forward
+
         if (fuelTime <= 0)
         {
             GetComponent<TrailRenderer>().emitting = false;
