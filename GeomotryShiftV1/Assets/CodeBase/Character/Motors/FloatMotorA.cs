@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class FloatMotorA : CMotor
 {
+    Transform mapFlow;
+    Transform screenPos;
+    Camera screenBoundsCam;
 
     public LayerMask doNotPassThrogh;
     public LayerMask teleportMask;
@@ -26,6 +29,8 @@ public class FloatMotorA : CMotor
 
     private void Start()
     {
+        
+        mapFlow = GameObject.Find("MapFlow").GetComponent<Transform>();
         lookIndicator = GameObject.CreatePrimitive(PrimitiveType.Sphere);
         lookIndicator.transform.localScale.Set(0.5f, 0.5f, 0.5f);
         lookIndicator.GetComponent<MeshRenderer>().material.color = Color.red;
@@ -83,11 +88,18 @@ public class FloatMotorA : CMotor
 
     void ClampToScreen()
     {
-        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.scaledPixelWidth ,  Camera.main.scaledPixelHeight, Camera.main.transform.position.z ));
-        Vector3 cpos = transform.position;
+        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.scaledPixelWidth, Camera.main.scaledPixelHeight, Camera.main.transform.position.z));
+        // transform.InverseTransformPoint(screenBounds);
+        screenBounds.x = screenBounds.x + mapFlow.transform.position.x * -1;
+        screenBounds.y = screenBounds.y + mapFlow.transform.position.y * -1;
+
+        Vector3 cpos = transform.localPosition;
         cpos.x = Mathf.Clamp(cpos.x, (screenBounds.x + 1f), (screenBounds.x) * -1 - 1f);
         cpos.y = Mathf.Clamp(cpos.y, (screenBounds.y + 1f), (screenBounds.y) * -1 - 1f);
-        transform.position = cpos;
+
+        transform.localPosition = cpos;
+         
+
     }
 
     void RotateToDirection()
