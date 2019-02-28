@@ -180,7 +180,7 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
         switch (phase)
         {
             case 1:
-                if (Random.Range(0f, 60f) <= 5)
+                if (Random.Range(0f, 60f) <= 2)
                 {
                     //slow projectiles
 
@@ -191,6 +191,9 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
 
                     spawnRotation = Quaternion.Euler(0f, Random.Range(-40f, 40f), 0f);
                     Instantiate(homingMissile, spawnPosition, spawnRotation, transform.parent);
+                    spawnPlanarExplosion(fastEnemyProjectile, 7);
+                    spawnPlanarExplosion(homingMissile, 3);
+                    spawnPlanarExplosion(slowEnemyProjectile, 18);
 
                 }
                 break;
@@ -214,21 +217,12 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
                 }
                 break;
             case 3:
-                if (Random.Range(0f, 60f) <= 3)
-                {
-                    //fast projectiles
-
-                    Vector3 spawnPosition = new Vector3(Random.Range(-(widthOfLevel / 2), (widthOfLevel / 2)), 0f, -(lengthOfLevel / 2));
-                    Quaternion spawnRotation = new Quaternion();
-                    spawnRotation = Quaternion.Euler(0f, Random.Range(-40f, 40f), 0f);
-                    Instantiate(fastEnemyProjectile, spawnPosition, spawnRotation, transform.parent);
-                }
                 secondsSinceLastPlanarExplosion += Time.deltaTime;
                 if (secondsSinceLastPlanarExplosion > secondsBetweenEachPlanarExplosion)
                 {
                     //planar explosions
                     secondsSinceLastPlanarExplosion -= secondsBetweenEachPlanarExplosion;
-                    spawnPlanarExplosion(slowEnemyProjectile);
+                    spawnPlanarExplosion(slowEnemyProjectile, 10);
                 }
                 break;
             case 4:
@@ -270,12 +264,12 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
                 break;
             case 7:
                 
-                    if (Random.Range(0f, 60f) <= 2)
+                    if (Random.Range(0f, 60f) <= 1.6)
                     {
                         spawnWave(homingMissile, 2, 1, 1.8f, 0.6f);
 
                     }
-                    if (Random.Range(0f, 60f) <= 2)
+                    if (Random.Range(0f, 60f) <= 1.6)
                     {
                         spawnWave(homingMissile, 4, 1, 1.8f, 0.6f);
 

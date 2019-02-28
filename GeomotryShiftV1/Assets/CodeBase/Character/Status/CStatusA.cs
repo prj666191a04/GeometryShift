@@ -6,6 +6,8 @@ using UnityEngine;
 //Default healthbased status script
 public class CStatusA : CStatus
 {
+    AudioClip playerHit;
+    
     private float lerpSpeed = 2f;
     private float minLerpSpeed = 1f;
     private float maxLerpSpeed = 6f;
@@ -18,13 +20,14 @@ public class CStatusA : CStatus
     void Start()
     {
         value_ = 10;
+        playerHit = Resources.Load("Audio/playerHitGood") as AudioClip;
     }
 
     // Update is called once per frame
     void Update()
     {
         secondsSinceLastTookDamage += Time.deltaTime;
-        if (secondsSinceLastTookDamage > 0.3)
+        if (secondsSinceLastTookDamage > 0.15)
         {
             GetComponent<MeshRenderer>().material = Resources.Load("Materials/LightGray") as Material;
         }
@@ -33,7 +36,9 @@ public class CStatusA : CStatus
 
     public override void Damage(float ammount)
     {
-        if(value_ > 0)
+        AudioSource.PlayClipAtPoint(playerHit, Vector3.zero);
+        
+        if (value_ > 0)
         {
             value_ -= ammount;
             GetComponent<MeshRenderer>().material = Resources.Load("Materials/PlayerInjuredColor") as Material;
@@ -41,6 +46,8 @@ public class CStatusA : CStatus
         }
         else
         {
+            GetComponent<MeshRenderer>().material = Resources.Load("Materials/PlayerInjuredColor") as Material;
+            secondsSinceLastTookDamage = 0;
             value_ = 0;
         }
     }
