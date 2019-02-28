@@ -10,7 +10,7 @@ public class PlanarExplosion : MonoBehaviour
     public int numberOfEnemiesSpawned = 6;
 
     float secondsSinceLastMatChange = 0f;
-    float secondsBetweenMatChange = 0.2f;
+    float secondsBetweenMatChange = 0.1f;
 
     public Material material1;
     public Material material2;

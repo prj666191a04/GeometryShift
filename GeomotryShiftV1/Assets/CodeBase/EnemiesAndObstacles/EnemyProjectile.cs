@@ -20,7 +20,7 @@ public class EnemyProjectile : MonoBehaviour
 
         if (!goThroughWalls)
         {
-            if (!other.gameObject.name.Contains("Enemy"))
+            if (!other.gameObject.CompareTag("Enemy"))
             {
                 Destroy(gameObject);
             }

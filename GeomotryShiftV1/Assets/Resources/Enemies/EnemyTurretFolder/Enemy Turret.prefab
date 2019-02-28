@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8840479983566990645}
   m_Layer: 0
   m_Name: Enemy Turret
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -111,3 +111,4 @@ MonoBehaviour:
   theTarget: {fileID: 0}
   trackTarget: 0
   degreesToTurnPerSecond: 180
+  maxRange: 8
