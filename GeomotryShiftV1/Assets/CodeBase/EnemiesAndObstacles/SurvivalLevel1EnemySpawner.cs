@@ -51,11 +51,12 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
         //starts at phase 1, so having timeToPhase.Add(0, 1) is unnessecary
 
         timeToPhase.Add(5, 2);
-        timeToPhase.Add(10, 3);
-        timeToPhase.Add(15, 4);
-        timeToPhase.Add(20, 5);
-        timeToPhase.Add(25, 6);
-        timeToPhase.Add(30, 7);
+        timeToPhase.Add(10, 3);//planar explosions + fast projectiles
+        timeToPhase.Add(15, 4);//homing missiles
+        timeToPhase.Add(20, 5);//planar explosions that spawn homing missiles
+        timeToPhase.Add(25, 0);//break time
+        timeToPhase.Add(27, 6);
+        timeToPhase.Add(32, 7);
 
 
     }
@@ -70,11 +71,12 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
         }
     }
 
-    void spawnPlanarExplosion(GameObject projectile)
+    void spawnPlanarExplosion(GameObject projectile, int number = 6)
     {
         Vector3 spawnPosition = new Vector3(Random.Range(-(widthOfLevel / 2), (widthOfLevel / 2)), 0f, Random.Range(-(lengthOfLevel / 2), (lengthOfLevel / 2)));
         Quaternion spawnRotation = new Quaternion();
         planarExplosion.GetComponent<PlanarExplosion>().theEnemyToSpawn = projectile;
+        planarExplosion.GetComponent<PlanarExplosion>().numberOfEnemiesSpawned = number;
         Instantiate(planarExplosion, spawnPosition, spawnRotation, transform.parent);
     }
 
@@ -110,18 +112,22 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
             case 1:
                 if (Random.Range(0f, 60f) <= 5)
                 {
-                    //slow
+                    //slow projectiles
 
                     Vector3 spawnPosition = new Vector3(Random.Range(-(widthOfLevel / 2), (widthOfLevel / 2)), 0f, -(lengthOfLevel / 2));
                     Quaternion spawnRotation = new Quaternion();
                     Instantiate(slowEnemyProjectile, spawnPosition, spawnRotation, transform.parent);
+
+                    
+                    spawnRotation = Quaternion.Euler(0f, Random.Range(-40f, 40f), 0f);
+                    Instantiate(homingMissile, spawnPosition, spawnRotation, transform.parent);
 
                 }
                 break;
             case 2:
                 if (Random.Range(0f, 60f) <= 3)
                 {
-                    //slow
+                    //slow projectiles
 
                     Vector3 spawnPosition = new Vector3(Random.Range(-(widthOfLevel / 2), (widthOfLevel / 2)), 0f, -(lengthOfLevel / 2));
                     Quaternion spawnRotation = new Quaternion();
@@ -129,7 +135,7 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
                 }
                 if (Random.Range(0f, 60f) <= 2)
                 {
-                    //fast
+                    //fast projectiles
 
                     Vector3 spawnPosition = new Vector3(Random.Range(-(widthOfLevel / 2), (widthOfLevel / 2)), 0f, -(lengthOfLevel / 2));
                     Quaternion spawnRotation = new Quaternion();
@@ -140,7 +146,7 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
             case 3:
                 if (Random.Range(0f, 60f) <= 3)
                 {
-                    //fast
+                    //fast projectiles
 
                     Vector3 spawnPosition = new Vector3(Random.Range(-(widthOfLevel / 2), (widthOfLevel / 2)), 0f, -(lengthOfLevel / 2));
                     Quaternion spawnRotation = new Quaternion();
@@ -150,7 +156,7 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
                 secondsSinceLastPlanarExplosion += Time.deltaTime;
                 if (secondsSinceLastPlanarExplosion > secondsBetweenEachPlanarExplosion)
                 {
-                    //planar explosion
+                    //planar explosions
                     secondsSinceLastPlanarExplosion -= secondsBetweenEachPlanarExplosion;
                     spawnPlanarExplosion(slowEnemyProjectile);
                 }
@@ -158,7 +164,7 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
             case 4:
                 if (Random.Range(0f, 60f) <= 3)
                 {
-                    //homing missile
+                    //homing missiles
 
                     Vector3 spawnPosition = new Vector3(Random.Range(-(widthOfLevel / 2), (widthOfLevel / 2)), 0f, -(lengthOfLevel / 2));
                     Quaternion spawnRotation = new Quaternion();
@@ -173,9 +179,9 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
                 secondsSinceLastPlanarExplosion += Time.deltaTime;
                 if (secondsSinceLastPlanarExplosion > secondsBetweenEachPlanarExplosion)
                 {
-                    //planar explosion
+                    //planar explosion that spawns homing missiles
                     secondsSinceLastPlanarExplosion -= secondsBetweenEachPlanarExplosion;
-                    spawnPlanarExplosion(homingMissile);
+                    spawnPlanarExplosion(homingMissile, 4);
                 }
                 break;
             case 6:
