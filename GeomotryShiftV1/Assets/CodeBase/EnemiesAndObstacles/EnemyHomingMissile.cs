@@ -2,37 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHomingMissile: MonoBehaviour
+public class EnemyHomingMissile: EnemyProjectile
 {
 
     public GameObject target = null;
     public Rigidbody missileRigidBody;
 
-    public float damage = 2f;
-    public float speed = 6;
-    public float turnSpeed = 1;
+    //public float damage = 2f;
+    //public float speed = 6;
+    public float turnSpeed = 1f;
 
     public float fuelTime = 2f;
-    public float maximumLifespanAllowed = 4f;
-    public float timeExistedInSeconds = 0f;
-    public bool goThroughWalls = true;
-
-    public void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            other.gameObject.GetComponent<CStatus>().Damage(damage);
-            Destroy(gameObject);
-        }
-
-        if (!goThroughWalls)
-        {
-            if (!other.gameObject.name.Contains("Enemy"))//so it doesn't collide with other enemies
-            {
-                Destroy(gameObject);
-            }
-        }
-    }
+    //public float maximumLifespanAllowed = 4f;
+    //public float timeExistedInSeconds = 0f;
+    //public bool goThroughWalls = true;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -42,12 +26,8 @@ public class EnemyHomingMissile: MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timeExistedInSeconds += Time.deltaTime;
-        fuelTime -= Time.deltaTime;
-        if (timeExistedInSeconds > maximumLifespanAllowed)
-        {
-            Destroy(gameObject);
-        }
+        shouldDespawn();//inherited from EnemyProjectile
+
         //use of 2 opposite if statements instead of if else is intended
 
         if (target == null)
@@ -56,11 +36,16 @@ public class EnemyHomingMissile: MonoBehaviour
         }
         if (target != null && fuelTime > 0)//rotate towards the target
         {
+            fuelTime -= Time.deltaTime;
+
+            //where should it rotate towards?
             var rocketTargetRotation = Quaternion.LookRotation(target.transform.position - transform.position);
+
+            //rotate towards it
             missileRigidBody.MoveRotation(Quaternion.RotateTowards(transform.rotation, rocketTargetRotation, turnSpeed));
         }
-
-        transform.Translate(Vector3.forward * Time.deltaTime * speed);//move forward
+        
+        MoveForward();//inherited from EnemyProjectile
 
         if (fuelTime <= 0)
         {

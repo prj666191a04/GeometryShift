@@ -13,8 +13,6 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
     float secondsPassed = 0;
     int secondsPassedInt = 0;
     float enemySpawnTimer = 0;
-    float weakProjectileScale = 0.82f;
-    float strongProjectileScale = 1.3f;
     Random random = new Random();
 
 
@@ -50,15 +48,26 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
         //use: timeToPhase.Add(secondsPassed, phaseNumber);
         //starts at phase 1, so having timeToPhase.Add(0, 1) is unnessecary
 
-        timeToPhase.Add(1, 1);//slow projectiles
-        timeToPhase.Add(5, 2);//slow + fast projectiles
-        timeToPhase.Add(10, 3);//planar explosions + fast projectiles
-        timeToPhase.Add(15, 4);//homing missiles
-        timeToPhase.Add(20, 5);//planar explosions that spawn homing missiles
-        timeToPhase.Add(25, 0);//break time
-        timeToPhase.Add(27, 6);//projectile waves from top and bottom
-        timeToPhase.Add(35, 7);//homing missile waves from left and right
-
+        int testPhase = 0;
+        if (testPhase == 0)
+        {
+            timeToPhase.Add(1, 1);//slow projectiles
+            timeToPhase.Add(5, 2);//slow + fast projectiles
+            timeToPhase.Add(10, 3);//planar explosions + fast projectiles
+            timeToPhase.Add(15, 4);//homing missiles
+            timeToPhase.Add(20, 5);//planar explosions that spawn homing missiles
+            timeToPhase.Add(25, 0);//break time
+            timeToPhase.Add(27, 6);//projectile waves from top and bottom
+            timeToPhase.Add(35, 7);//double layer planar explosions: fast and slow projectiles
+            timeToPhase.Add(40, 8);//double layer planar explosions: slow projectiles and homing missiles
+            timeToPhase.Add(45, 9);//fast projectiles from all directions
+            timeToPhase.Add(50, 10);//slow projectiles from all directions, up to 45 degree angle variation
+            timeToPhase.Add(55, 11);//spawn planar explosions on edge of map only
+        }
+        else
+        {
+            phase = testPhase;
+        }
 
     }
 
@@ -72,9 +81,21 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
         }
     }
 
-    void spawnPlanarExplosion(GameObject projectile, int number = 6)
+    void spawnPlanarExplosion(GameObject projectile, 
+        int number = 6, 
+        bool randomSpawnLocation = true, 
+        float x = 0, 
+        float z = 0)
     {
-        Vector3 spawnPosition = new Vector3(Random.Range(-(widthOfLevel / 2), (widthOfLevel / 2)), 0f, Random.Range(-(lengthOfLevel / 2), (lengthOfLevel / 2)));
+        Vector3 spawnPosition;
+        if (randomSpawnLocation)
+        {
+            spawnPosition = new Vector3(Random.Range(-(widthOfLevel / 2), (widthOfLevel / 2)), 0f, Random.Range(-(lengthOfLevel / 2), (lengthOfLevel / 2)));
+        }
+        else
+        {
+            spawnPosition = new Vector3(x, 0f, z);
+        }
         Quaternion spawnRotation = new Quaternion();
         planarExplosion.GetComponent<PlanarExplosion>().theEnemyToSpawn = projectile;
         planarExplosion.GetComponent<PlanarExplosion>().numberOfEnemiesSpawned = number;
@@ -85,11 +106,17 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
         int side = 3, //1 = top, 2 = right, 3 = bottom, 4 = left
         int numberOfFlankingProjectilesOnEachSide = 2,
         float widthSpacing = 0.6f,
-        float distanceSpacing = 0.2f)
+        float distanceSpacing = 0.2f,
+        float angleVariation = 0f
+        )
     {
+        float actualAngleVariation = Random.Range(-angleVariation, angleVariation);
 
         float x = 0;
         float y = 0;
+
+        Vector3 spawnPosition;
+        Quaternion spawnRotation;
 
         switch (side)
         {
@@ -97,8 +124,8 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
                 x = Random.Range(-(widthOfLevel / 2), (widthOfLevel / 2));
                 y = (lengthOfLevel / 2);
 
-                Vector3 spawnPosition = new Vector3(x, 0f, y);
-                Quaternion spawnRotation = Quaternion.Euler(0f, 180f, 0f);
+                spawnPosition = new Vector3(x, 0f, y);
+                spawnRotation = Quaternion.Euler(0f, 180f + actualAngleVariation, 0f);
 
                 Instantiate(projectile, spawnPosition, spawnRotation, transform.parent);
 
@@ -115,7 +142,7 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
                 y = Random.Range(-(widthOfLevel / 2), (widthOfLevel / 2));
 
                 spawnPosition = new Vector3(x, 0f, y);
-                spawnRotation = Quaternion.Euler(0f, 270f, 0f);
+                spawnRotation = Quaternion.Euler(0f, 270f + actualAngleVariation, 0f);
 
                 Instantiate(projectile, spawnPosition, spawnRotation, transform.parent);
 
@@ -134,7 +161,7 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
                 y = -(lengthOfLevel / 2);
 
                 spawnPosition = new Vector3(x, 0f, y);
-                spawnRotation = new Quaternion();
+                spawnRotation = Quaternion.Euler(0f, actualAngleVariation, 0f);
 
                 Instantiate(projectile, spawnPosition, spawnRotation, transform.parent);
 
@@ -151,7 +178,7 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
                 y = Random.Range(-(widthOfLevel / 2), (widthOfLevel / 2));
 
                 spawnPosition = new Vector3(x, 0f, y);
-                spawnRotation = Quaternion.Euler(0f, 90f, 0f);
+                spawnRotation = Quaternion.Euler(0f, 90f + actualAngleVariation, 0f);
 
                 Instantiate(projectile, spawnPosition, spawnRotation, transform.parent);
 
@@ -159,7 +186,7 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
                 {
                     spawnPosition = new Vector3(x - (i * distanceSpacing), 0f, y + (i * widthSpacing));
                     Instantiate(projectile, spawnPosition, spawnRotation, transform.parent);
-                    
+
 
                     spawnPosition = new Vector3(x - (i * distanceSpacing), 0f, y - (i * widthSpacing));
                     Instantiate(projectile, spawnPosition, spawnRotation, transform.parent);
@@ -175,7 +202,7 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
 
     }
 
-    void whatEnemiesShouldSpawn()//60 times a second, no matter the FPS
+    void WhatEnemiesShouldSpawn()//60 times a second, no matter the FPS
     {
         switch (phase)
         {
@@ -183,18 +210,9 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
                 if (Random.Range(0f, 60f) <= 2)
                 {
                     //slow projectiles
-
                     Vector3 spawnPosition = new Vector3(Random.Range(-(widthOfLevel / 2), (widthOfLevel / 2)), 0f, -(lengthOfLevel / 2));
                     Quaternion spawnRotation = new Quaternion();
                     Instantiate(slowEnemyProjectile, spawnPosition, spawnRotation, transform.parent);
-
-
-                    spawnRotation = Quaternion.Euler(0f, Random.Range(-40f, 40f), 0f);
-                    Instantiate(homingMissile, spawnPosition, spawnRotation, transform.parent);
-                    spawnPlanarExplosion(fastEnemyProjectile, 7);
-                    spawnPlanarExplosion(homingMissile, 3);
-                    spawnPlanarExplosion(slowEnemyProjectile, 18);
-
                 }
                 break;
             case 2:
@@ -218,9 +236,10 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
                 break;
             case 3:
                 secondsSinceLastPlanarExplosion += Time.deltaTime;
+                secondsBetweenEachPlanarExplosion = 0.6f;
                 if (secondsSinceLastPlanarExplosion > secondsBetweenEachPlanarExplosion)
                 {
-                    //planar explosions
+                    //planar explosions that spawn slow enemy projectiles
                     secondsSinceLastPlanarExplosion -= secondsBetweenEachPlanarExplosion;
                     spawnPlanarExplosion(slowEnemyProjectile, 10);
                 }
@@ -238,43 +257,92 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
                 }
                 break;
             case 5:
-                secondsBetweenEachPlanarExplosion = 1.5f;
+                secondsBetweenEachPlanarExplosion = 1.2f;
 
                 secondsSinceLastPlanarExplosion += Time.deltaTime;
                 if (secondsSinceLastPlanarExplosion > secondsBetweenEachPlanarExplosion)
                 {
                     //planar explosion that spawns homing missiles
                     secondsSinceLastPlanarExplosion -= secondsBetweenEachPlanarExplosion;
-                    spawnPlanarExplosion(homingMissile, 4);
+                    spawnPlanarExplosion(homingMissile, 5);
                 }
                 break;
             case 6:
-                //waves
+                //waves top and bottom slow projectiles
 
-                if (Random.Range(0f, 60f) <= 3)
+                if (Random.Range(0f, 60f) <= 2.6)
                 {
                     spawnWave(slowEnemyProjectile, 3);
                 }
-                
-                if (Random.Range(0f, 60f) <= 3)
+
+                if (Random.Range(0f, 60f) <= 2.6)
                 {
                     spawnWave(slowEnemyProjectile, 1);
-                    
+
                 }
                 break;
             case 7:
+                //double layer planar explosions: fast and slow projectiles
+                secondsBetweenEachPlanarExplosion = 1f;
+
+                secondsSinceLastPlanarExplosion += Time.deltaTime;
+
+                if (secondsSinceLastPlanarExplosion > secondsBetweenEachPlanarExplosion)
+                {
+                    //planar explosion that spawns homing missiles
+                    float tempX = Random.Range(-(widthOfLevel / 2), (widthOfLevel / 2));
+                    float tempY = Random.Range(-(lengthOfLevel / 2), (lengthOfLevel / 2));
+                    secondsSinceLastPlanarExplosion -= secondsBetweenEachPlanarExplosion;
+                    spawnPlanarExplosion(slowEnemyProjectile, 16, false, tempX, tempY);
+                    spawnPlanarExplosion(fastEnemyProjectile, 12, false, tempX, tempY);
+                }
+                break;
+            case 8:
+                //double layer planar explosions: slow projectiles and homing missiles
+                secondsBetweenEachPlanarExplosion = 1f;
+
+                secondsSinceLastPlanarExplosion += Time.deltaTime;
+
+                if (secondsSinceLastPlanarExplosion > secondsBetweenEachPlanarExplosion)
+                {
+                    float tempX = Random.Range(-(widthOfLevel / 2), (widthOfLevel / 2));
+                    float tempY = Random.Range(-(lengthOfLevel / 2), (lengthOfLevel / 2));
+                    secondsSinceLastPlanarExplosion -= secondsBetweenEachPlanarExplosion;
+                    homingMissile.GetComponent<EnemyHomingMissile>().fuelTime = 0.5f;
+                    homingMissile.GetComponent<EnemyHomingMissile>().turnSpeed = 3.5f;
+                    spawnPlanarExplosion(slowEnemyProjectile, 12, false, tempX, tempY);
+                    spawnPlanarExplosion(homingMissile, 12, false, tempX, tempY);
+                }
+                break;
+            case 9:
+                //fast projectiles from all directions
+                if (Random.Range(0f, 60f) <= 8)
+                {
+                    spawnWave(fastEnemyProjectile, Random.Range(1, 5), 0, 1f, 1f);
+                }
                 
-                    if (Random.Range(0f, 60f) <= 1.6)
-                    {
-                        spawnWave(homingMissile, 2, 1, 1.8f, 0.6f);
+                break;
+            case 10:
+                //slow projectiles from all directions, up to 45 degree angle variation
+                if (Random.Range(0f, 60f) <= 16)
+                {
+                    spawnWave(slowEnemyProjectile, Random.Range(1, 5), 0, 1f, 1f, 45f);
+                }
 
-                    }
-                    if (Random.Range(0f, 60f) <= 1.6)
-                    {
-                        spawnWave(homingMissile, 4, 1, 1.8f, 0.6f);
+                break;
+            case 11:
+                //spawn planar explosions on edge of map only
 
-                    }
-
+                secondsSinceLastPlanarExplosion += Time.deltaTime;
+                secondsBetweenEachPlanarExplosion = 0.4f;
+                if (secondsSinceLastPlanarExplosion > secondsBetweenEachPlanarExplosion)
+                {
+                    secondsSinceLastPlanarExplosion -= secondsBetweenEachPlanarExplosion;
+                    planarExplosion.GetComponent<PlanarExplosion>().theEnemyToSpawn = slowEnemyProjectile;
+                    planarExplosion.GetComponent<PlanarExplosion>().numberOfEnemiesSpawned = 10;
+                    //planarExplosion.
+                    spawnWave(planarExplosion, Random.Range(1, 5), 0);
+                }
                 
                 break;
             default:
@@ -296,7 +364,7 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
         {
             enemySpawnTimer -= 0.0167f;
             setPhase();
-            whatEnemiesShouldSpawn();
+            WhatEnemiesShouldSpawn();
         }
 
     }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyProjectile : MonoBehaviour
 {
     public float damage = 1.5f;
-    public float speed = 2f;
+    public float speed = 6f;
     public float maximumLifespanAllowed = 2f;
     public float timeExistedInSeconds = 0f;
     public bool goThroughWalls = false;
@@ -33,19 +33,25 @@ public class EnemyProjectile : MonoBehaviour
     {
 
     }
-    
 
-    // Update is called once per frame
-    void Update()
+    protected void MoveForward()
+    {
+        transform.Translate(Vector3.forward * Time.deltaTime * speed);
+    }
+
+    protected void shouldDespawn()
     {
         timeExistedInSeconds += Time.deltaTime;
         if (timeExistedInSeconds > maximumLifespanAllowed)
         {
             Destroy(gameObject);
         }
-        //transform.position += transform.forward * Time.deltaTime * speed;
-        transform.Translate(Vector3.forward * Time.deltaTime * speed);
-        
-
+    }
+    
+    // Update is called once per frame
+    void Update()
+    {
+        shouldDespawn();
+        MoveForward();
     }
 }

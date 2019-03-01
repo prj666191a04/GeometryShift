@@ -5,7 +5,7 @@ using UnityEngine;
 public class SurvivalLevel1 : MonoBehaviour
 {
     float secondsPassed = 0;
-    float secondsNeededToSurviveToWin = 40;
+    float secondsNeededToSurviveToWin = 65;
     Random random = new Random();
     
     // Start is called before the first frame update
