@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class FloatMotorA : CMotor
 {
+    CameraControllerA cameraController;
+
     Transform mapFlow;
     Transform screenPos;
     Camera screenBoundsCam;
@@ -12,7 +14,6 @@ public class FloatMotorA : CMotor
     public LayerMask doNotPassThrogh;
     public LayerMask teleportMask;
 
-    public GameObject lookIndicator;
 
     Quaternion newRotation;
     Quaternion targetRotation;
@@ -20,24 +21,20 @@ public class FloatMotorA : CMotor
     public Vector3 pos;
     public Vector3 screemPos;
 
+    public Vector3 cpos;
     public Vector3 screenBounds;
     public Vector3 mouseWorldPos;
     public Vector3 targetAhead;
     public Vector3 lookPos;
 
+    public bool action1Key = false;
 
 
     private void Start()
     {
         
         mapFlow = GameObject.Find("MapFlow").GetComponent<Transform>();
-        lookIndicator = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-        lookIndicator.transform.localScale.Set(0.5f, 0.5f, 0.5f);
-        lookIndicator.GetComponent<MeshRenderer>().material.color = Color.red;
-        Destroy(lookIndicator.GetComponent<SphereCollider>());
-
-
-
+        cameraController = Camera.main.GetComponent<CameraControllerA>();
         transform.forward = Vector3.up;
         newRotation = transform.rotation;
         targetRotation = transform.rotation;
@@ -50,8 +47,13 @@ public class FloatMotorA : CMotor
 
     private void Update()
     {
+        CustomInput();
         RotateToDirection();
-        mapFlow.transform.Translate((Vector3.right * 3) * Time.deltaTime);
+        if (action1Key)
+        {
+            transform.position = transform.position + transform.forward * 4;
+        }
+
     }
 
     void FixedUpdate()
@@ -71,14 +73,17 @@ public class FloatMotorA : CMotor
             {
                 rBody.MovePosition(transform.position + moveDirection * 0.3f);
             }
+
         }
-       
+
+
+
     }
 
     private void LateUpdate()
     {
         ClampToScreen();
-         pos = Camera.main.WorldToViewportPoint(transform.position);
+        pos = Camera.main.WorldToViewportPoint(transform.position);
           
         if (pos.x < 0.0) Debug.Log("left");
         if (1.0 < pos.x) Debug.Log("right");
@@ -89,31 +94,25 @@ public class FloatMotorA : CMotor
 
     void ClampToScreen()
     {
-        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.scaledPixelWidth, Camera.main.scaledPixelHeight, Camera.main.transform.position.z));
-        // transform.InverseTransformPoint(screenBounds);
+        
+        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.scaledPixelWidth, Camera.main.scaledPixelHeight, cameraController.offset.z));
         screenBounds.x = screenBounds.x + mapFlow.transform.position.x * -1;
         screenBounds.y = screenBounds.y + mapFlow.transform.position.y * -1;
 
-        Vector3 cpos = transform.localPosition;
+        cpos = transform.localPosition;
         cpos.x = Mathf.Clamp(cpos.x, (screenBounds.x + 1f), (screenBounds.x) * -1 - 1f);
         cpos.y = Mathf.Clamp(cpos.y, (screenBounds.y + 1f), (screenBounds.y) * -1 - 1f);
+        cpos.z = 0;
 
-        transform.localPosition = cpos;
-         
+        if (transform.localPosition != cpos)
+        {
+            transform.localPosition = cpos;
+        }
 
     }
 
     void RotateToDirection()
     {
-
-        //0 up 0 , 1
-        //90 left -1, 0
-        //-90 right 1, 0
-        //180 down 0 -1
-        //Get direction of input
-
-
-
         targetDirection = new Vector3(h_, v_, 0);
 
         switch (h_)
@@ -121,7 +120,6 @@ public class FloatMotorA : CMotor
             case 1:
                 break;
         }
-
 
         if (targetDirection != Vector3.zero)
         {
@@ -135,10 +133,7 @@ public class FloatMotorA : CMotor
             //temporary until above code is fixed
 
             targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
-            
-
-            //Preform this frames rotation
-            
+                 
         }
 
         //Apply the value
@@ -146,36 +141,42 @@ public class FloatMotorA : CMotor
         //transform.rotation = newRotation;
 
 
-        mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, Camera.main.transform.position.z *-1));
+        mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, cameraController.offset.z * -1));
 
         if(targetDirection != Vector3.zero)
-            targetAhead = transform.position + targetDirection *2;
+            targetAhead = transform.position + targetDirection *100;
         
-        //targetAhead.z = 0;
+
         Vector3 target = mouseWorldPos;
         target = targetAhead;
-
-        lookIndicator.transform.position = target;
 
         Vector3 newLook = target - transform.position;
         newLook.z = 0;
 
         newLook = Vector3.Lerp(lookPos, newLook, Time.deltaTime * 5);
-        
-        Quaternion rotation = Quaternion.LookRotation(lookPos);
-        //rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 5f);
-        //transform.rotation = rotation;
 
-        transform.rotation = rotation;
+        if (target != Vector3.zero)
+        {
+            Quaternion rotation = Quaternion.LookRotation(lookPos);
 
-        lookPos = newLook;
+            //rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 5f);
+            //transform.rotation = rotation;
+
+            transform.rotation = rotation;
+
+            lookPos = newLook;
+        }
     }
 
+    void CustomInput()
+    {
+        action1Key = Input.GetKeyDown(KeyCode.Space);    
+    }
 
     protected override void ConfigurePhysics()
     {
         rBody.useGravity = false;
-        rBody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ ;
+        rBody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionZ;
         rBody.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
         rBody.interpolation = RigidbodyInterpolation.Interpolate;
         rBody.mass = 1;

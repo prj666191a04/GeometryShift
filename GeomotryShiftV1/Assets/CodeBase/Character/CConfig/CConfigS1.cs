@@ -34,6 +34,7 @@ public class CConfigS1 : CConfig
         GeometryShift.instance.cameraController.SetTarget(mapFlow);
         GeometryShift.instance.cameraController.Init(new Vector3(0, 0, -11));
         GeometryShift.instance.cameraController.LookAt(new Vector3(0,0,0));
+        GeometryShift.instance.cameraController.borderDistance = 0f;
 
 
     }
