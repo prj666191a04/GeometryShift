@@ -6,7 +6,7 @@ public class PlanarExplosion : MonoBehaviour
 {
     public float maximumLifespanAllowed = 1f;
     public float timeExistedInSeconds = 0f;
-    public float angle = 0f;
+    //public float angle = 0f;
     public int numberOfEnemiesSpawned = 6;
 
     float secondsSinceLastMatChange = 0f;
@@ -29,6 +29,10 @@ public class PlanarExplosion : MonoBehaviour
         {
             theEnemyToSpawn = Resources.Load("Enemies/EnemyTurretFolder/Enemy Projectile") as GameObject;
         }   
+        if (maximumLifespanAllowed <= 0)
+        {
+            Explode();
+        }
         if (material1 == null)
         {
             material1 = Resources.Load("Materials/TransparentOrange") as Material;
@@ -42,9 +46,10 @@ public class PlanarExplosion : MonoBehaviour
     void Explode()
     {
         float angleInterval = 360f / numberOfEnemiesSpawned;
-        float currentAngle = 0;
+        float currentAngle = transform.rotation.eulerAngles.y;
 
-        Quaternion spawnRotation = new Quaternion();
+        Quaternion spawnRotation;
+
         for (int i = 0; i < numberOfEnemiesSpawned; i++)
         {
             spawnRotation = Quaternion.Euler(0f, currentAngle, 0f);

@@ -23,13 +23,10 @@ public class EnemyHomingMissile: EnemyProjectile
     {
         missileRigidBody = GetComponent<Rigidbody>();
     }
-    // Update is called once per frame
-    void Update()
+
+    protected void RotateTowardsTarget()
     {
-        shouldDespawn();//inherited from EnemyProjectile
-
         //use of 2 opposite if statements instead of if else is intended
-
         if (target == null)
         {
             target = GeometryShift.playerStatus.gameObject;
@@ -43,14 +40,18 @@ public class EnemyHomingMissile: EnemyProjectile
 
             //rotate towards it
             missileRigidBody.MoveRotation(Quaternion.RotateTowards(transform.rotation, rocketTargetRotation, turnSpeed));
+            if (fuelTime <= 0)
+            {
+                GetComponent<TrailRenderer>().emitting = false;
+            }
         }
-        
+    }
+    // Update is called once per frame
+    void Update()
+    {
+        shouldDespawn();//inherited from EnemyProjectile
+        RotateTowardsTarget();
         MoveForward();//inherited from EnemyProjectile
-
-        if (fuelTime <= 0)
-        {
-            GetComponent<TrailRenderer>().emitting = false;
-        }
-
+        
     }
 }
