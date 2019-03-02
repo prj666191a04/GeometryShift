@@ -6,7 +6,7 @@ public class Sdebris : MonoBehaviour
 {
     MeshRenderer rend;
     float timeAlive = 0f;
-    int maxTime = 10;
+    public int maxTime = 3;
     bool deathTriggered = false;
     float transparancy;
 
@@ -22,6 +22,15 @@ public class Sdebris : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Player") && !deathTriggered)
+        {
+            other.gameObject.GetComponent<CStatus>().Damage(1f);
+            StartCoroutine(FadeAway());
+            Debug.Log("Player hit");
+        }
+    }
 
 
     // Start is called before the first frame update

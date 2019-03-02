@@ -5,15 +5,11 @@ using UnityEngine;
 public class LevelS1 : LevelBase
 {
 
+    public GameObject obsticleType1;
 
     public float progress = 0;
 
     public GameObject pointTest;
-
-    public RectTransform t1;
-    public RectTransform t2;
-    public RectTransform t3;
-    public RectTransform t4;
 
     LevelInit init;
     CameraControllerA cameraController;
@@ -35,14 +31,44 @@ public class LevelS1 : LevelBase
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.scaledPixelWidth, Camera.main.scaledPixelHeight, cameraController.offset.z));
         StartCoroutine(LateStart()); 
     }
-
     IEnumerator LateStart()
     {
         yield return new WaitForSeconds(0.2f);
         SetupLevelSpawnPoints();
+        StartCoroutine(TmpWaveSystem());
         yield break;
+        
     }
 
+    IEnumerator TmpWaveSystem()
+    {
+        Quaternion spawnRot = Quaternion.Euler(new Vector3(-90, 0, 0));
+
+        for (int i = 0; i < 3; i++)
+        {
+            yield return new WaitForSeconds(0.2f);
+            Instantiate(obsticleType1, Vector3.zero, spawnRot, this.gameObject.transform);
+        }
+
+        for (int i = 0; i < 3; i++)
+        {
+            yield return new WaitForSeconds(0.2f);
+            Instantiate(obsticleType1, spawnPointCL, spawnRot, this.gameObject.transform);
+        }
+        for (int i = 0; i < 3; i++)
+        {
+            yield return new WaitForSeconds(0.2f);
+            Instantiate(obsticleType1, spawnPointCR, spawnRot, this.gameObject.transform);
+        }
+        for (int i = 0; i < 3; i++)
+        {
+            yield return new WaitForSeconds(0.2f);
+            Instantiate(obsticleType1, spawnPointTL, spawnRot, this.gameObject.transform);
+            Instantiate(obsticleType1, spawnPointBR, spawnRot, this.gameObject.transform);
+        }
+        yield break;
+
+    }
     void SetupLevelSpawnPoints()
     {
         spawnPointBL = new Vector3(screenBounds.x/2, screenBounds.y/2, 0);
@@ -60,11 +86,39 @@ public class LevelS1 : LevelBase
         GameObject t6 = Instantiate(pointTest, spawnPointTR, Quaternion.identity, init.parentObject.transform);
     }
 
+    void WaveAdvance()
+    {
+
+    }
+
 
     // Update is called once per frame
     void Update()
     {
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.scaledPixelWidth, Camera.main.scaledPixelHeight, cameraController.offset.z));
-
     }
 }
+
+
+public class Obsticle {
+
+    public GameObject instance;
+    Vector3 spawnPosition;
+    bool spawned;
+    bool destroyed;
+}
+
+public class ObsticleWave
+{
+    Obsticle[] wave;
+    int count;
+    int eliminated;
+}
+
+public class Section
+{
+
+}
+
+
+
