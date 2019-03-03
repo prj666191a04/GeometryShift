@@ -17,10 +17,10 @@ public class SurvivalLevel1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        secondsPassed += Time.deltaTime;
+        /*secondsPassed += Time.deltaTime;
         if (secondsPassed > secondsNeededToSurviveToWin)
         {
             LevelBase.instance.AcknowledgeLevelCompletion();
-        }
+        }*/
     }
 }

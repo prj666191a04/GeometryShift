@@ -54,21 +54,46 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
         //starts at phase 1, so having timeToPhase.Add(0, 1) is unnessecary
 
         int testPhase = 0;
+        bool fastMode = false;//if true, phases change faster than normal
         if (testPhase == 0)
         {
-            timeToPhase.Add(1, 1);//slow projectiles
-            timeToPhase.Add(5, 2);//slow + fast projectiles
-            timeToPhase.Add(10, 3);//planar explosions + fast projectiles
-            timeToPhase.Add(15, 4);//homing missiles
-            timeToPhase.Add(20, 5);//planar explosions that spawn homing missiles
-            timeToPhase.Add(25, 0);//break time
-            timeToPhase.Add(27, 6);//projectile waves from top and bottom
-            timeToPhase.Add(35, 7);//double layer planar explosions: fast and slow projectiles
-            timeToPhase.Add(40, 8);//double layer planar explosions: slow projectiles and homing missiles
-            timeToPhase.Add(45, 9);//fast projectiles from all directions
-            timeToPhase.Add(50, 10);//slow projectiles from all directions, up to 45 degree angle variation
-            timeToPhase.Add(55, 11);//spawn planar explosions on edge of map only
-            timeToPhase.Add(60, 12);//bullet sharks
+            if (fastMode)
+            {
+                timeToPhase.Add(1, 1);//slow projectiles
+                timeToPhase.Add(5, 2);//slow + fast projectiles
+                timeToPhase.Add(10, 3);//planar explosions + fast projectiles
+                timeToPhase.Add(15, 4);//homing missiles
+                timeToPhase.Add(20, 5);//planar explosions that spawn homing missiles
+                timeToPhase.Add(25, 0);//break time
+                timeToPhase.Add(27, 6);//projectile waves from top and bottom
+                timeToPhase.Add(35, 7);//double layer planar explosions: fast and slow projectiles
+                timeToPhase.Add(40, 8);//double layer planar explosions: slow projectiles and homing missiles
+                timeToPhase.Add(47, 0);//break time
+                timeToPhase.Add(50, 9);//fast projectiles from all directions
+                timeToPhase.Add(58, 10);//slow projectiles from all directions, up to 45 degree angle variation
+                timeToPhase.Add(65, 11);//spawn planar explosions on edge of map only
+                timeToPhase.Add(71, 12);//bullet sharks from bottom
+                timeToPhase.Add(83, 13);//bullet sharks from sides
+                timeToPhase.Add(100, -1);//win
+            }
+            else
+            {
+                timeToPhase.Add(1, 1);//slow projectiles
+                timeToPhase.Add(15, 2);//slow + fast projectiles
+                timeToPhase.Add(35, 3);//planar explosions + fast projectiles
+                timeToPhase.Add(55, 4);//homing missiles
+                timeToPhase.Add(75, 5);//planar explosions that spawn homing missiles
+                timeToPhase.Add(90, 0);//break time
+                timeToPhase.Add(110, 6);//projectile waves from top and bottom
+                timeToPhase.Add(130, 7);//double layer planar explosions: fast and slow projectiles
+                timeToPhase.Add(150, 8);//double layer planar explosions: slow projectiles and homing missiles
+                timeToPhase.Add(170, 9);//fast projectiles from all directions
+                timeToPhase.Add(190, 10);//slow projectiles from all directions, up to 45 degree angle variation
+                timeToPhase.Add(220, 11);//spawn planar explosions on edge of map only
+                timeToPhase.Add(240, 12);//bullet sharks from bottom
+                timeToPhase.Add(270, 13);//bullet sharks from sides
+                timeToPhase.Add(300, -1);//win
+            }
         }
         else
         {
@@ -357,7 +382,7 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
                 break;
 
             case 12:
-                //bullet sharks
+                //bullet sharks from bottom
                 secondsSinceLastPlanarExplosion += Time.deltaTime;
                 secondsBetweenEachPlanarExplosion = 1f;
                 if (secondsSinceLastPlanarExplosion > secondsBetweenEachPlanarExplosion)
@@ -372,6 +397,29 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
                     bulletShark.GetComponent<EnemyBulletShark>().numberOfProjectilesToShoot = 4;
                     Instantiate(bulletShark, spawnPosition, spawnRotation, transform.parent);
                 }
+                break;
+            case 13:
+                //bullet sharks from sides
+                secondsSinceLastPlanarExplosion += Time.deltaTime;
+                secondsBetweenEachPlanarExplosion = 1.5f;
+                if (secondsSinceLastPlanarExplosion > secondsBetweenEachPlanarExplosion)
+                {
+                    secondsSinceLastPlanarExplosion -= secondsBetweenEachPlanarExplosion;
+                   
+                    bulletShark.GetComponent<EnemyBulletShark>().whatToShoot = slowEnemyProjectile;
+                    bulletShark.GetComponent<EnemyBulletShark>().shootInterval = 0.5f;
+                    bulletShark.GetComponent<EnemyBulletShark>().overrideTurnSpeed = 0f;
+                    bulletShark.GetComponent<EnemyBulletShark>().numberOfProjectilesToShoot = 2;
+                    //Instantiate(bulletShark, spawnPosition, spawnRotation, transform.parent);
+                    spawnWave(bulletShark, 2, 0);
+                    spawnWave(bulletShark, 4, 0);
+                }
+                break;
+            case -1:
+
+                //Win level
+                LevelBase.instance.AcknowledgeLevelCompletion();
+
                 break;
             default:
                 print("phase error. phase is " + phase);
