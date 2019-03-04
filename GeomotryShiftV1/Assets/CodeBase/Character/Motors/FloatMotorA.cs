@@ -32,7 +32,7 @@ public class FloatMotorA : CMotor
 
     private void Start()
     {
-        
+        controller_ = GetComponent<CController>();
         mapFlow = GameObject.Find("MapFlow").GetComponent<Transform>();
         cameraController = Camera.main.GetComponent<CameraControllerA>();
         transform.forward = Vector3.up;
@@ -40,18 +40,24 @@ public class FloatMotorA : CMotor
         targetRotation = transform.rotation;
         doNotPassThrogh = LevelBase.instance.layerSet0;
         teleportMask = LevelBase.instance.layerSet1;
-
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.scaledPixelWidth, Camera.main.scaledPixelHeight, Camera.main.transform.position.z));
 
     }
 
     private void Update()
     {
-        CustomInput();
-        RotateToDirection();
+        if (!controller_.IsDisabled())
+        {
+            CustomInput();
+            RotateToDirection();
+        }
         if (action1Key)
         {
-            transform.position = transform.position + transform.forward * 4;
+            Vector3 dir = new Vector3(h_, v_, 0);
+            if (dir == Vector3.zero)
+                dir = transform.forward;
+
+            transform.position = transform.position + dir * 4;
         }
 
     }
@@ -168,7 +174,7 @@ public class FloatMotorA : CMotor
         }
     }
 
-    void CustomInput()
+    public override void CustomInput()
     {
         action1Key = Input.GetKeyDown(KeyCode.Space);    
     }

@@ -8,14 +8,16 @@ public class CMotor : MonoBehaviour {
     public float h_ = 0f;
     public float v_ = 0f;
     protected Rigidbody rBody;
+    protected CController controller_;
+    
 
     private void FixedUpdate()
     {
-        OnFixedUpdate();
+        
     }
     private void Update()
     {
-        CollectCustomInput();
+        
     }
 
 
@@ -25,7 +27,7 @@ public class CMotor : MonoBehaviour {
         ConfigurePhysics();
    }
    
-    public virtual void CollectCustomInput()
+    public virtual void CustomInput()
     {
 
     }

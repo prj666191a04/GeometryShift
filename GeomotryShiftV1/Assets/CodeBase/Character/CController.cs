@@ -20,7 +20,12 @@ public class CController : MonoBehaviour {
     public bool autoInit = false;
     public bool movementDisabled = false;
     private bool isDead = false;
+    private bool disabled = false;
 
+    public bool IsDisabled()
+    {
+        return disabled;
+    }
 
     private void OnEnable()
     {
@@ -107,6 +112,25 @@ public class CController : MonoBehaviour {
         }
 	}
 
+
+    void DisableMovement()
+    {
+        if (!disabled)
+        {
+            mainColider.enabled = false;
+            rBody.Sleep();
+            disabled = true;
+        }
+    }
+    void EnableMovement()
+    {
+        if(disabled)
+        {
+            mainColider.enabled = true;
+            rBody.WakeUp();
+            disabled = false;
+        }
+    }
     void Die(int method = 0)
     {
         if (!isDead)
@@ -114,8 +138,7 @@ public class CController : MonoBehaviour {
             isDead = true;
             meshRenderer.enabled = false;
             deathPs.Emit(100);
-            mainColider.enabled = false;
-            rBody.Sleep();
+            DisableMovement();
         }
     }
 
@@ -131,8 +154,7 @@ public class CController : MonoBehaviour {
         {
             transform.localPosition = postion;
         }
-        mainColider.enabled = true;
-        rBody.WakeUp();
+        EnableMovement();
     }
 
 }
