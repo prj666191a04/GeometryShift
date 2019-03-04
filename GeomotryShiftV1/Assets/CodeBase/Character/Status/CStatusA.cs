@@ -13,7 +13,7 @@ public class CStatusA : CStatus
     // Start is called before the first frame update
     void Start()
     {
-        value_ = 10;
+        value_ = 3;
     }
 
     // Update is called once per frame
@@ -31,6 +31,8 @@ public class CStatusA : CStatus
         else
         {
             value_ = 0;
+            Die();
+            Reset();
         }
     }
     public override void Recover(float ammount)
@@ -41,7 +43,11 @@ public class CStatusA : CStatus
     {
         throw new System.NotImplementedException();
     }
-
+    public override void Reset()
+    {
+        value_ = 3;
+        dspValue_ = 3;
+    }
 
     private void LerpDsp()
     {

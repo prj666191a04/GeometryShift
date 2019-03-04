@@ -11,6 +11,9 @@ public class LevelS1 : LevelBase
 
     public GameObject pointTest;
 
+
+    private Coroutine tmpWave;
+
     LevelInit init;
     CameraControllerA cameraController;
     public Vector3 screenBounds;
@@ -22,6 +25,23 @@ public class LevelS1 : LevelBase
     Vector3 spawnPointTL;
     Vector3 spawnPointTR;
 
+    private void OnEnable()
+    {
+        CStatus.OnPlayerDeath += ResetLevel;
+    }
+
+    private void OnDisable()
+    {
+        CStatus.OnPlayerDeath -= ResetLevel;
+    }
+
+    private void ResetLevel(int method = 0)
+    {
+        StopCoroutine(tmpWave);
+        StartCoroutine(DelayedRestart());
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,13 +51,22 @@ public class LevelS1 : LevelBase
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.scaledPixelWidth, Camera.main.scaledPixelHeight, cameraController.offset.z));
         StartCoroutine(LateStart()); 
     }
+
+    IEnumerator DelayedRestart()
+    {
+        yield return new WaitForSeconds(10);
+        GeometryShift.playerStatus.gameObject.GetComponent<CController>().Resawn(init.spawnPoint.position);
+        yield return new WaitForSeconds(2);
+        tmpWave = StartCoroutine(TmpWaveSystem());
+
+    }
+
     IEnumerator LateStart()
     {
         yield return new WaitForSeconds(0.2f);
         SetupLevelSpawnPoints();
-        StartCoroutine(TmpWaveSystem());
+        tmpWave = StartCoroutine(TmpWaveSystem());
         yield break;
-        
     }
 
     IEnumerator TmpWaveSystem()
@@ -66,7 +95,11 @@ public class LevelS1 : LevelBase
             Instantiate(obsticleType1, spawnPointTL, spawnRot, this.gameObject.transform);
             Instantiate(obsticleType1, spawnPointBR, spawnRot, this.gameObject.transform);
         }
+        yield return new WaitForSeconds(10);
+        base.AcknowledgeLevelCompletion();
         yield break;
+
+        
 
     }
     void SetupLevelSpawnPoints()

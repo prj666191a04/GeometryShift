@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class CController : MonoBehaviour {
 
+    MeshRenderer meshRenderer;
+    BoxCollider mainColider;
+    public ParticleSystem deathPs;
     public float h;
     public float v;
     public CMotor motor;
@@ -16,9 +19,25 @@ public class CController : MonoBehaviour {
 
     public bool autoInit = false;
     public bool movementDisabled = false;
+    private bool isDead = false;
 
 
-
+    private void OnEnable()
+    {
+        SubEvents();
+    }
+    private void OnDisable()
+    {
+        UnsubEvents();
+    }
+    void SubEvents()
+    {
+        CStatus.OnPlayerDeath += Die;
+    }
+    void UnsubEvents()
+    {
+        CStatus.OnPlayerDeath -= Die;
+    }
     //Can be removed later for testing only
     void DefaultInitialization()
     {
@@ -66,6 +85,8 @@ public class CController : MonoBehaviour {
         {
             DefaultInitialization();
         }
+        meshRenderer = GetComponent<MeshRenderer>();
+        mainColider = GetComponent<BoxCollider>();
        
 	}
 	// Update is called once per frame
@@ -74,11 +95,44 @@ public class CController : MonoBehaviour {
         h = GSInput.GetHAxis();
         v = GSInput.GetVAxis();
         //TODO manipulate data
-        
-        motor.h_ = h;
-        motor.v_ = v;
+        if (!isDead)
+        {
+            motor.h_ = h;
+            motor.v_ = v;
+        }
+        else
+        {
+            motor.h_ = 0;
+            motor.v_ = 0;
+        }
 	}
 
+    void Die(int method = 0)
+    {
+        if (!isDead)
+        {
+            isDead = true;
+            meshRenderer.enabled = false;
+            deathPs.Emit(100);
+            mainColider.enabled = false;
+            rBody.Sleep();
+        }
+    }
 
+    public void Resawn(Vector3 postion, bool worldspace = false)
+    {
+        isDead = false;
+        meshRenderer.enabled = true;
+        if(worldspace)
+        {
+            transform.position = postion;
+        }
+        else
+        {
+            transform.localPosition = postion;
+        }
+        mainColider.enabled = true;
+        rBody.WakeUp();
+    }
 
 }

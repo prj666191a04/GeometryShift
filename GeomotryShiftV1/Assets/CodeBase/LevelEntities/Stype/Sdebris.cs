@@ -18,7 +18,6 @@ public class Sdebris : MonoBehaviour
         {
             other.GetComponent<CStatus>().Damage(1f);
             StartCoroutine(FadeAway());
-            Debug.Log("Player hit");
         }
     }
 
@@ -28,7 +27,6 @@ public class Sdebris : MonoBehaviour
         {
             other.gameObject.GetComponent<CStatus>().Damage(1f);
             StartCoroutine(FadeAway());
-            Debug.Log("Player hit");
         }
     }
 
