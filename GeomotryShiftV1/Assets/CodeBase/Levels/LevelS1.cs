@@ -5,12 +5,15 @@ using UnityEngine;
 public class LevelS1 : LevelBase
 {
 
+    public LevelOverlayUI levelUi;
+
+
     public GameObject obsticleType1;
 
     public float progress = 0;
 
     public GameObject pointTest;
-
+    public GameObject mapFlow;
 
     private Coroutine tmpWave;
 
@@ -28,11 +31,13 @@ public class LevelS1 : LevelBase
     private void OnEnable()
     {
         CStatus.OnPlayerDeath += ResetLevel;
+        LevelOverlayUI.OnIntroFinished += StartLevel;
     }
 
     private void OnDisable()
     {
         CStatus.OnPlayerDeath -= ResetLevel;
+        LevelOverlayUI.OnIntroFinished -= StartLevel;
     }
 
     private void ResetLevel(int method = 0)
@@ -45,11 +50,17 @@ public class LevelS1 : LevelBase
     // Start is called before the first frame update
     void Start()
     {
+        mapFlow = GameObject.Find("MapFlow");
         init = GetComponent<LevelInit>();
         Debug.Log("levelS1");
         cameraController = Camera.main.GetComponent<CameraControllerA>();
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.scaledPixelWidth, Camera.main.scaledPixelHeight, cameraController.offset.z));
         StartCoroutine(LateStart()); 
+    }
+
+    void StartLevel()
+    {
+       tmpWave = StartCoroutine(TmpWaveSystem());
     }
 
     IEnumerator DelayedRestart()
@@ -65,7 +76,7 @@ public class LevelS1 : LevelBase
     {
         yield return new WaitForSeconds(0.2f);
         SetupLevelSpawnPoints();
-        tmpWave = StartCoroutine(TmpWaveSystem());
+        levelUi.PlayIntro();
         yield break;
     }
 
@@ -111,12 +122,12 @@ public class LevelS1 : LevelBase
         spawnPointTL = new Vector3(screenBounds.x / 2, (screenBounds.y * -1) / 2, 0);
         spawnPointTR = new Vector3((screenBounds.x * -1) / 2, (screenBounds.y * -1) / 2, 0);
 
-        GameObject t1 = Instantiate(pointTest, spawnPointBL, Quaternion.identity, init.parentObject.transform);
-        GameObject t2 = Instantiate(pointTest, spawnPointBR, Quaternion.identity, init.parentObject.transform);
-        GameObject t3 = Instantiate(pointTest, spawnPointCL, Quaternion.identity, init.parentObject.transform);
-        GameObject t4 = Instantiate(pointTest, spawnPointCR, Quaternion.identity, init.parentObject.transform);
-        GameObject t5 = Instantiate(pointTest, spawnPointTL, Quaternion.identity, init.parentObject.transform);
-        GameObject t6 = Instantiate(pointTest, spawnPointTR, Quaternion.identity, init.parentObject.transform);
+        GameObject t1 = Instantiate(pointTest, spawnPointBL, Quaternion.identity, mapFlow.transform);
+        GameObject t2 = Instantiate(pointTest, spawnPointBR, Quaternion.identity, mapFlow.transform);
+        GameObject t3 = Instantiate(pointTest, spawnPointCL, Quaternion.identity, mapFlow.transform);
+        GameObject t4 = Instantiate(pointTest, spawnPointCR, Quaternion.identity, mapFlow.transform);
+        GameObject t5 = Instantiate(pointTest, spawnPointTL, Quaternion.identity, mapFlow.transform);
+        GameObject t6 = Instantiate(pointTest, spawnPointTR, Quaternion.identity, mapFlow.transform);
     }
 
     void WaveAdvance()

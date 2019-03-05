@@ -8,6 +8,7 @@ public abstract class CStatus : MonoBehaviour
     public static event DeathDel OnPlayerDeath;
 
     public float value_;
+    public int maxValue_;
     public float dspValue_;
 
     public abstract void Damage(float ammount);
