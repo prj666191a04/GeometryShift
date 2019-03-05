@@ -21,12 +21,13 @@ public class LevelS1 : LevelBase
     CameraControllerA cameraController;
     public Vector3 screenBounds;
 
-    Vector3 spawnPointBL;
-    Vector3 spawnPointBR;
-    Vector3 spawnPointCL;
-    Vector3 spawnPointCR;
-    Vector3 spawnPointTL;
-    Vector3 spawnPointTR;
+    GameObject spawnPointBL;
+    GameObject spawnPointBR;
+    GameObject spawnPointCL;
+    GameObject spawnPointCR;
+    GameObject spawnPointTL;
+    GameObject spawnPointTR;
+    GameObject spawnPointCC;
 
     private void OnEnable()
     {
@@ -87,24 +88,24 @@ public class LevelS1 : LevelBase
         for (int i = 0; i < 3; i++)
         {
             yield return new WaitForSeconds(0.2f);
-            Instantiate(obsticleType1, Vector3.zero, spawnRot, this.gameObject.transform);
+            Instantiate(obsticleType1, spawnPointCC.transform.position, spawnRot, this.gameObject.transform);
         }
 
         for (int i = 0; i < 3; i++)
         {
             yield return new WaitForSeconds(0.2f);
-            Instantiate(obsticleType1, spawnPointCL, spawnRot, this.gameObject.transform);
+            Instantiate(obsticleType1, spawnPointCL.transform.position, spawnRot, this.gameObject.transform);
         }
         for (int i = 0; i < 3; i++)
         {
             yield return new WaitForSeconds(0.2f);
-            Instantiate(obsticleType1, spawnPointCR, spawnRot, this.gameObject.transform);
+            Instantiate(obsticleType1, spawnPointCR.transform.position, spawnRot, this.gameObject.transform);
         }
         for (int i = 0; i < 3; i++)
         {
             yield return new WaitForSeconds(0.2f);
-            Instantiate(obsticleType1, spawnPointTL, spawnRot, this.gameObject.transform);
-            Instantiate(obsticleType1, spawnPointBR, spawnRot, this.gameObject.transform);
+            Instantiate(obsticleType1, spawnPointTL.transform.position, spawnRot, this.gameObject.transform);
+            Instantiate(obsticleType1, spawnPointBR.transform.position, spawnRot, this.gameObject.transform);
         }
         yield return new WaitForSeconds(10);
         base.AcknowledgeLevelCompletion();
@@ -115,19 +116,21 @@ public class LevelS1 : LevelBase
     }
     void SetupLevelSpawnPoints()
     {
-        spawnPointBL = new Vector3(screenBounds.x/2, screenBounds.y/2, 0);
-        spawnPointBR = new Vector3((screenBounds.x * -1) / 2, screenBounds.y / 2, 0);
-        spawnPointCL = new Vector3(screenBounds.x/2, 0, 0);
-        spawnPointCR = new Vector3((screenBounds.x * -1) / 2, 0 / 2, 0);
-        spawnPointTL = new Vector3(screenBounds.x / 2, (screenBounds.y * -1) / 2, 0);
-        spawnPointTR = new Vector3((screenBounds.x * -1) / 2, (screenBounds.y * -1) / 2, 0);
+       Vector3 BL = new Vector3(screenBounds.x/2, screenBounds.y/2, 0);
+       Vector3 BR = new Vector3((screenBounds.x * -1) / 2, screenBounds.y / 2, 0);
+       Vector3 CL = new Vector3(screenBounds.x/2, 0, 0);
+       Vector3 CR = new Vector3((screenBounds.x * -1) / 2, 0 / 2, 0);
+       Vector3 TL = new Vector3(screenBounds.x / 2, (screenBounds.y * -1) / 2, 0);
+       Vector3 TR = new Vector3((screenBounds.x * -1) / 2, (screenBounds.y * -1) / 2, 0);
+        
 
-        GameObject t1 = Instantiate(pointTest, spawnPointBL, Quaternion.identity, mapFlow.transform);
-        GameObject t2 = Instantiate(pointTest, spawnPointBR, Quaternion.identity, mapFlow.transform);
-        GameObject t3 = Instantiate(pointTest, spawnPointCL, Quaternion.identity, mapFlow.transform);
-        GameObject t4 = Instantiate(pointTest, spawnPointCR, Quaternion.identity, mapFlow.transform);
-        GameObject t5 = Instantiate(pointTest, spawnPointTL, Quaternion.identity, mapFlow.transform);
-        GameObject t6 = Instantiate(pointTest, spawnPointTR, Quaternion.identity, mapFlow.transform);
+        spawnPointBL = Instantiate(pointTest, BL , Quaternion.identity, mapFlow.transform);
+        spawnPointBR = Instantiate(pointTest, BR , Quaternion.identity, mapFlow.transform);
+        spawnPointCL = Instantiate(pointTest, CL , Quaternion.identity, mapFlow.transform);
+        spawnPointCR = Instantiate(pointTest, CR , Quaternion.identity, mapFlow.transform);
+        spawnPointTL = Instantiate(pointTest, TL , Quaternion.identity, mapFlow.transform);
+        spawnPointTR = Instantiate(pointTest, TR , Quaternion.identity, mapFlow.transform);
+        spawnPointCC = Instantiate(pointTest, Vector3.zero, Quaternion.identity, mapFlow.transform);
     }
 
     void WaveAdvance()
