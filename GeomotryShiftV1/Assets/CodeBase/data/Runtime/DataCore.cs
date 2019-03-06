@@ -13,6 +13,10 @@ public class DataCore
     {
         groupedData = g;
     }
+    public DataCore()
+    {
+        groupedData = null;
+    }
 
 }
 [System.Serializable]
@@ -40,11 +44,20 @@ public class PlayerData
     //In secconds
     public long playTime;
 
+    [SerializeField]
     float posX;
+    [SerializeField]
     float posY;
+    [SerializeField]
     float posZ;
 
     //TODO: Inventory info
+    public PlayerData()
+    {
+        name = "";
+        playTime = 0;
+        SetPosition(Vector3.zero);
+    }
 
     public PlayerData(string n, long t, Vector3 pos)
     {
@@ -68,6 +81,7 @@ public class PlayerData
 [System.Serializable]
 public class WorldState
 {
+    [SerializeField]
     public Leveldata[] levelState;
     public WorldState(Leveldata[] state)
     {
@@ -76,8 +90,13 @@ public class WorldState
 }
 [System.Serializable]
 public class Leveldata {
+    [SerializeField]
     private int levelId;
+    [SerializeField]
     private int compleeteCode;
+    [SerializeField]
+    private int timesCompleeted;
+
     public Leveldata(int id)
     {
         levelId = id;
@@ -88,10 +107,10 @@ public class Leveldata {
         levelId = id;
         compleeteCode = code;
     }
-
     public void Update(int code)
     {
         compleeteCode = code;
+        timesCompleeted += 1;
     }
 
 }

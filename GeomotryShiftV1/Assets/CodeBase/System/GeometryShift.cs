@@ -48,6 +48,11 @@ public class GeometryShift : MonoBehaviour
 
     public InteractionUI interactionUI;
 
+    public string GetDataPath()
+    {
+        return dataPath;
+    }
+
     public static SystemState GetSystemState()
     {
         return systemState;

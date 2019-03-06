@@ -9,14 +9,12 @@ public class MainMenue : MonoBehaviour
 
     private void Start()
     {
-        NewGame();  
-      
+       
     }
 
     public void LoadWorld()
     {
         LevelLoader.instance.LoadWorldMap();
-        
     }
 
     public void QuitGame()
@@ -27,9 +25,30 @@ public class MainMenue : MonoBehaviour
 
     public void NewGame()
     {
-  
         CreateNewSaveSlot(0, "Atilla");
     }
+
+    //tmp
+    public void NewGameBtn()
+    {
+        CreateNewSaveSlot(0, "Atilla");
+        LevelLoader.instance.LoadWorldMap();
+
+    }
+    //tmp
+    public void ContinueBtn()
+    {
+        SaveSystem.InitilizeDataStructure();
+        GroupedData loadedData = SaveSystem.LoadGameData(0);
+        if (loadedData != null)
+        {
+            LevelLoader.instance.SetGroupedData(loadedData);
+            LevelLoader.instance.LoadWorldMap();
+        }
+            
+        
+    }
+
 
     //Generates a savefile for a brand new game
     public void CreateNewSaveSlot(int slot, string name)
@@ -50,6 +69,14 @@ public class MainMenue : MonoBehaviour
         LevelLoader.instance.InitWorldState(newDatacore);
 
     }
+    public void LoadSlot(int slot)
+    {
+       SaveSystem.LoadGameData(slot);
 
+    }
+    public void FetchSlots()
+    {
+
+    }
 }
 

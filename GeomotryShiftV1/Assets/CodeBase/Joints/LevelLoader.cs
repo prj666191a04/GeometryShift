@@ -16,7 +16,7 @@ public class LevelLoader : MonoBehaviour
     public static bool initialBoot = true;
 
     //place holder in future custom type may be needed for world state
-    public DataCore dataCore;
+    private DataCore dataCore;
 
     public Transform EnvironmentContainer;
     public GameObject openWorldPreFab;
@@ -33,8 +33,15 @@ public class LevelLoader : MonoBehaviour
     {
         dataCore.groupedData.worldState.levelState[level].Update(code);
     }
-    
+    public DataCore GetDataCore()
+    {
+        return dataCore;
+    }
 
+    public void SetGroupedData(GroupedData data)
+    {
+        dataCore.groupedData = data;
+    }
 
     //^Data related functions
 
@@ -88,7 +95,8 @@ public class LevelLoader : MonoBehaviour
         GeometryShift.instance.StateChange(GeometryShift.SystemState.WorldMap);
         UpdateLevelStatus(id, code);
         //TODO: Call auto save, (not yet implemented)
-
+        //Possible Temporary
+        SaveSystem.SaveGameData(dataCore.groupedData.slot);
     }
 
     private void ReturnFromFailedLevel()
