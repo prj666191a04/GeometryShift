@@ -281,7 +281,7 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
                 break;
             case 3:
                 secondsSinceLastPlanarExplosion += enemySpawnFunctionCallInterval;
-                secondsBetweenEachPlanarExplosion = 0.6f;
+                secondsBetweenEachPlanarExplosion = 0.8f;
                 if (secondsSinceLastPlanarExplosion > secondsBetweenEachPlanarExplosion)
                 {
                     //planar explosions that spawn slow enemy projectiles

@@ -58,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e780285c78a5f32498706adaeffe9614, type: 2}
+  - {fileID: 2100000, guid: 174fe5bb623ed8645ab78abf6136d32a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -92,9 +92,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maximumLifespanAllowed: 1
   timeExistedInSeconds: 0
-  angle: 0
   numberOfEnemiesSpawned: 6
-  material1: {fileID: 0}
-  material2: {fileID: 0}
-  usingMat1: 1
   theEnemyToSpawn: {fileID: 0}
+  slowEnemyProjectile: {fileID: 0}
