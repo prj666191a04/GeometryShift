@@ -2,45 +2,98 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class DataCore 
 {
-    public class GroupedData
+    [SerializeField]
+    public GroupedData groupedData;
+    //other non save file related data if any
+
+    public DataCore(GroupedData g)
     {
-        public class PlayerData {
-            public string name;
-            //In secconds
-            public long playTime;
-        }
-        public class WorldState {
-            Leveldata level1Data;
-            Leveldata level2Data;
-            Leveldata level3Data;
-            Leveldata level4Data;
-            Leveldata level5Data;
-            Leveldata level6Data;
-            Leveldata level7Data;
-            Leveldata level8Data;
-            Leveldata level10Data;
-            Leveldata level11Data;
-            Leveldata level12Data;
-            Leveldata level13Data;
-            Leveldata level14Data;
-            Leveldata level15Data;
-        }
-
-
-
-
-
+        groupedData = g;
     }
 
 }
+[System.Serializable]
+public class GroupedData
+{
+  
+    public int slot;
+    [SerializeField]
+    public PlayerData playerData;
+    [SerializeField]
+    public WorldState worldState;
 
-public class Leveldata {
-    int levelId;
-    int compleeteCode;    
+    public GroupedData(PlayerData d, WorldState w, int s)
+    {
+        playerData = d;
+        worldState = w;
+        slot = s;
+    }
+
 }
+[System.Serializable]
+public class PlayerData
+{
+    public string name;
+    //In secconds
+    public long playTime;
+
+    float posX;
+    float posY;
+    float posZ;
+
+    //TODO: Inventory info
+
+    public PlayerData(string n, long t, Vector3 pos)
+    {
+        name = n;
+        playTime = t;
+        SetPosition(pos);
+    }
+    public void SetPosition(Vector3 pos)
+    {
+        posX = pos.x;
+        posY = pos.y;
+        posZ = pos.z;
+    }
+    public Vector3 GetPosition()
+    {
+        return new Vector3(posX, posY, posZ);
+    }
 
 
+}
+[System.Serializable]
+public class WorldState
+{
+    public Leveldata[] levelState;
+    public WorldState(Leveldata[] state)
+    {
+        levelState = state;
+    }
+}
+[System.Serializable]
+public class Leveldata {
+    private int levelId;
+    private int compleeteCode;
+    public Leveldata(int id)
+    {
+        levelId = id;
+        compleeteCode = -1;
+    }
+    public Leveldata(int id, int code)
+    {
+        levelId = id;
+        compleeteCode = code;
+    }
+
+    public void Update(int code)
+    {
+        compleeteCode = code;
+    }
+
+}
 
 

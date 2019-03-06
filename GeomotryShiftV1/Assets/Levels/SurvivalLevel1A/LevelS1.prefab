@@ -1126,7 +1126,7 @@ Transform:
   - {fileID: 6168756864674842705}
   - {fileID: 6168756863843555544}
   - {fileID: 6168756865231958629}
-  - {fileID: 1285117783153850095}
+  - {fileID: 6798060607247584811}
   m_Father: {fileID: 6168756864241128123}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1190,7 +1190,7 @@ MonoBehaviour:
   layerSet3:
     serializedVersion: 2
     m_Bits: 0
-  levelId_: 0
+  levelId_: 2
   levelUi: {fileID: 7538554546904999292}
   obsticleType1: {fileID: 2146905947174183405, guid: c92b8de822e1561498f804ffe701d773,
     type: 3}
@@ -2319,10 +2319,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6168756863991822359}
     m_Modifications:
-    - target: {fileID: 9029967013825840523, guid: 85b2ea8698ccfff4cb874a6914040187,
+    - target: {fileID: 4209903975708904822, guid: 85b2ea8698ccfff4cb874a6914040187,
         type: 3}
-      propertyPath: m_Name
-      value: Sdebris
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5729203018167859253, guid: 85b2ea8698ccfff4cb874a6914040187,
         type: 3}
@@ -2379,14 +2379,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4209903975708904822, guid: 85b2ea8698ccfff4cb874a6914040187,
+    - target: {fileID: 9029967013825840523, guid: 85b2ea8698ccfff4cb874a6914040187,
         type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
+      propertyPath: m_Name
+      value: Sdebris
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85b2ea8698ccfff4cb874a6914040187, type: 3}
---- !u!4 &1285117783153850095 stripped
+--- !u!4 &6798060607247584811 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5729203018167859253, guid: 85b2ea8698ccfff4cb874a6914040187,
     type: 3}
@@ -2399,11 +2399,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6168756864241128123}
     m_Modifications:
-    - target: {fileID: 7489423782272178444, guid: 6a911b36ba0e0304badb009ca73c9efe,
-        type: 3}
-      propertyPath: m_Name
-      value: LevelCanvasRigA
-      objectReference: {fileID: 0}
     - target: {fileID: 7356945755332862090, guid: 6a911b36ba0e0304badb009ca73c9efe,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2508,6 +2503,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7489423782272178444, guid: 6a911b36ba0e0304badb009ca73c9efe,
+        type: 3}
+      propertyPath: m_Name
+      value: LevelCanvasRigA
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a911b36ba0e0304badb009ca73c9efe, type: 3}

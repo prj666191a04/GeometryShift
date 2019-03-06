@@ -16,13 +16,28 @@ public class LevelLoader : MonoBehaviour
     public static bool initialBoot = true;
 
     //place holder in future custom type may be needed for world state
-    private GameObject WorldState;
+    public DataCore dataCore;
 
     public Transform EnvironmentContainer;
     public GameObject openWorldPreFab;
     private GameObject loadedEnvironment;
     
-  
+
+    //Data related functions
+
+    public void InitWorldState(DataCore core)
+    {
+        dataCore = core;
+    }
+    public void UpdateLevelStatus(int level, int code)
+    {
+        dataCore.groupedData.worldState.levelState[level].Update(code);
+    }
+    
+
+
+    //^Data related functions
+
     private void Start()
     {
         if(instance == null)
@@ -71,8 +86,7 @@ public class LevelLoader : MonoBehaviour
         loadedEnvironment = GameObject.Instantiate(openWorldPreFab, EnvironmentContainer);
 
         GeometryShift.instance.StateChange(GeometryShift.SystemState.WorldMap);
-        //TODO: Save id and completion code to save state object
-
+        UpdateLevelStatus(id, code);
         //TODO: Call auto save, (not yet implemented)
 
     }

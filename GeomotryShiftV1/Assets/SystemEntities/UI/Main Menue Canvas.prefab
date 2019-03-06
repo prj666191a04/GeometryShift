@@ -529,3 +529,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91e9fcf9a48b0424da2e165050aa8430, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dataPath: 
+  presistantDataPath: 

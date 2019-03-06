@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 
@@ -20,6 +21,11 @@ public class GeometryShift : MonoBehaviour
 
     public PMTopLevel pauseMenue;
     public bool pauseMenueActive = false;
+
+
+    //Data
+    private string dataPath;
+    
 
 
     private static SystemState systemState = SystemState.MainMenue;
@@ -108,6 +114,26 @@ public class GeometryShift : MonoBehaviour
         SystemInput();
     }
 
+
+    private void SaveFileCheck()
+    {
+        dataPath = Application.dataPath + "/DataCore";
+        if (!Directory.Exists(dataPath))
+        {
+            Directory.CreateDirectory(dataPath);
+        }
+        for (int i = 0; i < 4; i++)
+        {
+            if (!File.Exists(dataPath + "/slot" + i.ToString() + ".save"))
+            {
+                File.Create(dataPath + "/slot" + i.ToString() + ".save");
+            }
+        }
+
+    }
+
+
+
     //Starts the game
     private void Initalize()
     {
@@ -117,6 +143,7 @@ public class GeometryShift : MonoBehaviour
 
 
         //TODO: Read save file names into memory and prepare them for use
+        SaveFileCheck();
 
         loadedUiSet = Instantiate(mainMenuePrefab, activeUIContainer);
 
