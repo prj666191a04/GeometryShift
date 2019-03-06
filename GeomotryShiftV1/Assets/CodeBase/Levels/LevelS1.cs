@@ -67,7 +67,7 @@ public class LevelS1 : LevelBase
     IEnumerator DelayedRestart()
     {
         yield return new WaitForSeconds(10);
-        GeometryShift.playerStatus.gameObject.GetComponent<CController>().Resawn(init.spawnPoint.position);
+        GeometryShift.playerStatus.gameObject.GetComponent<CController>().Respawn(init.spawnPoint.position);
         yield return new WaitForSeconds(2);
         tmpWave = StartCoroutine(TmpWaveSystem());
 

@@ -142,7 +142,7 @@ public class CController : MonoBehaviour {
         }
     }
 
-    public void Resawn(Vector3 postion, bool worldspace = false)
+    public void Respawn(Vector3 postion, bool worldspace = false)
     {
         isDead = false;
         meshRenderer.enabled = true;

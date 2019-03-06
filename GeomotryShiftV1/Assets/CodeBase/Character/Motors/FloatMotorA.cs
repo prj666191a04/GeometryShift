@@ -154,7 +154,7 @@ public class FloatMotorA : CMotor
         
 
         Vector3 target = mouseWorldPos;
-        target = targetAhead;
+        //target = targetAhead;
 
         Vector3 newLook = target - transform.position;
         newLook.z = 0;

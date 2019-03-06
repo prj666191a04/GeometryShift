@@ -1126,7 +1126,7 @@ Transform:
   - {fileID: 6168756864674842705}
   - {fileID: 6168756863843555544}
   - {fileID: 6168756865231958629}
-  - {fileID: 6798060607247584811}
+  - {fileID: 1285117783153850095}
   m_Father: {fileID: 6168756864241128123}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1192,7 +1192,7 @@ MonoBehaviour:
     m_Bits: 0
   levelId_: 0
   levelUi: {fileID: 7538554546904999292}
-  obsticleType1: {fileID: 5278150278118989340, guid: 241abe11f3e27844cb58d39f1b618f44,
+  obsticleType1: {fileID: 2146905947174183405, guid: c92b8de822e1561498f804ffe701d773,
     type: 3}
   progress: 0
   pointTest: {fileID: 7104070809615584247, guid: a8cae4e3620b4cf4ba6dea542699920b,
@@ -2386,7 +2386,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85b2ea8698ccfff4cb874a6914040187, type: 3}
---- !u!4 &6798060607247584811 stripped
+--- !u!4 &1285117783153850095 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5729203018167859253, guid: 85b2ea8698ccfff4cb874a6914040187,
     type: 3}
