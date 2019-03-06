@@ -340,3 +340,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73c832fee157cae4db6f0608348ee3a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fastEnemyProjectile: {fileID: 5901642169511132173, guid: 394871e8025c24a4c9ae6f770c4b4ebe,
+    type: 3}
+  slowEnemyProjectile: {fileID: 4753745831770820047, guid: 65178bf0db754474a87aa356b92848ad,
+    type: 3}
+  homingMissile: {fileID: 4044216196516288658, guid: 591bbfe3e5942ec46ab315935ef435c8,
+    type: 3}
+  bulletShark: {fileID: 958248833689314674, guid: fe74b9f50b1590849b782043a41e9b81,
+    type: 3}
+  planarExplosion: {fileID: 2146905947174183405, guid: c92b8de822e1561498f804ffe701d773,
+    type: 3}
