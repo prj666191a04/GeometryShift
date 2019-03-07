@@ -53,7 +53,7 @@ public class MainMenue : MonoBehaviour
     //Generates a savefile for a brand new game
     public void CreateNewSaveSlot(int slot, string name)
     {
-        Leveldata[] newLevelData = new Leveldata[10];
+        Leveldata[] newLevelData = new Leveldata[DataCore.levelCount];
         for (int i = 0; i < newLevelData.Length; i++)
         {
             newLevelData[i] = new Leveldata(i, -1);

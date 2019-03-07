@@ -37,9 +37,18 @@ public static class SaveSystem
 
         if (File.Exists(filePath))
         {
-            json = File.ReadAllText(filePath);
-            GroupedData saveData = JsonUtility.FromJson<GroupedData>(json);
-            return saveData;
+            try
+            {
+                json = File.ReadAllText(filePath);
+                GroupedData saveData = JsonUtility.FromJson<GroupedData>(json);
+                saveData.worldState.ComfirmArraySize();
+                return saveData;
+            }
+            catch
+            {
+                return null;
+            }
+      
         }
         else
         {

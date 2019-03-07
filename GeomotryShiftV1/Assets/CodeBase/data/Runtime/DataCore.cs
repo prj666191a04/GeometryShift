@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 [System.Serializable]
 public class DataCore 
 {
+    public static int levelCount = 11;
+
     [SerializeField]
     public GroupedData groupedData;
     //other non save file related data if any
@@ -87,6 +90,21 @@ public class WorldState
     {
         levelState = state;
     }
+    public void ComfirmArraySize()
+    {
+        if (levelState.Length != DataCore.levelCount)
+        {
+            Array.Resize(ref levelState, DataCore.levelCount);
+
+            for(int i = 0; i < levelState.Length; i++)
+            {
+                if(levelState[i] != null)
+                {
+                    levelState[i] = new Leveldata(i);
+                }
+            }
+        }
+    }
 }
 [System.Serializable]
 public class Leveldata {
@@ -97,6 +115,16 @@ public class Leveldata {
     [SerializeField]
     private int timesCompleeted;
 
+    public int GetId()
+    {
+        return levelId;
+    }
+    public void SetEmptyState(int id)
+    {
+        levelId = id;
+        compleeteCode = -1;
+        timesCompleeted = 0;
+    }
     public Leveldata(int id)
     {
         levelId = id;

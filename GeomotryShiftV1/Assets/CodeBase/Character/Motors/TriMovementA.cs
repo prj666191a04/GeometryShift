@@ -40,6 +40,7 @@ public class TriMovementA : CMotor
 
         lastPosition = transform.position;
         CalculateAccelerationForce();
+        RotateCharacter();
     }
 
     void FixedUpdate()
@@ -80,6 +81,24 @@ public class TriMovementA : CMotor
        // mat.color = Color.white;
 
 
+    }
+
+    void RotateCharacter()
+    {
+
+        Vector3 targetDirection = new Vector3(h_, 0, v_);
+                                
+        targetDirection = new Vector3(h_, 0, v_);
+
+        //Set the target Direction
+        Quaternion targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
+
+        //Preform this frames rotation
+
+        if (targetDirection != Vector3.zero)
+        {
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * 10);
+        }
     }
 
     protected override void ConfigurePhysics()

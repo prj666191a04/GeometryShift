@@ -88,27 +88,27 @@ public class LevelS1 : LevelBase
         for (int i = 0; i < 3; i++)
         {
             yield return new WaitForSeconds(0.2f);
-            Instantiate(obsticleType1, spawnPointCC.transform.position, spawnRot, this.gameObject.transform);
+            Instantiate(obsticleType1, spawnPointCC.transform.position, spawnRot, mapFlow.transform);
         }
 
         for (int i = 0; i < 3; i++)
         {
             yield return new WaitForSeconds(0.2f);
-            Instantiate(obsticleType1, spawnPointCL.transform.position, spawnRot, this.gameObject.transform);
+            Instantiate(obsticleType1, spawnPointCL.transform.position, spawnRot, mapFlow.transform);
         }
         for (int i = 0; i < 3; i++)
         {
             yield return new WaitForSeconds(0.2f);
-            Instantiate(obsticleType1, spawnPointCR.transform.position, spawnRot, this.gameObject.transform);
+            Instantiate(obsticleType1, spawnPointCR.transform.position, spawnRot, mapFlow.transform);
         }
         for (int i = 0; i < 3; i++)
         {
             yield return new WaitForSeconds(0.2f);
-            Instantiate(obsticleType1, spawnPointTL.transform.position, spawnRot, this.gameObject.transform);
-            Instantiate(obsticleType1, spawnPointBR.transform.position, spawnRot, this.gameObject.transform);
+            Instantiate(obsticleType1, spawnPointTL.transform.position, spawnRot, mapFlow.transform);
+            Instantiate(obsticleType1, spawnPointBR.transform.position, spawnRot, mapFlow.transform);
         }
         yield return new WaitForSeconds(10);
-        base.AcknowledgeLevelCompletion();
+        //base.AcknowledgeLevelCompletion();
         yield break;
 
         

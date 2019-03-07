@@ -121,32 +121,6 @@ public class FloatMotorA : CMotor
     {
         targetDirection = new Vector3(h_, v_, 0);
 
-        switch (h_)
-        {
-            case 1:
-                break;
-        }
-
-        if (targetDirection != Vector3.zero)
-        {
-            //Get input direction relative to camera logic not working
-            //Vector3 relativeDirection = GeometryShift.instance.cameraController.gameObject.transform.TransformDirection(targetDirection);
-            //Remove Cameras Y from the Direction
-            //relativeDirection.Set(relativeDirection.x, 0, relativeDirection.z);
-            //Set the target Direction
-            //targetRotation = Quaternion.LookRotation(relativeDirection, Vector3.up);
-
-            //temporary until above code is fixed
-
-            targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
-                 
-        }
-
-        //Apply the value
-        newRotation = Quaternion.Lerp(newRotation, targetRotation, Time.deltaTime * 10);
-        //transform.rotation = newRotation;
-
-
         mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, cameraController.offset.z * -1));
 
         if(targetDirection != Vector3.zero)
@@ -154,24 +128,19 @@ public class FloatMotorA : CMotor
         
 
         Vector3 target = mouseWorldPos;
-        //target = targetAhead;
 
-        Vector3 newLook = target - transform.position;
-        newLook.z = 0;
+        Vector3 heading = target - transform.position;
 
-        newLook = Vector3.Lerp(lookPos, newLook, Time.deltaTime * 5);
+        Quaternion targetRotation = Quaternion.LookRotation(heading, transform.up);
 
-        if (target != Vector3.zero)
+        //Preform this frames rotation
+
+        if (targetDirection != Vector3.zero)
         {
-            Quaternion rotation = Quaternion.LookRotation(lookPos);
-
-            //rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 5f);
-            //transform.rotation = rotation;
-
-            transform.rotation = rotation;
-
-            lookPos = newLook;
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * 10);
         }
+
+
     }
 
     public override void CustomInput()
