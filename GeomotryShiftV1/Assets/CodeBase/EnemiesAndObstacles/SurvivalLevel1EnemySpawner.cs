@@ -4,61 +4,92 @@ using UnityEngine;
 
 public class SurvivalLevel1EnemySpawner : MonoBehaviour
 {
-    float widthOfLevel = 22f;
-    float lengthOfLevel = 22f;
+    public static float widthOfLevel = 22f;
+    public static float lengthOfLevel = 22f;
 
-    float secondsSinceLastPlanarExplosion = 0;
-    float secondsBetweenEachPlanarExplosion = 0.8f;
+    protected float cooldown1TimeCounter = 0;
+    protected float cooldown1 = 0.8f;
 
-    float secondsPassed = 0;
-    int secondsPassedInt = 0;
-    float enemySpawnTimer = 0;
+    protected float cooldown2TimeCounter = 0;
+    protected float cooldown2 = 0.8f;
+
+    protected float secondsPassed = 0;
+    protected int secondsPassedInt = 0;
+    protected float enemySpawnTimer = 0;
     Random random = new Random();
 
-
-    public GameObject fastEnemyProjectile;
-    EnemyProjectile fastEnemyProjectileScript;
-
-    public GameObject slowEnemyProjectile;
-    EnemyProjectile slowEnemyProjectileScript;
-
-    public GameObject homingMissile;
-    EnemyHomingMissile homingMissileScript;
-
-    public GameObject bulletShark;
-    EnemyBulletShark bulletSharkScript;
-
-    public GameObject planarExplosion;
-    PlanarExplosion planarExplosionScript;
-
-    const float enemySpawnFunctionCallInterval = 0.0166666666666667f;
+    public GameObject conglomerate;
 
 
-    Hashtable timeToPhase;
-    int phase = 1;
+    protected GameObject fastEnemyProjectile;
+    protected EnemyProjectile fastEnemyProjectileScript;
+
+    protected GameObject slowEnemyProjectile;
+    protected EnemyProjectile slowEnemyProjectileScript;
+
+    protected GameObject homingMissile;
+    protected EnemyHomingMissile homingMissileScript;
+
+    protected GameObject bulletShark;
+    protected EnemyBulletShark bulletSharkScript;
+
+    protected GameObject planarExplosion;
+    protected PlanarExplosion planarExplosionScript;
+
+    protected GameObject boomerang;
+    protected EnemyBoomerang boomerangScript;
+
+    protected const float enemySpawnFunctionCallInterval = 0.0166666666666667f;
+
+
+    protected Hashtable timeToPhase;
+    protected int phase = 1;
+
+    protected void LoadEnemiesFromConglomerate()
+    {
+        Conglomerate temp = conglomerate.gameObject.GetComponent<Conglomerate>();
+
+        fastEnemyProjectile = temp.fastEnemyProjectile;
+        fastEnemyProjectileScript = fastEnemyProjectile.gameObject.GetComponent<EnemyProjectile>();
+
+        slowEnemyProjectile = temp.slowEnemyProjectile;
+        slowEnemyProjectileScript = slowEnemyProjectile.gameObject.GetComponent<EnemyProjectile>();
+
+        homingMissile = temp.homingMissile;
+        homingMissileScript = homingMissile.gameObject.GetComponent<EnemyHomingMissile>();
+
+        bulletShark = temp.bulletShark;
+        bulletSharkScript = bulletShark.gameObject.GetComponent<EnemyBulletShark>();
+
+        planarExplosion = temp.planarExplosion;
+        planarExplosionScript = planarExplosion.gameObject.GetComponent<PlanarExplosion>();
+
+        boomerang = temp.boomerang;
+        boomerangScript = boomerang.gameObject.GetComponent<EnemyBoomerang>();
+    }
+
+    protected void SetupEnemyDefaultVariables()
+    {
+        fastEnemyProjectileScript.maximumLifespanAllowed = 10;
+        fastEnemyProjectileScript.speed = 10f;
+
+        slowEnemyProjectileScript.maximumLifespanAllowed = 12;
+        slowEnemyProjectileScript.speed = 6f;
+        
+        homingMissileScript.maximumLifespanAllowed = 12;
+
+        bulletSharkScript.maximumLifespanAllowed = 12;
+
+        boomerangScript.maximumLifespanAllowed = 10;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        fastEnemyProjectileScript = fastEnemyProjectile.gameObject.GetComponent<EnemyProjectile>();
-        fastEnemyProjectileScript.maximumLifespanAllowed = 10;
-        fastEnemyProjectileScript.speed = 10f;
+        LoadEnemiesFromConglomerate();
+        SetupEnemyDefaultVariables();
 
-        slowEnemyProjectileScript = slowEnemyProjectile.gameObject.GetComponent<EnemyProjectile>();
-        slowEnemyProjectileScript.maximumLifespanAllowed = 12;
-        slowEnemyProjectileScript.speed = 6f;
-
-
-        homingMissileScript = homingMissile.gameObject.GetComponent<EnemyHomingMissile>();
-        homingMissileScript.maximumLifespanAllowed = 12;
-
-        bulletSharkScript = bulletShark.gameObject.GetComponent<EnemyBulletShark>();
-        bulletSharkScript.maximumLifespanAllowed = 12;
-
-        planarExplosionScript = planarExplosion.gameObject.GetComponent<PlanarExplosion>();
-
-
-        timeToPhase = new Hashtable();
+        timeToPhase = new Hashtable();//unique for each level
 
         //use: timeToPhase.Add(secondsPassed, phaseNumber);
         //starts at phase 1, so having timeToPhase.Add(0, 1) is unnessecary
@@ -112,17 +143,17 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
 
     }
 
-    void setPhase()
+    protected void setPhase()
     {
         if (timeToPhase.ContainsKey(secondsPassedInt))
         {
             phase = (int)timeToPhase[secondsPassedInt];
             timeToPhase.Remove(secondsPassedInt);
-            secondsSinceLastPlanarExplosion = 0;
+            cooldown1TimeCounter = 0;
         }
     }
 
-    void spawnPlanarExplosion(GameObject projectile,
+    protected void spawnPlanarExplosion(GameObject projectile,
         int number = 6,
         bool randomSpawnLocation = true,
         float fuseTime = 1f,
@@ -146,7 +177,7 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
         Instantiate(planarExplosion, spawnPosition, spawnRotation, transform.parent);
     }
 
-    void spawnWave(GameObject projectile,
+    protected void spawnWave(GameObject projectile,
         int side = 3, //1 = top, 2 = right, 3 = bottom, 4 = left
         int numberOfFlankingProjectilesOnEachSide = 2,
         float widthSpacing = 0.6f,
@@ -280,12 +311,12 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
                 }
                 break;
             case 3:
-                secondsSinceLastPlanarExplosion += enemySpawnFunctionCallInterval;
-                secondsBetweenEachPlanarExplosion = 0.8f;
-                if (secondsSinceLastPlanarExplosion > secondsBetweenEachPlanarExplosion)
+                cooldown1TimeCounter += enemySpawnFunctionCallInterval;
+                cooldown1 = 0.8f;
+                if (cooldown1TimeCounter > cooldown1)
                 {
                     //planar explosions that spawn slow enemy projectiles
-                    secondsSinceLastPlanarExplosion -= secondsBetweenEachPlanarExplosion;
+                    cooldown1TimeCounter -= cooldown1;
                     spawnPlanarExplosion(slowEnemyProjectile, 10, true, 1f);
                 }
                 break;
@@ -305,16 +336,16 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
                 }
                 break;
             case 5:
-                secondsBetweenEachPlanarExplosion = 1.2f;
+                cooldown1 = 1.2f;
 
-                secondsSinceLastPlanarExplosion += enemySpawnFunctionCallInterval;
-                if (secondsSinceLastPlanarExplosion > secondsBetweenEachPlanarExplosion)
+                cooldown1TimeCounter += enemySpawnFunctionCallInterval;
+                if (cooldown1TimeCounter > cooldown1)
                 {
 
                     homingMissileScript.fuelTime = 1.5f;
                     homingMissileScript.turnSpeed = 1f;
                     //planar explosion that spawns homing missiles
-                    secondsSinceLastPlanarExplosion -= secondsBetweenEachPlanarExplosion;
+                    cooldown1TimeCounter -= cooldown1;
                     spawnPlanarExplosion(homingMissile, 5);
                 }
                 break;
@@ -334,31 +365,31 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
                 break;
             case 7:
                 //double layer planar explosions: fast and slow projectiles
-                secondsBetweenEachPlanarExplosion = 1.2f;
+                cooldown1 = 1.2f;
 
-                secondsSinceLastPlanarExplosion += enemySpawnFunctionCallInterval;
+                cooldown1TimeCounter += enemySpawnFunctionCallInterval;
 
-                if (secondsSinceLastPlanarExplosion > secondsBetweenEachPlanarExplosion)
+                if (cooldown1TimeCounter > cooldown1)
                 {
                     //planar explosion that spawns homing missiles
                     float tempX = Random.Range(-(widthOfLevel / 2), (widthOfLevel / 2));
                     float tempY = Random.Range(-(lengthOfLevel / 2), (lengthOfLevel / 2));
-                    secondsSinceLastPlanarExplosion -= secondsBetweenEachPlanarExplosion;
+                    cooldown1TimeCounter -= cooldown1;
                     spawnPlanarExplosion(slowEnemyProjectile, 16, false, 1f, tempX, tempY);
                     spawnPlanarExplosion(fastEnemyProjectile, 12, false, 1f, tempX, tempY);
                 }
                 break;
             case 8:
                 //double layer planar explosions: slow projectiles and homing missiles
-                secondsBetweenEachPlanarExplosion = 1.6f;
+                cooldown1 = 1.6f;
 
-                secondsSinceLastPlanarExplosion += enemySpawnFunctionCallInterval;
+                cooldown1TimeCounter += enemySpawnFunctionCallInterval;
 
-                if (secondsSinceLastPlanarExplosion > secondsBetweenEachPlanarExplosion)
+                if (cooldown1TimeCounter > cooldown1)
                 {
                     float tempX = Random.Range(-(widthOfLevel / 2), (widthOfLevel / 2));
                     float tempY = Random.Range(-(lengthOfLevel / 2), (lengthOfLevel / 2));
-                    secondsSinceLastPlanarExplosion -= secondsBetweenEachPlanarExplosion;
+                    cooldown1TimeCounter -= cooldown1;
                     homingMissileScript.fuelTime = 0.5f;
                     homingMissileScript.turnSpeed = 3.5f;
                     spawnPlanarExplosion(slowEnemyProjectile, 12, false, 1f, tempX, tempY);
@@ -384,11 +415,11 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
             case 11:
                 //spawn planar explosions on edge of map only
 
-                secondsSinceLastPlanarExplosion += enemySpawnFunctionCallInterval;
-                secondsBetweenEachPlanarExplosion = 0.4f;
-                if (secondsSinceLastPlanarExplosion > secondsBetweenEachPlanarExplosion)
+                cooldown1TimeCounter += enemySpawnFunctionCallInterval;
+                cooldown1 = 0.4f;
+                if (cooldown1TimeCounter > cooldown1)
                 {
-                    secondsSinceLastPlanarExplosion -= secondsBetweenEachPlanarExplosion;
+                    cooldown1TimeCounter -= cooldown1;
                     planarExplosionScript.theEnemyToSpawn = slowEnemyProjectile;
                     planarExplosionScript.numberOfEnemiesSpawned = 10;
                     //planarExplosion.
@@ -399,32 +430,32 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
 
             case 12:
                 //bullet sharks from bottom
-                secondsSinceLastPlanarExplosion += enemySpawnFunctionCallInterval;
-                secondsBetweenEachPlanarExplosion = 1.15f;
-                if (secondsSinceLastPlanarExplosion > secondsBetweenEachPlanarExplosion)
+                cooldown1TimeCounter += enemySpawnFunctionCallInterval;
+                cooldown1 = 1.15f;
+                if (cooldown1TimeCounter > cooldown1)
                 {
-                    secondsSinceLastPlanarExplosion -= secondsBetweenEachPlanarExplosion;
+                    cooldown1TimeCounter -= cooldown1;
                     //slow projectiles
                     Vector3 spawnPosition = new Vector3(Random.Range(-(widthOfLevel / 2), (widthOfLevel / 2)), 0f, -(lengthOfLevel / 2));
                     Quaternion spawnRotation = new Quaternion();
                     bulletSharkScript.whatToShoot = slowEnemyProjectile;
                     bulletSharkScript.shootInterval = 0.7f;
-                    bulletSharkScript.overrideTurnSpeed = 0f;
+                    bulletSharkScript.turnSpeed = 0f;
                     bulletSharkScript.numberOfProjectilesToShoot = 4;
                     Instantiate(bulletShark, spawnPosition, spawnRotation, transform.parent);
                 }
                 break;
             case 13:
                 //bullet sharks from sides
-                secondsSinceLastPlanarExplosion += enemySpawnFunctionCallInterval;
-                secondsBetweenEachPlanarExplosion = 1.5f;
-                if (secondsSinceLastPlanarExplosion > secondsBetweenEachPlanarExplosion)
+                cooldown1TimeCounter += enemySpawnFunctionCallInterval;
+                cooldown1 = 1.5f;
+                if (cooldown1TimeCounter > cooldown1)
                 {
-                    secondsSinceLastPlanarExplosion -= secondsBetweenEachPlanarExplosion;
+                    cooldown1TimeCounter -= cooldown1;
                    
                     bulletSharkScript.whatToShoot = slowEnemyProjectile;
                     bulletSharkScript.shootInterval = 1.2f;
-                    bulletSharkScript.overrideTurnSpeed = 0f;
+                    bulletSharkScript.turnSpeed = 0f;
                     bulletSharkScript.numberOfProjectilesToShoot = 4;
                     //Instantiate(bulletShark, spawnPosition, spawnRotation, transform.parent);
                     spawnWave(bulletShark, 2, 0);

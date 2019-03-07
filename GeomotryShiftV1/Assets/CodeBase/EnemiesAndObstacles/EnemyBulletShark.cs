@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class EnemyBulletShark : EnemyHomingMissile
 {
-    public float overrideSpeed = 8f;
-    public float overrideTurnSpeed = 0.5f;
-    public float overrideFuelTime = 999f;
     public int numberOfProjectilesToShoot = 2;
 
     public float shootInterval = 0.7f;
@@ -23,10 +20,7 @@ public class EnemyBulletShark : EnemyHomingMissile
         goThroughWalls = true;
 
         baseAngle = 180f / numberOfProjectilesToShoot;
-
-        turnSpeed = overrideTurnSpeed;
-        speed = overrideSpeed;
-        fuelTime = overrideFuelTime;
+        
 
         planarExplosion = Resources.Load("Enemies/PlanarExplosion/PlanarExplosion") as GameObject;
 

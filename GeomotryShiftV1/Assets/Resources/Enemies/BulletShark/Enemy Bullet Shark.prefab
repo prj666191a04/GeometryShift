@@ -148,7 +148,12 @@ MonoBehaviour:
   missileRigidBody: {fileID: 0}
   turnSpeed: 1
   fuelTime: 2
+  overrideSpeed: 8
   overrideTurnSpeed: 0.5
+  overrideFuelTime: 999
+  numberOfProjectilesToShoot: 2
+  shootInterval: 0.7
+  whatToShoot: {fileID: 0}
 --- !u!96 &1100264713177848438
 TrailRenderer:
   serializedVersion: 2
