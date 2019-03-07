@@ -15,7 +15,6 @@ public class FloatMotorA : CMotor
     public LayerMask teleportMask;
 
 
-    Quaternion newRotation;
     Quaternion targetRotation;
     Vector3 targetDirection;
     public Vector3 pos;
@@ -36,7 +35,6 @@ public class FloatMotorA : CMotor
         mapFlow = GameObject.Find("MapFlow").GetComponent<Transform>();
         cameraController = Camera.main.GetComponent<CameraControllerA>();
         transform.forward = Vector3.up;
-        newRotation = transform.rotation;
         targetRotation = transform.rotation;
         doNotPassThrogh = LevelBase.instance.layerSet0;
         teleportMask = LevelBase.instance.layerSet1;
@@ -119,23 +117,24 @@ public class FloatMotorA : CMotor
 
     void RotateToDirection()
     {
+        
         targetDirection = new Vector3(h_, v_, 0);
-
+        
         mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, cameraController.offset.z * -1));
 
- 
         Vector3 target = mouseWorldPos;
 
         Vector3 heading = target - transform.position;
 
-        Quaternion targetRotation = Quaternion.LookRotation(targetDirection, transform.up);
-
-        //Preform this frames rotation
-
         if (targetDirection != Vector3.zero)
         {
-            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * 10);
+            //Set the target Direction
+            targetRotation = Quaternion.LookRotation(targetDirection, transform.up);
+
         }
+        //Preform this frames rotation
+        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * 10);
+
 
 
     }

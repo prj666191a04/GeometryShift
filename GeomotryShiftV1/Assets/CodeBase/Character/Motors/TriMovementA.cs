@@ -24,10 +24,13 @@ public class TriMovementA : CMotor
     public float groundSpeed = 0;
     public Vector3 lastPosition;
 
+    Quaternion targetRotation;
+
 
     private void Start()
     {
         lastPosition = transform.position;
+        targetRotation = transform.rotation;
     }
 
     private void Update()
@@ -87,18 +90,18 @@ public class TriMovementA : CMotor
     {
 
         Vector3 targetDirection = new Vector3(h_, 0, v_);
-                                
-        targetDirection = new Vector3(h_, 0, v_);
-
-        //Set the target Direction
-        Quaternion targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
-
-        //Preform this frames rotation
-
+       
         if (targetDirection != Vector3.zero)
         {
-            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * 10);
+            //Set the target Direction
+            targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
+
         }
+        //Preform this frames rotation
+
+       
+        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * 10);
+        
     }
 
     protected override void ConfigurePhysics()
