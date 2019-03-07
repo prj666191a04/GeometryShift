@@ -123,15 +123,12 @@ public class FloatMotorA : CMotor
 
         mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, cameraController.offset.z * -1));
 
-        if(targetDirection != Vector3.zero)
-            targetAhead = transform.position + targetDirection *100;
-        
-
+ 
         Vector3 target = mouseWorldPos;
 
         Vector3 heading = target - transform.position;
 
-        Quaternion targetRotation = Quaternion.LookRotation(heading, transform.up);
+        Quaternion targetRotation = Quaternion.LookRotation(targetDirection, transform.up);
 
         //Preform this frames rotation
 
