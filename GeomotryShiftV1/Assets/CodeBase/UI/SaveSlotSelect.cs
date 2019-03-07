@@ -4,6 +4,17 @@ using UnityEngine;
 
 public class SaveSlotSelect : MonoBehaviour
 {
+    public Color textUnselectedColor;
+    public Color textSelectedColor;
+
+
+    public Color iconSelectedColor;
+    public Color iconUnselectedColor;
+
+
+    //public Color 
+
+
     // Start is called before the first frame update
     void Start()
     {
