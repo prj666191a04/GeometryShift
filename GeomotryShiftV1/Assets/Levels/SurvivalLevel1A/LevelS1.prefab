@@ -2318,6 +2318,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6168756864241128123}
     m_Modifications:
+    - target: {fileID: 7489423782272178444, guid: 6a911b36ba0e0304badb009ca73c9efe,
+        type: 3}
+      propertyPath: m_Name
+      value: LevelCanvasRigA
+      objectReference: {fileID: 0}
     - target: {fileID: 7356945755332862090, guid: 6a911b36ba0e0304badb009ca73c9efe,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2422,11 +2427,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7489423782272178444, guid: 6a911b36ba0e0304badb009ca73c9efe,
-        type: 3}
-      propertyPath: m_Name
-      value: LevelCanvasRigA
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a911b36ba0e0304badb009ca73c9efe, type: 3}
