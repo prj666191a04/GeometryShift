@@ -5,7 +5,7 @@ using UnityEngine;
 public class BiMovementForcedB : CMotor
 {
     public Rigidbody theRB;
-    public float jumpStrength_ = 80f;
+    public float jumpStrength_ = 45f;
     public float maxSpeed_ = 7.5f;
     public float speed_ = 0;
     bool availableJump = true;
@@ -23,22 +23,22 @@ public class BiMovementForcedB : CMotor
 
         if (Input.GetKey(KeyCode.Space) && availableJump)
         {
-            rBody.AddForce(rBody.transform.TransformDirection(Vector3.up) * jumpStrength_);
+            rBody.AddForce(rBody.transform.TransformDirection(Vector3.left) * jumpStrength_);
             availableJump = false;
         }
 
         RaycastHit hit;
-        int layerMask = 1 << 8;
+
         // Does the ray intersect any objects excluding the player layer
-        if (Physics.Raycast(rBody.transform.position, rBody.transform.TransformDirection(Vector3.down), rayDistance))
+        if (Physics.Raycast(rBody.transform.position, rBody.transform.TransformDirection(Vector3.right), rayDistance))
         {
-            Debug.DrawRay(rBody.transform.position, rBody.transform.TransformDirection(Vector3.down) * rayDistance, Color.yellow);
+            Debug.DrawRay(rBody.transform.position, rBody.transform.TransformDirection(Vector3.right) * rayDistance, Color.yellow);
             Debug.Log("Did Hit");
             availableJump = true;
         }
         else
         {
-            Debug.DrawRay(rBody.transform.position, rBody.transform.TransformDirection(Vector3.down) * rayDistance, Color.white);
+            Debug.DrawRay(rBody.transform.position, rBody.transform.TransformDirection(Vector3.right) * rayDistance, Color.white);
             Debug.Log("Did not Hit");
         }
 
@@ -55,7 +55,7 @@ public class BiMovementForcedB : CMotor
     {
         
         rBody = GetComponent<Rigidbody>();
-        rBody.rotation.Equals(Quaternion.Euler(new Vector3(180f, -180f, 90f)));
+        transform.rotation = Quaternion.Euler(new Vector3(180f, -90f, 90f));
         rBody.constraints =
             RigidbodyConstraints.FreezePositionZ |
             RigidbodyConstraints.FreezeRotationZ |
