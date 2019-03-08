@@ -24,7 +24,9 @@ public class CConfig2DForcedB : CConfig
         cc.motorPool = new CMotor[1];
         cc.motorPool[0] = player.AddComponent<BiMovementForcedB>();
         cc.AssignMotor(cc.motorPool[0]);
+        cc.rBody.rotation.Equals(Quaternion.Euler(new Vector3(180f, -180f, 90f)));
         cc.motor.SetPhysics(cc.rBody);
+        
 
 
 

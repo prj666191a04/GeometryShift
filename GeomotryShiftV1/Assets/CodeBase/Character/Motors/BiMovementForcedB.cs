@@ -5,23 +5,57 @@ using UnityEngine;
 public class BiMovementForcedB : CMotor
 {
     public Rigidbody theRB;
-    public float speedMultiplier_ = 6f;
-    public float jumpStrength_ = 30f;
+    public float jumpStrength_ = 80f;
+    public float maxSpeed_ = 7.5f;
+    public float speed_ = 0;
+    bool availableJump = true;
+    public float rayDistance = 1f;
+
 
     void FixedUpdate()
     {
-        Vector3 movementVector = new Vector3(speedMultiplier_, 0, 0);
+        speed_ = rBody.velocity.x;
+        if (speed_ >= maxSpeed_)
+        {
+            speed_ = maxSpeed_;
+        }
+        Vector3 movementVector = new Vector3(maxSpeed_-speed_, 0, 0);
 
-        movementVector.y = Input.GetAxis("Vertical") * jumpStrength_;
+        if (Input.GetKey(KeyCode.Space) && availableJump)
+        {
+            rBody.AddForce(rBody.transform.TransformDirection(Vector3.up) * jumpStrength_);
+            availableJump = false;
+        }
+
+        RaycastHit hit;
+        int layerMask = 1 << 8;
+        // Does the ray intersect any objects excluding the player layer
+        if (Physics.Raycast(rBody.transform.position, rBody.transform.TransformDirection(Vector3.down), rayDistance))
+        {
+            Debug.DrawRay(rBody.transform.position, rBody.transform.TransformDirection(Vector3.down) * rayDistance, Color.yellow);
+            Debug.Log("Did Hit");
+            availableJump = true;
+        }
+        else
+        {
+            Debug.DrawRay(rBody.transform.position, rBody.transform.TransformDirection(Vector3.down) * rayDistance, Color.white);
+            Debug.Log("Did not Hit");
+        }
+
+        //movementVector.y = Input.GetAxis("Vertical") * jumpStrength_;
+
+
+
 
         rBody.AddForce(movementVector);
-
     }
 
 
     protected override void ConfigurePhysics()
     {
-        //rBody = GetComponent<Rigidbody>();
+        
+        rBody = GetComponent<Rigidbody>();
+        rBody.rotation.Equals(Quaternion.Euler(new Vector3(180f, -180f, 90f)));
         rBody.constraints =
             RigidbodyConstraints.FreezePositionZ |
             RigidbodyConstraints.FreezeRotationZ |
@@ -29,9 +63,10 @@ public class BiMovementForcedB : CMotor
             RigidbodyConstraints.FreezeRotationY |
             RigidbodyConstraints.FreezePositionZ;
 
-        //rBody.rotation.Equals(Quaternion.Euler(new Vector3(0, 0, 0)));
-
-        rBody.useGravity = false;
+        
+        
+        rBody.useGravity = true;
+        
         rBody.interpolation = RigidbodyInterpolation.Interpolate;
         
     }
