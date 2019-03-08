@@ -535,6 +535,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dataPath: 
   presistantDataPath: 
+  slotSelector: {fileID: 5621239398757452751, guid: 556f198a4cdb54e49bdfddf47e884fe1,
+    type: 3}
 --- !u!1 &5142703617502476398
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class SaveSlot : MonoBehaviour
 {
+
+    
     public SaveSlotSelect slotSelector;
 
     public static SaveSlot selected;
@@ -16,21 +18,68 @@ public class SaveSlot : MonoBehaviour
     public Text dataText;
     public Text playTime;
 
-    private Color targetBarColor;
-    private Color targetTextColor;
-    private Color TargetIconColor;
+    public Color targetBarColor;
+    public Color targetTextColor;
+    public Color TargetIconColor;
 
     public GroupedData saveData;
 
     public int slotId;
+    bool hasData = false;
 
 
     // Start is called before the first frame update
     void Start()
     {
         CollectSlotData();
+        if(slotId == 0)
+        {
+            selected = this;
+            SetSelected();
+        }
+        else
+        {
+            SetUnselected();
+        }
+
+
     }
 
+    public void Click()
+    {
+        if (!slotSelector.promptActive)
+        {
+            if (slotSelector.loadLevel)
+            {
+                if (hasData)
+                {
+                    slotSelector.promptActive = true;
+                    slotSelector.AskQuestion("Start game?... ", saveData);
+                }
+                else
+                {
+                    Debug.LogError("no data");
+                }
+            }
+            else
+            {
+                if(hasData)
+                {
+                    slotSelector.promptActive = true;
+                    slotSelector.AskQuestion("Overwrite save for slot " +(slotId+1).ToString()+"?"+ System.Environment.NewLine + "Warning this cannot be undone", saveData);
+                }
+                else
+                {
+                    slotSelector.NewGame(slotId);
+                }
+            }
+        }
+    }
+
+    private void Update()
+    {
+        AnimateToTarget();
+    }
 
     void CollectSlotData()
     {
@@ -42,36 +91,44 @@ public class SaveSlot : MonoBehaviour
             string timeString = time.ToString(@"hh\:mm\:ss\:fff");
             playTime.text = "Play time: " + timeString;
             dataText.enabled = false;
+            hasData = true;
         }
         catch
         {
             nameText.text = "no data";
             playTime.text = "Play time: no data";
             dataText.enabled = true;
+            hasData = false;
         }
     }
 
-    void animateToTarget()
+    void AnimateToTarget()
     {
-        nameText.color = Color.Lerp(nameText.color, targetTextColor, Time.deltaTime *2);
-        Bar.color = Color.Lerp(Bar.color, targetBarColor, Time.deltaTime*2);
-        icon.color = Color.Lerp(icon.color, TargetIconColor, Time.deltaTime*2);
+        if (Bar.color != targetBarColor)
+        {
+            nameText.color = Color.Lerp(nameText.color, targetTextColor, Time.deltaTime * 5);
+            Bar.color = Color.Lerp(Bar.color, targetBarColor, Time.deltaTime * 5);
+            icon.color = Color.Lerp(icon.color, TargetIconColor, Time.deltaTime * 5);
+        }
     }
 
     public void SetSelected()
     {
-        targetBarColor = slotSelector.barSelectedColor;
-        TargetIconColor = slotSelector.iconSelectedColor;
-        targetTextColor = slotSelector.textSelectedColor;
-        selected = this;
-
+        if (!slotSelector.promptActive)
+        {
+            selected.SetUnselected();
+            targetBarColor = slotSelector.barSelectedColor;
+            TargetIconColor = slotSelector.iconSelectedColor;
+            targetTextColor = slotSelector.textSelectedColor;
+            selected = this;
+        }
     }
-    public void SetUnselected()
+    
+    protected void SetUnselected()
     {
         targetBarColor = slotSelector.barUnselectedColor;
         TargetIconColor = slotSelector.iconUnselectedColor;
         targetTextColor = slotSelector.textUnselectedColor;
-
     }
 
 }

@@ -44,7 +44,7 @@ public class GeometryShift : MonoBehaviour
     public GameObject mainMenuePrefab;
     public GameObject openWorldUiPrefab;
 
-    private GameObject loadedUiSet;
+    public GameObject loadedUiSet;
 
     public InteractionUI interactionUI;
 
@@ -91,7 +91,7 @@ public class GeometryShift : MonoBehaviour
         Instantiate(UISet, activeUIContainer);
         
     }
-    private void DistroyLoadedUISet()
+    public void DistroyLoadedUISet()
     {
         if(loadedUiSet != null)
         {
@@ -127,7 +127,7 @@ public class GeometryShift : MonoBehaviour
         {
             Directory.CreateDirectory(dataPath);
         }
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 3; i++)
         {
             if (!File.Exists(dataPath + "/slot" + i.ToString() + ".save"))
             {

@@ -7,6 +7,8 @@ public class MainMenue : MonoBehaviour
     public string dataPath;
     public string presistantDataPath;
 
+    public GameObject slotSelector;
+
     private void Start()
     {
        
@@ -22,12 +24,6 @@ public class MainMenue : MonoBehaviour
         GeometryShift.instance.QuitGame();
     }
 
-
-    public void NewGame()
-    {
-        CreateNewSaveSlot(0, "Atilla");
-    }
-
     //tmp
     public void NewGameBtn()
     {
@@ -38,17 +34,9 @@ public class MainMenue : MonoBehaviour
     //tmp
     public void ContinueBtn()
     {
-        SaveSystem.InitilizeDataStructure();
-        GroupedData loadedData = SaveSystem.LoadGameData(0);
-        if (loadedData != null)
-        {
-            LevelLoader.instance.SetGroupedData(loadedData);
-            LevelLoader.instance.LoadWorldMap();
-        }
-            
-        
+        GeometryShift.instance.DistroyLoadedUISet();      
+        GeometryShift.instance.loadedUiSet = Instantiate(slotSelector, GeometryShift.instance.activeUIContainer.transform);
     }
-
 
     //Generates a savefile for a brand new game
     public void CreateNewSaveSlot(int slot, string name)
