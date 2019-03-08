@@ -66,7 +66,7 @@ public class SaveSlot : MonoBehaviour
                 if(hasData)
                 {
                     slotSelector.promptActive = true;
-                    slotSelector.AskQuestion("Overwrite save for slot " +(slotId+1).ToString()+"?"+ System.Environment.NewLine + "Warning this cannot be undone", saveData);
+                    slotSelector.AskQuestion("Overwrite save for slot " +(slotId+1).ToString()+"?"+ System.Environment.NewLine + "Warning: this cannot be undone", saveData);
                 }
                 else
                 {
