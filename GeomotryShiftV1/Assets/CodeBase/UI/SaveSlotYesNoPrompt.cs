@@ -25,6 +25,7 @@ public class SaveSlotYesNoPrompt : MonoBehaviour
             SaveSystem.InitilizeDataStructure();
             LevelLoader.instance.SetGroupedData(dataToLoad);
             GeometryShift.instance.StartSessionTimer();
+            GeometryShift.instance.sessionTimer.Init();
             LevelLoader.instance.LoadWorldMap();
             
         }//overwrite

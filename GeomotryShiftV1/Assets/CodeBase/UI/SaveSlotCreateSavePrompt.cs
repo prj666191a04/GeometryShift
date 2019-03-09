@@ -71,6 +71,7 @@ public class SaveSlotCreateSavePrompt : MonoBehaviour
 
             LevelLoader.instance.InitWorldState(newDatacore);
             GeometryShift.instance.StartSessionTimer();
+            GeometryShift.instance.sessionTimer.Init();
             LevelLoader.freshSave = true;
             Debug.LogWarning("firstINit");
             LevelLoader.instance.LoadWorldMap();

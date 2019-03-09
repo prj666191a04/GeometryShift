@@ -17,6 +17,9 @@ public class LevelPortal : CInteractable
         LevelLoader.LoadLevelExternalCall(levelObject);
     }
 
-
+    public override void Respond()
+    {
+        GeometryShift.instance.interactionUI.Apear(interactText_);
+    }
 
 }

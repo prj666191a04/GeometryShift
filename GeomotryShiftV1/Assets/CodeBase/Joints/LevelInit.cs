@@ -21,7 +21,10 @@ public class LevelInit : MonoBehaviour
     {
         ConfigureSpawnPoint();
         cconfig.SetupCharacter(playerPrefab, spawnPoint, parentObject);
-        LevelLoader.instance.AutoSave();
+        if (mainMap)
+        {
+            LevelLoader.instance.AutoSave();
+        }
     }
 
     void ConfigureSpawnPoint()

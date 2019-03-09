@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MainMenue : MonoBehaviour
 {
@@ -10,15 +11,20 @@ public class MainMenue : MonoBehaviour
     public GameObject slotSelector;
     public GameObject slotSelectorN;
 
+    public Button continueButton;
+
     private void Start()
     {
-        
+        if(HasData())
+        {
+            continueButton.enabled = true;
+        }
+        else
+        {
+            continueButton.enabled = false;
+        }
     }
 
-    public void LoadWorld()
-    {
-        LevelLoader.instance.LoadWorldMap();
-    }
 
     public void QuitGame()
     {
@@ -34,37 +40,23 @@ public class MainMenue : MonoBehaviour
     //tmp
     public void ContinueBtn()
     {
+
         GeometryShift.instance.DistroyLoadedUISet();      
         GeometryShift.instance.loadedUiSet = Instantiate(slotSelector, GeometryShift.instance.activeUIContainer.transform);
     }
 
-    //Generates a savefile for a brand new game
-    public void CreateNewSaveSlot(int slot, string name)
+
+    public bool HasData()
     {
-        Leveldata[] newLevelData = new Leveldata[DataCore.levelCount];
-        for (int i = 0; i < newLevelData.Length; i++)
+        for (int i = 0; i < 3; i++)
         {
-            newLevelData[i] = new Leveldata(i, -1);
+            GroupedData tmp = SaveSystem.LoadGameData(i);
+            if(tmp != null)
+            {
+                return true;
+            }
         }
-        WorldState newWorldState = new WorldState(newLevelData);
-        //TODO: Inventory
-        PlayerData newPlayerData = new PlayerData(name, 0, Vector3.zero);
-
-        GroupedData newGroupedData = new GroupedData(newPlayerData, newWorldState, slot);
-
-        DataCore newDatacore = new DataCore(newGroupedData);
-
-        LevelLoader.instance.InitWorldState(newDatacore);
-
-    }
-    public void LoadSlot(int slot)
-    {
-       SaveSystem.LoadGameData(slot);
-
-    }
-    public void FetchSlots()
-    {
-
+        return false;
     }
 }
 

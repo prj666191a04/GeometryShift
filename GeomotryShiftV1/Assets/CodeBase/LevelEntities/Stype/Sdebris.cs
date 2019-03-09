@@ -25,7 +25,7 @@ public class Sdebris : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player") && !deathTriggered)
         {
-            other.gameObject.GetComponent<CStatus>().Damage(1f);
+            GeometryShift.playerStatus.Damage(1f);
             StartCoroutine(FadeAway());
         }
     }

@@ -45,9 +45,12 @@ public class LevelLoader : MonoBehaviour
     }
     public void AutoSave()
     {
-        Debug.Log("AutoSave called");
+       
         dataCore.groupedData.playerData.playTime = GeometryShift.instance.sessionTimer.EndSession();
-        dataCore.groupedData.playerData.SetPosition(GeometryShift.playerStatus.transform.position);
+        Vector3 savePostion = GeometryShift.playerStatus.transform.position;
+        savePostion.y += 0.2f;
+        Debug.Log("AutoSave called player pos: " + savePostion.ToString());
+        dataCore.groupedData.playerData.SetPosition(savePostion);
         SaveSystem.SaveGameData(dataCore.groupedData.slot);
 
     }

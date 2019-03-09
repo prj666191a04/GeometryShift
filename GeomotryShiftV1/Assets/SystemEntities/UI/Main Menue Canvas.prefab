@@ -539,6 +539,7 @@ MonoBehaviour:
     type: 3}
   slotSelectorN: {fileID: 3186373339940946338, guid: d6fb191451f7009408cda49b9ccda488,
     type: 3}
+  continueButton: {fileID: 4200911039427281474}
 --- !u!1 &5142703617502476398
 GameObject:
   m_ObjectHideFlags: 0
@@ -704,7 +705,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.39600003, y: 0.3552406}
   m_AnchorMax: {x: 0.5692484, y: 0.4113798}
-  m_AnchoredPosition: {x: 0.49996948, y: -0.0000076293945}
+  m_AnchoredPosition: {x: 0.49996948, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7684292791016371970
