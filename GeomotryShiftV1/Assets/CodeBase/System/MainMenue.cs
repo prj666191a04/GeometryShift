@@ -24,6 +24,7 @@ public class MainMenue : MonoBehaviour
         else
         {
             continueButton.enabled = false;
+            continueButton.GetComponent<Image>().color = Color.red;
         }
     }
 

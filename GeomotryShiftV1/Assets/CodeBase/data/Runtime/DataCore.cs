@@ -9,7 +9,7 @@ using System;
 [System.Serializable]
 public class DataCore 
 {
-    public static int levelCount = 11;
+    public static int levelCount = 15;
 
     [SerializeField]
     public GroupedData groupedData;
@@ -117,6 +117,16 @@ public class Leveldata {
     private int compleeteCode;
     [SerializeField]
     private int timesCompleeted;
+
+    public int GetCompleetedCode()
+    {
+        return compleeteCode;
+    }
+
+    public int GetTimesCompleeted()
+    {
+        return timesCompleeted;
+    }
 
     public int GetId()
     {
