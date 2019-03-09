@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿//Author Atilla puskas
+//Description: enables interactions for objects of type CInteractable
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

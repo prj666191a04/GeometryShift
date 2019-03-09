@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//Author Atilla puskas
+//Description: a base class to be used for all movement scripts in the game
+
 
 public class CMotor : MonoBehaviour {
 
@@ -11,21 +14,11 @@ public class CMotor : MonoBehaviour {
     protected CController controller_;
     
 
-    private void FixedUpdate()
-    {
-        
-    }
-    private void Update()
-    {
-        
-    }
-
-
     public virtual void SetPhysics(Rigidbody phys)
-   {
+    {
         rBody = phys;
         ConfigurePhysics();
-   }
+    }
    
     public virtual void CustomInput()
     {

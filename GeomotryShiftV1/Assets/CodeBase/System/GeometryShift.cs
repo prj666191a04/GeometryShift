@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿//Author Atilla puskas
+//Description: A main script to intilize the game and keep track of certin values for fast acsses from other scripts
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;

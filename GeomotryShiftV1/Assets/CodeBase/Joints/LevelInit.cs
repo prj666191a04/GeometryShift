@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿//Author Atilla puskas
+//Description: initializes a level and places the configured character on it.
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

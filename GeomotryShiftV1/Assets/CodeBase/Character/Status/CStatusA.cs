@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿//Author Atilla puskas
+//Description: a basic implementation of a status
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

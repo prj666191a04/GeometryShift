@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//Author Atilla puskas
+//Description: controls for an overlay ui to be used in a level
 
 public class LevelOverlayUI : MonoBehaviour
 {

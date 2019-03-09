@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿//Author Atilla puskas
+//Description: keeps track of play time
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

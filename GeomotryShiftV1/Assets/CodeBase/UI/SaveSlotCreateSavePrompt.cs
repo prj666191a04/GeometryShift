@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿//Author Atilla puskas
+//Description: behavoir for creating a new save file
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;

@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿//Author Atilla puskas
+//Description: a configuration script for a specific level type
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

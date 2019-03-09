@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿//Author Atilla puskas
+//Description: base class for attributes of a overlayUI
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

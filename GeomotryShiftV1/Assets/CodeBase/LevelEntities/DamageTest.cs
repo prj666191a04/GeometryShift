@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿//Author Atilla puskas
+//Description: used to test the damage system
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

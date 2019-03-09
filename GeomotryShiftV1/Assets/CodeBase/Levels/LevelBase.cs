@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿//Author Atilla puskas
+//Description: Base level class
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

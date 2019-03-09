@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿//Author Atilla puskas
+//Description: a basic obsticle for the player to avoid
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,8 +13,6 @@ public class Sdebris : MonoBehaviour
     public int maxTime = 3;
     bool deathTriggered = false;
     float transparancy;
-
-
 
     private void OnTriggerEnter(Collider other)
     {

@@ -1,4 +1,8 @@
-﻿using System;
+﻿//Author Atilla puskas
+//Description: The main controling object for the character, sends information to the motors
+
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

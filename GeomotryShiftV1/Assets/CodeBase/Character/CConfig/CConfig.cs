@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿//Author Atilla puskas
+//Description: Base class use to configure a character instance for use
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;

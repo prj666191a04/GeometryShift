@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿//Author Atilla puskas
+//Description: overriden logic specificly for the exit tab of the pause menue
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;

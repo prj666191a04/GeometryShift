@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿//Author, Written by Harley Sims updated by Atilla puskas
+//Description: Saves game data to disk
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;

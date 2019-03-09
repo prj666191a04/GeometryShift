@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿//Author Atilla puskas
+//Description: Recives messages from save slots
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;

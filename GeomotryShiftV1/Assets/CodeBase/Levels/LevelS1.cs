@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿//Author Atilla puskas
+//Description: script for a specific level
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

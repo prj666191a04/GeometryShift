@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿//Author Harley Sims
+//Description: used to compleete a level on contact
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

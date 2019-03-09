@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿//Author Atilla puskas
+//Description: a motor that clamps the charachter to the screen for a specific kind of gameplay expeeriance
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿//Author Atilla puskas
+//Description: Sample demontration of how to compleete a level by non conventional means
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

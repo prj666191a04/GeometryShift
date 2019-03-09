@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿//Author Atilla puskas
+//Description: a placeholder configuration used as an example for other group members to referance
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

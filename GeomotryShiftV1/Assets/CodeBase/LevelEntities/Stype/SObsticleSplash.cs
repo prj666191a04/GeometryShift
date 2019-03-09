@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿//Author Atilla puskas
+//Description: a composite obsticle for the player to avoid
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿//Author Atilla puskas
+//Description: a basic 3 direction movement script based on unity physics
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

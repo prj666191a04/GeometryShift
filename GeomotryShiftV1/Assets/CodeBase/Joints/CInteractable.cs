@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿//Author Atilla puskas
+//Description: base class for interactable objects
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

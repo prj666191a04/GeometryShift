@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿//Author Atilla puskas
+//Description: Collects horizontal and verticle input from the game
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
