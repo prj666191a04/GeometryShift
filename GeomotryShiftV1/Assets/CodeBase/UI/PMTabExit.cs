@@ -39,6 +39,8 @@ public class PMTabExit : PMTab
         else
         {
             LevelLoader.instance.ReturnToMainMenue();
+            LevelLoader.instance.AutoSave();
+            GeometryShift.instance.StopSessionTimer();
             GeometryShift.instance.pauseMenue.Hide();
             GeometryShift.instance.pauseMenueActive = false;
             Time.timeScale = 1;  

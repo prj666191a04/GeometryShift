@@ -31,7 +31,6 @@ public class testConfig1 : CConfig
         cc.motorPool[1].enabled = false;
 
         player.AddComponent<CStatusA>();
-        Debug.Log("Character Ready");
         //temporary
         //PlayerReady(player);
 

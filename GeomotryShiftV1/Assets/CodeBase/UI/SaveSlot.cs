@@ -89,7 +89,7 @@ public class SaveSlot : MonoBehaviour
             saveData = SaveSystem.LoadGameData(slotId);
             nameText.text = saveData.playerData.name;
             System.TimeSpan time = System.TimeSpan.FromSeconds(saveData.playerData.playTime);
-            string timeString = time.ToString(@"hh\:mm\:ss\:fff");
+            string timeString = time.ToString(@"hh\:mm\:ss");
             playTime.text = "Play time: " + timeString;
             dataText.enabled = false;
             hasData = true;

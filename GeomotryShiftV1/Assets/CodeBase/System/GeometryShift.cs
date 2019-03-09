@@ -22,6 +22,7 @@ public class GeometryShift : MonoBehaviour
     public PMTopLevel pauseMenue;
     public bool pauseMenueActive = false;
 
+    public SessionTimer sessionTimer;
 
     //Data
     private string dataPath;
@@ -47,6 +48,15 @@ public class GeometryShift : MonoBehaviour
     public GameObject loadedUiSet;
 
     public InteractionUI interactionUI;
+
+    public void StartSessionTimer()
+    {
+        sessionTimer.enabled = true;
+    }
+    public void StopSessionTimer()
+    {
+        sessionTimer.enabled = false;
+    }
 
     public string GetDataPath()
     {
@@ -159,6 +169,7 @@ public class GeometryShift : MonoBehaviour
     {
         Application.Quit();
     }
+
 
     private void SystemInput()
     {

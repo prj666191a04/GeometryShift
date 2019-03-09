@@ -70,6 +70,9 @@ public class SaveSlotCreateSavePrompt : MonoBehaviour
             DataCore newDatacore = new DataCore(newGroupedData);
 
             LevelLoader.instance.InitWorldState(newDatacore);
+            GeometryShift.instance.StartSessionTimer();
+            LevelLoader.freshSave = true;
+            Debug.LogWarning("firstINit");
             LevelLoader.instance.LoadWorldMap();
         }
         else

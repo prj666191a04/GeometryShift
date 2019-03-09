@@ -24,7 +24,7 @@ public class CStatusA : CStatus
 
     public override void Damage(float ammount)
     {
-        if(value_ > 0)
+        if(value_ - ammount > 0)
         {
             value_ -= ammount;
         }

@@ -14,6 +14,7 @@ public class LevelLoader : MonoBehaviour
     public static LevelLoader instance;
     public static Vector3 levelExitPoint;
     public static bool initialBoot = true;
+    public static bool freshSave = false;
 
     //place holder in future custom type may be needed for world state
     private DataCore dataCore;
@@ -21,7 +22,7 @@ public class LevelLoader : MonoBehaviour
     public Transform EnvironmentContainer;
     public GameObject openWorldPreFab;
     private GameObject loadedEnvironment;
-    
+    private GameObject playerGameObject;
 
     //Data related functions
 
@@ -41,6 +42,14 @@ public class LevelLoader : MonoBehaviour
     public void SetGroupedData(GroupedData data)
     {
         dataCore.groupedData = data;
+    }
+    public void AutoSave()
+    {
+        Debug.Log("AutoSave called");
+        dataCore.groupedData.playerData.playTime = GeometryShift.instance.sessionTimer.EndSession();
+        dataCore.groupedData.playerData.SetPosition(GeometryShift.playerStatus.transform.position);
+        SaveSystem.SaveGameData(dataCore.groupedData.slot);
+
     }
 
     //^Data related functions
@@ -94,9 +103,7 @@ public class LevelLoader : MonoBehaviour
 
         GeometryShift.instance.StateChange(GeometryShift.SystemState.WorldMap);
         UpdateLevelStatus(id, code);
-        //TODO: Call auto save, (not yet implemented)
-        //Possible Temporary
-        SaveSystem.SaveGameData(dataCore.groupedData.slot);
+        AutoSave();      
     }
 
     private void ReturnFromFailedLevel()
@@ -125,11 +132,9 @@ public class LevelLoader : MonoBehaviour
 
     public void LoadLevel(GameObject Level)
     {
-        Debug.Log("LevelLoader.cs " + System.Environment.NewLine + "Starting levelLoad of " + Level.name);
         GeometryShift.instance.StateChange(GeometryShift.SystemState.Loading);
         UnloadWorld();
         loadedEnvironment = GameObject.Instantiate(Level, EnvironmentContainer);
-        Debug.Log("LevelLoader.cs " + System.Environment.NewLine + "finished levelLoad of " + Level.name);
         GeometryShift.instance.StateChange(GeometryShift.SystemState.InLevel);
         if (OnLevelLoaded != null)
         {
