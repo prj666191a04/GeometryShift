@@ -33,13 +33,13 @@ public class BiMovementForcedB : CMotor
         if (Physics.Raycast(rBody.transform.position, rBody.transform.TransformDirection(Vector3.right), rayDistance))
         {
             Debug.DrawRay(rBody.transform.position, rBody.transform.TransformDirection(Vector3.right) * rayDistance, Color.yellow);
-            Debug.Log("Did Hit");
+           // Debug.Log("Did Hit");
             availableJump = true;
         }
         else
         {
             Debug.DrawRay(rBody.transform.position, rBody.transform.TransformDirection(Vector3.right) * rayDistance, Color.white);
-            Debug.Log("Did not Hit");
+           // Debug.Log("Did not Hit");
         }
 
         //movementVector.y = Input.GetAxis("Vertical") * jumpStrength_;
