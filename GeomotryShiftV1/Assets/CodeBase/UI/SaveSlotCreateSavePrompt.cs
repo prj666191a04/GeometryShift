@@ -16,7 +16,14 @@ public class SaveSlotCreateSavePrompt : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        nameField.characterLimit = maxChars;         
+        nameField.characterLimit = maxChars;
+        nameField.Select();
+        nameField.ActivateInputField();
+    }
+    private void OnEnable()
+    {
+        nameField.Select();
+        nameField.ActivateInputField();
     }
 
     public bool ValidateName()

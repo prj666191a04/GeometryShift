@@ -8,10 +8,11 @@ public class MainMenue : MonoBehaviour
     public string presistantDataPath;
 
     public GameObject slotSelector;
+    public GameObject slotSelectorN;
 
     private void Start()
     {
-       
+        
     }
 
     public void LoadWorld()
@@ -27,9 +28,8 @@ public class MainMenue : MonoBehaviour
     //tmp
     public void NewGameBtn()
     {
-        CreateNewSaveSlot(0, "Atilla");
-        LevelLoader.instance.LoadWorldMap();
-
+        GeometryShift.instance.DistroyLoadedUISet();
+        GeometryShift.instance.loadedUiSet = Instantiate(slotSelectorN, GeometryShift.instance.activeUIContainer.transform);
     }
     //tmp
     public void ContinueBtn()

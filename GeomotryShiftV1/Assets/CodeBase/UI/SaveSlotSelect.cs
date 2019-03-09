@@ -1,18 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class SaveSlotSelect : MonoBehaviour
 {
     public GameObject yesNoWindow;
     public GameObject newGameWindow;
+    
     private SaveSlotYesNoPrompt prompt;
     private SaveSlotCreateSavePrompt namePrompt;
+    public TMP_Text heading;
 
     public bool loadLevel = true;
 
     private void Start()
     {
+        if(loadLevel)
+        {
+            heading.text = "LOAD GAME";
+        }
+        else
+        {
+            heading.text = "NEW GAME";
+        }
+
         prompt = yesNoWindow.GetComponent<SaveSlotYesNoPrompt>();
         namePrompt = newGameWindow.GetComponent<SaveSlotCreateSavePrompt>();
     }
@@ -53,6 +65,11 @@ public class SaveSlotSelect : MonoBehaviour
         newGameWindow.SetActive(true);
         namePrompt.saveSlot = slot;
         
+    }
+
+    public void BackToMain()
+    {
+        GeometryShift.instance.StateChange(GeometryShift.SystemState.MainMenue);
     }
 
 }

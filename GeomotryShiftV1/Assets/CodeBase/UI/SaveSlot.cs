@@ -22,6 +22,7 @@ public class SaveSlot : MonoBehaviour
     public Color targetTextColor;
     public Color TargetIconColor;
 
+
     public GroupedData saveData;
 
     public int slotId;
@@ -54,11 +55,11 @@ public class SaveSlot : MonoBehaviour
                 if (hasData)
                 {
                     slotSelector.promptActive = true;
-                    slotSelector.AskQuestion("Start game?... ", saveData);
+                    slotSelector.AskQuestion("Start game with save slot " + (slotId +1).ToString() +" ?", saveData);
                 }
                 else
                 {
-                    Debug.LogError("no data");
+                    Bar.color = Color.red;
                 }
             }
             else
