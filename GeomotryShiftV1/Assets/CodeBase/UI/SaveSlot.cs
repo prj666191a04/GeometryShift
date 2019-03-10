@@ -77,6 +77,7 @@ public class SaveSlot : MonoBehaviour
                 }
                 else
                 {
+                    SystemSounds.instance.acUI.Play();
                     slotSelector.NewGame(slotId);
                 }
             }
