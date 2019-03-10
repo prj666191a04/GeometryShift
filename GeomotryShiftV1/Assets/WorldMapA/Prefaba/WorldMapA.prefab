@@ -1355,17 +1355,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2582149145111117307}
     m_Modifications:
-    - target: {fileID: 522660906222199462, guid: df6e9076ce98610408253fe4c1da5dcf,
-        type: 3}
-      propertyPath: interactText_
-      value: Start Level 01
-      objectReference: {fileID: 0}
-    - target: {fileID: 522660906222199462, guid: df6e9076ce98610408253fe4c1da5dcf,
-        type: 3}
-      propertyPath: levelObject
-      value: 
-      objectReference: {fileID: 2671600642174450648, guid: 2e05779a954ad2941bbdced9b0f7c93d,
-        type: 3}
     - target: {fileID: 1409143273414830148, guid: df6e9076ce98610408253fe4c1da5dcf,
         type: 3}
       propertyPath: m_Name
@@ -1426,6 +1415,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 522660906222199462, guid: df6e9076ce98610408253fe4c1da5dcf,
+        type: 3}
+      propertyPath: interactText_
+      value: Start Level 01
+      objectReference: {fileID: 0}
+    - target: {fileID: 522660906222199462, guid: df6e9076ce98610408253fe4c1da5dcf,
+        type: 3}
+      propertyPath: levelObject
+      value: 
+      objectReference: {fileID: 6168756864241128122, guid: 022b2989f06b5e84a97358a99a59991e,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df6e9076ce98610408253fe4c1da5dcf, type: 3}
 --- !u!4 &1861119526364613780 stripped

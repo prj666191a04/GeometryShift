@@ -21,7 +21,7 @@ public class LevelLoader : MonoBehaviour
     public static bool freshSave = false;
 
     //place holder in future custom type may be needed for world state
-    private DataCore dataCore;
+    public DataCore dataCore;
 
     public Transform EnvironmentContainer;
     public GameObject openWorldPreFab;
@@ -40,7 +40,7 @@ public class LevelLoader : MonoBehaviour
     }
     public DataCore GetDataCore()
     {
-        return dataCore;
+       return dataCore;
     }
 
     public void SetGroupedData(GroupedData data)

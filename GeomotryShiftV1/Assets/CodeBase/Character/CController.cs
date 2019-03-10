@@ -146,6 +146,8 @@ public class CController : MonoBehaviour {
     {
         if (!isDead)
         {
+            SystemSounds.instance.EffectsHit();
+            SystemSounds.instance.EffectDeath();
             isDead = true;
             meshRenderer.enabled = false;
             deathPs.Emit(100);
@@ -155,6 +157,7 @@ public class CController : MonoBehaviour {
     void Hit()
     {
         hitPs.Emit(5);
+        SystemSounds.instance.EffectsHit();
     }
     public void Respawn(Vector3 postion, bool worldspace = false)
     {

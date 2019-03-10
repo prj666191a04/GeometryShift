@@ -45,7 +45,7 @@ public class LevelInit : MonoBehaviour
                 LevelLoader.initialBoot = false;
                 if (!LevelLoader.freshSave && mainMap)
                 {
-                    spawnPoint.position = LevelLoader.instance.GetDataCore().groupedData.playerData.GetPosition();
+                    spawnPoint.position = LevelLoader.instance.dataCore.groupedData.playerData.GetPosition();
                     Debug.Log("USING SAVED SPAWN POINT");
                 }
                 else

@@ -10,10 +10,15 @@ using UnityEngine;
 public class SystemSounds : MonoBehaviour
 {
     public AudioSource acUI;
+    public AudioSource acEffects;
+    public AudioClip deathEffect1;
     public AudioClip uiClick;
     public AudioClip uiError;
     public AudioClip uiAdvance;
     public AudioClip uiRollOver;
+    
+
+    public AudioClip effectsHit;
 
     public static SystemSounds instance;
     private void Awake()
@@ -37,5 +42,12 @@ public class SystemSounds : MonoBehaviour
     {
         acUI.PlayOneShot(uiRollOver);
     }
-     
+    public void EffectsHit()
+    {
+        acEffects.PlayOneShot(effectsHit);
+    }
+    public void EffectDeath()
+    {
+        acEffects.PlayOneShot(deathEffect1);
+    }
 }

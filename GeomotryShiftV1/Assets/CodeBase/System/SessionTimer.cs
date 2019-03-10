@@ -12,7 +12,7 @@ public class SessionTimer : MonoBehaviour
     // Start is called before the first frame update
     public void Init()
     {
-        SessionTime = LevelLoader.instance.GetDataCore().groupedData.playerData.playTime;
+        SessionTime = LevelLoader.instance.dataCore.groupedData.playerData.playTime;
     }
     private void OnDisable()
     {

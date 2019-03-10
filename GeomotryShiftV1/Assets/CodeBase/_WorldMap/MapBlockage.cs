@@ -17,9 +17,9 @@ public class MapBlockage : MonoBehaviour
     {
         mat = GetComponent<MeshRenderer>().material;
         targetColor = mat.color;
-        if (LevelLoader.instance.GetDataCore().groupedData.worldState.levelState[levelId].GetCompleetedCode() >= 0)
+        if (LevelLoader.instance.dataCore.groupedData.worldState.levelState[levelId].GetCompleetedCode() >= 0)
         {
-            Debug.Log(LevelLoader.instance.GetDataCore().groupedData.worldState.levelState[levelId].GetCompleetedCode());
+            Debug.Log(LevelLoader.instance.dataCore.groupedData.worldState.levelState[levelId].GetCompleetedCode());
             Destroy(this.gameObject);
         }
     }
