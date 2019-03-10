@@ -14,18 +14,16 @@ public class MainMenue : MonoBehaviour
     public GameObject slotSelectorN;
 
     public Button continueButton;
+    bool continueHasData;
 
     private void Start()
     {
-        if(HasData())
-        {
-            continueButton.enabled = true;
-        }
-        else
-        {
-            continueButton.enabled = false;
+        continueHasData = true;
+        continueHasData = HasData();
+            if(!continueHasData)
+            { 
             continueButton.GetComponent<Image>().color = Color.red;
-        }
+            }
     }
 
 
@@ -43,9 +41,16 @@ public class MainMenue : MonoBehaviour
     //tmp
     public void ContinueBtn()
     {
-
-        GeometryShift.instance.DistroyLoadedUISet();      
-        GeometryShift.instance.loadedUiSet = Instantiate(slotSelector, GeometryShift.instance.activeUIContainer.transform);
+        if (continueHasData)
+        {
+            SystemSounds.instance.UIClick();
+            GeometryShift.instance.DistroyLoadedUISet();
+            GeometryShift.instance.loadedUiSet = Instantiate(slotSelector, GeometryShift.instance.activeUIContainer.transform);
+        }
+        else
+        {
+            SystemSounds.instance.UIError();
+        }
     }
 
 
