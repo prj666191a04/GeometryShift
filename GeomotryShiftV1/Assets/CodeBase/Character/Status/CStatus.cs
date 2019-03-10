@@ -8,7 +8,9 @@ using UnityEngine;
 public abstract class CStatus : MonoBehaviour
 {
     public delegate void DeathDel(int method);
+    public delegate void HitDel();
     public static event DeathDel OnPlayerDeath;
+    public static event HitDel OnPlayerHit;
 
     public float value_;
     public int maxValue_;
@@ -23,11 +25,19 @@ public abstract class CStatus : MonoBehaviour
     public abstract void Reset();
 
 
-    public void Die(int method = 0)
+    protected void Die(int method = 0)
     {
         if(OnPlayerDeath != null)
         {
             OnPlayerDeath(method);
+        }
+    }
+
+   protected void HitAnimation()
+    {
+        if(OnPlayerHit != null)
+        {
+            OnPlayerHit();
         }
     }
     

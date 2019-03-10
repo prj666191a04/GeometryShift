@@ -12,6 +12,7 @@ public class CController : MonoBehaviour {
     MeshRenderer meshRenderer;
     BoxCollider mainColider;
     public ParticleSystem deathPs;
+    public ParticleSystem hitPs;
     public float h;
     public float v;
     public CMotor motor;
@@ -41,11 +42,13 @@ public class CController : MonoBehaviour {
     }
     void SubEvents()
     {
+        CStatus.OnPlayerHit += Hit;
         CStatus.OnPlayerDeath += Die;
     }
     void UnsubEvents()
     {
         CStatus.OnPlayerDeath -= Die;
+        CStatus.OnPlayerHit -= Hit;
     }
     //Can be removed later for testing only
     void DefaultInitialization()
@@ -149,7 +152,10 @@ public class CController : MonoBehaviour {
             DisableMovement();
         }
     }
-
+    void Hit()
+    {
+        hitPs.Emit(5);
+    }
     public void Respawn(Vector3 postion, bool worldspace = false)
     {
         isDead = false;

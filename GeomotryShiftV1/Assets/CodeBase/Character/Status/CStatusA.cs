@@ -30,6 +30,7 @@ public class CStatusA : CStatus
         if(value_ - ammount > 0)
         {
             value_ -= ammount;
+            HitAnimation();
         }
         else
         {
