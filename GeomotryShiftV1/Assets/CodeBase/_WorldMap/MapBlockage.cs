@@ -9,19 +9,36 @@ public class MapBlockage : MonoBehaviour
 {
     public int levelId;
     bool compleete = false;
+
+    private Color targetColor;
+    private Material mat;
     // Start is called before the first frame update
     void Start()
     {
-        if(LevelLoader.instance.GetDataCore().groupedData.worldState.levelState[levelId].GetCompleetedCode() >= 0)
+        mat = GetComponent<MeshRenderer>().material;
+        targetColor = mat.color;
+        if (LevelLoader.instance.GetDataCore().groupedData.worldState.levelState[levelId].GetCompleetedCode() >= 0)
         {
             Debug.Log(LevelLoader.instance.GetDataCore().groupedData.worldState.levelState[levelId].GetCompleetedCode());
             Destroy(this.gameObject);
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (mat.color != targetColor)
+        {
+            mat.color = Color.Lerp(mat.color, targetColor, Time.deltaTime * 3);
+        }
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            mat.color = Color.red;
+        }
+    }
+
+
 }
