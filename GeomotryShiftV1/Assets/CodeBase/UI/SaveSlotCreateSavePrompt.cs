@@ -56,6 +56,7 @@ public class SaveSlotCreateSavePrompt : MonoBehaviour
     {
         if (ValidateName())
         {
+            SystemSounds.instance.UIAdavance();
             string name = nameText.text;
 
             Leveldata[] newLevelData = new Leveldata[DataCore.levelCount];

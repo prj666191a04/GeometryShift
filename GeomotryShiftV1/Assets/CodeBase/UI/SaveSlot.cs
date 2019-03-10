@@ -59,9 +59,11 @@ public class SaveSlot : MonoBehaviour
                 {
                     slotSelector.promptActive = true;
                     slotSelector.AskQuestion("Start game with save slot " + (slotId +1).ToString() +" ?", saveData);
+                    SystemSounds.instance.acUI.Play();
                 }
                 else
                 {
+                    SystemSounds.instance.UIError();
                     Bar.color = Color.red;
                 }
             }
@@ -70,6 +72,7 @@ public class SaveSlot : MonoBehaviour
                 if(hasData)
                 {
                     slotSelector.promptActive = true;
+                    SystemSounds.instance.acUI.Play();
                     slotSelector.AskQuestion("Overwrite save for slot " +(slotId+1).ToString()+"?"+ System.Environment.NewLine + "Warning: this cannot be undone", saveData);
                 }
                 else
@@ -121,6 +124,7 @@ public class SaveSlot : MonoBehaviour
         if (!slotSelector.promptActive)
         {
             selected.SetUnselected();
+            SystemSounds.instance.UIRollOver();
             targetBarColor = slotSelector.barSelectedColor;
             TargetIconColor = slotSelector.iconSelectedColor;
             targetTextColor = slotSelector.textSelectedColor;

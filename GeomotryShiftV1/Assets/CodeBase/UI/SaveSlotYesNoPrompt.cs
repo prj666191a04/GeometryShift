@@ -18,6 +18,7 @@ public class SaveSlotYesNoPrompt : MonoBehaviour
 
     public void NoClick()
     {
+        SystemSounds.instance.UIClick();
         selector.promptActive = false;
         this.gameObject.SetActive(false);
     }
@@ -26,6 +27,7 @@ public class SaveSlotYesNoPrompt : MonoBehaviour
     {
         if (load)
         {
+            SystemSounds.instance.UIAdavance();
             SaveSystem.InitilizeDataStructure();
             LevelLoader.instance.SetGroupedData(dataToLoad);
             GeometryShift.instance.StartSessionTimer();
@@ -35,6 +37,7 @@ public class SaveSlotYesNoPrompt : MonoBehaviour
         }//overwrite
         else
         {
+            SystemSounds.instance.UIClick();
             //call New Game Window
             selector.NewGame(dataToLoad.slot);
             this.gameObject.SetActive(false);
