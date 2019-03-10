@@ -84,6 +84,7 @@ MonoBehaviour:
     type: 3}
   spawnPoint: {fileID: 8008514499331089692}
   parentObject: {fileID: 2671600642174450648}
+  mainMap: 0
   cconfig: {fileID: 3720899935461838645}
 --- !u!114 &2146991364845831773
 MonoBehaviour:
@@ -97,6 +98,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f9a6a27d4172604d906373221500ed5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layerSet0:
+    serializedVersion: 2
+    m_Bits: 0
+  layerSet1:
+    serializedVersion: 2
+    m_Bits: 0
+  layerSet2:
+    serializedVersion: 2
+    m_Bits: 0
+  layerSet3:
+    serializedVersion: 2
+    m_Bits: 0
   levelId_: 0
   cameraPoint: {fileID: 4307212763821718065}
 --- !u!114 &6800637858031911303
@@ -108,7 +121,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2671600642174450648}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60e27392c5ec54345ac557e6466de8ba, type: 3}
+  m_Script: {fileID: 11500000, guid: 4caa709ffbec79340b556a721e8133ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &3720899935461838645
