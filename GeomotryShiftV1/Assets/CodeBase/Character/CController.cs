@@ -117,15 +117,21 @@ public class CController : MonoBehaviour {
     {
         if (!disabled)
         {
+            motor.enabled = false;
+            Destroy(rBody);
             mainColider.enabled = false;
-            rBody.Sleep();
             disabled = true;
         }
     }
     void EnableMovement()
     {
-        if(disabled)
+        if (disabled)
         {
+            //if (rBody)
+            //    Destroy(rBody);
+            rBody = gameObject.AddComponent<Rigidbody>();
+            motor.enabled = true;
+            motor.SetPhysics(rBody);
             mainColider.enabled = true;
             rBody.WakeUp();
             disabled = false;
