@@ -13,6 +13,7 @@ public class CController : MonoBehaviour {
     BoxCollider mainColider;
     public ParticleSystem deathPs;
     public ParticleSystem hitPs;
+    public ParticleSystem dashPs;
     public float h;
     public float v;
     public CMotor motor;
@@ -66,6 +67,7 @@ public class CController : MonoBehaviour {
             this.rBody.useGravity = true;
         }
         motor.SetPhysics(rBody);
+        motor.controller_ = this;
     }
     //used to set the first motor for the level
     public void AssignMotor(CMotor m)
@@ -81,6 +83,7 @@ public class CController : MonoBehaviour {
             motor.enabled = false;
             motor = motorPool[index];
             motor.SetPhysics(rBody);
+            motor.controller_ = this;
             motor.enabled = true;
         }
         else
@@ -99,6 +102,7 @@ public class CController : MonoBehaviour {
         }
         meshRenderer = GetComponent<MeshRenderer>();
         mainColider = GetComponent<BoxCollider>();
+        motor.controller_ = this;
        
 	}
 	// Update is called once per frame
@@ -159,6 +163,12 @@ public class CController : MonoBehaviour {
         hitPs.Emit(5);
         SystemSounds.instance.EffectsHit();
     }
+
+    public void DashEffect()
+    {
+        dashPs.Emit(30);
+    }
+
     public void Respawn(Vector3 postion, bool worldspace = false)
     {
         isDead = false;

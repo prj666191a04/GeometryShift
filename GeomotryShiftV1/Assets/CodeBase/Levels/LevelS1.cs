@@ -112,7 +112,7 @@ public class LevelS1 : LevelBase
             Instantiate(obsticleType1, spawnPointBR.transform.position, spawnRot, mapFlow.transform);
         }
         yield return new WaitForSeconds(10);
-        //base.AcknowledgeLevelCompletion();
+        base.AcknowledgeLevelCompletion();
         yield break;
 
         

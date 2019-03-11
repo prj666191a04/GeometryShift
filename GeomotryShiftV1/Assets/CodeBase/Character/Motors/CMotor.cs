@@ -11,7 +11,7 @@ public class CMotor : MonoBehaviour {
     public float h_ = 0f;
     public float v_ = 0f;
     protected Rigidbody rBody;
-    protected CController controller_;
+    public CController controller_;
     
 
     public virtual void SetPhysics(Rigidbody phys)

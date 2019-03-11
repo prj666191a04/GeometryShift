@@ -59,6 +59,7 @@ public class FloatMotorA : CMotor
             if (dir == Vector3.zero)
                 dir = transform.forward;
 
+            controller_.DashEffect();
             transform.position = transform.position + dir * 4;
         }
 
