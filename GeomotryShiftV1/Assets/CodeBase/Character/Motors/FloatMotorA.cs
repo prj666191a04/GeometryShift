@@ -80,7 +80,7 @@ public class FloatMotorA : CMotor
             }
             else
             {
-                rBody.MovePosition(transform.position + moveDirection * 0.3f);
+                rBody.MovePosition(transform.position + moveDirection * 0.2f);
             }
 
         }
