@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d545c850967d1d41be19e88155ecb32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obsticle: {fileID: 9029967013825840523, guid: 85b2ea8698ccfff4cb874a6914040187,
+  obsticle: {fileID: 6203089242671580772, guid: 3d04dea424784e94a90b8cf6ca0988f3,
     type: 3}
   ammount: 10
   speed: 10

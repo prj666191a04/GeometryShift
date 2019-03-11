@@ -13,6 +13,7 @@ public class Sdebris : MonoBehaviour
     public int maxTime = 3;
     bool deathTriggered = false;
     float transparancy;
+    public Rigidbody rBody;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -47,7 +48,7 @@ public class Sdebris : MonoBehaviour
     }
 
 
-    void Tick()
+    protected virtual void Tick()
     {
         timeAlive += Time.deltaTime;
         if (timeAlive > maxTime && !deathTriggered)
@@ -56,7 +57,7 @@ public class Sdebris : MonoBehaviour
         }
     }
 
-    IEnumerator FadeAway()
+    protected IEnumerator FadeAway()
     {
         deathTriggered = true;
         while(transparancy > 0)

@@ -68,7 +68,7 @@ public class FloatMotorA : CMotor
 
     void FixedUpdate()
     {
-        //MoveCharacter();
+        MoveCharacter();
     }
 
 
@@ -97,7 +97,6 @@ public class FloatMotorA : CMotor
     {
         ClampToScreen();
         pos = Camera.main.WorldToViewportPoint(transform.position);
-        MoveCharacter();  
         if (pos.x < 0.0) Debug.Log("left");
         if (1.0 < pos.x) Debug.Log("right");
         if (pos.y < 0.0) Debug.Log("below");

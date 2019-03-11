@@ -12,8 +12,8 @@ public class SmapFlow : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-        //transform.position += Vector3.right * 10 * Time.deltaTime;        
+        transform.position += Vector3.right * 10 * Time.deltaTime;        
     }
 }
