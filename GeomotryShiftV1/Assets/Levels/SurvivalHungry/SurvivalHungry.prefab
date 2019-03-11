@@ -166,8 +166,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51a574fa20380894d801a65470dbeb1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  widthOfLevel: 22
-  lengthOfLevel: 22
   conglomerate: {fileID: 3662933248066076624, guid: 2ae58abebceef5340a4396b4bbb9fe0f,
     type: 3}
   theFood: {fileID: 8712205955633120804, guid: 47de3045c459e6f478ba728429d023bf, type: 3}

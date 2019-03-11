@@ -45,6 +45,8 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
     protected Hashtable timeToPhase;
     protected int phase = 1;
 
+    protected GameObject thePlayer;
+
     protected void LoadEnemiesFromConglomerate()
     {
         Conglomerate temp = conglomerate.gameObject.GetComponent<Conglomerate>();
@@ -83,11 +85,20 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
         boomerangScript.maximumLifespanAllowed = 10;
     }
 
+    protected void SetupThePlayerVariable()
+    {
+
+        thePlayer = GeometryShift.playerStatus.gameObject;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         LoadEnemiesFromConglomerate();
         SetupEnemyDefaultVariables();
+
+        SetupThePlayerVariable();
+        thePlayer.AddComponent<Simple3DMovement>();
 
         timeToPhase = new Hashtable();//unique for each level
 

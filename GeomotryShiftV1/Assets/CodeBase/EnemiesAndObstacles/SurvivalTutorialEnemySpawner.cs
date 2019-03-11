@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class SurvivalTutorialEnemySpawner : SurvivalLevel1EnemySpawner
 {
-
     // Start is called before the first frame update
     void Start()
     {
         LoadEnemiesFromConglomerate();
         SetupEnemyDefaultVariables();
 
+        SetupThePlayerVariable();
+        thePlayer.AddComponent<Simple3DMovement>();
 
         timeToPhase = new Hashtable();//unique for each level
 

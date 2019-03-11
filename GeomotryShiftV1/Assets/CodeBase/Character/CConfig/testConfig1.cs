@@ -24,6 +24,7 @@ public class testConfig1 : CConfig
         
         cc.motorPool = new CMotor[2];
         cc.motorPool[0] = player.AddComponent<TriMovementA>();
+        cc.motorPool[0].enabled = true;
         cc.AssignMotor(cc.motorPool[0]);
         cc.motor.SetPhysics(cc.rBody);
 

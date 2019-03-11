@@ -8,8 +8,6 @@ public class SurvivalHungry : SurvivalLevel1EnemySpawner
     Hunger hungerScript;
     SurvivalFood foodScript;
 
-    GameObject thePlayer;
-
     public static float timeSinceLastAte = 0f;
 
     // Start is called before the first frame update
@@ -20,8 +18,9 @@ public class SurvivalHungry : SurvivalLevel1EnemySpawner
 
         foodScript = theFood.gameObject.GetComponent<SurvivalFood>();
 
-        thePlayer = GeometryShift.playerStatus.gameObject;
+        SetupThePlayerVariable();
         thePlayer.AddComponent<Hunger>();
+        thePlayer.AddComponent<Simple3DMovement>();
         hungerScript = thePlayer.gameObject.GetComponent<Hunger>();
 
         timeToPhase = new Hashtable();//unique for each level
