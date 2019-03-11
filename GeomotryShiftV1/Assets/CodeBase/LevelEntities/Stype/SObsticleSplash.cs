@@ -27,6 +27,10 @@ public class SObsticleSplash : MonoBehaviour
            Destroy(this.gameObject);
         }
     }
+    private void FixedUpdate()
+    {
+        //transform.Rotate(Vector3.up * 100 * Time.deltaTime);
+    }
 
     void Spawn()
     {

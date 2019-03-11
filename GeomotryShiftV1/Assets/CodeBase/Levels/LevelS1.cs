@@ -18,7 +18,7 @@ public class LevelS1 : LevelBase
 
     public GameObject pointTest;
     public GameObject mapFlow;
-
+    Camera mainCam;
     private Coroutine tmpWave;
 
     LevelInit init;
@@ -55,11 +55,12 @@ public class LevelS1 : LevelBase
     // Start is called before the first frame update
     void Start()
     {
+        mainCam = Camera.main;
         mapFlow = GameObject.Find("MapFlow");
         init = GetComponent<LevelInit>();
         Debug.Log("levelS1");
         cameraController = Camera.main.GetComponent<CameraControllerA>();
-        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.scaledPixelWidth, Camera.main.scaledPixelHeight, cameraController.offset.z));
+        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(mainCam.scaledPixelWidth, mainCam.scaledPixelHeight, cameraController.offset.z));
         StartCoroutine(LateStart()); 
     }
 
@@ -146,7 +147,7 @@ public class LevelS1 : LevelBase
     // Update is called once per frame
     void Update()
     {
-        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.scaledPixelWidth, Camera.main.scaledPixelHeight, cameraController.offset.z));
+        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(mainCam.scaledPixelWidth, mainCam.scaledPixelHeight, cameraController.offset.z));
     }
 }
 

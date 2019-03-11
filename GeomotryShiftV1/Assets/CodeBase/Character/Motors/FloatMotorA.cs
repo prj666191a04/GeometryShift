@@ -37,12 +37,13 @@ public class FloatMotorA : CMotor
     {
         controller_ = GetComponent<CController>();
         mapFlow = GameObject.Find("MapFlow").GetComponent<Transform>();
+        screenBoundsCam = Camera.main;
         cameraController = Camera.main.GetComponent<CameraControllerA>();
         transform.forward = Vector3.up;
         targetRotation = transform.rotation;
         doNotPassThrogh = LevelBase.instance.layerSet0;
         teleportMask = LevelBase.instance.layerSet1;
-        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.scaledPixelWidth, Camera.main.scaledPixelHeight, Camera.main.transform.position.z));
+        screenBounds = screenBoundsCam.ScreenToWorldPoint(new Vector3(screenBoundsCam.scaledPixelWidth, screenBoundsCam.scaledPixelHeight, cameraController.offset.z));
 
     }
 
@@ -62,31 +63,34 @@ public class FloatMotorA : CMotor
             controller_.DashEffect();
             transform.position = transform.position + dir * 4;
         }
-
+        //MoveCharacter();
     }
 
     void FixedUpdate()
     {
-        Vector3 moveDirection = new Vector3(h_, v_, 0 );
+        MoveCharacter();
+    }
+
+
+    private void MoveCharacter()
+    {
+        Vector3 moveDirection = new Vector3(h_, v_, 0);
         if (moveDirection != null)
         {
             RaycastHit hitInfo;
             Ray ray = new Ray();
             ray.direction = moveDirection;
             ray.origin = transform.position;
-            if (Physics.Raycast(ray, out hitInfo, 0.3f + 0.5f, doNotPassThrogh))
+            if (Physics.Raycast(ray, out hitInfo, 0.3f + 0.15f, doNotPassThrogh))
             {
                 rBody.MovePosition(transform.position + moveDirection * (hitInfo.distance - 0.5f));
             }
             else
             {
-                rBody.MovePosition(transform.position + moveDirection * 0.2f);
+                rBody.MovePosition(transform.position + moveDirection * 20f * Time.deltaTime);
             }
 
         }
-
-
-
     }
 
     private void LateUpdate()
@@ -104,7 +108,7 @@ public class FloatMotorA : CMotor
     void ClampToScreen()
     {
         
-        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.scaledPixelWidth, Camera.main.scaledPixelHeight, cameraController.offset.z));
+        screenBounds = screenBoundsCam.ScreenToWorldPoint(new Vector3(screenBoundsCam.scaledPixelWidth, screenBoundsCam.scaledPixelHeight, cameraController.offset.z));
         screenBounds.x = screenBounds.x + mapFlow.transform.position.x * -1;
         screenBounds.y = screenBounds.y + mapFlow.transform.position.y * -1;
 
@@ -125,7 +129,7 @@ public class FloatMotorA : CMotor
         
         targetDirection = new Vector3(h_, v_, 0);
         
-        mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, cameraController.offset.z * -1));
+        mouseWorldPos = screenBoundsCam.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, cameraController.offset.z * -1));
 
         Vector3 target = mouseWorldPos;
 
