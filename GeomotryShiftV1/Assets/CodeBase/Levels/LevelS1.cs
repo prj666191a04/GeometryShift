@@ -127,7 +127,6 @@ public class LevelS1 : LevelBase
        Vector3 CR = new Vector3((screenBounds.x * -1) / 2, 0 / 2, 0);
        Vector3 TL = new Vector3(screenBounds.x / 2, (screenBounds.y * -1) / 2, 0);
        Vector3 TR = new Vector3((screenBounds.x * -1) / 2, (screenBounds.y * -1) / 2, 0);
-        
 
         spawnPointBL = Instantiate(pointTest, BL , Quaternion.identity, mapFlow.transform);
         spawnPointBR = Instantiate(pointTest, BR , Quaternion.identity, mapFlow.transform);
@@ -147,7 +146,7 @@ public class LevelS1 : LevelBase
     // Update is called once per frame
     void Update()
     {
-        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(mainCam.scaledPixelWidth, mainCam.scaledPixelHeight, cameraController.offset.z));
+       screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(mainCam.scaledPixelWidth, mainCam.scaledPixelHeight, cameraController.offset.z));
     }
 }
 

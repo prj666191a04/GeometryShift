@@ -68,7 +68,7 @@ public class FloatMotorA : CMotor
 
     void FixedUpdate()
     {
-        MoveCharacter();
+        //MoveCharacter();
     }
 
 
@@ -81,13 +81,13 @@ public class FloatMotorA : CMotor
             Ray ray = new Ray();
             ray.direction = moveDirection;
             ray.origin = transform.position;
-            if (Physics.Raycast(ray, out hitInfo, 0.3f + 0.15f, doNotPassThrogh))
+            if (Physics.Raycast(ray, out hitInfo, 0.3f + (10f * Time.deltaTime), doNotPassThrogh))
             {
                 rBody.MovePosition(transform.position + moveDirection * (hitInfo.distance - 0.5f));
             }
             else
             {
-                rBody.MovePosition(transform.position + moveDirection * 20f * Time.deltaTime);
+                rBody.MovePosition(transform.position + moveDirection * (10f * Time.deltaTime));
             }
 
         }
@@ -97,7 +97,7 @@ public class FloatMotorA : CMotor
     {
         ClampToScreen();
         pos = Camera.main.WorldToViewportPoint(transform.position);
-          
+        MoveCharacter();  
         if (pos.x < 0.0) Debug.Log("left");
         if (1.0 < pos.x) Debug.Log("right");
         if (pos.y < 0.0) Debug.Log("below");
