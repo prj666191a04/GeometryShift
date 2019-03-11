@@ -47,7 +47,10 @@ public class LevelS1 : LevelBase
 
     private void ResetLevel(int method = 0)
     {
-        StopCoroutine(tmpWave);
+        if (tmpWave != null)
+        {
+            StopCoroutine(tmpWave);
+        }
         StartCoroutine(DelayedRestart());
     }
 
@@ -72,7 +75,7 @@ public class LevelS1 : LevelBase
     IEnumerator DelayedRestart()
     {
         yield return new WaitForSeconds(10);
-        GeometryShift.playerStatus.gameObject.GetComponent<CController>().Respawn(init.spawnPoint.position);
+        GeometryShift.playerStatus.gameObject.GetComponent<CController>().Respawn(Vector3.zero);
         yield return new WaitForSeconds(2);
         tmpWave = StartCoroutine(TmpWaveSystem());
 

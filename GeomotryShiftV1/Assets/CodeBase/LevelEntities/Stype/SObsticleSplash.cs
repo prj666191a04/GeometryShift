@@ -41,7 +41,7 @@ public class SObsticleSplash : MonoBehaviour
             ob.transform.parent = this.transform;      
             ob.transform.localRotation = Quaternion.Euler(new Vector3(0, (360 / ammount) * i, 0));
             ob.transform.position = this.transform.position + ob.transform.forward * 1.5f;
-            ob.GetComponent<Rigidbody>().velocity = ob.transform.forward * 10;
+            //ob.GetComponent<Rigidbody>().velocity = ob.transform.forward * 10;
             
         }
     }

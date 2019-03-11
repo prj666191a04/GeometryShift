@@ -27,6 +27,7 @@ public class CStatusA : CStatus
 
     public override void AbsoluteDamage(float ammount)
     {
+        Debug.Log("sbs damage entered");
         if (value_ - ammount > 0)
         {
             value_ -= ammount;
