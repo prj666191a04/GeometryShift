@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿//Author Atilla puskas
+//Description: a basic obsticle for the player to avoid
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,8 +13,7 @@ public class Sdebris : MonoBehaviour
     public int maxTime = 3;
     bool deathTriggered = false;
     float transparancy;
-
-
+    public Rigidbody rBody;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -25,7 +28,7 @@ public class Sdebris : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player") && !deathTriggered)
         {
-            other.gameObject.GetComponent<CStatus>().Damage(1f);
+            GeometryShift.playerStatus.Damage(1f);
             StartCoroutine(FadeAway());
         }
     }
@@ -45,7 +48,7 @@ public class Sdebris : MonoBehaviour
     }
 
 
-    void Tick()
+    protected virtual void Tick()
     {
         timeAlive += Time.deltaTime;
         if (timeAlive > maxTime && !deathTriggered)
@@ -54,7 +57,7 @@ public class Sdebris : MonoBehaviour
         }
     }
 
-    IEnumerator FadeAway()
+    protected IEnumerator FadeAway()
     {
         deathTriggered = true;
         while(transparancy > 0)

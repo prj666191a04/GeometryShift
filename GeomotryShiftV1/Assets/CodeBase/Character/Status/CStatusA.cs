@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿//Author Atilla puskas
+//Description: a basic implementation of a status
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,17 +25,38 @@ public class CStatusA : CStatus
         LerpDsp();
     }
 
-    public override void Damage(float ammount)
+    public override void AbsoluteDamage(float ammount)
     {
-        if(value_ > 0)
+        if (value_ - ammount > 0)
         {
             value_ -= ammount;
+            HitAnimation();
+            StartCoroutine(ActivateIFrames());
         }
         else
         {
             value_ = 0;
             Die();
             Reset();
+        }
+    }
+
+    public override void Damage(float ammount)
+    {
+        if (!iFrame_)
+        {
+            if (value_ - ammount > 0)
+            {
+                value_ -= ammount;
+                HitAnimation();
+                StartCoroutine(ActivateIFrames());
+            }
+            else
+            {
+                value_ = 0;
+                Die();
+                Reset();
+            }
         }
     }
     public override void Recover(float ammount)

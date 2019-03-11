@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿//Author Atilla puskas
+//Description: initializes a level and places the configured character on it.
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +12,7 @@ using UnityEngine;
 /// </summary>
 public class LevelInit : MonoBehaviour
 {
-
+    
     public GameObject playerPrefab;
     public Transform spawnPoint; //this will be replaced with save data later for open world map
     public GameObject parentObject;
@@ -21,21 +25,40 @@ public class LevelInit : MonoBehaviour
     {
         ConfigureSpawnPoint();
         cconfig.SetupCharacter(playerPrefab, spawnPoint, parentObject);
+        if (mainMap)
+        {
+            LevelLoader.instance.AutoSave();
+        }
     }
 
     void ConfigureSpawnPoint()
     {
+
         //if last exit point is not null that means we have exited from a level before and we have not just loaded the save file
-        if(!LevelLoader.initialBoot && mainMap)
-        {
-            spawnPoint.position = LevelLoader.levelExitPoint;
-        }
-        else
-        {
-            LevelLoader.initialBoot = false;
-        }
-        //Todo load player position from save file if it is first load for the session
+            if (!LevelLoader.initialBoot && mainMap)
+            {
+                spawnPoint.position = LevelLoader.levelExitPoint;
+                Debug.Log("LEVEL EXIT POINT");
+            }
+            else
+            {
+                LevelLoader.initialBoot = false;
+                if (!LevelLoader.freshSave && mainMap)
+                {
+                    spawnPoint.position = LevelLoader.instance.dataCore.groupedData.playerData.GetPosition();
+                    Debug.Log("USING SAVED SPAWN POINT");
+                }
+                else
+                {
+                    if(LevelLoader.freshSave)
+                    {
+                        LevelLoader.freshSave = false;
+                    }
+                    Debug.Log("USING DEFAULT SPAWN POINT");
+                }
+            }
     }
+    
 
 
     // Update is called once per frame

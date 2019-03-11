@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿//Author Atilla puskas
+//Description: enables interactions for objects of type CInteractable
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,7 +22,7 @@ public class CInteraction : MonoBehaviour
     private Vector3 pos;
     public Vector3 direction;
     public float distance;
-
+    bool responseGiven = false;
 
     private bool uiSet = false;
 
@@ -28,6 +31,7 @@ public class CInteraction : MonoBehaviour
     void Start()
     {
         distance = maxDistance;
+        //obj = new Collider[3];
     }
 
     // Update is called once per frame
@@ -54,32 +58,34 @@ public class CInteraction : MonoBehaviour
         //    }
 
         //}
-        
-        //TODO: Remove hard coded key
+
+        //TODO: Remove hard coded key and look into using the NonAlloc version of the function instead, if time allows.
+        //Physics.OverlapSphereNonAlloc
         obj = Physics.OverlapSphere(pos, radius, mask);
         if (obj.Length > 0)
         {
-            if(targetObj != obj[0])
+            if(targetObj != obj[0] && !responseGiven)
             {
                 targetObj = obj[0].gameObject.GetComponent<CInteractable>();
-                SetUI();
+                targetObj.Respond();
+                responseGiven = true;
+                Debug.Log("resonseCall");
             }
             if (Input.GetKeyDown(KeyCode.E))
             {
                 targetObj.Trigger();
-                UnsetUI();    
+                UnsetUI();
+                responseGiven = false;
             }       
         }
         else if (targetObj != null)
         {
             targetObj = null;
             UnsetUI();
+            responseGiven = false;
         }
     }
-    void SetUI()
-    {
-        GeometryShift.instance.interactionUI.Apear(targetObj.interactText);
-    }
+
     void UnsetUI()
     {
         GeometryShift.instance.interactionUI.Hide();

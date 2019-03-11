@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿//Author Atilla puskas
+//Description: a placeholder configuration used as an example for other group members to referance
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -31,13 +34,13 @@ public class testConfig1 : CConfig
         cc.motorPool[1].enabled = false;
 
         player.AddComponent<CStatusA>();
-        Debug.Log("Character Ready");
         //temporary
         //PlayerReady(player);
 
         GeometryShift.instance.cameraController.SetTarget(player);
         GeometryShift.instance.cameraController.Init(new Vector3(0f, 13f, -6f));
         GeometryShift.instance.cameraController.LookAt(new Vector3(68.931f, 0f, 0f));
+        GeometryShift.instance.cameraController.borderDistance = 5f;
         
 
     }

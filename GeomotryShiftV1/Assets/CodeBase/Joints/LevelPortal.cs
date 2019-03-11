@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿//Author Atilla puskas
+//Description: a portal to transport the player to levels from the hub world
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,12 +16,14 @@ public class LevelPortal : CInteractable
 
     public override void Trigger()
     {
-        Debug.Log("portal triggered");
         LevelLoader.levelExitPoint = exitLocation.position;
         Debug.Log("exit position set to " + LevelLoader.levelExitPoint);
         LevelLoader.LoadLevelExternalCall(levelObject);
     }
 
-
+    public override void Respond()
+    {
+        GeometryShift.instance.interactionUI.Apear(interactText_);
+    }
 
 }

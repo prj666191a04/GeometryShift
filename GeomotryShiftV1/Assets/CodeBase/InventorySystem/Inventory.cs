@@ -14,8 +14,6 @@ public class TestItem
     public float value = 1f;
 }
 
-
-
 public class Inventory : MonoBehaviour
 {
     //Main inventory variable
@@ -23,7 +21,6 @@ public class Inventory : MonoBehaviour
     public SimpleObjectPool buttonpool;
     public Transform itemContenetPanel;
     public GameObject prefab;
-
 
     //Desc stuff
     public SimpleObjectPool descriptionPool;

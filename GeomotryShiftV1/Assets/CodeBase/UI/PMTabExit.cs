@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿//Author Atilla puskas
+//Description: overriden logic specificly for the exit tab of the pause menue
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -31,6 +34,7 @@ public class PMTabExit : PMTab
     {
         if(GeometryShift.GetSystemState() == GeometryShift.SystemState.InLevel)
         {
+            SystemSounds.instance.acUI.Play();
             LevelBase.instance.TerminateLevelAttempt();
             GeometryShift.instance.pauseMenue.Hide();
             GeometryShift.instance.pauseMenueActive = false;
@@ -38,7 +42,10 @@ public class PMTabExit : PMTab
         }
         else
         {
+            SystemSounds.instance.acUI.Play();
             LevelLoader.instance.ReturnToMainMenue();
+            LevelLoader.instance.AutoSave();
+            GeometryShift.instance.StopSessionTimer();
             GeometryShift.instance.pauseMenue.Hide();
             GeometryShift.instance.pauseMenueActive = false;
             Time.timeScale = 1;  

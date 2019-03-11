@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿//Author Atilla puskas
+//Description: A main script to intilize the game and keep track of certin values for fast acsses from other scripts
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -22,6 +24,7 @@ public class GeometryShift : MonoBehaviour
     public PMTopLevel pauseMenue;
     public bool pauseMenueActive = false;
 
+    public SessionTimer sessionTimer;
 
     //Data
     private string dataPath;
@@ -44,9 +47,18 @@ public class GeometryShift : MonoBehaviour
     public GameObject mainMenuePrefab;
     public GameObject openWorldUiPrefab;
 
-    private GameObject loadedUiSet;
+    public GameObject loadedUiSet;
 
     public InteractionUI interactionUI;
+
+    public void StartSessionTimer()
+    {
+        sessionTimer.enabled = true;
+    }
+    public void StopSessionTimer()
+    {
+        sessionTimer.enabled = false;
+    }
 
     public string GetDataPath()
     {
@@ -91,7 +103,7 @@ public class GeometryShift : MonoBehaviour
         Instantiate(UISet, activeUIContainer);
         
     }
-    private void DistroyLoadedUISet()
+    public void DistroyLoadedUISet()
     {
         if(loadedUiSet != null)
         {
@@ -127,7 +139,7 @@ public class GeometryShift : MonoBehaviour
         {
             Directory.CreateDirectory(dataPath);
         }
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 3; i++)
         {
             if (!File.Exists(dataPath + "/slot" + i.ToString() + ".save"))
             {
@@ -159,6 +171,7 @@ public class GeometryShift : MonoBehaviour
     {
         Application.Quit();
     }
+
 
     private void SystemInput()
     {

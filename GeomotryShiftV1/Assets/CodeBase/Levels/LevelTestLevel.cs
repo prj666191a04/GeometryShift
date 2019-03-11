@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿//Author Atilla puskas
+//Description: testing script to be removed
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

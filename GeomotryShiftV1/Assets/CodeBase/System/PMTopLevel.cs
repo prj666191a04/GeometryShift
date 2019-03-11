@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿//Author Atilla puskas
+//Description: Controls the pause menue
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

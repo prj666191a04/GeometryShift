@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿//Author Atilla puskas
+//Description: script for a specific level
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,7 +18,7 @@ public class LevelS1 : LevelBase
 
     public GameObject pointTest;
     public GameObject mapFlow;
-
+    Camera mainCam;
     private Coroutine tmpWave;
 
     LevelInit init;
@@ -51,11 +55,12 @@ public class LevelS1 : LevelBase
     // Start is called before the first frame update
     void Start()
     {
+        mainCam = Camera.main;
         mapFlow = GameObject.Find("MapFlow");
         init = GetComponent<LevelInit>();
         Debug.Log("levelS1");
         cameraController = Camera.main.GetComponent<CameraControllerA>();
-        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.scaledPixelWidth, Camera.main.scaledPixelHeight, cameraController.offset.z));
+        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(mainCam.scaledPixelWidth, mainCam.scaledPixelHeight, cameraController.offset.z));
         StartCoroutine(LateStart()); 
     }
 
@@ -108,7 +113,7 @@ public class LevelS1 : LevelBase
             Instantiate(obsticleType1, spawnPointBR.transform.position, spawnRot, mapFlow.transform);
         }
         yield return new WaitForSeconds(10);
-        //base.AcknowledgeLevelCompletion();
+        base.AcknowledgeLevelCompletion();
         yield break;
 
         
@@ -122,7 +127,6 @@ public class LevelS1 : LevelBase
        Vector3 CR = new Vector3((screenBounds.x * -1) / 2, 0 / 2, 0);
        Vector3 TL = new Vector3(screenBounds.x / 2, (screenBounds.y * -1) / 2, 0);
        Vector3 TR = new Vector3((screenBounds.x * -1) / 2, (screenBounds.y * -1) / 2, 0);
-        
 
         spawnPointBL = Instantiate(pointTest, BL , Quaternion.identity, mapFlow.transform);
         spawnPointBR = Instantiate(pointTest, BR , Quaternion.identity, mapFlow.transform);
@@ -142,7 +146,7 @@ public class LevelS1 : LevelBase
     // Update is called once per frame
     void Update()
     {
-        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.scaledPixelWidth, Camera.main.scaledPixelHeight, cameraController.offset.z));
+       screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(mainCam.scaledPixelWidth, mainCam.scaledPixelHeight, cameraController.offset.z));
     }
 }
 

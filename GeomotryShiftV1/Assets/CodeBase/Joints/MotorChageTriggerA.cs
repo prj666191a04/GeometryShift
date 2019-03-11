@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿//Author Atilla puskas
+//Description: swaps the currently active motor on contact
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

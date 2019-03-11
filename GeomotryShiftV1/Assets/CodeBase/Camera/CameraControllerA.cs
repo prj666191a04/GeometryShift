@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿//Author Atilla puskas
+//Description: Controller for the game camera
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿//Author Atilla puskas
+//Description: a configuration script for a specific level type
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -32,7 +35,7 @@ public class CConfigS1 : CConfig
         //temporary
         //PlayerReady(player);
         GeometryShift.instance.cameraController.SetTarget(mapFlow);
-        GeometryShift.instance.cameraController.Init(new Vector3(0, 0, -22));
+        GeometryShift.instance.cameraController.Init(new Vector3(0, 0, -15));
         GeometryShift.instance.cameraController.LookAt(new Vector3(0,0,0));
         GeometryShift.instance.cameraController.borderDistance = 0f;
 

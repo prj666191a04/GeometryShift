@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿//Author Atilla puskas
+//Description: a composite obsticle for the player to avoid
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,6 +26,10 @@ public class SObsticleSplash : MonoBehaviour
         {
            Destroy(this.gameObject);
         }
+    }
+    private void FixedUpdate()
+    {
+        //transform.Rotate(Vector3.up * 100 * Time.deltaTime);
     }
 
     void Spawn()
