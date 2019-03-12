@@ -9,18 +9,17 @@ public class LevelEKill : LevelBase
 
     void OnEnable()
     {
-        CStatus.OnPlayerDeath += foo();
+        CStatus.OnPlayerDeath += foo;
 
     }
 
     void OnDisable()
     {
-        CStatus.OnPlayerDeath -= foo();
+        CStatus.OnPlayerDeath -= foo;
     }
 
-    public void foo() {
+    private void foo(int i =0) {
         StartCoroutine(playerRespawn());
-
     }
 
 
