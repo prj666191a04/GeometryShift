@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlanarExplosion : MonoBehaviour
+public class PlanarExplosionOld : MonoBehaviour
 {
     public float maximumLifespanAllowed = 1f;
     public float timeExistedInSeconds = 0f;
@@ -11,33 +11,36 @@ public class PlanarExplosion : MonoBehaviour
 
     float secondsSinceLastMatChange = 0f;
     float secondsBetweenMatChange = 0.1f;
-    
+
+    public Material material1;
+    public Material material2;
 
     public bool usingMat1 = true;
 
     public GameObject theEnemyToSpawn;
 
     MeshRenderer meshRenderer;
-    Renderer theRenderer;
-
-    Color color1;
-    Color color2;
 
     // Start is called before the first frame update
     void Start()
     {
+        meshRenderer = GetComponent<MeshRenderer>();
+        if (theEnemyToSpawn == null)
+        {
+            theEnemyToSpawn = Resources.Load("Enemies/EnemyTurretFolder/Enemy Projectile") as GameObject;
+        }   
         if (maximumLifespanAllowed <= 0)
         {
             Explode();
         }
-        theRenderer = gameObject.GetComponent<Renderer>();
-        meshRenderer = GetComponent<MeshRenderer>();
-        if (theEnemyToSpawn == null)
+        if (material1 == null)
         {
-            print("error: planar explosion doesn't know what enemy to spawn");
+            material1 = Resources.Load("Materials/TransparentOrange") as Material;
         }
-        color1 = new Color(1f, 0, 0, 0.7f);
-        color2 = new Color(1f, 0.5f, 0, 0.7f);
+        if (material2 == null)
+        {
+            material2 = Resources.Load("Materials/TransparentRed") as Material;
+        }
     }
 
     void Explode()
@@ -68,12 +71,12 @@ public class PlanarExplosion : MonoBehaviour
             if (usingMat1)
             {
                 usingMat1 = false;
-                theRenderer.material.color = color1;
+                meshRenderer.material = material2;
             }
             else
             {
                 usingMat1 = true;
-                theRenderer.material.color = color2;
+                meshRenderer.material = material1;
             }
         }
         if (timeExistedInSeconds > maximumLifespanAllowed)
