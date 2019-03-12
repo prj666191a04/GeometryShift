@@ -6,15 +6,15 @@ public class InstantKill : MonoBehaviour
 {
    
 
-    private void OnTriggerEnter(trigger collision)
+    private void OnTriggerEnter(collision collision)
     {
         Debug.Log(collision.gameObject.tag);
-        if (trigger.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
             Debug.Log("Kill");
             //Removed one of the below upon inset to master
-            trigger.gameObject.GetComponent<CStatus>().Damage(9999f);
-            trigger.gameObject.GetComponent<CStatus>().Damage(9999f);
+            collision.gameObject.GetComponent<CStatus>().Damage(9999f);
+            collision.gameObject.GetComponent<CStatus>().Damage(9999f);
 
             
         }
