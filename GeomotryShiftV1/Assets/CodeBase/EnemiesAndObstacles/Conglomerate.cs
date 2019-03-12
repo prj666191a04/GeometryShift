@@ -15,7 +15,10 @@ public class Conglomerate : MonoBehaviour
 
     public GameObject planarExplosion;
 
+    public GameObject growingProjectile;
+
     public GameObject boomerang;
+
 
 
     // Start is called before the first frame update

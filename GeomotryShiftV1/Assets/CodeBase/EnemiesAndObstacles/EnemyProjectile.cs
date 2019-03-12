@@ -6,7 +6,7 @@ public class EnemyProjectile : MonoBehaviour
 {
     public float damage = 1.5f;
     public float speed = 6f;
-    public float maximumLifespanAllowed = 2f;
+    public float maximumLifespanAllowed = 10f;
     public float timeExistedInSeconds = 0f;
     public bool goThroughWalls = false;
 

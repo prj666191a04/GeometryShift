@@ -39,6 +39,9 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
     protected GameObject boomerang;
     protected EnemyBoomerang boomerangScript;
 
+    protected GameObject growingProjectile;
+    protected GrowingProjectile growingProjectileScript;
+
     protected const float enemySpawnFunctionCallInterval = 0.0166666666666667f;
 
 
@@ -68,6 +71,9 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
 
         boomerang = temp.boomerang;
         boomerangScript = boomerang.gameObject.GetComponent<EnemyBoomerang>();
+
+        growingProjectile = temp.growingProjectile;
+        growingProjectileScript = growingProjectile.gameObject.GetComponent<GrowingProjectile>();
     }
 
     protected void SetupEnemyDefaultVariables()
@@ -182,6 +188,7 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
             spawnPosition = new Vector3(x, 0f, z);
         }
         Quaternion spawnRotation = new Quaternion();
+        //Quaternion.Euler(0f, Random.Range(0, 360), 0); for random rotation
         planarExplosionScript.theEnemyToSpawn = projectile;
         planarExplosionScript.numberOfEnemiesSpawned = number;
         planarExplosionScript.maximumLifespanAllowed = fuseTime;
@@ -328,7 +335,8 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
                 {
                     //planar explosions that spawn slow enemy projectiles
                     cooldown1TimeCounter -= cooldown1;
-                    spawnPlanarExplosion(slowEnemyProjectile, 10, true, 1f);
+                    growingProjectileScript.sizeUp = 1.2f;
+                    spawnPlanarExplosion(slowEnemyProjectile, 8, true, 1f);
                 }
                 break;
             case 4:

@@ -114,5 +114,7 @@ MonoBehaviour:
     type: 3}
   planarExplosion: {fileID: 2146905947174183405, guid: c92b8de822e1561498f804ffe701d773,
     type: 3}
+  growingProjectile: {fileID: 7065407017841648295, guid: 98e4f01da90e11744b6ba8287da6b076,
+    type: 3}
   boomerang: {fileID: 5530297812845063988, guid: 9ae524f56685b5e4f8e979a3c295c800,
     type: 3}
