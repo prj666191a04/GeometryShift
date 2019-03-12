@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class InstantKill : MonoBehaviour
 {
-   
+   public GameObject spawn;
 
-    private void OnTriggerEnter(collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
         Debug.Log(collision.gameObject.tag);
         if (collision.gameObject.CompareTag("Player"))
@@ -16,7 +16,7 @@ public class InstantKill : MonoBehaviour
             collision.gameObject.GetComponent<CStatus>().Damage(9999f);
             collision.gameObject.GetComponent<CStatus>().Damage(9999f);
 
-            
+            //GeometryShift.playerStatus.gameObject.GetComponent<CController>().Respawn(spawn.transform.position, true);
         }
     }
 
