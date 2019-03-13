@@ -7,29 +7,33 @@ using UnityEngine;
 public class LevelOverlayUI : MonoBehaviour
 {
     public delegate void OverlayResponse();
+    //Called when the intro has finished its animation
     public static event OverlayResponse OnIntroFinished;
+    //Called when the player has inputed that they want to retry the level
     public static event OverlayResponse OnRetryRequested;
+    //Called when the player has indicated they want to quit the level
     public static event OverlayResponse OnLevelQuit;
     
 
 
     public GameObject introPrefab;
-    public GameObject rsltScreenPrefab;
+    public GameObject RetryScreenPrefab;
 
     GameObject introInstance;
     OverlayUIAtribute introScript;
 
-    GameObject rsltScreenInstance;
-    OverlayUIAtribute rsltScript;
+    GameObject retryScreenInstance;
+    OverlayUIAtribute retryScript;
 
     private void Start()
     {
         introInstance = GameObject.Instantiate(introPrefab, this.transform);
         introScript = introInstance.GetComponent<OverlayUIAtribute>();
         introScript.owner_ = this;
-        rsltScreenInstance = GameObject.Instantiate(rsltScreenPrefab);
-        rsltScript = rsltScreenInstance.GetComponent<OverlayUIAtribute>();
-        rsltScreenInstance.SetActive(false);
+        retryScreenInstance = GameObject.Instantiate(RetryScreenPrefab, this.transform);
+        retryScript = retryScreenInstance.GetComponent<OverlayUIAtribute>();
+        retryScript.owner_ = this;
+        retryScreenInstance.SetActive(false);
        
         
     }
@@ -51,14 +55,33 @@ public class LevelOverlayUI : MonoBehaviour
     //ToDo: tie rewards into ressult screen
     public void ShowRsltScreen()
     {
-        rsltScript.Play();
+        
     }
 
     public void ShowRetryScreen()
     {
-
+      retryScreenInstance.SetActive(true);
+      retryScript.Play();
     }
-
+    public void RetryReply(bool retry)
+    {
+        if(retry)
+        {
+            if(OnRetryRequested != null)
+            {
+                retryScreenInstance.SetActive(false);
+                OnRetryRequested();
+            }
+        }
+        else
+        {
+            if(OnLevelQuit != null)
+            {
+                retryScreenInstance.SetActive(false);
+                OnLevelQuit();
+            }
+        }
+    }
     public void WarnPlayer()
     {
 

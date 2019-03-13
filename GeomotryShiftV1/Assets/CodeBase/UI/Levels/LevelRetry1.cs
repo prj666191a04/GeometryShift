@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class LevelRetry1 : OverlayUIAtribute
 {
+    public CanvasGroup canvasGroup;
+
     public Button yesBtn;
     public Button noBtn;
 
@@ -38,11 +40,11 @@ public class LevelRetry1 : OverlayUIAtribute
 
         yield break;
     }
-    IEnumerator PopOut()
+    IEnumerator PopOut(bool retry)
     {
         transform.localScale = Vector3.one;
         float scale = 1;
-        while (transform.localScale != Vector3.one)
+        while (transform.localScale != Vector3.zero)
         {
             yield return new WaitForSeconds(0.01f);
             scale -= Time.deltaTime * 2;
@@ -52,6 +54,7 @@ public class LevelRetry1 : OverlayUIAtribute
                 transform.localScale = Vector3.zero;
             }
         }
+        owner_.RetryReply(retry);
         yield break;
     }
     private void AnimateOntoScreen()
@@ -59,16 +62,16 @@ public class LevelRetry1 : OverlayUIAtribute
         StartCoroutine(PopIn());
     }
 
-    private void AnimateOffScreenThenClose()
+    private void AnimateOffScreenThenClose(bool retry)
     {
-        StartCoroutine(PopOut());
+        StartCoroutine(PopOut(retry));
     }
     public void NoBtn()
     {
-
+        AnimateOffScreenThenClose(false);
     }
     public void YesBtn()
     {
-
+        AnimateOffScreenThenClose(true);
     }
 }

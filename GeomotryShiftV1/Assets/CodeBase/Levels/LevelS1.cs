@@ -37,23 +37,32 @@ public class LevelS1 : LevelBase
     {
         CStatus.OnPlayerDeath += ResetLevel;
         LevelOverlayUI.OnIntroFinished += StartLevel;
+        LevelOverlayUI.OnRetryRequested += ReplayLevel;
+        LevelOverlayUI.OnLevelQuit += TerminateLevelAttempt;
     }
 
     private void OnDisable()
     {
         CStatus.OnPlayerDeath -= ResetLevel;
         LevelOverlayUI.OnIntroFinished -= StartLevel;
+        LevelOverlayUI.OnRetryRequested -= ReplayLevel;
+        LevelOverlayUI.OnLevelQuit -= TerminateLevelAttempt;
     }
 
     private void ResetLevel(int method = 0)
     {
+        levelUi.ShowRetryScreen();
         if (tmpWave != null)
         {
             StopCoroutine(tmpWave);
         }
-        StartCoroutine(DelayedRestart());
     }
 
+    private void ReplayLevel()
+    {
+        GeometryShift.playerStatus.gameObject.GetComponent<CController>().Respawn(Vector3.zero);
+        tmpWave = StartCoroutine(TmpWaveSystem());
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -70,15 +79,6 @@ public class LevelS1 : LevelBase
     void StartLevel()
     {
        tmpWave = StartCoroutine(TmpWaveSystem());
-    }
-
-    IEnumerator DelayedRestart()
-    {
-        yield return new WaitForSeconds(10);
-        GeometryShift.playerStatus.gameObject.GetComponent<CController>().Respawn(Vector3.zero);
-        yield return new WaitForSeconds(2);
-        tmpWave = StartCoroutine(TmpWaveSystem());
-
     }
 
     IEnumerator LateStart()
