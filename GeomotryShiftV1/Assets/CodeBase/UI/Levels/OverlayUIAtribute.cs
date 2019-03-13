@@ -8,7 +8,6 @@ public abstract class OverlayUIAtribute : MonoBehaviour
 {
     public LevelOverlayUI owner_;
 
-
     public abstract void Play();
 
 }

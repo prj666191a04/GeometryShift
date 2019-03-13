@@ -17,11 +17,10 @@ public class LevelRetry1 : OverlayUIAtribute
 
     public override void Play()
     {
-        
+        AnimateOntoScreen();
     }
 
   
-
     IEnumerator PopIn()
     {
         transform.localScale = Vector3.zero;
@@ -53,7 +52,6 @@ public class LevelRetry1 : OverlayUIAtribute
                 transform.localScale = Vector3.zero;
             }
         }
-
         yield break;
     }
     private void AnimateOntoScreen()
@@ -61,7 +59,7 @@ public class LevelRetry1 : OverlayUIAtribute
         StartCoroutine(PopIn());
     }
 
-    private void AnimateOffScreen()
+    private void AnimateOffScreenThenClose()
     {
         StartCoroutine(PopOut());
     }

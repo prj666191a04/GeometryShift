@@ -8,10 +8,13 @@ public class LevelOverlayUI : MonoBehaviour
 {
     public delegate void OverlayResponse();
     public static event OverlayResponse OnIntroFinished;
+    public static event OverlayResponse OnRetryRequested;
+    public static event OverlayResponse OnLevelQuit;
     
 
 
-    public GameObject IntroPrefab;
+    public GameObject introPrefab;
+    public GameObject rsltScreenPrefab;
 
     GameObject introInstance;
     OverlayUIAtribute introScript;
@@ -21,9 +24,13 @@ public class LevelOverlayUI : MonoBehaviour
 
     private void Start()
     {
-        introInstance = GameObject.Instantiate(IntroPrefab, this.transform);
+        introInstance = GameObject.Instantiate(introPrefab, this.transform);
         introScript = introInstance.GetComponent<OverlayUIAtribute>();
         introScript.owner_ = this;
+        rsltScreenInstance = GameObject.Instantiate(rsltScreenPrefab);
+        rsltScript = rsltScreenInstance.GetComponent<OverlayUIAtribute>();
+        rsltScreenInstance.SetActive(false);
+       
         
     }
 
@@ -44,9 +51,13 @@ public class LevelOverlayUI : MonoBehaviour
     //ToDo: tie rewards into ressult screen
     public void ShowRsltScreen()
     {
-
+        rsltScript.Play();
     }
 
+    public void ShowRetryScreen()
+    {
+
+    }
 
     public void WarnPlayer()
     {
