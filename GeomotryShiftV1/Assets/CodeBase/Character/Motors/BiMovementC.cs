@@ -33,12 +33,7 @@ public class BiMovementC : CMotor
 
     protected override void ConfigurePhysics()
     {
-        /*
-         *if (!(rBody))
-        {
-            rBody = gameObject.AddComponent<Rigidbody>();
-        }
-        */
+ 
         rBody = GetComponent<Rigidbody>();
         transform.rotation = Quaternion.Euler(new Vector3(180f, -90f, 90f));
         rBody.constraints =
