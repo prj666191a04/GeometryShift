@@ -955,8 +955,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2194077018800753160}
   - component: {fileID: 8873561779989019689}
-  - component: {fileID: 8214164561698982845}
   - component: {fileID: 7391137443610340792}
+  - component: {fileID: 4877069723800354873}
   m_Layer: 0
   m_Name: LevelE
   m_TagString: Untagged
@@ -1002,7 +1002,7 @@ MonoBehaviour:
   parentObject: {fileID: 2194077018800753161}
   mainMap: 0
   cconfig: {fileID: 7391137443610340792}
---- !u!114 &8214164561698982845
+--- !u!114 &7391137443610340792
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1011,7 +1011,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 2194077018800753161}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f9a6a27d4172604d906373221500ed5, type: 3}
+  m_Script: {fileID: 11500000, guid: 3eb8f599da92dfc4dbea42263ba51ec4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4877069723800354873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2194077018800753161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73bd658ce7e254c45b79f0c5699f611d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   layerSet0:
@@ -1028,18 +1040,7 @@ MonoBehaviour:
     m_Bits: 0
   levelId_: 0
   cameraPoint: {fileID: 0}
---- !u!114 &7391137443610340792
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2194077018800753161}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3eb8f599da92dfc4dbea42263ba51ec4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  spawn: {fileID: 7491734567571723875}
 --- !u!1 &2194077018801718350
 GameObject:
   m_ObjectHideFlags: 0

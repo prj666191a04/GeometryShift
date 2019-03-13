@@ -22,8 +22,10 @@ public abstract class CStatus : MonoBehaviour
 
     public void Die(int method = 0)
     {
-        if(OnPlayerDeath != null)
+        //Debug.Log("Enter Player Death");
+        if (OnPlayerDeath != null)
         {
+            //Debug.Log("Enter Player Death IF statement");
             OnPlayerDeath(method);
         }
     }

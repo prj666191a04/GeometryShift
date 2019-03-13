@@ -19,12 +19,14 @@ public class LevelEKill : LevelBase
     }
 
     private void foo(int i =0) {
+        //Debug.Log("Enter Foo");
         StartCoroutine(playerRespawn());
     }
 
 
     IEnumerator playerRespawn()
     {
+        //Debug.Log("Enter Player Respawn");
         yield return new WaitForSeconds(3);
         GeometryShift.playerStatus.gameObject.GetComponent<CController>().Respawn(spawn.transform.position, true);
         yield break;

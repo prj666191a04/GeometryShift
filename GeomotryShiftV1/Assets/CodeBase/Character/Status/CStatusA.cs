@@ -30,8 +30,11 @@ public class CStatusA : CStatus
         }
         else
         {
+            //Debug.Log("Enter Damage");
             value_ = 0;
+            //Debug.Log("Enter pre Die()");
             Die();
+            //Debug.Log("Enter Pre reset()");
             Reset();
         }
     }
