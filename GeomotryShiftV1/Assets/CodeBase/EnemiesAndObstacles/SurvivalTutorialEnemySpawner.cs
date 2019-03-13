@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SurvivalTutorialEnemySpawner : SurvivalLevel1EnemySpawner
 {
+    float spawnLocationFloat = 0f;
+    float spawnOrNot = 60f;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +20,7 @@ public class SurvivalTutorialEnemySpawner : SurvivalLevel1EnemySpawner
         //use: timeToPhase.Add(secondsPassed, phaseNumber);
         //starts at phase 1, so having timeToPhase.Add(0, 1) is unnessecary
 
-        int testPhase = 0;
+        int testPhase = 4;
         bool fastMode = false;//if true, phases change faster than normal
         if (testPhase == 0)
         {
@@ -120,19 +122,31 @@ public class SurvivalTutorialEnemySpawner : SurvivalLevel1EnemySpawner
                 }
                 break;
             case 4:
-                cooldown1 = 1.3f;
+                cooldown1 = 0.16f;
                 cooldown1TimeCounter += enemySpawnFunctionCallInterval;
+
+                spawnOrNot -= 1f;
+                if (spawnOrNot <= -60)
+                {
+                    spawnOrNot = 60f;
+                }
+
                 if (cooldown1TimeCounter > cooldown1)
                 {
                     cooldown1TimeCounter -= cooldown1;
-                    //homing missiles
-
-                    boomerangScript.accelerationPerSecond = 4f;
+                    boomerangScript.speed = 23f;
+                    boomerangScript.accelerationPerSecond = 12f;
 
                     Vector3 spawnPosition = new Vector3(Random.Range(-(widthOfLevel / 2), (widthOfLevel / 2)), 0f, -(lengthOfLevel / 2));
                     Quaternion spawnRotation = new Quaternion();
-                    Instantiate(boomerang, spawnPosition, spawnRotation, transform.parent);
-
+                    //Instantiate(boomerang, spawnPosition, spawnRotation, transform.parent);
+                    if (spawnOrNot > 0f)
+                    {
+                        spawnWave(boomerang, 1, 0, 0, 0, 15, spawnLocationFloat);
+                    }
+                    
+                    spawnLocationFloat += 4.5f;
+                    
                 }
                 break;
             case 5:

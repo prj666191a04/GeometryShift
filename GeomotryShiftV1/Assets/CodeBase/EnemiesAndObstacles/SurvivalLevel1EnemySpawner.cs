@@ -6,6 +6,8 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
 {
     public static float widthOfLevel = 22f;
     public static float lengthOfLevel = 22f;
+    static float widthDividedBy100;
+    static float lengthDividedBy100;
 
     protected float cooldown1TimeCounter = 0;
     protected float cooldown1 = 0.8f;
@@ -83,7 +85,7 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
 
         slowEnemyProjectileScript.maximumLifespanAllowed = 12;
         slowEnemyProjectileScript.speed = 6f;
-        
+
         homingMissileScript.maximumLifespanAllowed = 12;
 
         bulletSharkScript.maximumLifespanAllowed = 12;
@@ -95,6 +97,8 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
     {
 
         thePlayer = GeometryShift.playerStatus.gameObject;
+        widthDividedBy100 = widthOfLevel / 100f;
+        lengthDividedBy100 = lengthOfLevel / 100f;
     }
 
     // Start is called before the first frame update
@@ -126,7 +130,7 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
                 timeToPhase.Add(16, 6);//projectile waves from top and bottom
                 timeToPhase.Add(20, 7);//double layer planar explosions: fast and slow projectiles
                 timeToPhase.Add(24, 8);//double layer planar explosions: slow projectiles and homing missiles
-               // timeToPhase.Add(47, 0);//break time
+                                       // timeToPhase.Add(47, 0);//break time
                 timeToPhase.Add(28, 9);//fast projectiles from all directions
                 timeToPhase.Add(32, 10);//slow projectiles from all directions, up to 45 degree angle variation
                 timeToPhase.Add(36, 11);//spawn planar explosions on edge of map only
@@ -200,7 +204,8 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
         int numberOfFlankingProjectilesOnEachSide = 2,
         float widthSpacing = 0.6f,
         float distanceSpacing = 0.2f,
-        float angleVariation = 0f
+        float angleVariation = 0f,
+        float spawningAngle = -1f
         )
     {
         float actualAngleVariation = Random.Range(-angleVariation, angleVariation);
@@ -208,16 +213,79 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
         float x = 0;
         float y = 0;
 
-        Vector3 spawnPosition;
+        Vector3 spawnPosition = new Vector3(0f, 0f, 0f);
         Quaternion spawnRotation;
+
+        bool useManualSpawnLocation = false;
+        
+        if (spawningAngle != -1)
+        {
+            spawningAngle %= 360;
+            useManualSpawnLocation = true;
+            if (spawningAngle >= 0 && spawningAngle < 90)
+            {
+                side = 1;
+
+                spawningAngle = spawningAngle % 90;
+                spawningAngle -= 45f;
+                spawningAngle = spawningAngle / 0.9f;
+                spawningAngle *= widthDividedBy100;
+
+                x = spawningAngle;
+                y = (lengthOfLevel / 2);
+                spawnPosition = new Vector3(x, 0f, y);
+            }
+            else if (spawningAngle < 180)
+            {
+                side = 2;
+
+                spawningAngle = spawningAngle % 90;
+                spawningAngle -= 45f;
+                spawningAngle = spawningAngle / 0.9f;
+                spawningAngle *= widthDividedBy100;
+
+                x = (widthOfLevel / 2);
+                y = -spawningAngle;
+                spawnPosition = new Vector3(x, 0f, y);
+            }
+            else if (spawningAngle < 270)
+            {
+                side = 3;
+
+                spawningAngle = spawningAngle % 90;
+                spawningAngle -= 45f;
+                spawningAngle = spawningAngle / 0.9f;
+                spawningAngle *= widthDividedBy100;
+
+                x = -spawningAngle;
+                y = -(lengthOfLevel / 2);
+                spawnPosition = new Vector3(x, 0f, y);
+            }
+            else
+            {
+                side = 4;
+
+                spawningAngle = spawningAngle % 90;
+                spawningAngle -= 45f;
+                spawningAngle = spawningAngle / 0.9f;
+                spawningAngle *= widthDividedBy100;
+
+                x = -(widthOfLevel / 2);
+                y = spawningAngle;
+                spawnPosition = new Vector3(x, 0f, y);
+            }
+        }
 
         switch (side)
         {
             case 1:
-                x = Random.Range(-(widthOfLevel / 2), (widthOfLevel / 2));
-                y = (lengthOfLevel / 2);
+                if (!useManualSpawnLocation)
+                {
+                    x = Random.Range(-(widthOfLevel / 2), (widthOfLevel / 2));
+                    y = (lengthOfLevel / 2);
 
-                spawnPosition = new Vector3(x, 0f, y);
+                    spawnPosition = new Vector3(x, 0f, y);
+                }
                 spawnRotation = Quaternion.Euler(0f, 180f + actualAngleVariation, 0f);
 
                 Instantiate(projectile, spawnPosition, spawnRotation, transform.parent);
@@ -231,10 +299,13 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
                 }
                 break;
             case 2:
-                x = (lengthOfLevel / 2);
-                y = Random.Range(-(widthOfLevel / 2), (widthOfLevel / 2));
+                if (!useManualSpawnLocation)
+                {
+                    x = (lengthOfLevel / 2);
+                    y = Random.Range(-(widthOfLevel / 2), (widthOfLevel / 2));
 
-                spawnPosition = new Vector3(x, 0f, y);
+                    spawnPosition = new Vector3(x, 0f, y);
+                }
                 spawnRotation = Quaternion.Euler(0f, 270f + actualAngleVariation, 0f);
 
                 Instantiate(projectile, spawnPosition, spawnRotation, transform.parent);
@@ -250,10 +321,13 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
                 }
                 break;
             case 3:
-                x = Random.Range(-(widthOfLevel / 2), (widthOfLevel / 2));
-                y = -(lengthOfLevel / 2);
+                if (!useManualSpawnLocation)
+                {
+                    x = Random.Range(-(widthOfLevel / 2), (widthOfLevel / 2));
+                    y = -(lengthOfLevel / 2);
 
-                spawnPosition = new Vector3(x, 0f, y);
+                    spawnPosition = new Vector3(x, 0f, y);
+                }
                 spawnRotation = Quaternion.Euler(0f, actualAngleVariation, 0f);
 
                 Instantiate(projectile, spawnPosition, spawnRotation, transform.parent);
@@ -267,10 +341,13 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
                 }
                 break;
             case 4:
-                x = -(lengthOfLevel / 2);
-                y = Random.Range(-(widthOfLevel / 2), (widthOfLevel / 2));
+                if (!useManualSpawnLocation)
+                {
+                    x = -(lengthOfLevel / 2);
+                    y = Random.Range(-(widthOfLevel / 2), (widthOfLevel / 2));
 
-                spawnPosition = new Vector3(x, 0f, y);
+                    spawnPosition = new Vector3(x, 0f, y);
+                }
                 spawnRotation = Quaternion.Euler(0f, 90f + actualAngleVariation, 0f);
 
                 Instantiate(projectile, spawnPosition, spawnRotation, transform.parent);
@@ -471,7 +548,7 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
                 if (cooldown1TimeCounter > cooldown1)
                 {
                     cooldown1TimeCounter -= cooldown1;
-                   
+
                     bulletSharkScript.whatToShoot = slowEnemyProjectile;
                     bulletSharkScript.shootInterval = 1.2f;
                     bulletSharkScript.turnSpeed = 0f;
@@ -502,7 +579,7 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
         enemySpawnTimer += Time.deltaTime;
 
         while (enemySpawnTimer > enemySpawnFunctionCallInterval) // to make enemy spawn function run 60 times per second
-                                          //even when FPS is above or below 60
+                                                                 //even when FPS is above or below 60
         {
             enemySpawnTimer -= enemySpawnFunctionCallInterval;
             setPhase();
