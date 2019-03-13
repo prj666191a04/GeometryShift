@@ -41,7 +41,6 @@ GameObject:
   - component: {fileID: 5400698969001020012}
   - component: {fileID: 4940499728249863114}
   - component: {fileID: 1035188944062370548}
-  - component: {fileID: 5617861757639365934}
   - component: {fileID: 2320855052487646108}
   - component: {fileID: 8148620362027402334}
   - component: {fileID: 7104842399489075969}
@@ -108,18 +107,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelId_: 0
   cameraPoint: {fileID: 2904914846172016280}
---- !u!114 &5617861757639365934
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3928670736789221233}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60e27392c5ec54345ac557e6466de8ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2320855052487646108
 MonoBehaviour:
   m_ObjectHideFlags: 0

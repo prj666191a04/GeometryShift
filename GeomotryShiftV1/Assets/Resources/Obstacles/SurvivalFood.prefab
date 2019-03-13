@@ -206,6 +206,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3836901840390376922}
     m_Modifications:
+    - target: {fileID: 3203829565495208187, guid: f5eb14e5debf99f4ca11e0b10a92cd3a,
+        type: 3}
+      propertyPath: m_Name
+      value: Safe Zone
+      objectReference: {fileID: 0}
+    - target: {fileID: 3203829565495208187, guid: f5eb14e5debf99f4ca11e0b10a92cd3a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3002314523273583725, guid: f5eb14e5debf99f4ca11e0b10a92cd3a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -276,15 +286,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 3203829565495208187, guid: f5eb14e5debf99f4ca11e0b10a92cd3a,
+    - target: {fileID: 6282362192229374454, guid: f5eb14e5debf99f4ca11e0b10a92cd3a,
         type: 3}
-      propertyPath: m_Name
-      value: Safe Zone
-      objectReference: {fileID: 0}
-    - target: {fileID: 3203829565495208187, guid: f5eb14e5debf99f4ca11e0b10a92cd3a,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2253971949040142807, guid: f5eb14e5debf99f4ca11e0b10a92cd3a,
         type: 3}
@@ -294,11 +299,6 @@ PrefabInstance:
     - target: {fileID: 2253971949040142807, guid: f5eb14e5debf99f4ca11e0b10a92cd3a,
         type: 3}
       propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6282362192229374454, guid: f5eb14e5debf99f4ca11e0b10a92cd3a,
-        type: 3}
-      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -20,7 +20,7 @@ public class SurvivalTutorialEnemySpawner : SurvivalLevel1EnemySpawner
         //use: timeToPhase.Add(secondsPassed, phaseNumber);
         //starts at phase 1, so having timeToPhase.Add(0, 1) is unnessecary
 
-        int testPhase = 4;
+        int testPhase = 0;
         bool fastMode = false;//if true, phases change faster than normal
         if (testPhase == 0)
         {
