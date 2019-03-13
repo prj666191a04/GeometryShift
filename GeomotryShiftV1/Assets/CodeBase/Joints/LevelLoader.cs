@@ -30,6 +30,9 @@ public class LevelLoader : MonoBehaviour
 
     //Data related functions
 
+    public LayerMask wMapColLayer;    
+
+
     public void InitWorldState(DataCore core)
     {
         dataCore = core;

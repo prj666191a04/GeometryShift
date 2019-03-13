@@ -39,6 +39,8 @@ public class LevelS1 : LevelBase
         LevelOverlayUI.OnIntroFinished += StartLevel;
         LevelOverlayUI.OnRetryRequested += ReplayLevel;
         LevelOverlayUI.OnLevelQuit += TerminateLevelAttempt;
+        LevelOverlayUI.OnResultScreenFinished += AcknowledgeLevelCompletion;
+        
     }
 
     private void OnDisable()
@@ -47,6 +49,7 @@ public class LevelS1 : LevelBase
         LevelOverlayUI.OnIntroFinished -= StartLevel;
         LevelOverlayUI.OnRetryRequested -= ReplayLevel;
         LevelOverlayUI.OnLevelQuit -= TerminateLevelAttempt;
+        LevelOverlayUI.OnResultScreenFinished -= AcknowledgeLevelCompletion;
     }
 
     private void ResetLevel(int method = 0)
@@ -116,7 +119,10 @@ public class LevelS1 : LevelBase
             Instantiate(obsticleType1, spawnPointBR.transform.position, spawnRot, mapFlow.transform);
         }
         yield return new WaitForSeconds(10);
-        base.AcknowledgeLevelCompletion();
+
+        levelUi.ShowRsltScreen("TEST", 0);
+
+        ///base.AcknowledgeLevelCompletion();
         yield break;
 
         

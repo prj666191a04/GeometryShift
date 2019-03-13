@@ -900,7 +900,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6914476554161765349}
   - component: {fileID: 7489793262474331405}
-  - component: {fileID: 6077675782418755473}
+  - component: {fileID: 7954063031776848422}
   m_Layer: 0
   m_Name: WorldMapA
   m_TagString: Untagged
@@ -940,8 +940,8 @@ MonoBehaviour:
   spawnPoint: {fileID: 4087867635328295453}
   parentObject: {fileID: 8982201744984272870}
   mainMap: 1
-  cconfig: {fileID: 6077675782418755473}
---- !u!114 &6077675782418755473
+  cconfig: {fileID: 7954063031776848422}
+--- !u!114 &7954063031776848422
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -950,7 +950,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8982201744984272870}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3d43aefb4623c246a04ade7a158a185, type: 3}
+  m_Script: {fileID: 11500000, guid: 18517beba0f5d624da640b2f63d6a622, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &422653091676507081

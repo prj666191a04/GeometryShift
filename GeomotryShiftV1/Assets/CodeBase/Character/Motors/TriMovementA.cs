@@ -15,6 +15,7 @@ public class TriMovementA : CMotor
     private const int maxSpeed = 15;
     private const int maxAcceleration = 5;
     private const int maxBreakingForce = 10;
+    private float hoverForce = 0f;
 
     public Vector3 velocityDirection;
     public Vector3 normalizedMovementDirection;
@@ -53,7 +54,7 @@ public class TriMovementA : CMotor
     {
         //commented code removed beacuse did not work as intended
         float combinedInput = System.Math.Abs(h_) + System.Math.Abs(v_);
-
+        CalculateHoverForce();
         //makes sure the player is not granted extra force for moving in a diaginal direction
         if (combinedInput >= 2)
         {
@@ -61,7 +62,7 @@ public class TriMovementA : CMotor
             v_ *= 0.7f;
         }
 
-        movementVector = new Vector3(h_, 0, v_);
+        movementVector = new Vector3(h_, hoverForce , v_);
 
         if (movementVector != Vector3.zero)
         {
@@ -71,12 +72,24 @@ public class TriMovementA : CMotor
             addedForce = (movementVector * ((accelerationRate * 1000) * rBody.mass)) * Time.fixedDeltaTime;
             //only exists for viewing in inspector
         }
-        else if (groundSpeed > 3)
+        else if (groundSpeed > 0)
         {
             rBody.AddForce((-rBody.velocity.normalized * ((5 * 1000) * rBody.mass)) * Time.fixedDeltaTime);
         }
         velocityDirection = rBody.velocity.normalized;
         normalizedMovementDirection = movementVector.normalized;
+    }
+
+    void CalculateHoverForce()
+    {
+        RaycastHit hit;
+        Physics.Raycast(transform.position, Vector3.down, out hit, Mathf.Infinity);
+
+        if (hit.distance != Mathf.Infinity)
+        {
+            hoverForce = 0.2f / hit.distance;
+        }
+        hoverForce = 0.2f;
     }
 
     void CalculateAccelerationForce()
