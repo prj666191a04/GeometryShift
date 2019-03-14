@@ -15,7 +15,7 @@ public class TriMovementA : CMotor
     private const int maxSpeed = 15;
     private const int maxAcceleration = 5;
     private const int maxBreakingForce = 10;
-    private float hoverForce = 0f;
+    public float hoverForce = 0f;
 
     public Vector3 velocityDirection;
     public Vector3 normalizedMovementDirection;
@@ -29,6 +29,11 @@ public class TriMovementA : CMotor
     public Vector3 lastPosition;
 
     Quaternion targetRotation;
+
+
+    public float height;
+    public float hoverForceInput = 0.5f;
+
 
 
     private void Start()
@@ -87,10 +92,14 @@ public class TriMovementA : CMotor
 
         if (hit.distance != Mathf.Infinity)
         {
-            hoverForce = 1.5f / hit.distance;
-            Debug.Log("fprce");
+            height = hit.distance;
+            hoverForce = hoverForceInput / hit.distance;
+            
         }
-        hoverForce = 0.2f;
+        else
+        {
+            hoverForce = 0.2f;
+        }
     }
 
     void CalculateAccelerationForce()
@@ -129,21 +138,6 @@ public class TriMovementA : CMotor
         rBody.interpolation = RigidbodyInterpolation.Interpolate;
         rBody.mass = 1;
     }
-
-    //posible that this is not needed
-    //void OnEnable()
-    //{
-    //    //On first enable this object will be null but 
-    //    //we need to be able to run the following code
-    //    //if it is to be enabled multiple times
-    //    if (rBody != null)
-    //    {
-    //        ConfigurePhysics();
-    //    }
-        
-    //}
-
-    
 
 
 
