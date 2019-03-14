@@ -41,10 +41,10 @@ GameObject:
   - component: {fileID: 5400698969001020012}
   - component: {fileID: 4940499728249863114}
   - component: {fileID: 1035188944062370548}
-  - component: {fileID: 2320855052487646108}
   - component: {fileID: 8148620362027402334}
   - component: {fileID: 7104842399489075969}
   - component: {fileID: 8685550522045588494}
+  - component: {fileID: 2658864732679810619}
   m_Layer: 0
   m_Name: SurvivalHungry
   m_TagString: Untagged
@@ -91,7 +91,7 @@ MonoBehaviour:
     type: 3}
   spawnPoint: {fileID: 8986346023852552629}
   parentObject: {fileID: 3928670736789221233}
-  cconfig: {fileID: 2320855052487646108}
+  cconfig: {fileID: 2658864732679810619}
 --- !u!114 &1035188944062370548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,18 +106,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelId_: 0
   cameraPoint: {fileID: 2904914846172016280}
---- !u!114 &2320855052487646108
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3928670736789221233}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3d43aefb4623c246a04ade7a158a185, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!23 &8148620362027402334
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -171,6 +159,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3928670736789221233}
   m_CullTransparentMesh: 0
+--- !u!114 &2658864732679810619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3928670736789221233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdce8076a0ca1164d9c84f67e9937b77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7094696410015267589
 GameObject:
   m_ObjectHideFlags: 0

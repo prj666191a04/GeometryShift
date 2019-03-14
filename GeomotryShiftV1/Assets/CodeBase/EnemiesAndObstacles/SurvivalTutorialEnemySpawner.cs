@@ -14,7 +14,6 @@ public class SurvivalTutorialEnemySpawner : SurvivalLevel1EnemySpawner
         SetupEnemyDefaultVariables();
 
         SetupThePlayerVariable();
-        thePlayer.AddComponent<Simple3DMovement>();
 
         timeToPhase = new Hashtable();//unique for each level
 

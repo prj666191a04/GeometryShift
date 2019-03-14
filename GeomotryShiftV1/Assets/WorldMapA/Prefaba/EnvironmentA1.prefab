@@ -1034,7 +1034,7 @@ PrefabInstance:
         type: 3}
       propertyPath: levelObject
       value: 
-      objectReference: {fileID: 2671600642174450648, guid: 2e05779a954ad2941bbdced9b0f7c93d,
+      objectReference: {fileID: 3155111293681833359, guid: ac8244ca05bbbde4289abb997eb0a3af,
         type: 3}
     - target: {fileID: 4515027484206737836, guid: ec2b2811831bf9546b44b3274fc16dbe,
         type: 3}
@@ -1615,6 +1615,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9136896069521930516}
     m_Modifications:
+    - target: {fileID: 881682789094146506, guid: fb319972a37f6d348b5e98d2d2de9271,
+        type: 3}
+      propertyPath: m_Name
+      value: Disspearing On Touch Block
+      objectReference: {fileID: 0}
     - target: {fileID: 4671814837934051573, guid: fb319972a37f6d348b5e98d2d2de9271,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1670,11 +1675,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 881682789094146506, guid: fb319972a37f6d348b5e98d2d2de9271,
-        type: 3}
-      propertyPath: m_Name
-      value: Disspearing On Touch Block
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb319972a37f6d348b5e98d2d2de9271, type: 3}
 --- !u!4 &1096043986023481355 stripped
@@ -1690,6 +1690,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9136896069521930516}
     m_Modifications:
+    - target: {fileID: 3203829565495208187, guid: f5eb14e5debf99f4ca11e0b10a92cd3a,
+        type: 3}
+      propertyPath: m_Name
+      value: Safe Zone
+      objectReference: {fileID: 0}
     - target: {fileID: 3002314523273583725, guid: f5eb14e5debf99f4ca11e0b10a92cd3a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1745,11 +1750,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3203829565495208187, guid: f5eb14e5debf99f4ca11e0b10a92cd3a,
-        type: 3}
-      propertyPath: m_Name
-      value: Safe Zone
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5eb14e5debf99f4ca11e0b10a92cd3a, type: 3}
 --- !u!4 &5112397915531916984 stripped
@@ -1765,6 +1765,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9136896069521930516}
     m_Modifications:
+    - target: {fileID: 5430794630893222609, guid: da767e642c698884a86cca3fbe4e1802,
+        type: 3}
+      propertyPath: m_Name
+      value: Enemy Turret
+      objectReference: {fileID: 0}
     - target: {fileID: 7031584960354078444, guid: da767e642c698884a86cca3fbe4e1802,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1819,11 +1824,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5430794630893222609, guid: da767e642c698884a86cca3fbe4e1802,
-        type: 3}
-      propertyPath: m_Name
-      value: Enemy Turret
       objectReference: {fileID: 0}
     - target: {fileID: 8840479983566990645, guid: da767e642c698884a86cca3fbe4e1802,
         type: 3}

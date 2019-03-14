@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 6380212202295722818}
   - component: {fileID: 6475167370507616564}
   - component: {fileID: 1374159621652899850}
-  - component: {fileID: 4429590841061007714}
+  - component: {fileID: 7460173922929252413}
   m_Layer: 0
   m_Name: SurvivalManualAdvance
   m_TagString: Untagged
@@ -83,7 +83,7 @@ MonoBehaviour:
     type: 3}
   spawnPoint: {fileID: 7059865350909201227}
   parentObject: {fileID: 3155111293681833359}
-  cconfig: {fileID: 4429590841061007714}
+  cconfig: {fileID: 7460173922929252413}
 --- !u!114 &1374159621652899850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelId_: 0
   cameraPoint: {fileID: 3826951995959727206}
---- !u!114 &4429590841061007714
+--- !u!114 &7460173922929252413
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -107,7 +107,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3155111293681833359}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3d43aefb4623c246a04ade7a158a185, type: 3}
+  m_Script: {fileID: 11500000, guid: cdce8076a0ca1164d9c84f67e9937b77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6961159913680661786

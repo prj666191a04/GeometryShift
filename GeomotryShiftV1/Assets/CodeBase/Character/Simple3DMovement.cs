@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Simple3DMovement : MonoBehaviour
+public class Simple3DMovement : CMotor
 {
     Rigidbody theRB;
     float speedMultiplier_ = 10;
-   
+
     float sqrtOfZeroPointFive_ = 0.7071067811865475f;
 
     float dashTimeRemaining = 0f;
@@ -21,9 +21,12 @@ public class Simple3DMovement : MonoBehaviour
     void Start()
     {
         theRB = GetComponent<Rigidbody>();
+        theRB.constraints = RigidbodyConstraints.FreezeRotationZ |
+            RigidbodyConstraints.FreezeRotationX |
+        RigidbodyConstraints.FreezeRotationY;
 
     }
-    
+
     // Update is called once per frame
     void Update()
     {
@@ -86,7 +89,7 @@ public class Simple3DMovement : MonoBehaviour
         movementVector.z *= speedMultiplier_;
 
         theRB.velocity = movementVector;
-        
+
     }
     void Dash()
     {
