@@ -28,7 +28,7 @@ public class DataCore
 [System.Serializable]
 public class GroupedData
 {
-  
+    [SerializeField]
     public int slot;
     [SerializeField]
     public PlayerData playerData;
@@ -46,8 +46,10 @@ public class GroupedData
 [System.Serializable]
 public class PlayerData
 {
+    [SerializeField]
     public string name;
     //In secconds
+    [SerializeField]
     public long playTime;
 
     [SerializeField]
