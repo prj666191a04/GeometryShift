@@ -21,6 +21,11 @@ public class EnemyHomingMissile: EnemyProjectile
     // Start is called before the first frame update
     void Start()
     {
+        InitRigidBody();
+    }
+
+    protected void InitRigidBody()
+    {
         missileRigidBody = GetComponent<Rigidbody>();
     }
 
@@ -33,6 +38,8 @@ public class EnemyHomingMissile: EnemyProjectile
         }
         if (target != null && fuelTime > 0)//rotate towards the target
         {
+            
+            
             fuelTime -= Time.deltaTime;
 
             //where should it rotate towards?

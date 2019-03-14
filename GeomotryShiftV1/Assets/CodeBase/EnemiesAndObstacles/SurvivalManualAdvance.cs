@@ -6,10 +6,10 @@ public class SurvivalManualAdvance : SurvivalLevel1EnemySpawner
 {
     public GameObject advanceKey;
     public static int keysRemaining;
+    float spawnLocation = 0f;
     // Start is called before the first frame update
     void Start()
     {
-        keysRemaining = 2;
         phase = 0;
         LoadEnemiesFromConglomerate();
         SetupEnemyDefaultVariables();
@@ -20,9 +20,16 @@ public class SurvivalManualAdvance : SurvivalLevel1EnemySpawner
         ManualAdvancePhase();
     }
 
+    void SpawnKey(float x, float z)
+    {
+        Vector3 spawnPosition = new Vector3(x, 0f, z);
+        Instantiate(advanceKey, spawnPosition, new Quaternion(), transform.parent);
+        keysRemaining++;
+    }
+
     void ShouldAdvancePhase()
     {
-        if (keysRemaining == 0)
+        if (keysRemaining <= 0)
         {
             ManualAdvancePhase();
         }
@@ -30,28 +37,52 @@ public class SurvivalManualAdvance : SurvivalLevel1EnemySpawner
 
     void ManualAdvancePhase()
     {
+        keysRemaining = 0;
         phase++;
-        Vector3 spawnPosition = new Vector3();
-        Quaternion spawnRotation = new Quaternion();
         switch (phase)
         {
             case 1: //setup phase 1
-                spawnPosition = new Vector3(3f, 0, 3f);
-                Instantiate(advanceKey, spawnPosition, spawnRotation, transform.parent);
-                spawnPosition = new Vector3(-3f, 0, -3f);
-                Instantiate(advanceKey, spawnPosition, spawnRotation, transform.parent);
+                SpawnKey(3f, 3f);
+                SpawnKey(-3f, -3f);
                 break;
-            case 2: //phase 1 complete, setup phase 1
 
-                spawnPosition = new Vector3(3f, 0, 0);
-                Instantiate(advanceKey, spawnPosition, spawnRotation, transform.parent);
-                spawnPosition = new Vector3(0, 0, 3f);
-                Instantiate(advanceKey, spawnPosition, spawnRotation, transform.parent);
-                spawnPosition = new Vector3(-3f, 0, 0);
-                Instantiate(advanceKey, spawnPosition, spawnRotation, transform.parent);
-                spawnPosition = new Vector3(0, 0, -3f);
-                Instantiate(advanceKey, spawnPosition, spawnRotation, transform.parent);
+            case 2: //phase 1 complete, setup phase 2
+                SpawnKey(3f, 0);
+                SpawnKey(-3f, 0);
+                SpawnKey(0, 3f);
+                SpawnKey(0, -3f);
+                break;
 
+            case 3:
+                SpawnKey(5f, 0);
+                SpawnKey(-5f, 0);
+                SpawnKey(0, 5f);
+                SpawnKey(0, -5f);
+                break;
+
+            case 4:
+                SpawnKey(3f, 0);
+                SpawnKey(-3f, 0);
+                SpawnKey(0, 3f);
+                SpawnKey(0, -3f);
+
+                SpawnKey(5f, 0);
+                SpawnKey(-5f, 0);
+                SpawnKey(0, 5f);
+                SpawnKey(0, -5f);
+                break;
+
+            case 5:
+                for (int i = 0; i < 7; i++)
+                {
+                    for (int i2 = 0; i2 < 7; i2++)
+                    {
+                        SpawnKey((float)((i - 3) * 1.8), (float)((i2 - 3) * 1.8));
+                    }
+                }
+                break;
+            case 6:
+                phase = -1;
                 break;
             default:
                 print("manual advance phase has reached undefined phase: " + phase);
@@ -85,6 +116,39 @@ public class SurvivalManualAdvance : SurvivalLevel1EnemySpawner
                     cooldown1TimeCounter -= cooldown1;
                     spawnWave(fastEnemyProjectile, 2, 0);
                     spawnWave(fastEnemyProjectile, 4, 0);
+                }
+                break;
+
+            case 3:
+                spawnLocation += 1;
+                cooldown1 = 0.3f;
+                cooldown1TimeCounter += enemySpawnFunctionCallInterval;
+                if (cooldown1TimeCounter > cooldown1)
+                {
+                    cooldown1TimeCounter -= cooldown1;
+                    spawnWave(slowEnemyProjectile, 3, 0, 0, 0, 0, spawnLocation);
+                }
+                break;
+
+            case 4:
+                spawnLocation += 1;
+                cooldown1 = 0.3f;
+                cooldown1TimeCounter += enemySpawnFunctionCallInterval;
+                if (cooldown1TimeCounter > cooldown1)
+                {
+                    cooldown1TimeCounter -= cooldown1;
+                    spawnWave(fastEnemyProjectile, 3, 0, 0, 0, 0, spawnLocation);
+                }
+                break;
+
+            case 5:
+                spawnLocation += 1;
+                cooldown1 = 0.5f;
+                cooldown1TimeCounter += enemySpawnFunctionCallInterval;
+                if (cooldown1TimeCounter > cooldown1)
+                {
+                    cooldown1TimeCounter -= cooldown1;
+                    spawnWave(homingMissile, 3, 0, 0, 0, 0, spawnLocation);
                 }
                 break;
 

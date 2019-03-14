@@ -15,12 +15,10 @@ public class Hunger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print("Time since last food " + timeSinceLastAte + " if it reaches 5 you lose!");
         timeSinceLastAte += Time.deltaTime;
         if (timeSinceLastAte > timeSinceLastAteLimit)
         {
             gameObject.GetComponent<CStatus>().Damage(9999);
-            print("You starved.");
         }
     }
 }

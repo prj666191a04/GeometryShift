@@ -7,9 +7,7 @@ public class SurvivalHungry : SurvivalLevel1EnemySpawner
     public GameObject theFood;
     Hunger hungerScript;
     SurvivalFood foodScript;
-
-    public static float timeSinceLastAte = 0f;
-
+    int x = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,13 +34,13 @@ public class SurvivalHungry : SurvivalLevel1EnemySpawner
             {
                 timeToPhase.Add(1, 1);//slow projectiles
                 timeToPhase.Add(3, 2);//slow + fast projectiles
-                timeToPhase.Add(6, 3);//homing missiles
-                timeToPhase.Add(12, 4);//boomerangs
-                timeToPhase.Add(15, 5);//small waves from left and right
-                timeToPhase.Add(19, 6);//small waves from left and right
+                timeToPhase.Add(6, 3);
+                timeToPhase.Add(12, 4);
+                timeToPhase.Add(17, 5);
+                timeToPhase.Add(25, 6);
 
 
-                timeToPhase.Add(25, -1);//win
+                timeToPhase.Add(252, -1);//win
             }
             else
             {
@@ -50,12 +48,11 @@ public class SurvivalHungry : SurvivalLevel1EnemySpawner
                 timeToPhase.Add(10, 2);//slow + fast projectiles
                 timeToPhase.Add(20, 3);//homing missiles
                 timeToPhase.Add(30, 4);//boomerangs
-                timeToPhase.Add(40, 5);//small waves from left and right
-                timeToPhase.Add(50, 6);//fast projectiles
+                timeToPhase.Add(40, 5);//bullet sharks
+                timeToPhase.Add(50, 6);//boomerang planar explosion
 
 
                 timeToPhase.Add(60, -1);//win
-
             }
         }
         else
@@ -67,17 +64,7 @@ public class SurvivalHungry : SurvivalLevel1EnemySpawner
 
     void SpawnNewFood()
     {
-        /*Vector3 spawnPosition;
-
-        spawnPosition = new Vector3(Random.Range(-(widthOfLevel / 2.5f),
-            (widthOfLevel / 2.5f)), 0f, 
-            Random.Range(-(lengthOfLevel / 2.5f), (lengthOfLevel / 2.5f)));
-
-        Instantiate(theFood, spawnPosition, new Quaternion(), transform.parent);*/
         foodScript.SpawnNewFood(transform.parent);
-
-
-
     }
 
     void WhatEnemiesShouldSpawn()//60 times a second, no matter the FPS
@@ -147,11 +134,12 @@ public class SurvivalHungry : SurvivalLevel1EnemySpawner
                     boomerangScript.speed = 12f;
 
                     spawnWave(boomerang, Random.Range(1, 5), 0);
+                    
 
                 }
                 break;
             case 5:
-                cooldown1 = 1.2f;
+                cooldown1 = 0.2f;
                 cooldown1TimeCounter += enemySpawnFunctionCallInterval;
                 if (cooldown1TimeCounter > cooldown1)
                 {
@@ -174,6 +162,8 @@ public class SurvivalHungry : SurvivalLevel1EnemySpawner
 
                     boomerangScript.speed = 6f;
                     spawnPlanarExplosion(boomerang, 5);
+                    x++;
+                    print(x);
 
                 }
                 break;

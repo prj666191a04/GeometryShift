@@ -138,11 +138,10 @@ public class SurvivalTutorialEnemySpawner : SurvivalLevel1EnemySpawner
                     boomerangScript.accelerationPerSecond = 12f;
 
                     Vector3 spawnPosition = new Vector3(Random.Range(-(widthOfLevel / 2), (widthOfLevel / 2)), 0f, -(lengthOfLevel / 2));
-                    Quaternion spawnRotation = new Quaternion();
-                    //Instantiate(boomerang, spawnPosition, spawnRotation, transform.parent);
+                    //Quaternion spawnRotation = new Quaternion();
                     if (spawnOrNot > 0f)
                     {
-                        spawnWave(boomerang, 1, 0, 0, 0, 15, spawnLocationFloat);
+                        spawnWave(slowEnemyProjectile, 1, 0, 0, 0, 45, spawnLocationFloat);
                     }
                     
                     spawnLocationFloat += 4.5f;

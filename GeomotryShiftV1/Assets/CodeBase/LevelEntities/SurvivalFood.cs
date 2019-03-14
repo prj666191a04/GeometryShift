@@ -6,14 +6,16 @@ public class SurvivalFood : MonoBehaviour
 {
     public float widthOfLevel = 0f;
     public float lengthOfLevel = 0f;
+    public GameObject textContainer;
+    static Hunger playerHungerScript;
+    TMPro.TextMeshPro theText;
 
     public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
             SpawnNewFood(transform.parent);
-            SurvivalHungry.timeSinceLastAte = 0f;
-            other.gameObject.GetComponent<Hunger>().timeSinceLastAte = 0f;
+            playerHungerScript.timeSinceLastAte = 0f;
             Destroy(gameObject);
         }
         
@@ -33,12 +35,30 @@ public class SurvivalFood : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (playerHungerScript == null)
+        {
+            playerHungerScript = GeometryShift.playerStatus.gameObject.GetComponent<Hunger>();
+        }
+        theText = textContainer.GetComponent<TMPro.TextMeshPro>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        float num = playerHungerScript.timeSinceLastAteLimit - playerHungerScript.timeSinceLastAte;
+        num = (float)System.Math.Round(num, 2);
+        theText.text = num.ToString();
+        if (num > playerHungerScript.timeSinceLastAteLimit * 0.6)
+        {
+            theText.color = Color.cyan;
+        }
+        else if (num > playerHungerScript.timeSinceLastAteLimit * 0.3)
+        {
+            theText.color = Color.yellow;
+        }
+        else
+        {
+            theText.color = Color.red;
+        }
     }
 }
