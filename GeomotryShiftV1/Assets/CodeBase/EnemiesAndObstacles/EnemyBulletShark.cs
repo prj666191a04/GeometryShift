@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class EnemyBulletShark : EnemyHomingMissile
 {
-    public float overrideSpeed = 8f;
-    public float overrideTurnSpeed = 0.5f;
-    public float overrideFuelTime = 999f;
     public int numberOfProjectilesToShoot = 2;
 
     public float shootInterval = 0.7f;
@@ -14,30 +11,30 @@ public class EnemyBulletShark : EnemyHomingMissile
 
     float baseAngle;
     float actualAngle;
-    GameObject planarExplosion;
+    public GameObject planarExplosion;
+    PlanarExplosion peScript;
     public GameObject whatToShoot;
 
     // Start is called before the first frame update
     void Start()
     {
+        if (planarExplosion == null)
+        {
+            planarExplosion = Resources.Load("Enemies/PlanarExplosion/PlanarExplosion") as GameObject;
+        }
+        if (whatToShoot == null)
+        {
+            whatToShoot = Resources.Load("Enemies/EnemyTurretFolder/Enemy Projectile") as GameObject;
+        }
+        peScript = planarExplosion.GetComponent<PlanarExplosion>();
         goThroughWalls = true;
 
         baseAngle = 180f / numberOfProjectilesToShoot;
 
-        turnSpeed = overrideTurnSpeed;
-        speed = overrideSpeed;
-        fuelTime = overrideFuelTime;
 
-        planarExplosion = Resources.Load("Enemies/PlanarExplosion/PlanarExplosion") as GameObject;
 
-        if (whatToShoot == null)
-        {
-            //whatToShoot = Resources.Load("Enemies/EnemyTurretFolder/Enemy Projectile Slow") as GameObject;
-            whatToShoot = Resources.Load("Enemies/EnemyTurretFolder/Enemy Projectile") as GameObject;
-        }
-
-        planarExplosion.GetComponent<PlanarExplosion>().theEnemyToSpawn = whatToShoot;
-        planarExplosion.GetComponent<PlanarExplosion>().numberOfEnemiesSpawned = numberOfProjectilesToShoot;
+        peScript.theEnemyToSpawn = whatToShoot;
+        peScript.numberOfEnemiesSpawned = numberOfProjectilesToShoot;
         missileRigidBody = GetComponent<Rigidbody>();
     }
 
@@ -46,6 +43,8 @@ public class EnemyBulletShark : EnemyHomingMissile
         timeSinceLastShot += Time.deltaTime;
         if (timeSinceLastShot > shootInterval)
         {
+            peScript.theEnemyToSpawn = whatToShoot;
+            peScript.numberOfEnemiesSpawned = numberOfProjectilesToShoot;
             timeSinceLastShot -= shootInterval;
             actualAngle = baseAngle + transform.rotation.eulerAngles.y;
             planarExplosion.GetComponent<PlanarExplosion>().maximumLifespanAllowed = 0f;
