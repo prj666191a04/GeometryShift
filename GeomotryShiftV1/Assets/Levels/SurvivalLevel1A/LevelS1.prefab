@@ -3898,6 +3898,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelCanvasRigA
       objectReference: {fileID: 0}
+    - target: {fileID: 3986093631441003119, guid: 6a911b36ba0e0304badb009ca73c9efe,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9204990832049284820, guid: 6a911b36ba0e0304badb009ca73c9efe,
         type: 3}
       propertyPath: m_LocalPosition.x
