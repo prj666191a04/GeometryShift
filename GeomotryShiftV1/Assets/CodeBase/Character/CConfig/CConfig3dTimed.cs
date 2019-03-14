@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CConfigWorld : CConfig
+public class CConfig3dTimed : CConfig
 {
     public override void SetupCharacter(GameObject playerPrefab, Transform spawnPoint, GameObject parentObject)
     {
@@ -22,7 +22,7 @@ public class CConfigWorld : CConfig
 
 
         cc.motorPool = new CMotor[1];
-        cc.motorPool[0] = player.AddComponent<MapMotorA>();
+        cc.motorPool[0] = player.AddComponent<TriMovementA>();
         cc.AssignMotor(cc.motorPool[0]);
         cc.motor.SetPhysics(cc.rBody);
         player.AddComponent<CStatusA>();

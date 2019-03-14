@@ -18,8 +18,8 @@ public class MapMotorA : CMotor
     public float moveSpeed = 0f;
     public float startSpeed = 4f;
     public float maxSpeed = 10f;
-    public float acellSpeed = 1f;
-    public float decellSpeed = 7f;
+    public float acellSpeed = 3f;
+    public float decellSpeed = 3f;
     private void Start()
     {
         mask = LevelLoader.instance.wMapColLayer;
@@ -47,9 +47,9 @@ public class MapMotorA : CMotor
             Deccelerate();
         }
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, movementVector, out hit, (moveSpeed * Time.deltaTime) + 0.5f , mask))
+        if (Physics.Raycast(transform.position, movementVector, out hit, (moveSpeed * Time.deltaTime) + 0.6f , mask))
         {
-            rBody.MovePosition(transform.position + movementVector * (hit.distance - 0.5f));
+            rBody.MovePosition(transform.position + movementVector * (hit.distance - 0.6f));
             Debug.Log("wall");
         }
         else
@@ -75,7 +75,7 @@ public class MapMotorA : CMotor
     }
     void Deccelerate()
     {
-        moveSpeed -= Time.deltaTime * decellSpeed;
+        moveSpeed -= Time.deltaTime * (decellSpeed + moveSpeed);
         if(moveSpeed < 0)
         {
             moveSpeed = 0;
@@ -99,7 +99,7 @@ public class MapMotorA : CMotor
         rBody.useGravity = true;
         rBody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
         rBody.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
-        rBody.interpolation = RigidbodyInterpolation.Interpolate;
+        rBody.interpolation = RigidbodyInterpolation.None;
         rBody.mass = 1;
     }
 

@@ -87,7 +87,8 @@ public class TriMovementA : CMotor
 
         if (hit.distance != Mathf.Infinity)
         {
-            hoverForce = 0.2f / hit.distance;
+            hoverForce = 1.5f / hit.distance;
+            Debug.Log("fprce");
         }
         hoverForce = 0.2f;
     }
