@@ -10,6 +10,7 @@ public class SurvivalManualAdvance : SurvivalLevel1EnemySpawner
     // Start is called before the first frame update
     void Start()
     {
+        keysRemaining = 0;
         phase = 0;
         LoadEnemiesFromConglomerate();
         SetupEnemyDefaultVariables();
@@ -23,22 +24,30 @@ public class SurvivalManualAdvance : SurvivalLevel1EnemySpawner
     void SpawnKey(float x, float z)
     {
         Vector3 spawnPosition = new Vector3(x, 0f, z);
-        Instantiate(advanceKey, spawnPosition, new Quaternion(), transform.parent);
+        Instantiate(advanceKey, spawnPosition, new Quaternion(), GeometryShift.playerStatus.gameObject.transform.parent);
         keysRemaining++;
     }
 
     void ShouldAdvancePhase()
     {
+        keysRemaining--;
+        print("keys remain " + keysRemaining + " current phase " + phase);
         if (keysRemaining <= 0)
         {
             ManualAdvancePhase();
         }
     }
 
+    public static void x()
+    {
+        
+    }
+
     void ManualAdvancePhase()
     {
         keysRemaining = 0;
         phase++;
+        print("adv phase to " + phase);
         switch (phase)
         {
             case 1: //setup phase 1
@@ -83,6 +92,9 @@ public class SurvivalManualAdvance : SurvivalLevel1EnemySpawner
                 break;
             case 6:
                 phase = -1;
+                //Win level
+                
+                LevelBase.instance.AcknowledgeLevelCompletion();
                 break;
             default:
                 print("manual advance phase has reached undefined phase: " + phase);
@@ -154,9 +166,7 @@ public class SurvivalManualAdvance : SurvivalLevel1EnemySpawner
 
             case -1:
 
-                //Win level
-                PhaseAdvanceItem.gotCollected -= ShouldAdvancePhase;
-                LevelBase.instance.AcknowledgeLevelCompletion();
+                
 
                 break;
             default:
@@ -179,5 +189,10 @@ public class SurvivalManualAdvance : SurvivalLevel1EnemySpawner
             enemySpawnTimer -= enemySpawnFunctionCallInterval;
             WhatEnemiesShouldSpawn();
         }
+    }
+
+    private void OnDestroy()
+    {
+        PhaseAdvanceItem.gotCollected -= ShouldAdvancePhase;
     }
 }

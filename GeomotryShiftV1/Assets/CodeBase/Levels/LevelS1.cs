@@ -120,7 +120,7 @@ public class LevelS1 : LevelBase
         }
         yield return new WaitForSeconds(10);
 
-        levelUi.ShowRsltScreen("TEST", 0);
+        levelUi.ShowRsltScreen("TEST" + System.Environment.NewLine + "More text", 0);
 
         ///base.AcknowledgeLevelCompletion();
         yield break;

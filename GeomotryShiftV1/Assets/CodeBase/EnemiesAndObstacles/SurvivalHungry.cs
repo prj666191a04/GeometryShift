@@ -139,12 +139,12 @@ public class SurvivalHungry : SurvivalLevel1EnemySpawner
                 }
                 break;
             case 5:
-                cooldown1 = 0.2f;
+                cooldown1 = 1.2f;
                 cooldown1TimeCounter += enemySpawnFunctionCallInterval;
                 if (cooldown1TimeCounter > cooldown1)
                 {
                     bulletSharkScript.whatToShoot = slowEnemyProjectile;
-                    bulletSharkScript.shootInterval = 0.8f;
+                    bulletSharkScript.shootInterval = 1.2f;
                     bulletSharkScript.turnSpeed = 0f;
                     bulletSharkScript.numberOfProjectilesToShoot = 4;
                     cooldown1TimeCounter -= cooldown1;
@@ -153,7 +153,7 @@ public class SurvivalHungry : SurvivalLevel1EnemySpawner
                 }
                 break;
             case 6:
-                cooldown2 = 1.6f;
+                cooldown2 = 2f;
                 cooldown2TimeCounter += enemySpawnFunctionCallInterval;
                 if (cooldown2TimeCounter > cooldown2)
                 {

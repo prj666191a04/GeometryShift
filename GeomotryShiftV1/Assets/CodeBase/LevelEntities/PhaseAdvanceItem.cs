@@ -16,7 +16,6 @@ public class PhaseAdvanceItem : MonoBehaviour
             GameObject tempParticlePrefab = Instantiate(particlePrefab, transform.position, new Quaternion(), transform.parent);
             tempParticlePrefab.gameObject.GetComponent<ParticleSystem>().Emit(100);
 
-            SurvivalManualAdvance.keysRemaining--;
             gotCollected?.Invoke();
             Destroy(tempParticlePrefab, 3);//clean up the empty gameobject
             Destroy(gameObject);
