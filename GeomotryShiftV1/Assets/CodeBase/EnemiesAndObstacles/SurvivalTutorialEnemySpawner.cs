@@ -9,6 +9,7 @@ public class SurvivalTutorialEnemySpawner : SurvivalLevel1EnemySpawner
     // Start is called before the first frame update
     void Start()
     {
+        phase = 1;
         LoadEnemiesFromConglomerate();
         SetupEnemyDefaultVariables();
 
