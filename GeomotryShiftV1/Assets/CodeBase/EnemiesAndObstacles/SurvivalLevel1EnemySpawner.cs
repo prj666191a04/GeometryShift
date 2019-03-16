@@ -20,6 +20,10 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
     protected float enemySpawnTimer = 0;
     Random random = new Random();
 
+
+    public GameObject changingText;
+    protected TMPro.TextMeshProUGUI theText;
+
     public GameObject conglomerate;
 
 
@@ -58,6 +62,9 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
 
         fastEnemyProjectile = temp.fastEnemyProjectile;
         fastEnemyProjectileScript = fastEnemyProjectile.gameObject.GetComponent<EnemyProjectile>();
+
+        fastEnemyProjectile.tag = "Enemy"; //for some reason this one became untagged
+
 
         slowEnemyProjectile = temp.slowEnemyProjectile;
         slowEnemyProjectileScript = slowEnemyProjectile.gameObject.GetComponent<EnemyProjectile>();

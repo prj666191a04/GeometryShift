@@ -22,6 +22,8 @@ public class EnemyProjectile : MonoBehaviour
         {
             if (!other.gameObject.CompareTag("Enemy"))
             {
+                print("coll with tag " + other.gameObject.tag + 
+                    " and name " + other.gameObject.name);
                 Destroy(gameObject);
             }
         }

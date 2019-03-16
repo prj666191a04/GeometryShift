@@ -6,6 +6,7 @@ public class SurvivalManualAdvance : SurvivalLevel1EnemySpawner
 {
     public GameObject advanceKey;
     public static int keysRemaining;
+
     float spawnLocation = 0f;
     // Start is called before the first frame update
     void Start()
@@ -17,6 +18,8 @@ public class SurvivalManualAdvance : SurvivalLevel1EnemySpawner
         SetupThePlayerVariable();
         thePlayer.AddComponent<Simple3DMovement>();
         PhaseAdvanceItem.gotCollected += ShouldAdvancePhase;
+
+        theText = changingText.GetComponent<TMPro.TextMeshProUGUI>();
 
         ManualAdvancePhase();
     }
@@ -37,11 +40,7 @@ public class SurvivalManualAdvance : SurvivalLevel1EnemySpawner
             ManualAdvancePhase();
         }
     }
-
-    public static void x()
-    {
-        
-    }
+   
 
     void ManualAdvancePhase()
     {
@@ -179,6 +178,15 @@ public class SurvivalManualAdvance : SurvivalLevel1EnemySpawner
     // Update is called once per frame
     void Update()
     {
+        if (keysRemaining == 1)
+        {
+            theText.text = keysRemaining.ToString() + " key remaining";
+        }
+        else
+        {
+            theText.text = keysRemaining.ToString() + " keys remaining";
+        }
+
         secondsPassed += Time.deltaTime;
         secondsPassedInt = (int)secondsPassed;
         enemySpawnTimer += Time.deltaTime;
