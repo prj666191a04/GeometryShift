@@ -40,8 +40,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6380212202295722818}
   - component: {fileID: 6475167370507616564}
-  - component: {fileID: 1374159621652899850}
   - component: {fileID: 7460173922929252413}
+  - component: {fileID: 782309645014987541}
   m_Layer: 0
   m_Name: SurvivalManualAdvance
   m_TagString: Untagged
@@ -83,21 +83,8 @@ MonoBehaviour:
     type: 3}
   spawnPoint: {fileID: 7059865350909201227}
   parentObject: {fileID: 3155111293681833359}
+  mainMap: 0
   cconfig: {fileID: 7460173922929252413}
---- !u!114 &1374159621652899850
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3155111293681833359}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f9a6a27d4172604d906373221500ed5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelId_: 0
-  cameraPoint: {fileID: 3826951995959727206}
 --- !u!114 &7460173922929252413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,6 +97,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdce8076a0ca1164d9c84f67e9937b77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &782309645014987541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3155111293681833359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4caa709ffbec79340b556a721e8133ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layerSet0:
+    serializedVersion: 2
+    m_Bits: 0
+  layerSet1:
+    serializedVersion: 2
+    m_Bits: 0
+  layerSet2:
+    serializedVersion: 2
+    m_Bits: 0
+  layerSet3:
+    serializedVersion: 2
+    m_Bits: 0
+  levelId_: 0
+  cameraPoint: {fileID: 3826951995959727206}
+  spawn: {fileID: 769244126349305348}
+  itself: {fileID: 3155111293681833359}
 --- !u!1 &6961159913680661786
 GameObject:
   m_ObjectHideFlags: 0

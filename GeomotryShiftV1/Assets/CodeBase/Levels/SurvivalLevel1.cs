@@ -1,28 +1,41 @@
-﻿//Author Allen
+﻿//Author Allan
 
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SurvivalLevel1 : MonoBehaviour
+public class SurvivalLevel1 : LevelBase
 {
-    float secondsPassed = 0;
-    float secondsNeededToSurviveToWin = 80;
-    Random random = new Random();
 
-    // Start is called before the first frame update
-    void Start()
+
+    public Transform cameraPoint;
+    public GameObject spawn;
+    //public LevelOverlayUI theLevelUI; doesn't work
+
+    void OnEnable()
     {
+        CStatus.OnPlayerDeath += foo;
 
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnDisable()
     {
-        /*secondsPassed += Time.deltaTime;
-        if (secondsPassed > secondsNeededToSurviveToWin)
-        {
-            LevelBase.instance.AcknowledgeLevelCompletion();
-        }*/
+        CStatus.OnPlayerDeath -= foo;
+    }
+
+    private void foo(int i = 0)
+    {
+        //Debug.Log("Enter Foo");
+        StartCoroutine(playerRespawn());
+    }
+
+
+    IEnumerator playerRespawn()
+    {
+        //Debug.Log("Enter Player Respawn");
+        yield return new WaitForSeconds(0.1f);
+        //LevelLoader.instance.LoadLevel(itself);
+        //Destroy(gameObject);
+        yield break;
     }
 }
