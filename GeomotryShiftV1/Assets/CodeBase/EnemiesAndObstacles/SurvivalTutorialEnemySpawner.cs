@@ -71,7 +71,8 @@ public class SurvivalTutorialEnemySpawner : SurvivalLevel1EnemySpawner
                     Vector3 spawnPosition = new Vector3(Random.Range(-(widthOfLevel / 2), (widthOfLevel / 2)), 0f, -(lengthOfLevel / 2));
                     Quaternion spawnRotation = new Quaternion();
                     Instantiate(slowEnemyProjectile, spawnPosition, spawnRotation, transform.parent);
-                    //a.gameObject.transform.Translate(7f, 0f, 7f);
+                    
+
                 }
                 break;
             case 2:
