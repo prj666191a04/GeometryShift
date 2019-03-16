@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SurvivalLevel1EnemySpawner : MonoBehaviour
 {
+    public int timeToWin = -1;
+
     public static float widthOfLevel = 22f;
     public static float lengthOfLevel = 22f;
     static float widthDividedBy100;
@@ -108,14 +110,20 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
         lengthDividedBy100 = lengthOfLevel / 100f;
     }
 
-    // Start is called before the first frame update
-    void Start()
+    protected void SurvivalLevelInit()
     {
         LoadEnemiesFromConglomerate();
         SetupEnemyDefaultVariables();
-
         SetupThePlayerVariable();
-        thePlayer.AddComponent<Simple3DMovement>();
+        //thePlayer.AddComponent<Simple3DMovement>();
+        theText = changingText.GetComponent<TMPro.TextMeshProUGUI>();
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        SurvivalLevelInit();
+
 
         timeToPhase = new Hashtable();//unique for each level
 
@@ -128,6 +136,7 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
         {
             if (fastMode)
             {
+                timeToWin = 50;
                 timeToPhase.Add(1, 1);//slow projectiles
                 timeToPhase.Add(2, 2);//slow + fast projectiles
                 timeToPhase.Add(4, 3);//planar explosions + fast projectiles
@@ -143,10 +152,11 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
                 timeToPhase.Add(36, 11);//spawn planar explosions on edge of map only
                 timeToPhase.Add(40, 12);//bullet sharks from bottom
                 timeToPhase.Add(44, 13);//bullet sharks from sides
-                timeToPhase.Add(50, -1);//win
+                timeToPhase.Add(timeToWin, -1);//win
             }
             else
             {
+                timeToWin = 300;
                 timeToPhase.Add(1, 1);//slow projectiles
                 timeToPhase.Add(15, 2);//slow + fast projectiles
                 timeToPhase.Add(35, 3);//planar explosions + fast projectiles
@@ -161,7 +171,7 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
                 timeToPhase.Add(220, 11);//spawn planar explosions on edge of map only
                 timeToPhase.Add(240, 12);//bullet sharks from bottom
                 timeToPhase.Add(270, 13);//bullet sharks from sides
-                timeToPhase.Add(300, -1);//win
+                timeToPhase.Add(timeToWin, -1);//win
             }
         }
         else
@@ -224,7 +234,7 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
         Quaternion spawnRotation;
 
         bool useManualSpawnLocation = false;
-        
+
         if (spawningAngle != -1)
         {
             spawningAngle %= 360;
@@ -578,12 +588,21 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
 
     }
 
+    protected void updateTimeRemaining()
+    {
+        float num = timeToWin - secondsPassed;
+        num = (float)System.Math.Round(num, 2);
+        theText.text = "Survive " + num.ToString();
+    }
+
     // Update is called once per frame
     void Update()
     {
         secondsPassed += Time.deltaTime;
         secondsPassedInt = (int)secondsPassed;
         enemySpawnTimer += Time.deltaTime;
+
+        updateTimeRemaining();
 
         while (enemySpawnTimer > enemySpawnFunctionCallInterval) // to make enemy spawn function run 60 times per second
                                                                  //even when FPS is above or below 60

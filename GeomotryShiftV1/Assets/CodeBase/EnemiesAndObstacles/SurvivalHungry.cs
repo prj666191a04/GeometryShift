@@ -11,12 +11,10 @@ public class SurvivalHungry : SurvivalLevel1EnemySpawner
     // Start is called before the first frame update
     void Start()
     {
-        LoadEnemiesFromConglomerate();
-        SetupEnemyDefaultVariables();
+        SurvivalLevelInit();
 
         foodScript = theFood.gameObject.GetComponent<SurvivalFood>();
-
-        SetupThePlayerVariable();
+        
         thePlayer.AddComponent<Hunger>();
         thePlayer.AddComponent<Simple3DMovement>();
         hungerScript = thePlayer.gameObject.GetComponent<Hunger>();
@@ -32,6 +30,7 @@ public class SurvivalHungry : SurvivalLevel1EnemySpawner
         {
             if (fastMode)
             {
+                timeToWin = 33;
                 timeToPhase.Add(1, 1);//slow projectiles
                 timeToPhase.Add(3, 2);//slow + fast projectiles
                 timeToPhase.Add(6, 3);
@@ -40,10 +39,11 @@ public class SurvivalHungry : SurvivalLevel1EnemySpawner
                 timeToPhase.Add(25, 6);
 
 
-                timeToPhase.Add(252, -1);//win
+                timeToPhase.Add(timeToWin, -1);//win
             }
             else
             {
+                timeToWin = 60;
                 timeToPhase.Add(1, 1);//slow projectiles
                 timeToPhase.Add(10, 2);//slow + fast projectiles
                 timeToPhase.Add(20, 3);//homing missiles
@@ -52,7 +52,7 @@ public class SurvivalHungry : SurvivalLevel1EnemySpawner
                 timeToPhase.Add(50, 6);//boomerang planar explosion
 
 
-                timeToPhase.Add(60, -1);//win
+                timeToPhase.Add(timeToWin, -1);//win
             }
         }
         else
@@ -186,8 +186,9 @@ public class SurvivalHungry : SurvivalLevel1EnemySpawner
         secondsPassed += Time.deltaTime;
         secondsPassedInt = (int)secondsPassed;
         enemySpawnTimer += Time.deltaTime;
-        
-       
+
+        updateTimeRemaining();
+
         while (enemySpawnTimer > enemySpawnFunctionCallInterval) // to make enemy spawn function run 60 times per second
                                                                  //even when FPS is above or below 60
         {

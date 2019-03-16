@@ -9,6 +9,7 @@ public class SurvivalFood : MonoBehaviour
     public GameObject textContainer;
     static Hunger playerHungerScript;
     TMPro.TextMeshPro theText;
+    
 
     public void OnTriggerEnter(Collider other)
     {
@@ -46,15 +47,21 @@ public class SurvivalFood : MonoBehaviour
     void Update()
     {
         float num = playerHungerScript.timeSinceLastAteLimit - playerHungerScript.timeSinceLastAte;
-        num = (float)System.Math.Round(num, 2);
+        num = (float)System.Math.Round(num + 0.5, 0);
+        if (num < 0)
+        {
+            num = 0;
+        }
         theText.text = num.ToString();
         if (num > playerHungerScript.timeSinceLastAteLimit * 0.6)
         {
-            theText.color = Color.cyan;
+            //theText.color = Color.cyan;
+            theText.color = new Color(0, 1, 1, 0.5f);
         }
         else if (num > playerHungerScript.timeSinceLastAteLimit * 0.3)
         {
-            theText.color = Color.yellow;
+            //theText.color = Color.yellow;
+            theText.color = new Color(0, 0.92f, 0.16f, 0.6f);
         }
         else
         {

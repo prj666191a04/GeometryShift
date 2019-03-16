@@ -13,10 +13,8 @@ public class SurvivalManualAdvance : SurvivalLevel1EnemySpawner
     {
         keysRemaining = 0;
         phase = 0;
-        LoadEnemiesFromConglomerate();
-        SetupEnemyDefaultVariables();
-        SetupThePlayerVariable();
-        thePlayer.AddComponent<Simple3DMovement>();
+        SurvivalLevelInit();
+
         PhaseAdvanceItem.gotCollected += ShouldAdvancePhase;
 
         theText = changingText.GetComponent<TMPro.TextMeshProUGUI>();
@@ -33,8 +31,15 @@ public class SurvivalManualAdvance : SurvivalLevel1EnemySpawner
 
     void ShouldAdvancePhase()
     {
+        if (keysRemaining == 1)
+        {
+            theText.text = keysRemaining.ToString() + " key remaining";
+        }
+        else
+        {
+            theText.text = keysRemaining.ToString() + " keys remaining";
+        }
         keysRemaining--;
-        print("keys remain " + keysRemaining + " current phase " + phase);
         if (keysRemaining <= 0)
         {
             ManualAdvancePhase();
@@ -178,14 +183,7 @@ public class SurvivalManualAdvance : SurvivalLevel1EnemySpawner
     // Update is called once per frame
     void Update()
     {
-        if (keysRemaining == 1)
-        {
-            theText.text = keysRemaining.ToString() + " key remaining";
-        }
-        else
-        {
-            theText.text = keysRemaining.ToString() + " keys remaining";
-        }
+        
 
         secondsPassed += Time.deltaTime;
         secondsPassedInt = (int)secondsPassed;
