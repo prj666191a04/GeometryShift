@@ -16,7 +16,7 @@ public class SurvivalFood : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             SpawnNewFood(transform.parent);
-            playerHungerScript.timeSinceLastAte = 0f;
+            Hunger.timeSinceLastAte = 0f;
             Destroy(gameObject);
         }
         
@@ -46,7 +46,7 @@ public class SurvivalFood : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float num = playerHungerScript.timeSinceLastAteLimit - playerHungerScript.timeSinceLastAte;
+        float num = playerHungerScript.timeSinceLastAteLimit - Hunger.timeSinceLastAte;
         num = (float)System.Math.Round(num + 0.5, 0);
         if (num < 0)
         {

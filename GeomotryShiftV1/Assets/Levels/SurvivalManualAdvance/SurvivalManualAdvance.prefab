@@ -441,11 +441,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b763271b6fed2be40adfa676e7e6ad2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawn: {fileID: 769244126349305348}
+  changingText: {fileID: 6630067827018846848}
   conglomerate: {fileID: 3662933248066076624, guid: 2ae58abebceef5340a4396b4bbb9fe0f,
     type: 3}
+  phase: 1
   advanceKey: {fileID: 3140668270592429820, guid: fdd9e7821c604fd47989dc19910b1bad,
     type: 3}
-  changingText: {fileID: 6630067827018846848}
 --- !u!1001 &4693023690137640319
 PrefabInstance:
   m_ObjectHideFlags: 0

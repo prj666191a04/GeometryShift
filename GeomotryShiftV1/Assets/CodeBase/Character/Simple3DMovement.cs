@@ -57,6 +57,10 @@ public class Simple3DMovement : CMotor
     // Update is called once per frame
     void Update()
     {
+        if (theRB == null)
+        {
+            theRB = GetComponent<Rigidbody>(); 
+        }
         if (theRB)
         {
             RotateCharacter();

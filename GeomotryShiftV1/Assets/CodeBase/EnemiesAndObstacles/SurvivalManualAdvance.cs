@@ -20,6 +20,7 @@ public class SurvivalManualAdvance : SurvivalLevel1EnemySpawner
         theText = changingText.GetComponent<TMPro.TextMeshProUGUI>();
 
         ManualAdvancePhase();
+        RefreshText();
     }
 
     void SpawnKey(float x, float z)
@@ -29,7 +30,7 @@ public class SurvivalManualAdvance : SurvivalLevel1EnemySpawner
         keysRemaining++;
     }
 
-    void ShouldAdvancePhase()
+    void RefreshText()
     {
         if (keysRemaining == 1)
         {
@@ -39,11 +40,17 @@ public class SurvivalManualAdvance : SurvivalLevel1EnemySpawner
         {
             theText.text = keysRemaining.ToString() + " keys remaining";
         }
+    }
+
+    void ShouldAdvancePhase()
+    {
         keysRemaining--;
+        
         if (keysRemaining <= 0)
         {
             ManualAdvancePhase();
         }
+        RefreshText();
     }
    
 
@@ -104,8 +111,7 @@ public class SurvivalManualAdvance : SurvivalLevel1EnemySpawner
                 print("manual advance phase has reached undefined phase: " + phase);
                 break;
         }
-
-
+        RefreshText();
     }
 
     void WhatEnemiesShouldSpawn()//60 times a second, no matter the FPS
@@ -183,8 +189,6 @@ public class SurvivalManualAdvance : SurvivalLevel1EnemySpawner
     // Update is called once per frame
     void Update()
     {
-        
-
         secondsPassed += Time.deltaTime;
         secondsPassedInt = (int)secondsPassed;
         enemySpawnTimer += Time.deltaTime;

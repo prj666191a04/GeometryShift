@@ -1,10 +1,16 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class SurvivalLevel1EnemySpawner : MonoBehaviour
 {
-    public int timeToWin = -1;
+    protected int timeToWin = -1;
+
+    public GameObject spawn;
+
+    public static bool playerIsDead = false;
 
     public static float widthOfLevel = 22f;
     public static float lengthOfLevel = 22f;
@@ -17,7 +23,7 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
     protected float cooldown2TimeCounter = 0;
     protected float cooldown2 = 0.8f;
 
-    protected float secondsPassed = 0;
+    public static float secondsPassed = 0;
     protected int secondsPassedInt = 0;
     protected float enemySpawnTimer = 0;
     Random random = new Random();
@@ -33,6 +39,8 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
     protected EnemyProjectile fastEnemyProjectileScript;
 
     protected GameObject slowEnemyProjectile;
+
+
     protected EnemyProjectile slowEnemyProjectileScript;
 
     protected GameObject homingMissile;
@@ -54,9 +62,49 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
 
 
     protected Hashtable timeToPhase;
-    protected int phase = 1;
+    public int phase = 1;
 
     protected GameObject thePlayer;
+
+    
+    void OnEnable()
+    {
+        CStatus.OnPlayerDeath += foo;
+
+    }
+
+    void OnDisable()
+    {
+        CStatus.OnPlayerDeath -= foo;
+    }
+
+    private void foo(int i = 0)
+    {
+        //Debug.Log("Enter Foo");
+        StartCoroutine(playerRespawn());
+    }
+
+
+    IEnumerator playerRespawn()
+    {
+        playerIsDead = true;
+        //Debug.Log("Enter Player Respawn");
+        yield return new WaitForSeconds(2f);
+        GeometryShift.playerStatus.gameObject.GetComponent<CController>().Respawn(spawn.transform.position, false);
+        ResetToStart();
+
+        yield break;
+    }
+
+
+    protected void ResetToStart()
+    {
+        playerIsDead = false;
+        phase = 1;
+        secondsPassed = 0;
+        secondsPassedInt = 0;
+    }
+
 
     protected void LoadEnemiesFromConglomerate()
     {
@@ -183,10 +231,13 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
 
     protected void setPhase()
     {
+        if (playerIsDead)
+        {
+            phase = 0;
+        }
         if (timeToPhase.ContainsKey(secondsPassedInt))
         {
             phase = (int)timeToPhase[secondsPassedInt];
-            timeToPhase.Remove(secondsPassedInt);
             cooldown1TimeCounter = 0;
         }
     }
@@ -593,6 +644,11 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
         float num = timeToWin - secondsPassed;
         num = (float)System.Math.Round(num, 2);
         theText.text = "Survive " + num.ToString();
+        if (!thePlayer.gameObject.GetComponent<Rigidbody>())
+        {
+
+            theText.text = "Respawning... ";
+        }
     }
 
     // Update is called once per frame

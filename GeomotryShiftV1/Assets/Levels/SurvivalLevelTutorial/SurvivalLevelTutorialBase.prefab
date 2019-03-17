@@ -44,9 +44,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeToWin: -1
+  spawn: {fileID: 9106621083568608474}
   changingText: {fileID: 4435884297622635809}
   conglomerate: {fileID: 3662933248066076624, guid: 2ae58abebceef5340a4396b4bbb9fe0f,
     type: 3}
+  phase: 1
 --- !u!1 &1465590563325894596
 GameObject:
   m_ObjectHideFlags: 0

@@ -342,9 +342,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeToWin: -1
+  spawn: {fileID: 321652047569143891}
   changingText: {fileID: 6721416478317024018}
   conglomerate: {fileID: 3662933248066076624, guid: 2ae58abebceef5340a4396b4bbb9fe0f,
     type: 3}
+  phase: 1
 --- !u!1001 &1429519844036189421
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -465,12 +467,12 @@ PrefabInstance:
     - target: {fileID: 1988217597054647167, guid: 1d4c58a713be4e243b9f6329f2debc86,
         type: 3}
       propertyPath: m_havePropertiesChanged
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1988217597054647167, guid: 1d4c58a713be4e243b9f6329f2debc86,
         type: 3}
       propertyPath: m_isInputParsingRequired
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d4c58a713be4e243b9f6329f2debc86, type: 3}
