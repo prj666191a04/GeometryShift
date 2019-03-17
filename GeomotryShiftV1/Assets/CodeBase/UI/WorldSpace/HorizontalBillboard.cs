@@ -8,12 +8,13 @@ public class HorizontalBillboard : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        camTrans = Camera.main.transform;        
+        camTrans = Camera.main.transform;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.x , camTrans.rotation.y, transform.rotation.z));
+        transform.rotation = camTrans.rotation;
     }
 }
