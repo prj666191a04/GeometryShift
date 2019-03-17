@@ -12,7 +12,7 @@ public class TimeTile : MonoBehaviour
     float tickAmmount;
     Material mat;
     public Color DangerColor;
-    Color startColor;
+    public Color startColor;
     int deductRate;
 
     public bool rengeneritive;

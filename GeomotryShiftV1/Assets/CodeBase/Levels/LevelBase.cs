@@ -21,13 +21,23 @@ public class LevelBase : MonoBehaviour
     public static event LevelMessage OnLevelCompleeted;
     public static event LevelEvent OnLevelFailed;
     public static event LevelEvent OnLevelReset;
+    public static event LevelEvent OnLevelRessultScreen;
     public int levelId_ = 0;
+    public LevelInit init_;
+    public string levelName_ = "";
 
 
 
     private void Awake()
     {
         instance = this;
+    }
+    public void LevelRessultScreenSendMessage()
+    {
+        if(OnLevelRessultScreen != null)
+        {
+            OnLevelRessultScreen();
+        }
     }
 
     //id is the id number of the level, code is the return value for how the level was compleeted, return 0 if no special conditions exist
