@@ -67,7 +67,8 @@ public class CStatusT : CStatus
     }
     IEnumerator ReadyReset()
     {
-        yield return new WaitForSeconds(1f);
+        ui.SetText(value_);
+        yield return new WaitForSeconds(2f);
         ready = true;
     }
 
@@ -84,7 +85,7 @@ public class CStatusT : CStatus
             ready = false;
             hp = 0;
             Die();
-            Reset();
+            //Reset();
         }
     }
 
@@ -102,7 +103,7 @@ public class CStatusT : CStatus
             {
                 value_ = 0;
                 Die();
-                Reset();
+                //Reset();
             }
         }
     }
@@ -142,8 +143,6 @@ public class CStatusT : CStatus
             {
                 dspValue_ = decentValue;
             }
-
-
         }
     }
 
