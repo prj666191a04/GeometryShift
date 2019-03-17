@@ -357,6 +357,7 @@ MonoBehaviour:
   maxTime: 3
   currentTime: 0
   DangerColor: {r: 1, g: 0.4040035, b: 0, a: 0.45490196}
+  startColor: {r: 0, g: 0, b: 0, a: 0}
   rengeneritive: 0
 --- !u!65 &25404146
 BoxCollider:
@@ -1298,6 +1299,7 @@ MonoBehaviour:
   maxTime: 3
   currentTime: 0
   DangerColor: {r: 1, g: 0.4040035, b: 0, a: 0.45490196}
+  startColor: {r: 0, g: 0, b: 0, a: 0}
   rengeneritive: 0
 --- !u!65 &157830830
 BoxCollider:
@@ -1420,6 +1422,7 @@ MonoBehaviour:
   maxTime: 3
   currentTime: 0
   DangerColor: {r: 1, g: 0.4040035, b: 0, a: 0.45490196}
+  startColor: {r: 0, g: 0, b: 0, a: 0}
   rengeneritive: 0
 --- !u!65 &192201924
 BoxCollider:
@@ -4144,7 +4147,8 @@ AudioSource:
   m_GameObject: {fileID: 705145222}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 243800295387655954, guid: 25fc926c45a2c2242acd6226a3b25cec,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: d5b3e7b2d581254478bc3e37f8dd6ac0, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -5390,6 +5394,7 @@ MonoBehaviour:
   maxTime: 3
   currentTime: 0
   DangerColor: {r: 1, g: 0.4040035, b: 0, a: 0.45490196}
+  startColor: {r: 0, g: 0, b: 0, a: 0}
   rengeneritive: 0
 --- !u!65 &1024971778
 BoxCollider:
@@ -5853,6 +5858,7 @@ MonoBehaviour:
   maxTime: 3
   currentTime: 0
   DangerColor: {r: 1, g: 0.4040035, b: 0, a: 0.45490196}
+  startColor: {r: 0, g: 0, b: 0, a: 0}
   rengeneritive: 0
 --- !u!65 &1164298508
 BoxCollider:
@@ -6259,6 +6265,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   levelId_: 0
+  init_: {fileID: 0}
+  levelName_: 
 --- !u!114 &1227219628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6807,6 +6815,7 @@ MonoBehaviour:
   maxTime: 3
   currentTime: 0
   DangerColor: {r: 1, g: 0.4040035, b: 0, a: 0.45490196}
+  startColor: {r: 0, g: 0, b: 0, a: 0}
   rengeneritive: 0
 --- !u!65 &1343929551
 BoxCollider:
@@ -7033,6 +7042,7 @@ MonoBehaviour:
   maxTime: 3
   currentTime: 0
   DangerColor: {r: 1, g: 0.4040035, b: 0, a: 0.45490196}
+  startColor: {r: 0, g: 0, b: 0, a: 0}
   rengeneritive: 0
 --- !u!65 &1461087492
 BoxCollider:
@@ -8697,6 +8707,7 @@ MonoBehaviour:
   maxTime: 3
   currentTime: 0
   DangerColor: {r: 1, g: 0.4040035, b: 0, a: 0.45490196}
+  startColor: {r: 0, g: 0, b: 0, a: 0}
   rengeneritive: 0
 --- !u!65 &1679083821
 BoxCollider:
@@ -9014,6 +9025,7 @@ MonoBehaviour:
   maxTime: 3
   currentTime: 0
   DangerColor: {r: 1, g: 0.4040035, b: 0, a: 0.45490196}
+  startColor: {r: 0, g: 0, b: 0, a: 0}
   rengeneritive: 0
 --- !u!65 &1792016113
 BoxCollider:
