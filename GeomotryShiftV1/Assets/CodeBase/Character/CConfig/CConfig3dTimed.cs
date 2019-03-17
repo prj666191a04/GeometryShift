@@ -22,7 +22,7 @@ public class CConfig3dTimed : CConfig
 
 
         cc.motorPool = new CMotor[1];
-        cc.motorPool[0] = player.AddComponent<TriMovementA>();
+        cc.motorPool[0] = player.AddComponent<TMotor3D>();
         cc.AssignMotor(cc.motorPool[0]);
         cc.motor.SetPhysics(cc.rBody);
         player.AddComponent<CStatusA>();

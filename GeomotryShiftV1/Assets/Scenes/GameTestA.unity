@@ -355,6 +355,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxTime: 3
+  currentTime: 0
   DangerColor: {r: 1, g: 0.4040035, b: 0, a: 0.45490196}
   rengeneritive: 0
 --- !u!65 &25404146
@@ -1295,6 +1296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxTime: 3
+  currentTime: 0
   DangerColor: {r: 1, g: 0.4040035, b: 0, a: 0.45490196}
   rengeneritive: 0
 --- !u!65 &157830830
@@ -1416,6 +1418,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxTime: 3
+  currentTime: 0
   DangerColor: {r: 1, g: 0.4040035, b: 0, a: 0.45490196}
   rengeneritive: 0
 --- !u!65 &192201924
@@ -5385,6 +5388,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxTime: 3
+  currentTime: 0
   DangerColor: {r: 1, g: 0.4040035, b: 0, a: 0.45490196}
   rengeneritive: 0
 --- !u!65 &1024971778
@@ -5847,6 +5851,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxTime: 3
+  currentTime: 0
   DangerColor: {r: 1, g: 0.4040035, b: 0, a: 0.45490196}
   rengeneritive: 0
 --- !u!65 &1164298508
@@ -6800,6 +6805,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxTime: 3
+  currentTime: 0
   DangerColor: {r: 1, g: 0.4040035, b: 0, a: 0.45490196}
   rengeneritive: 0
 --- !u!65 &1343929551
@@ -6973,7 +6979,7 @@ PrefabInstance:
     - target: {fileID: 4186783359682332449, guid: 42506a4054ff6b84c9e27633d61c6c65,
         type: 3}
       propertyPath: wMapColLayer.m_Bits
-      value: 2048
+      value: 3072
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42506a4054ff6b84c9e27633d61c6c65, type: 3}
@@ -7025,6 +7031,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxTime: 3
+  currentTime: 0
   DangerColor: {r: 1, g: 0.4040035, b: 0, a: 0.45490196}
   rengeneritive: 0
 --- !u!65 &1461087492
@@ -8688,6 +8695,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxTime: 3
+  currentTime: 0
   DangerColor: {r: 1, g: 0.4040035, b: 0, a: 0.45490196}
   rengeneritive: 0
 --- !u!65 &1679083821
@@ -9004,6 +9012,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxTime: 3
+  currentTime: 0
   DangerColor: {r: 1, g: 0.4040035, b: 0, a: 0.45490196}
   rengeneritive: 0
 --- !u!65 &1792016113
