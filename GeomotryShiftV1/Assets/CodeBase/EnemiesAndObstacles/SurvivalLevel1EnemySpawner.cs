@@ -1,9 +1,17 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class SurvivalLevel1EnemySpawner : MonoBehaviour
 {
+    protected int timeToWin = -1;
+
+    public GameObject spawn;
+
+    public static bool playerIsDead = false;
+
     public static float widthOfLevel = 22f;
     public static float lengthOfLevel = 22f;
     static float widthDividedBy100;
@@ -15,10 +23,14 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
     protected float cooldown2TimeCounter = 0;
     protected float cooldown2 = 0.8f;
 
-    protected float secondsPassed = 0;
+    public static float secondsPassed = 0;
     protected int secondsPassedInt = 0;
     protected float enemySpawnTimer = 0;
     Random random = new Random();
+
+
+    public GameObject changingText;
+    protected TMPro.TextMeshProUGUI theText;
 
     public GameObject conglomerate;
 
@@ -27,6 +39,8 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
     protected EnemyProjectile fastEnemyProjectileScript;
 
     protected GameObject slowEnemyProjectile;
+
+
     protected EnemyProjectile slowEnemyProjectileScript;
 
     protected GameObject homingMissile;
@@ -48,9 +62,49 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
 
 
     protected Hashtable timeToPhase;
-    protected int phase = 1;
+    public int phase = 1;
 
     protected GameObject thePlayer;
+
+    
+    void OnEnable()
+    {
+        CStatus.OnPlayerDeath += foo;
+
+    }
+
+    void OnDisable()
+    {
+        CStatus.OnPlayerDeath -= foo;
+    }
+
+    private void foo(int i = 0)
+    {
+        //Debug.Log("Enter Foo");
+        StartCoroutine(playerRespawn());
+    }
+
+
+    IEnumerator playerRespawn()
+    {
+        playerIsDead = true;
+        //Debug.Log("Enter Player Respawn");
+        yield return new WaitForSeconds(2f);
+        GeometryShift.playerStatus.gameObject.GetComponent<CController>().Respawn(spawn.transform.position, false);
+        ResetToStart();
+
+        yield break;
+    }
+
+
+    protected void ResetToStart()
+    {
+        playerIsDead = false;
+        phase = 1;
+        secondsPassed = 0;
+        secondsPassedInt = 0;
+    }
+
 
     protected void LoadEnemiesFromConglomerate()
     {
@@ -58,6 +112,9 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
 
         fastEnemyProjectile = temp.fastEnemyProjectile;
         fastEnemyProjectileScript = fastEnemyProjectile.gameObject.GetComponent<EnemyProjectile>();
+
+        fastEnemyProjectile.tag = "Enemy"; //for some reason this one became untagged
+
 
         slowEnemyProjectile = temp.slowEnemyProjectile;
         slowEnemyProjectileScript = slowEnemyProjectile.gameObject.GetComponent<EnemyProjectile>();
@@ -101,14 +158,20 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
         lengthDividedBy100 = lengthOfLevel / 100f;
     }
 
-    // Start is called before the first frame update
-    void Start()
+    protected void SurvivalLevelInit()
     {
         LoadEnemiesFromConglomerate();
         SetupEnemyDefaultVariables();
-
         SetupThePlayerVariable();
-        thePlayer.AddComponent<Simple3DMovement>();
+        //thePlayer.AddComponent<Simple3DMovement>();
+        theText = changingText.GetComponent<TMPro.TextMeshProUGUI>();
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        SurvivalLevelInit();
+
 
         timeToPhase = new Hashtable();//unique for each level
 
@@ -121,6 +184,7 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
         {
             if (fastMode)
             {
+                timeToWin = 50;
                 timeToPhase.Add(1, 1);//slow projectiles
                 timeToPhase.Add(2, 2);//slow + fast projectiles
                 timeToPhase.Add(4, 3);//planar explosions + fast projectiles
@@ -136,10 +200,11 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
                 timeToPhase.Add(36, 11);//spawn planar explosions on edge of map only
                 timeToPhase.Add(40, 12);//bullet sharks from bottom
                 timeToPhase.Add(44, 13);//bullet sharks from sides
-                timeToPhase.Add(50, -1);//win
+                timeToPhase.Add(timeToWin, -1);//win
             }
             else
             {
+                timeToWin = 300;
                 timeToPhase.Add(1, 1);//slow projectiles
                 timeToPhase.Add(15, 2);//slow + fast projectiles
                 timeToPhase.Add(35, 3);//planar explosions + fast projectiles
@@ -154,7 +219,7 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
                 timeToPhase.Add(220, 11);//spawn planar explosions on edge of map only
                 timeToPhase.Add(240, 12);//bullet sharks from bottom
                 timeToPhase.Add(270, 13);//bullet sharks from sides
-                timeToPhase.Add(300, -1);//win
+                timeToPhase.Add(timeToWin, -1);//win
             }
         }
         else
@@ -166,10 +231,13 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
 
     protected void setPhase()
     {
+        if (playerIsDead)
+        {
+            phase = 0;
+        }
         if (timeToPhase.ContainsKey(secondsPassedInt))
         {
             phase = (int)timeToPhase[secondsPassedInt];
-            timeToPhase.Remove(secondsPassedInt);
             cooldown1TimeCounter = 0;
         }
     }
@@ -217,7 +285,7 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
         Quaternion spawnRotation;
 
         bool useManualSpawnLocation = false;
-        
+
         if (spawningAngle != -1)
         {
             spawningAngle %= 360;
@@ -571,12 +639,26 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
 
     }
 
+    protected void updateTimeRemaining()
+    {
+        float num = timeToWin - secondsPassed;
+        num = (float)System.Math.Round(num, 2);
+        theText.text = "Survive " + num.ToString();
+        if (!thePlayer.gameObject.GetComponent<Rigidbody>())
+        {
+
+            theText.text = "Respawning... ";
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
         secondsPassed += Time.deltaTime;
         secondsPassedInt = (int)secondsPassed;
         enemySpawnTimer += Time.deltaTime;
+
+        updateTimeRemaining();
 
         while (enemySpawnTimer > enemySpawnFunctionCallInterval) // to make enemy spawn function run 60 times per second
                                                                  //even when FPS is above or below 60

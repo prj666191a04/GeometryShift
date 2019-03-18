@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Simple3DMovement : CMotor
 {
+
+    Quaternion targetRotation;
     Rigidbody theRB;
     float speedMultiplier_ = 10;
 
@@ -16,6 +18,13 @@ public class Simple3DMovement : CMotor
     float dashCooldownRemaining = 0.40f;
     Vector3 dashDirection;
 
+    public float rotSpeed = 10f;
+    public float moveSpeed = 0f;
+    public float startSpeed = 4f;
+    public float maxSpeed = 10f;
+    public float acellSpeed = 3f;
+    public float decellSpeed = 3f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -25,70 +34,97 @@ public class Simple3DMovement : CMotor
             RigidbodyConstraints.FreezeRotationX |
         RigidbodyConstraints.FreezeRotationY;
 
+        targetRotation = transform.rotation;
+
+    }
+
+    void RotateCharacter()
+    {
+        Vector3 targetDirection = new Vector3(
+            Input.GetAxis("Horizontal"), 
+            0, 
+            Input.GetAxis("Vertical"));
+        if (targetDirection != Vector3.zero)
+        {
+            //Set the target Direction
+            targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
+
+        }
+        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * rotSpeed);
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (dashCooldownRemaining > 0)
+        if (theRB == null)
         {
-            dashCooldownRemaining -= Time.deltaTime;
+            theRB = GetComponent<Rigidbody>(); 
         }
-        if (dashTimeRemaining > 0)
+        if (theRB)
         {
-            Dash();
-            return;
-        }
-
-        if (Input.GetKey("left shift") && dashCooldownRemaining <= 0)
-        {
-            dashCooldownRemaining = dashCooldown;
-
-            dashDirection = new Vector3(0, 0, 0);
-            dashDirection.x = Input.GetAxis("Horizontal");
-            dashDirection.y = 0;
-            dashDirection.z = Input.GetAxis("Vertical");
-
-            if (dashDirection.x == 0 && dashDirection.z == 0)
+            RotateCharacter();
+            if (dashCooldownRemaining > 0)
             {
-                //nothing
+                dashCooldownRemaining -= Time.deltaTime;
             }
-            else
+            if (dashTimeRemaining > 0)
             {
-                float multiplier = dashSpeedMultiplier;
-                //print("dash with x " + dashDirection.x + " and z " + dashDirection.z);
-
-                if (Mathf.Abs(dashDirection.x) > Mathf.Abs(dashDirection.z))
-                {
-                    multiplier = dashSpeedMultiplier / Mathf.Abs(dashDirection.x);
-                    //print("multi calculated from x is " + multiplier);
-                    dashDirection.x *= multiplier;
-                    dashDirection.z *= multiplier;
-                }
-                else
-                {
-                    multiplier = dashSpeedMultiplier / Mathf.Abs(dashDirection.z);
-                    //print("multi calculated from z is " + multiplier);
-                    dashDirection.x *= multiplier;
-                    dashDirection.z *= multiplier;
-                }
-
-
-                dashTimeRemaining = dashDuration;
                 Dash();
                 return;
             }
+
+            if (Input.GetKey("left shift") && dashCooldownRemaining <= 0)
+            {
+                dashCooldownRemaining = dashCooldown;
+
+                dashDirection = new Vector3(0, 0, 0);
+                dashDirection.x = Input.GetAxis("Horizontal");
+                dashDirection.y = 0;
+                dashDirection.z = Input.GetAxis("Vertical");
+
+                if (dashDirection.x == 0 && dashDirection.z == 0)
+                {
+                    //nothing
+                }
+                else
+                {
+                    float multiplier = dashSpeedMultiplier;
+                    //print("dash with x " + dashDirection.x + " and z " + dashDirection.z);
+
+                    if (Mathf.Abs(dashDirection.x) > Mathf.Abs(dashDirection.z))
+                    {
+                        multiplier = dashSpeedMultiplier / Mathf.Abs(dashDirection.x);
+                        //print("multi calculated from x is " + multiplier);
+                        dashDirection.x *= multiplier;
+                        dashDirection.z *= multiplier;
+                    }
+                    else
+                    {
+                        multiplier = dashSpeedMultiplier / Mathf.Abs(dashDirection.z);
+                        //print("multi calculated from z is " + multiplier);
+                        dashDirection.x *= multiplier;
+                        dashDirection.z *= multiplier;
+                    }
+
+
+                    dashTimeRemaining = dashDuration;
+                    Dash();
+                    return;
+                }
+            }
+
+
+            Vector3 movementVector = new Vector3(0, 0, 0);
+            movementVector.x = Input.GetAxis("Horizontal");
+            movementVector.y = theRB.velocity.y;
+            movementVector.z = Input.GetAxis("Vertical");
+
+            movementVector.x *= speedMultiplier_;
+            movementVector.z *= speedMultiplier_;
+
+            theRB.velocity = movementVector;
         }
-
-        Vector3 movementVector = new Vector3(0, 0, 0);
-        movementVector.x = Input.GetAxis("Horizontal");
-        movementVector.y = theRB.velocity.y;
-        movementVector.z = Input.GetAxis("Vertical");
-
-        movementVector.x *= speedMultiplier_;
-        movementVector.z *= speedMultiplier_;
-
-        theRB.velocity = movementVector;
 
     }
     void Dash()

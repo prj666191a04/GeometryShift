@@ -21,20 +21,16 @@ public class SurvivalConfig : CConfig
         }
 
 
-        cc.motorPool = new CMotor[2];
+        cc.motorPool = new CMotor[1];
         cc.motorPool[0] = player.AddComponent<Simple3DMovement>();
         cc.motorPool[0].enabled = true;
         cc.AssignMotor(cc.motorPool[0]);
         cc.motor.SetPhysics(cc.rBody);
 
-        cc.motorPool[1] = player.AddComponent<TriMovementB>();
-        cc.motorPool[1].enabled = false;
-
         player.AddComponent<CStatusA>();
         Debug.Log("Character Ready");
 
     }
-
-
+    
 
 }

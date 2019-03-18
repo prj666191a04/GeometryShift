@@ -6,19 +6,21 @@ public class SurvivalManualAdvance : SurvivalLevel1EnemySpawner
 {
     public GameObject advanceKey;
     public static int keysRemaining;
+
     float spawnLocation = 0f;
     // Start is called before the first frame update
     void Start()
     {
         keysRemaining = 0;
         phase = 0;
-        LoadEnemiesFromConglomerate();
-        SetupEnemyDefaultVariables();
-        SetupThePlayerVariable();
-        thePlayer.AddComponent<Simple3DMovement>();
+        SurvivalLevelInit();
+
         PhaseAdvanceItem.gotCollected += ShouldAdvancePhase;
 
+        theText = changingText.GetComponent<TMPro.TextMeshProUGUI>();
+
         ManualAdvancePhase();
+        RefreshText();
     }
 
     void SpawnKey(float x, float z)
@@ -28,20 +30,29 @@ public class SurvivalManualAdvance : SurvivalLevel1EnemySpawner
         keysRemaining++;
     }
 
+    void RefreshText()
+    {
+        if (keysRemaining == 1)
+        {
+            theText.text = keysRemaining.ToString() + " key remaining";
+        }
+        else
+        {
+            theText.text = keysRemaining.ToString() + " keys remaining";
+        }
+    }
+
     void ShouldAdvancePhase()
     {
         keysRemaining--;
-        print("keys remain " + keysRemaining + " current phase " + phase);
+        
         if (keysRemaining <= 0)
         {
             ManualAdvancePhase();
         }
+        RefreshText();
     }
-
-    public static void x()
-    {
-        
-    }
+   
 
     void ManualAdvancePhase()
     {
@@ -100,8 +111,7 @@ public class SurvivalManualAdvance : SurvivalLevel1EnemySpawner
                 print("manual advance phase has reached undefined phase: " + phase);
                 break;
         }
-
-
+        RefreshText();
     }
 
     void WhatEnemiesShouldSpawn()//60 times a second, no matter the FPS

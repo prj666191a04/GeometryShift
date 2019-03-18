@@ -10,10 +10,8 @@ public class SurvivalTutorialEnemySpawner : SurvivalLevel1EnemySpawner
     void Start()
     {
         phase = 1;
-        LoadEnemiesFromConglomerate();
-        SetupEnemyDefaultVariables();
 
-        SetupThePlayerVariable();
+        SurvivalLevelInit();
 
         timeToPhase = new Hashtable();//unique for each level
 
@@ -26,18 +24,20 @@ public class SurvivalTutorialEnemySpawner : SurvivalLevel1EnemySpawner
         {
             if (fastMode)
             {
+                timeToWin = 25;
                 timeToPhase.Add(1, 1);//slow projectiles
                 timeToPhase.Add(3, 2);//slow + fast projectiles
                 timeToPhase.Add(6, 3);//homing missiles
                 timeToPhase.Add(12, 4);//boomerangs
                 timeToPhase.Add(15, 5);//small waves from left and right
-                timeToPhase.Add(19, 6);//small waves from left and right
+                timeToPhase.Add(timeToWin, 6);//small waves from left and right
 
 
                 timeToPhase.Add(25, -1);//win
             }
             else
             {
+                timeToWin = 60;
                 timeToPhase.Add(1, 1);//slow projectiles
                 timeToPhase.Add(10, 2);//slow + fast projectiles
                 timeToPhase.Add(20, 3);//homing missiles
@@ -46,7 +46,7 @@ public class SurvivalTutorialEnemySpawner : SurvivalLevel1EnemySpawner
                 timeToPhase.Add(50, 6);//fast projectiles
 
 
-                timeToPhase.Add(60, -1);//win
+                timeToPhase.Add(timeToWin, -1);//win
 
             }
         }
@@ -71,7 +71,8 @@ public class SurvivalTutorialEnemySpawner : SurvivalLevel1EnemySpawner
                     Vector3 spawnPosition = new Vector3(Random.Range(-(widthOfLevel / 2), (widthOfLevel / 2)), 0f, -(lengthOfLevel / 2));
                     Quaternion spawnRotation = new Quaternion();
                     Instantiate(slowEnemyProjectile, spawnPosition, spawnRotation, transform.parent);
-                    //a.gameObject.transform.Translate(7f, 0f, 7f);
+                    
+
                 }
                 break;
             case 2:
@@ -193,6 +194,8 @@ public class SurvivalTutorialEnemySpawner : SurvivalLevel1EnemySpawner
         secondsPassed += Time.deltaTime;
         secondsPassedInt = (int)secondsPassed;
         enemySpawnTimer += Time.deltaTime;
+
+        updateTimeRemaining();
 
         while (enemySpawnTimer > enemySpawnFunctionCallInterval) // to make enemy spawn function run 60 times per second
                                                                  //even when FPS is above or below 60
