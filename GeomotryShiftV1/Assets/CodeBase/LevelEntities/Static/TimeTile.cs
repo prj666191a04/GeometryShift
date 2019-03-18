@@ -8,13 +8,25 @@ using UnityEngine;
 public class TimeTile : MonoBehaviour
 {
     public float maxTime = 3f;
-    float currentTime;
+    public float currentTime;
     float tickAmmount;
     Material mat;
     public Color DangerColor;
-    Color startColor;
+    public Color startColor;
+    int deductRate;
 
     public bool rengeneritive;
+
+
+    private void OnEnable()
+    {
+        LevelBase.OnLevelReset += Setup;
+    }
+
+    private void OnDisable()
+    {
+        LevelBase.OnLevelReset -= Setup;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -23,14 +35,36 @@ public class TimeTile : MonoBehaviour
         tickAmmount = 1 / maxTime;
         mat = GetComponent<MeshRenderer>().material;
         startColor = mat.color;
+        if (rengeneritive)
+            deductRate = 2;
+        else
+            deductRate = 1;
+    }
+
+    void Setup()
+    {
+        currentTime = 0;
+        tickAmmount = 1 / maxTime;
+        mat.color = startColor;
+    }
+
+    private void Update()
+    {
+        if(rengeneritive && currentTime > 0)
+        {
+            currentTime -= Time.deltaTime;
+            if (currentTime < 0)
+                currentTime = 0;
+            mat.color = Color.Lerp(startColor, DangerColor, currentTime / maxTime);
+        }
     }
 
 
-    private void OnTriggerStay(Collider other)
+    private void OnCollisionStay(Collision other)
     {
-        if(other.CompareTag("Player"))
+        if(other.gameObject.CompareTag("Player"))
         {
-            currentTime += Time.deltaTime;
+            currentTime += Time.deltaTime * deductRate;
            
             if(currentTime > maxTime)
             {
@@ -41,6 +75,5 @@ public class TimeTile : MonoBehaviour
             mat.color = Color.Lerp(startColor, DangerColor, currentTime / maxTime);
         }
     }
-
-    
+   
 }

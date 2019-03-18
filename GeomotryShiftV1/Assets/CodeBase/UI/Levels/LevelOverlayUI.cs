@@ -73,6 +73,7 @@ public class LevelOverlayUI : MonoBehaviour
         levelExitCode = returnCode;
         rsltScript.Play();
         rsltScript.SetRessults(rsltText);
+
     }
     public void ConfirmRessults()
     {

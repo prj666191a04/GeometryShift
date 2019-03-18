@@ -45,11 +45,13 @@ public class CController : MonoBehaviour {
     {
         CStatus.OnPlayerHit += Hit;
         CStatus.OnPlayerDeath += Die;
+        LevelBase.OnLevelRessultScreen += DisableMovement;
     }
     void UnsubEvents()
     {
         CStatus.OnPlayerDeath -= Die;
         CStatus.OnPlayerHit -= Hit;
+        LevelBase.OnLevelRessultScreen -= DisableMovement;
     }
     //Can be removed later for testing only
     void DefaultInitialization()

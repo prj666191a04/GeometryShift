@@ -303,7 +303,6 @@ MonoBehaviour:
   layerSet3:
     serializedVersion: 2
     m_Bits: 0
-  levelId_: 0
   cameraPoint: {fileID: 4742783285267883704}
 --- !u!114 &227258080135048807
 MonoBehaviour:

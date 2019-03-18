@@ -44,7 +44,6 @@ public class LevelResults1 : LevelRessultScreenBase
         {
             yield return new WaitForSeconds(0.01f);
             yScale += Time.deltaTime * 4;
-            Debug.Log(yScale);
             transform.localScale = new Vector3(scale, yScale, 1);
             if (transform.localScale.y > 1)
             {

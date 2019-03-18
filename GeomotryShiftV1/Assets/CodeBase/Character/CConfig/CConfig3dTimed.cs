@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿//Author Atilla Puskas
+//Configuration script for first timed level;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,10 +24,12 @@ public class CConfig3dTimed : CConfig
 
 
         cc.motorPool = new CMotor[1];
-        cc.motorPool[0] = player.AddComponent<TriMovementA>();
+        cc.motorPool[0] = player.AddComponent<TMotor3D>();
         cc.AssignMotor(cc.motorPool[0]);
         cc.motor.SetPhysics(cc.rBody);
-        player.AddComponent<CStatusA>();
+        CStatusT stat = player.AddComponent<CStatusT>();
+        stat.maxTime = 65;
+        stat.warningThreshHold = 33;
 
         GeometryShift.instance.cameraController.SetTarget(player);
         GeometryShift.instance.cameraController.Init(new Vector3(0f, 13f, -6f));
