@@ -11,10 +11,12 @@ public class BiMovementC : CMotor
     public float rayDistance = 1f;
     Quaternion targetRotation;
     Vector3 targetDirection;
+    CharacterController cc;
     private void Start()
     {
         targetRotation = transform.rotation;
         targetDirection = Vector3.zero;
+        
     }
 
     private void Update()
@@ -36,6 +38,7 @@ public class BiMovementC : CMotor
         {
             //rBody.AddForce(rBody.transform.TransformDirection(Vector3.left) * jumpStrength_);
             rBody.AddForce(Vector3.up * jumpStrength_);
+            controller_.DashEffect();
         }
 
         rBody.AddForce(movementVector);
