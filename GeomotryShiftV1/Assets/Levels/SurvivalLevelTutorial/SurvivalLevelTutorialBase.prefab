@@ -272,6 +272,7 @@ MonoBehaviour:
     type: 3}
   spawnPoint: {fileID: 1527985763069966741}
   parentObject: {fileID: 6846850033146472273}
+  mainMap: 0
   cconfig: {fileID: 227258080135048807}
 --- !u!114 &7483907465682475732
 MonoBehaviour:
@@ -285,7 +286,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f9a6a27d4172604d906373221500ed5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelId_: 0
+  layerSet0:
+    serializedVersion: 2
+    m_Bits: 0
+  layerSet1:
+    serializedVersion: 2
+    m_Bits: 0
+  layerSet2:
+    serializedVersion: 2
+    m_Bits: 0
+  layerSet3:
+    serializedVersion: 2
+    m_Bits: 0
+  levelId_: 2
+  init_: {fileID: 0}
+  levelName_: 
   cameraPoint: {fileID: 4742783285267883704}
 --- !u!114 &227258080135048807
 MonoBehaviour:
