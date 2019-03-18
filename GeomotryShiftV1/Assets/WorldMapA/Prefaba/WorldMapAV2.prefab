@@ -15811,7 +15811,7 @@ GameObject:
   - component: {fileID: 4836810590213895461}
   - component: {fileID: 5233450054145226747}
   m_Layer: 0
-  m_Name: DOOR2 (1)
+  m_Name: DOOR3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15901,7 +15901,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 611e95669e7fe4149a3557c35924254a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelId: 2
+  levelId: 1
 --- !u!1 &5611292773588630682
 GameObject:
   m_ObjectHideFlags: 0
