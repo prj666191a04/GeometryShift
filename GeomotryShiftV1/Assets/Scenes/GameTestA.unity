@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -10281,11 +10281,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 573767371}
     m_Modifications:
-    - target: {fileID: 7473860431744446405, guid: 733a8e0f868288c4b8e5725f52da37dd,
-        type: 3}
-      propertyPath: m_Name
-      value: ShardStart
-      objectReference: {fileID: 0}
     - target: {fileID: 7473860431744446400, guid: 733a8e0f868288c4b8e5725f52da37dd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10340,6 +10335,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 137.352
+      objectReference: {fileID: 0}
+    - target: {fileID: 7473860431744446405, guid: 733a8e0f868288c4b8e5725f52da37dd,
+        type: 3}
+      propertyPath: m_Name
+      value: ShardStart
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 733a8e0f868288c4b8e5725f52da37dd, type: 3}
