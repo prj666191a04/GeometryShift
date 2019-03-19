@@ -59,6 +59,9 @@ public class PlayerData
     [SerializeField]
     float posZ;
 
+    [SerializeField]
+    public GSInventory inventory_;
+
     //TODO: Inventory info
     public PlayerData()
     {
@@ -157,5 +160,59 @@ public class Leveldata {
     }
 
 }
+
+
+[System.Serializable]
+public class GSInventory
+{
+
+
+
+    [SerializeField]
+    List<SavedItem> consumeables_;
+
+    public GSInventory(List<SavedItem> consumeables)
+    {
+        consumeables_ = consumeables;
+    }
+
+    public void ConfirmData()
+    {
+        if(consumeables_ == null)
+        {
+            consumeables_ = new List<SavedItem>();
+        }
+    }
+}
+
+[System.Serializable]
+public class SavedItem
+{
+    [SerializeField]
+    public int id_;
+    public int qty_;
+
+    public SavedItem(int id, int qty)
+    { 
+        id_ = id;
+        qty_ = qty;
+    }
+}
+
+[SerializeField]
+public class UniqueItem
+{
+    [SerializeField]
+    public int id_;
+    [SerializeField]
+    public bool aquired;
+}
+
+
+
+
+
+
+
 
 
