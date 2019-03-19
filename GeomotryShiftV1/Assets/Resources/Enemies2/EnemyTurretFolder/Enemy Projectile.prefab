@@ -120,8 +120,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1.5
-  speed: 5.8929343
-  maximumLifespanAllowed: 12
+  speed: 10
+  maximumLifespanAllowed: 10
   timeExistedInSeconds: 0
   goThroughWalls: 0
 --- !u!54 &6006496324486752084
