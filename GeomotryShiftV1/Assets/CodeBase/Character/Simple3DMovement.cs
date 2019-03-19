@@ -63,6 +63,10 @@ public class Simple3DMovement : CMotor
         }
         if (theRB)
         {
+            if (transform.position.y < -5)//player dies if they fall off the map
+            {
+                GetComponent<CStatus>().AbsoluteDamage(9999); 
+            }
             RotateCharacter();
             if (dashCooldownRemaining > 0)
             {
@@ -74,7 +78,7 @@ public class Simple3DMovement : CMotor
                 return;
             }
 
-            if (Input.GetKey("left shift") && dashCooldownRemaining <= 0)
+            if (Input.GetKey("space") && dashCooldownRemaining <= 0)
             {
                 dashCooldownRemaining = dashCooldown;
 

@@ -11,10 +11,11 @@ public class SurvivalManualAdvance : SurvivalLevel1EnemySpawner
     // Start is called before the first frame update
     void Start()
     {
+        InvokeRepeating("Update60TimesPerSecond", 0.0166f, 0.0166f);
         keysRemaining = 0;
-        phase = 0;
         SurvivalLevelInit();
-
+        phase = 0;
+        
         PhaseAdvanceItem.gotCollected += ShouldAdvancePhase;
 
         theText = changingText.GetComponent<TMPro.TextMeshProUGUI>();
@@ -186,19 +187,12 @@ public class SurvivalManualAdvance : SurvivalLevel1EnemySpawner
 
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update60TimesPerSecond()
     {
+        WhatEnemiesShouldSpawn();
+
         secondsPassed += Time.deltaTime;
         secondsPassedInt = (int)secondsPassed;
-        enemySpawnTimer += Time.deltaTime;
-
-        while (enemySpawnTimer > enemySpawnFunctionCallInterval) // to make enemy spawn function run 60 times per second
-                                                                 //even when FPS is above or below 60
-        {
-            enemySpawnTimer -= enemySpawnFunctionCallInterval;
-            WhatEnemiesShouldSpawn();
-        }
     }
 
     private void OnDestroy()

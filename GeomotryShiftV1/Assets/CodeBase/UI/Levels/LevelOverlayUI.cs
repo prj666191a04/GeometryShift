@@ -36,7 +36,7 @@ public class LevelOverlayUI : MonoBehaviour
 
     private int levelExitCode = -1;
 
-    private void Start()
+    private void Awake()
     {
         introInstance = GameObject.Instantiate(introPrefab, this.transform);
         introScript = introInstance.GetComponent<OverlayUIAtribute>();

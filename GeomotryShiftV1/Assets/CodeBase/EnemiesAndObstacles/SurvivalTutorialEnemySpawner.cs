@@ -9,6 +9,8 @@ public class SurvivalTutorialEnemySpawner : SurvivalLevel1EnemySpawner
     // Start is called before the first frame update
     void Start()
     {
+        InvokeRepeating("Update60TimesPerSecond", 0.0166f, 0.0166f);
+
         phase = 1;
 
         SurvivalLevelInit();
@@ -187,22 +189,13 @@ public class SurvivalTutorialEnemySpawner : SurvivalLevel1EnemySpawner
 
     }
 
-
-    // Update is called once per frame
-    void Update()
+    private void Update60TimesPerSecond()
     {
+        setPhase();
+        WhatEnemiesShouldSpawn();
+
         secondsPassed += Time.deltaTime;
         secondsPassedInt = (int)secondsPassed;
-        enemySpawnTimer += Time.deltaTime;
-
         updateTimeRemaining();
-
-        while (enemySpawnTimer > enemySpawnFunctionCallInterval) // to make enemy spawn function run 60 times per second
-                                                                 //even when FPS is above or below 60
-        {
-            enemySpawnTimer -= enemySpawnFunctionCallInterval;
-            setPhase();
-            WhatEnemiesShouldSpawn();
-        }
     }
 }
