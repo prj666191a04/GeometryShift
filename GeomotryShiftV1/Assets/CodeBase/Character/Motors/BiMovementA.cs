@@ -9,18 +9,18 @@ public class BiMovementA : CMotor
     public Rigidbody theRB;
     public float speedMultiplier_ = 6;
     public float jumpForce_ = 10.5f;
-    public int numberOfMidairJumpsAllowed_ = 1;//0 = no midair jump, 1 = double jump, 2 = triple jump, etc
-    public int numberOfMidairJumpsRemaining_ = 1;
-    float sqrtOfZeroPointFive_ = 0.7071067811865475f;
+    public int numberOfJumpsAllowed_ = 2;
+    public int numberOfJumpsRemaining_ = 2;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
+    public float rayDistance = 0.425f;
+    public float rayDistanceDiag = 0.51f;
+
+    bool availableJump_ = true;
 
     void FixedUpdate()
     {
-         Vector3 movementVector = new Vector3(0, 0, 0);
+
+        Vector3 movementVector = new Vector3(0, 0, 0);
         movementVector.x = Input.GetAxis("Horizontal");
         movementVector.y = theRB.velocity.y;
         movementVector.z = Input.GetAxis("Vertical");
@@ -30,108 +30,44 @@ public class BiMovementA : CMotor
 
         theRB.velocity = movementVector;
 
-        bool isGroundedThisFrame = isGrounded();//so it only runs once per frame
-
-        if (isGroundedThisFrame)//reset the number of air jumps
-        {
-            numberOfMidairJumpsRemaining_ = numberOfMidairJumpsAllowed_;
-        }
+        isGrounded(); 
 
         if (Input.GetButtonDown("Jump"))//the player attempts to jump
         {
-            if (isGroundedThisFrame)//the player can jump because they are on the ground
+            if (availableJump_)//the player can jump because they are on the ground
             {
                 theRB.velocity = new Vector3(theRB.velocity.x, jumpForce_, theRB.velocity.z);
-            }
-            else if (numberOfMidairJumpsRemaining_ > 0)//the player can air-jump
-            {
-                theRB.velocity = new Vector3(theRB.velocity.x, jumpForce_, theRB.velocity.z);
-                numberOfMidairJumpsRemaining_--;
+                numberOfJumpsRemaining_--;
+                if (numberOfJumpsRemaining_ == 0)
+                {
+                    availableJump_ = false;
+                }
             }
         }
-
     }
 
-    bool isGrounded()
+    // Checks if player is on the ground and 
+    void isGrounded()
     {
-        float compensationRange = 0.7f;
-        float distanceToGroundToQualityAsGrounded = 1.1f;
-        Vector3 positionVector = new Vector3(0, 0, 0);
-        Vector3 originalPositionVector = new Vector3(0, 0, 0);
-        positionVector = transform.position;
-        originalPositionVector = transform.position;
-        if (Physics.Raycast(positionVector, -Vector3.up, distanceToGroundToQualityAsGrounded))
+         // Does the ray intersect any objects excluding the player layer
+        if (Physics.Raycast(rBody.transform.position, rBody.transform.TransformDirection(Vector3.down), rayDistance)
+            || Physics.Raycast(rBody.transform.position, rBody.transform.TransformDirection(Quaternion.Euler(0, 0, -34) * Vector3.down), rayDistanceDiag)
+            || Physics.Raycast(rBody.transform.position, rBody.transform.TransformDirection(Quaternion.Euler(0, 0, 34) * Vector3.down), rayDistanceDiag))
         {
-            return true;
+           // Debug.DrawRay(rBody.transform.position, rBody.transform.TransformDirection(Vector3.down) * rayDistance, Color.yellow);
+            //Debug.DrawRay(rBody.transform.position, rBody.transform.TransformDirection(Quaternion.Euler(0, 0, -34) * Vector3.down) * rayDistanceDiag, Color.yellow);
+            //Debug.DrawRay(rBody.transform.position, rBody.transform.TransformDirection(Quaternion.Euler(0, 0, 34) * Vector3.down) * rayDistanceDiag, Color.yellow);
+            // Debug.Log("Did Hit");
+            availableJump_ = true;
+            numberOfJumpsRemaining_ = numberOfJumpsAllowed_;
+        }
+        else
+        {
+            //Debug.DrawRay(rBody.transform.position, rBody.transform.TransformDirection(Vector3.down) * rayDistance, Color.white);
+            // Debug.Log("Did not Hit");
         }
 
 
-        //compensation ground detection below
-        //explained in compensationRangeExplanation.png
-
-        positionVector.x += compensationRange;
-        if (Physics.Raycast(positionVector, -Vector3.up, distanceToGroundToQualityAsGrounded))
-        {
-            return true;
-        }
-
-        positionVector = originalPositionVector;
-        positionVector.x -= compensationRange;
-        if (Physics.Raycast(positionVector, -Vector3.up, distanceToGroundToQualityAsGrounded))
-        {
-            return true;
-        }
-
-        positionVector = originalPositionVector;
-        positionVector.z += compensationRange;
-        if (Physics.Raycast(positionVector, -Vector3.up, distanceToGroundToQualityAsGrounded))
-        {
-            return true;
-        }
-
-        positionVector = originalPositionVector;
-        positionVector.z -= compensationRange;
-        if (Physics.Raycast(positionVector, -Vector3.up, distanceToGroundToQualityAsGrounded))
-        {
-            return true;
-        }
-
-        //now the diagonals
-
-        positionVector = originalPositionVector;
-        positionVector.x += compensationRange * sqrtOfZeroPointFive_;
-        positionVector.z += compensationRange * sqrtOfZeroPointFive_;
-        if (Physics.Raycast(positionVector, -Vector3.up, distanceToGroundToQualityAsGrounded))
-        {
-            return true;
-        }
-
-        positionVector = originalPositionVector;
-        positionVector.x += compensationRange * 0.7f;
-        positionVector.z -= compensationRange * sqrtOfZeroPointFive_;
-        if (Physics.Raycast(positionVector, -Vector3.up, distanceToGroundToQualityAsGrounded))
-        {
-            return true;
-        }
-
-        positionVector = originalPositionVector;
-        positionVector.x -= compensationRange * 0.7f;
-        positionVector.z += compensationRange * sqrtOfZeroPointFive_;
-        if (Physics.Raycast(positionVector, -Vector3.up, distanceToGroundToQualityAsGrounded))
-        {
-            return true;
-        }
-
-        positionVector = originalPositionVector;
-        positionVector.x -= compensationRange * 0.7f;
-        positionVector.z -= compensationRange * sqrtOfZeroPointFive_;
-        if (Physics.Raycast(positionVector, -Vector3.up, distanceToGroundToQualityAsGrounded))
-        {
-            return true;
-        }
-
-
-        return false;
     }
 
 
