@@ -23,6 +23,18 @@ public class SaveSlotYesNoPrompt : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Return))
+        {
+            YesClick();
+        }
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            NoClick();
+        }
+    }
+
     public void YesClick()
     {
         if (load)
