@@ -67,31 +67,44 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
 
     protected GameObject thePlayer;
 
+    protected void UniversalSurvivalOnEnable()
+    {
+        CStatus.OnPlayerDeath += showRetryScreen;
+
+        LevelOverlayUI.OnResultScreenFinished += LevelBase.instance.AcknowledgeLevelCompletion;
+        LevelOverlayUI.OnRetryRequested += respawnPlayer;
+        LevelOverlayUI.OnLevelQuit += LevelBase.instance.TerminateLevelAttempt;
+    }
+
+    protected void UniversalSurvivalOnDisable()
+    {
+        CStatus.OnPlayerDeath -= showRetryScreen;
+
+        LevelOverlayUI.OnResultScreenFinished -= LevelBase.instance.AcknowledgeLevelCompletion;
+        LevelOverlayUI.OnRetryRequested -= respawnPlayer;
+        LevelOverlayUI.OnLevelQuit -= LevelBase.instance.TerminateLevelAttempt;
+    }
+
     private void OnEnable()
     {
-        CStatus.OnPlayerDeath += foo;
+        UniversalSurvivalOnEnable();
         LevelOverlayUI.OnIntroFinished += InitLevel;
-        LevelOverlayUI.OnResultScreenFinished += LevelBase.instance.AcknowledgeLevelCompletion;
-        LevelOverlayUI.OnRetryRequested += foo2;
-        LevelOverlayUI.OnLevelQuit += LevelBase.instance.TerminateLevelAttempt;
+
     }
     
 
     private void OnDisable()
     {
-        CStatus.OnPlayerDeath -= foo;
+        UniversalSurvivalOnDisable();
         LevelOverlayUI.OnIntroFinished -= InitLevel;
-        LevelOverlayUI.OnResultScreenFinished -= LevelBase.instance.AcknowledgeLevelCompletion;
-        LevelOverlayUI.OnRetryRequested -= foo2;
-        LevelOverlayUI.OnLevelQuit -= LevelBase.instance.TerminateLevelAttempt;
     }
 
-    protected void foo(int x = 0)
+    protected void showRetryScreen(int x = 0)
     {
         playerIsDead = true;
         theUI.ShowRetryScreen();
     }
-    protected void foo2()
+    protected void respawnPlayer()
     {
         StartCoroutine(playerRespawn());
     }
@@ -217,7 +230,7 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
             }
             else
             {
-                timeToWin = 5;
+                timeToWin = 300;
                 timeToPhase.Add(1, 1);//slow projectiles
                 timeToPhase.Add(15, 2);//slow + fast projectiles
                 timeToPhase.Add(35, 3);//planar explosions + fast projectiles
@@ -652,7 +665,7 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
                 //Win level
                 //LevelBase.instance.AcknowledgeLevelCompletion();
                 phase = -999;
-                theUI.ShowRsltScreen("(should be blank)" + System.Environment.NewLine + "(next line)", 0);
+                theUI.ShowRsltScreen("You Win!" + System.Environment.NewLine + "Level Completed.", 0);
 
                 break;
             default:

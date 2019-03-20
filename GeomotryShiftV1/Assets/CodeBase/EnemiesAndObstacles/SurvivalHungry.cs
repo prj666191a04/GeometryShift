@@ -11,20 +11,14 @@ public class SurvivalHungry : SurvivalLevel1EnemySpawner
 
     private void OnEnable()
     {
-        CStatus.OnPlayerDeath += foo;
+        UniversalSurvivalOnEnable();
         LevelOverlayUI.OnIntroFinished += InitLevelHungry;
-        LevelOverlayUI.OnResultScreenFinished += LevelBase.instance.AcknowledgeLevelCompletion;
-        LevelOverlayUI.OnRetryRequested += foo2;
-        LevelOverlayUI.OnLevelQuit += LevelBase.instance.TerminateLevelAttempt;
     }
 
     private void OnDisable()
     {
-        CStatus.OnPlayerDeath -= foo;
+        UniversalSurvivalOnDisable();
         LevelOverlayUI.OnIntroFinished -= InitLevelHungry;
-        LevelOverlayUI.OnResultScreenFinished -= LevelBase.instance.AcknowledgeLevelCompletion;
-        LevelOverlayUI.OnRetryRequested -= foo2;
-        LevelOverlayUI.OnLevelQuit -= LevelBase.instance.TerminateLevelAttempt;
     }
 
     private void InitLevelHungry()
@@ -196,7 +190,10 @@ public class SurvivalHungry : SurvivalLevel1EnemySpawner
             case -1:
 
                 //Win level
-                LevelBase.instance.AcknowledgeLevelCompletion();
+                //LevelBase.instance.AcknowledgeLevelCompletion();
+                phase = -999;
+                theUI.ShowRsltScreen("You Win!" + System.Environment.NewLine + "Level Completed.", 0);
+
 
                 break;
             default:
@@ -208,12 +205,15 @@ public class SurvivalHungry : SurvivalLevel1EnemySpawner
 
     private void Update60TimesPerSecond()
     {
-        setPhase();
-        WhatEnemiesShouldSpawn();
+        if (!playerIsDead)
+        {
+            setPhase();
+            WhatEnemiesShouldSpawn();
 
-        secondsPassed += Time.deltaTime;
-        secondsPassedInt = (int)secondsPassed;
-        updateTimeRemaining();
+            secondsPassed += Time.deltaTime;
+            secondsPassedInt = (int)secondsPassed;
+            updateTimeRemaining();
+        }
     }
 
 

@@ -7,21 +7,38 @@ public class SurvivalManualAdvance : SurvivalLevel1EnemySpawner
     public GameObject advanceKey;
     public static int keysRemaining;
 
-    float spawnLocation = 0f;
-    // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
+    {
+        UniversalSurvivalOnEnable();
+        LevelOverlayUI.OnIntroFinished += InitLevelManualAdvance;
+    }
+
+    private void OnDisable()
+    {
+        UniversalSurvivalOnDisable();
+        LevelOverlayUI.OnIntroFinished -= InitLevelManualAdvance;
+    }
+
+    void InitLevelManualAdvance()
     {
         InvokeRepeating("Update60TimesPerSecond", 0.0166f, 0.0166f);
         keysRemaining = 0;
         SurvivalLevelInit();
         phase = 0;
-        
+
         PhaseAdvanceItem.gotCollected += ShouldAdvancePhase;
 
         theText = changingText.GetComponent<TMPro.TextMeshProUGUI>();
 
         ManualAdvancePhase();
         RefreshText();
+    }
+
+    float spawnLocation = 0f;
+    // Start is called before the first frame update
+    void Start()
+    {
+        theUI.PlayIntro();
     }
 
     void SpawnKey(float x, float z)
@@ -103,10 +120,11 @@ public class SurvivalManualAdvance : SurvivalLevel1EnemySpawner
                 }
                 break;
             case 6:
-                phase = -1;
                 //Win level
-                
-                LevelBase.instance.AcknowledgeLevelCompletion();
+                //LevelBase.instance.AcknowledgeLevelCompletion();
+                phase = -999;
+                theUI.ShowRsltScreen("You Win!" + System.Environment.NewLine + "Level Completed.", 0);
+
                 break;
             default:
                 print("manual advance phase has reached undefined phase: " + phase);
@@ -189,10 +207,13 @@ public class SurvivalManualAdvance : SurvivalLevel1EnemySpawner
 
     private void Update60TimesPerSecond()
     {
-        WhatEnemiesShouldSpawn();
+        if (!playerIsDead)
+        {
+            WhatEnemiesShouldSpawn();
 
-        secondsPassed += Time.deltaTime;
-        secondsPassedInt = (int)secondsPassed;
+            secondsPassed += Time.deltaTime;
+            secondsPassedInt = (int)secondsPassed;
+        }
     }
 
     private void OnDestroy()
