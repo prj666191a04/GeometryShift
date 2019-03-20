@@ -8,7 +8,6 @@ using UnityEngine;
 public class MapBlockage : MonoBehaviour
 {
     public int levelId;
-    bool compleete = false;
 
     private Color targetColor;
     private Material mat;

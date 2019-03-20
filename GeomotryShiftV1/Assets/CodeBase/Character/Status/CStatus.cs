@@ -29,6 +29,8 @@ public abstract class CStatus : MonoBehaviour
 
     public abstract void Initialize(float ammount);
 
+    public abstract void RecoverItem();
+
     public abstract void Reset();
 
     protected IEnumerator ActivateIFrames()

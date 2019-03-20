@@ -36,7 +36,7 @@ public class LevelOverlayUI : MonoBehaviour
 
     private int levelExitCode = -1;
 
-    private void Start()
+    private void Awake()
     {
         introInstance = GameObject.Instantiate(introPrefab, this.transform);
         introScript = introInstance.GetComponent<OverlayUIAtribute>();
@@ -51,12 +51,13 @@ public class LevelOverlayUI : MonoBehaviour
         rsltScreenInstance.SetActive(false);
        
     }
-
+    //Starts the intro animation
     public void PlayIntro()
     {
         introInstance.SetActive(true);
         introScript.Play();
     }
+    //Never call this manualy from  a level
     public void EndIntro()
     {
         introInstance.SetActive(false);
@@ -75,6 +76,7 @@ public class LevelOverlayUI : MonoBehaviour
         rsltScript.SetRessults(rsltText);
 
     }
+    //Never call this manualy from a level 
     public void ConfirmRessults()
     {
         if(OnResultScreenFinished != null)
@@ -83,12 +85,13 @@ public class LevelOverlayUI : MonoBehaviour
             OnResultScreenFinished(levelExitCode);
         }
     }
-
+    
     public void ShowRetryScreen()
     {
       retryScreenInstance.SetActive(true);
       retryScript.Play();
     }
+    //Never call this manualy from a level
     public void RetryReply(bool retry)
     {
         if(retry)

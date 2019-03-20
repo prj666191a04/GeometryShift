@@ -165,22 +165,18 @@ public class Leveldata {
 [System.Serializable]
 public class GSInventory
 {
-
-
-
     [SerializeField]
     List<SavedItem> consumeables_;
-
     public GSInventory(List<SavedItem> consumeables)
     {
         consumeables_ = consumeables;
     }
-
     public void ConfirmData()
     {
         if(consumeables_ == null)
         {
             consumeables_ = new List<SavedItem>();
+            consumeables_.Add(new SavedItem(0, 0));
         }
     }
 }
@@ -190,6 +186,7 @@ public class SavedItem
 {
     [SerializeField]
     public int id_;
+    [SerializeField]
     public int qty_;
 
     public SavedItem(int id, int qty)

@@ -116,6 +116,10 @@ public class CStatusT : CStatus
             ui.SetNormalColor();
         }
     }
+    public override void RecoverItem()
+    {
+        Recover(maxTime * 0.15f);        
+    }
     public override void Initialize(float ammount)
     {
         throw new System.NotImplementedException();

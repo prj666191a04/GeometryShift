@@ -10,13 +10,12 @@ using UnityEngine;
 public class CStatusA : CStatus
 {
     private float lerpSpeed = 2f;
-    private float minLerpSpeed = 1f;
-    private float maxLerpSpeed = 6f;
 
     // Start is called before the first frame update
     void Start()
     {
         value_ = 3;
+        maxValue_ = 3;
     }
 
     // Update is called once per frame
@@ -61,7 +60,15 @@ public class CStatusA : CStatus
     }
     public override void Recover(float ammount)
     {
-        throw new System.NotImplementedException();
+        value_ += ammount;
+        if(value_ > maxValue_)
+        {
+            value_ = maxValue_;
+        }
+    }
+    public override void RecoverItem()
+    {
+        value_ = maxValue_;
     }
     public override void Initialize(float ammount)
     {
