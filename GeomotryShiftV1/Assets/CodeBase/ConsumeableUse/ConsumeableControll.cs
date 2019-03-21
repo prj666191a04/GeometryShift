@@ -6,7 +6,7 @@ public class ConsumeableControll : MonoBehaviour
 {
     bool active = false;
 
-    ConsumeableActiveSlot recoverySlot;
+    public ConsumeableActiveSlot recoverySlot;
 
     // Start is called before the first frame update
     void Start()
