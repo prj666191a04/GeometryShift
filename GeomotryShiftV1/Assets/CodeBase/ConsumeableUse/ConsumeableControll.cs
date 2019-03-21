@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ConsumeableControll : MonoBehaviour
 {
-    bool active = false;
+    public bool active = true;
 
     public ConsumeableActiveSlot recoverySlot;
 
@@ -17,16 +17,14 @@ public class ConsumeableControll : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(active)
-        {
-            InputResponse();
-        }
+      InputResponse();     
     }
 
     void InputResponse()
     {
         if(Input.GetKeyDown(KeyCode.Alpha1))
         {
+            Debug.Log("Alpha 1");
             recoverySlot.Activate();
         }
     }
