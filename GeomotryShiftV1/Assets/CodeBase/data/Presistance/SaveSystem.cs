@@ -6,6 +6,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using System.Text;
+using System.Security.Cryptography;
+using System;
 
 public static class SaveSystem 
 {
@@ -17,6 +20,15 @@ public static class SaveSystem
             File.Create(filePath).Dispose();
         }
         string json = setUpSaveData();
+
+        //New encryption
+        Debug.Log("Pre-Encrpyt");
+        Debug.Log(json);
+        json = Encrypt(json);
+        Debug.Log("Post-Encrpyt");
+        Debug.Log(json);
+
+
         File.WriteAllText(filePath, json);
     }
 
@@ -44,6 +56,16 @@ public static class SaveSystem
             try
             {
                 json = File.ReadAllText(filePath);
+
+                //New Decrypt
+                Debug.Log("Pre-Decrypt");
+                Debug.Log(json);
+                json = Decrypt(json);
+                Debug.Log("Post-Decrypt");
+                Debug.Log(json);
+
+
+
                 GroupedData saveData = JsonUtility.FromJson<GroupedData>(json);
                 saveData.worldState.ComfirmArraySize();
                 saveData.playerData.inventory_.ConfirmData();
@@ -62,7 +84,41 @@ public static class SaveSystem
         }
     }
 
+    private static string hash = "LockItupBoys1234";
+    //Encrypt
+    private static string Encrypt(string input)
+    {
 
+        byte[] data = UTF8Encoding.UTF8.GetBytes(input);
+        using (MD5CryptoServiceProvider mds = new MD5CryptoServiceProvider())
+        {
+            byte[] key = mds.ComputeHash(UTF8Encoding.UTF8.GetBytes(hash));
+            using (TripleDESCryptoServiceProvider trip = new TripleDESCryptoServiceProvider() {Key = key, Mode = CipherMode.ECB, Padding = PaddingMode.PKCS7 })
+            {
+                ICryptoTransform tr = trip.CreateEncryptor();
+                byte[] result = tr.TransformFinalBlock(data, 0, data.Length);
+                return Convert.ToBase64String(result, 0, result.Length);
+            }
+        }
+    }
+
+
+    // Decrypt
+    private static string Decrypt(string input)
+    {
+
+        byte[] data = Convert.FromBase64String(input);
+        using (MD5CryptoServiceProvider mds = new MD5CryptoServiceProvider())
+        {
+            byte[] key = mds.ComputeHash(UTF8Encoding.UTF8.GetBytes(hash));
+            using (TripleDESCryptoServiceProvider trip = new TripleDESCryptoServiceProvider() { Key = key, Mode = CipherMode.ECB, Padding = PaddingMode.PKCS7 })
+            {
+                ICryptoTransform tr = trip.CreateDecryptor();
+                byte[] result = tr.TransformFinalBlock(data, 0, data.Length);
+                return UTF8Encoding.UTF8.GetString(result);
+            }
+        }
+    }
 }
 
 
