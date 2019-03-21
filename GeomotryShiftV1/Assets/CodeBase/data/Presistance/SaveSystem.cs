@@ -20,15 +20,7 @@ public static class SaveSystem
             File.Create(filePath).Dispose();
         }
         string json = setUpSaveData();
-
-        //New encryption
-        Debug.Log("Pre-Encrpyt");
-        Debug.Log(json);
         json = Encrypt(json);
-        Debug.Log("Post-Encrpyt");
-        Debug.Log(json);
-
-
         File.WriteAllText(filePath, json);
     }
 
@@ -55,17 +47,8 @@ public static class SaveSystem
         {
             try
             {
-                json = File.ReadAllText(filePath);
-
-                //New Decrypt
-                Debug.Log("Pre-Decrypt");
-                Debug.Log(json);
+                json = File.ReadAllText(filePath);             
                 json = Decrypt(json);
-                Debug.Log("Post-Decrypt");
-                Debug.Log(json);
-
-
-
                 GroupedData saveData = JsonUtility.FromJson<GroupedData>(json);
                 saveData.worldState.ComfirmArraySize();
                 saveData.playerData.inventory_.ConfirmData();
@@ -84,6 +67,7 @@ public static class SaveSystem
         }
     }
 
+    //Hash for the encrpytion *shhhhhh* it's a secret
     private static string hash = "LockItupBoys1234";
     //Encrypt
     private static string Encrypt(string input)
@@ -101,7 +85,6 @@ public static class SaveSystem
             }
         }
     }
-
 
     // Decrypt
     private static string Decrypt(string input)
