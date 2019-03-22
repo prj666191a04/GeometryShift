@@ -19,6 +19,7 @@ public class RecoveryActiveSlot : ConsumeableActiveSlot
     {
         timeUsed = Time.time;
         qty_ = LevelLoader.instance.dataCore.groupedData.playerData.inventory_.recoverys_.qty_;
+       // qty_ = 99;
         UpdateCounter();
         targetColor = counter.color;
     }

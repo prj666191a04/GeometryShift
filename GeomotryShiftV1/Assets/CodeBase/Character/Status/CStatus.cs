@@ -12,7 +12,7 @@ public abstract class CStatus : MonoBehaviour
     public static event DeathDel OnPlayerDeath;
     public static event HitDel OnPlayerHit;
 
-
+    public CController controller_;
 
     public float value_;
     public int maxValue_;
@@ -59,6 +59,7 @@ public abstract class CStatus : MonoBehaviour
     private void OnEnable()
     {
         GeometryShift.playerStatus = this;
+        controller_ = GetComponent<CController>();
     }
 
 }

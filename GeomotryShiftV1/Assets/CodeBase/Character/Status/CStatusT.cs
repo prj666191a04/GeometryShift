@@ -110,6 +110,7 @@ public class CStatusT : CStatus
     }
     public override void Recover(float ammount)
     {
+        controller_.recoverPs.Emit(15);
         value_ += ammount;
         if(value_ > maxValue_)
         {
