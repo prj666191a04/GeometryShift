@@ -31,6 +31,9 @@ public class GeometryShift : MonoBehaviour
 
     public GameObject consumablePanel;
 
+    public GameObject infoPanel;
+    GameObject loadedInfoSet;
+
 
     private static SystemState systemState = SystemState.MainMenue;
     public enum SystemState
