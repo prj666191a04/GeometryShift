@@ -52,14 +52,16 @@ public class LevelLoader : MonoBehaviour
     }
     public void AutoSave()
     {
-       
         dataCore.groupedData.playerData.playTime = GeometryShift.instance.sessionTimer.EndSession();
         Vector3 savePostion = GeometryShift.playerStatus.transform.position;
         savePostion.y += 0.2f;
         Debug.Log("AutoSave called player pos: " + savePostion.ToString());
         dataCore.groupedData.playerData.SetPosition(savePostion);
         SaveSystem.SaveGameData(dataCore.groupedData.slot);
-
+    }
+    public void SoftAutoSave()
+    {
+        SaveSystem.SaveGameData(dataCore.groupedData.slot);
     }
 
     //^Data related functions

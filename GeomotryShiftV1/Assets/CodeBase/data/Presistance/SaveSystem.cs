@@ -46,7 +46,6 @@ public static class SaveSystem
                 json = File.ReadAllText(filePath);
                 GroupedData saveData = JsonUtility.FromJson<GroupedData>(json);
                 saveData.worldState.ComfirmArraySize();
-                saveData.playerData.inventory_.ConfirmData();
                 return saveData;
             }
             catch

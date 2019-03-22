@@ -52,6 +52,11 @@ public class GeometryShift : MonoBehaviour
 
     public InteractionUI interactionUI;
 
+
+    public static void AwardRecoveryItem (int ammount)
+    {
+        LevelLoader.instance.dataCore.groupedData.playerData.inventory_.recoverys_.Add(ammount);
+    }
     public void StartSessionTimer()
     {
         sessionTimer.enabled = true;

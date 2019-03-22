@@ -49,7 +49,8 @@ public class LevelEKill : LevelBase
     }
     public override void AcknowledgeLevelCompletion(int code = 0)
     {
-        levelUi.ShowRsltScreen("", code);
+        GeometryShift.AwardRecoveryItem(1);
+        levelUi.ShowRsltScreen("Rewards:" + System.Environment.NewLine + "1 X recovery", code);
         LevelRessultScreenSendMessage();
     }
 }

@@ -72,6 +72,7 @@ public class CStatusT : CStatus
         ready = true;
     }
 
+   
     public override void AbsoluteDamage(float ammount)
     {
         if (hp - ammount > 0)
@@ -110,6 +111,10 @@ public class CStatusT : CStatus
     public override void Recover(float ammount)
     {
         value_ += ammount;
+        if(value_ > maxValue_)
+        {
+            value_ = maxValue_;
+        }
         if(value_ > warningThreshHold)
         {
             warningTriggered = false;

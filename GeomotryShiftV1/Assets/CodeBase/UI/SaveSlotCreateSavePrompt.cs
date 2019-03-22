@@ -58,7 +58,7 @@ public class SaveSlotCreateSavePrompt : MonoBehaviour
 
     public bool ValidateName()
     {
-        if (nameText.text.Length > 0 && nameText.text.Length < maxChars && !nameText.text.StartsWith(" "))
+        if (nameText.text.Length > 0 && nameText.text.Length < maxChars + 1 && !nameText.text.StartsWith(" "))
         {
            
             return true;
@@ -94,7 +94,10 @@ public class SaveSlotCreateSavePrompt : MonoBehaviour
             }
             WorldState newWorldState = new WorldState(newLevelData);
             //TODO: Inventory
-            PlayerData newPlayerData = new PlayerData(name, 0, Vector3.zero);
+
+            GSInventory newInventory = new GSInventory(new SavedItem(0, 0));
+
+            PlayerData newPlayerData = new PlayerData(name, 0, Vector3.zero, newInventory);
 
             GroupedData newGroupedData = new GroupedData(newPlayerData, newWorldState, saveSlot);
 
