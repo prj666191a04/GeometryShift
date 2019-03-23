@@ -63,9 +63,10 @@ public class Simple3DMovement : CMotor
         }
         if (theRB)
         {
-            if (transform.position.y < -5)//player dies if they fall off the map
+            if (transform.position.y < -2)//player dies if they fall off the map
             {
-                GetComponent<CStatus>().AbsoluteDamage(9999); 
+                GetComponent<CStatus>().AbsoluteDamage(9999);
+                print("you died from falling off the level (y position is less than -2)");
             }
             RotateCharacter();
             if (dashCooldownRemaining > 0)
