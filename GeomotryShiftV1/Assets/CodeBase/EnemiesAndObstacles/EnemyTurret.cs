@@ -48,7 +48,7 @@ public class EnemyTurret : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    /*
+    
     void Start()
     {
         if (thePrefab == null)
@@ -56,7 +56,7 @@ public class EnemyTurret : MonoBehaviour
             thePrefab = Resources.Load("Enemies/EnemyTurretFolder/Enemy Projectile") as GameObject;
         }
     }
-    */
+    
     // Update is called once per frame
     void Update()
     {

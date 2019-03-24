@@ -14,6 +14,7 @@ public class TurretBehaviour : MonoBehaviour
     void Shoot()
     {
         thePrefab.GetComponent<EnemyProjectile>().speed = projectileSpeed;
+        Instantiate(thePrefab, transform.position, transform.rotation, transform.parent);
     }
 
     void Update()

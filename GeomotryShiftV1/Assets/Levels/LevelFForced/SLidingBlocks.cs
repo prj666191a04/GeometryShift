@@ -12,7 +12,9 @@ public class SLidingBlocks : MonoBehaviour
     Vector3 pos1;
     Vector3 pos2;
     Vector3 targetPos;
-    public int offset = -3;
+    public int offsetX = 0; // ofset in meters
+    public int offsetY = 0;
+    public int offsetZ = 0;
 
     bool state = false;
     bool canChange = true;
@@ -21,7 +23,7 @@ public class SLidingBlocks : MonoBehaviour
     void Start()
     {
         pos1 = transform.localPosition;
-        pos2 = new Vector3(pos1.x + offset, pos1.y, pos1.z);
+        pos2 = new Vector3(pos1.x + offsetX, pos1.y + offsetY, pos1.z + offsetZ);
 
         targetPos = pos2;
     }
