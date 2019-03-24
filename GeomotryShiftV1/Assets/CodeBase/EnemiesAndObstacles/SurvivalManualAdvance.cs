@@ -211,7 +211,7 @@ public class SurvivalManualAdvance : SurvivalLevel1EnemySpawner
         {
             WhatEnemiesShouldSpawn();
 
-            secondsPassed += Time.deltaTime;
+            secondsPassed += 0.0166f;
             secondsPassedInt = (int)secondsPassed;
         }
     }

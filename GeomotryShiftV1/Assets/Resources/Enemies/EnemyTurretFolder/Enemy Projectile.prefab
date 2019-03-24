@@ -123,7 +123,7 @@ MonoBehaviour:
   speed: 10
   maximumLifespanAllowed: 10
   timeExistedInSeconds: 0
-  goThroughWalls: 0
+  goThroughWalls: 1
 --- !u!54 &6006496324486752084
 Rigidbody:
   m_ObjectHideFlags: 0

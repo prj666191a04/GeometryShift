@@ -273,6 +273,7 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
         {
             phase = (int)timeToPhase[secondsPassedInt];
             cooldown1TimeCounter = 0;
+            cooldown1TimeCounter = 0;
         }
     }
 
@@ -693,7 +694,7 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
             setPhase();
             WhatEnemiesShouldSpawn();
 
-            secondsPassed += Time.deltaTime;
+            secondsPassed += 0.0166f;
             secondsPassedInt = (int)secondsPassed;
             updateTimeRemaining();
         }

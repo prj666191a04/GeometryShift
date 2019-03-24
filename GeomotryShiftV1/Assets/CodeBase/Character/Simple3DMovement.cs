@@ -25,10 +25,12 @@ public class Simple3DMovement : CMotor
     public float acellSpeed = 3f;
     public float decellSpeed = 3f;
 
-
+    public bool hasWon = false;
+    
     // Start is called before the first frame update
     void Start()
     {
+        hasWon = false;
         theRB = GetComponent<Rigidbody>();
         theRB.constraints = RigidbodyConstraints.FreezeRotationZ |
             RigidbodyConstraints.FreezeRotationX |
@@ -63,7 +65,7 @@ public class Simple3DMovement : CMotor
         }
         if (theRB)
         {
-            if (transform.position.y < -2)//player dies if they fall off the map
+            if (transform.position.y < -2 && !hasWon)//player dies if they fall off the map
             {
                 GetComponent<CStatus>().AbsoluteDamage(9999);
                 print("you died from falling off the level (y position is less than -2)");

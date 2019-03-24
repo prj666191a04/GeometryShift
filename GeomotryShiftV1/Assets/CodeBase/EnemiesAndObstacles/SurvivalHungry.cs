@@ -210,7 +210,7 @@ public class SurvivalHungry : SurvivalLevel1EnemySpawner
             setPhase();
             WhatEnemiesShouldSpawn();
 
-            secondsPassed += Time.deltaTime;
+            secondsPassed += 0.0166f;
             secondsPassedInt = (int)secondsPassed;
             updateTimeRemaining();
         }
