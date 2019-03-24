@@ -4,21 +4,23 @@ using UnityEngine;
 
 public class DisspearingPlatform : MonoBehaviour
 {
-    public Material defaultMaterial;
-    public Material aboutToDissapearMaterial;
-    public Material hasDissapearedMaterial;
 
-    float secondsSinceTouchedByPlayer;
-    bool dissapearing = false;
+    float health = 1.5f;
+    float maxHealth = 1.5f;
+    float regenMultiplier = 0.3f;
+    public bool isBeingTouched = false;
+    int timesCheckedPerSecond = 10;
+    float updateInterval;
     Collider[] collidersArray;
     MeshRenderer meshRenderer;
+    Renderer theRenderer;
+    Collider theActualCollider;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            dissapearing = true;
-            meshRenderer.material = aboutToDissapearMaterial;
+            isBeingTouched = true;
         }
     }
 
@@ -26,47 +28,52 @@ public class DisspearingPlatform : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            //do something
+            isBeingTouched = false;
         }
     }
     // Start is called before the first frame update
     void Start()
     {
-        meshRenderer = GetComponent<MeshRenderer>();
+        updateInterval = 1f / timesCheckedPerSecond;
+        InvokeRepeating("Update10FPS", updateInterval, updateInterval);
+        theRenderer = gameObject.GetComponent<Renderer>();
         collidersArray = GetComponents<Collider>();
+        health = maxHealth;
 
-        defaultMaterial = Resources.Load("Obstacles/DisspearingPlatform/DissapearingPlatformDefaultMaterial") as Material;
-        aboutToDissapearMaterial = Resources.Load("Obstacles/DisspearingPlatform/DissapearingPlatformAboutToDissapear") as Material;
-        hasDissapearedMaterial = Resources.Load("Obstacles/DisspearingPlatform/DissapearingPlatformHasDissapeared") as Material;
-
-        meshRenderer.material = defaultMaterial;
+        foreach (Collider c in collidersArray)
+        {
+            if (!c.isTrigger)
+            {
+                theActualCollider = c;
+            }
+        }
     }
-
-    // Update is called once per frame
-    void Update()
+    
+    void Update10FPS()
     {
-        if (dissapearing)
+        if (isBeingTouched)
         {
-            secondsSinceTouchedByPlayer += Time.deltaTime;
+            health -= updateInterval;
         }
-        if (secondsSinceTouchedByPlayer > 1)
+        else
         {
-            foreach (Collider c in collidersArray)
+            health += (updateInterval * regenMultiplier);
+            if (health > maxHealth)
             {
-                c.enabled = false;
+                health = maxHealth;
             }
-            meshRenderer.material = hasDissapearedMaterial;
+        }
 
-        }
-        if (secondsSinceTouchedByPlayer > 2.5)
+        if (health <= 0)
         {
-            foreach (Collider c in collidersArray)
-            {
-                c.enabled = true;
-            }
-            meshRenderer.material = defaultMaterial;
-            dissapearing = false;
-            secondsSinceTouchedByPlayer = 0f;
+            health = 0;
+            theActualCollider.enabled = false;
+        }
+        else
+        {
+            theActualCollider.enabled = true;
+            theRenderer.material.color = new Color(
+                1f, 1f, 1f, health / maxHealth);
         }
     }
 }
