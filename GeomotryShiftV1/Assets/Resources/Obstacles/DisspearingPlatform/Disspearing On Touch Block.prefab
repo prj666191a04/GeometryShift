@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2bf650cd71c90264f84a5a4ab1ecf7cc, type: 2}
+  - {fileID: 2100000, guid: 9313052cd220ef24a8f792c0c01f57cf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -106,10 +106,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed321de231323924daccd746d3c63291, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
-  maxHealth: 3
-  regenMultiplier: 1
-  isBeingTouched: 0
+  particlePrefab: {fileID: 8638501040491619623, guid: a9e2aa6de94c96c459d8ed63d36222a4,
+    type: 3}
 --- !u!64 &3231929333017828378
 MeshCollider:
   m_ObjectHideFlags: 0

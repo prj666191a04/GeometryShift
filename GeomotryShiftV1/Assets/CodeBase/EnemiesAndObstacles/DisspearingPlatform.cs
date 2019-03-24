@@ -8,34 +8,32 @@ public class DisspearingPlatform : MonoBehaviour
     float health = 1.5f;
     float maxHealth = 1.5f;
     float regenMultiplier = 0.3f;
-    public bool isBeingTouched = false;
-    int timesCheckedPerSecond = 10;
+
+    float timeBeforeRespawn = 2f;
+    float timeSinceDissapeared = 0f;
+
+    int timesCheckedPerSecond = 30;
     float updateInterval;
+
     Collider[] collidersArray;
-    MeshRenderer meshRenderer;
     Renderer theRenderer;
     Collider theActualCollider;
+
+
+    public GameObject particlePrefab;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            isBeingTouched = true;
+            InvokeRepeating("Fade", updateInterval, updateInterval);
         }
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            isBeingTouched = false;
-        }
-    }
     // Start is called before the first frame update
     void Start()
     {
         updateInterval = 1f / timesCheckedPerSecond;
-        InvokeRepeating("Update10FPS", updateInterval, updateInterval);
         theRenderer = gameObject.GetComponent<Renderer>();
         collidersArray = GetComponents<Collider>();
         health = maxHealth;
@@ -48,26 +46,40 @@ public class DisspearingPlatform : MonoBehaviour
             }
         }
     }
-    
-    void Update10FPS()
+    void Regen()
     {
-        if (isBeingTouched)
+        health = maxHealth;
+        theRenderer.material.color = new Color(
+                0.5f, 0.93f, 1f, 1f);
+        GameObject tempParticlePrefab = Instantiate(particlePrefab, transform.position, new Quaternion(), transform.parent);
+
+        tempParticlePrefab.gameObject.GetComponent<ParticleSystem>().Emit(30);
+
+        Destroy(tempParticlePrefab, 3);//clean up the empty gameobject
+
+    }
+
+    void WaitToRespawn()
+    {
+        timeSinceDissapeared += updateInterval;
+        if (timeSinceDissapeared >= timeBeforeRespawn)
         {
-            health -= updateInterval;
+            Regen();
+            CancelInvoke();
         }
-        else
-        {
-            health += (updateInterval * regenMultiplier);
-            if (health > maxHealth)
-            {
-                health = maxHealth;
-            }
-        }
+    }
+
+    void Fade()
+    {
+        health -= updateInterval;
 
         if (health <= 0)
         {
+            timeSinceDissapeared = 0;
             health = 0;
             theActualCollider.enabled = false;
+            CancelInvoke();
+            InvokeRepeating("WaitToRespawn", updateInterval, updateInterval);
         }
         else
         {

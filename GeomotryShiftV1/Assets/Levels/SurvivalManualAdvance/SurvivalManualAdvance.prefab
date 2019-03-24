@@ -596,6 +596,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2675063866473333371}
     m_Modifications:
+    - target: {fileID: 2099314738685136895, guid: 4662acfb78bd6654689bba111e91d428,
+        type: 3}
+      propertyPath: m_Name
+      value: TextMeshPro Text
+      objectReference: {fileID: 0}
     - target: {fileID: 7191097943704565633, guid: 4662acfb78bd6654689bba111e91d428,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -700,11 +705,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2099314738685136895, guid: 4662acfb78bd6654689bba111e91d428,
-        type: 3}
-      propertyPath: m_Name
-      value: TextMeshPro Text
       objectReference: {fileID: 0}
     - target: {fileID: 5198344648755755903, guid: 4662acfb78bd6654689bba111e91d428,
         type: 3}
