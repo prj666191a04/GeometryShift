@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿//Author Atilla puskas
+//Status for timed levels
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

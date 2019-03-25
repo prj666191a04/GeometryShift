@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿//Author Atilla Puskas
+//Description script for retry screen
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;

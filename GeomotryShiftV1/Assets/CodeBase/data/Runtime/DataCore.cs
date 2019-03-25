@@ -174,6 +174,14 @@ public class GSInventory
     {
         recoverys_ = recoverys;
     }
+
+    public void Check()
+    {
+        if (recoverys_ == null)
+        {
+            recoverys_ = new SavedItem(0, 0);
+        }
+    }
     
 }
 
