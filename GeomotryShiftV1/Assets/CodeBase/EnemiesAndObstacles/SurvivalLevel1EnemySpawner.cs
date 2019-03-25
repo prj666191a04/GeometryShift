@@ -9,6 +9,7 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
     protected int timeToWin = -1;
 
     public GameObject spawn;
+    public LevelOverlayUI theUI;
 
     public static bool playerIsDead = false;
 
@@ -66,30 +67,53 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
 
     protected GameObject thePlayer;
 
+    protected void UniversalSurvivalOnEnable()
+    {
+        CStatus.OnPlayerDeath += showRetryScreen;
+
+        LevelOverlayUI.OnResultScreenFinished += LevelBase.instance.AcknowledgeLevelCompletion;
+        LevelOverlayUI.OnRetryRequested += respawnPlayer;
+        LevelOverlayUI.OnLevelQuit += LevelBase.instance.TerminateLevelAttempt;
+    }
+
+    protected void UniversalSurvivalOnDisable()
+    {
+        CStatus.OnPlayerDeath -= showRetryScreen;
+
+        LevelOverlayUI.OnResultScreenFinished -= LevelBase.instance.AcknowledgeLevelCompletion;
+        LevelOverlayUI.OnRetryRequested -= respawnPlayer;
+        LevelOverlayUI.OnLevelQuit -= LevelBase.instance.TerminateLevelAttempt;
+    }
+
+    private void OnEnable()
+    {
+        UniversalSurvivalOnEnable();
+        LevelOverlayUI.OnIntroFinished += InitLevel;
+
+    }
     
-    void OnEnable()
-    {
-        CStatus.OnPlayerDeath += foo;
 
+    private void OnDisable()
+    {
+        UniversalSurvivalOnDisable();
+        LevelOverlayUI.OnIntroFinished -= InitLevel;
     }
 
-    void OnDisable()
+    protected void showRetryScreen(int x = 0)
     {
-        CStatus.OnPlayerDeath -= foo;
+        playerIsDead = true;
+        theUI.ShowRetryScreen();
     }
-
-    private void foo(int i = 0)
+    protected void respawnPlayer()
     {
-        //Debug.Log("Enter Foo");
         StartCoroutine(playerRespawn());
     }
 
-
-    IEnumerator playerRespawn()
+    protected IEnumerator playerRespawn()
     {
         playerIsDead = true;
         //Debug.Log("Enter Player Respawn");
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.2f);
         GeometryShift.playerStatus.gameObject.GetComponent<CController>().Respawn(spawn.transform.position, false);
         ResetToStart();
 
@@ -163,14 +187,16 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
         LoadEnemiesFromConglomerate();
         SetupEnemyDefaultVariables();
         SetupThePlayerVariable();
+        ResetToStart();//seconds survived, player is alive status
         //thePlayer.AddComponent<Simple3DMovement>();
         theText = changingText.GetComponent<TMPro.TextMeshProUGUI>();
     }
 
-    // Start is called before the first frame update
-    void Start()
+
+    void InitLevel()
     {
         SurvivalLevelInit();
+        InvokeRepeating("Update60TimesPerSecond", 0.0166f, 0.0166f);
 
 
         timeToPhase = new Hashtable();//unique for each level
@@ -226,6 +252,14 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
         {
             phase = testPhase;
         }
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        theUI.PlayIntro();
+        
+        
 
     }
 
@@ -238,6 +272,7 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
         if (timeToPhase.ContainsKey(secondsPassedInt))
         {
             phase = (int)timeToPhase[secondsPassedInt];
+            cooldown1TimeCounter = 0;
             cooldown1TimeCounter = 0;
         }
     }
@@ -629,7 +664,9 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
             case -1:
 
                 //Win level
-                LevelBase.instance.AcknowledgeLevelCompletion();
+                //LevelBase.instance.AcknowledgeLevelCompletion();
+                phase = -999;
+                theUI.ShowRsltScreen("You Win!" + System.Environment.NewLine + "Level Completed.", 0);
 
                 break;
             default:
@@ -646,27 +683,21 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
         theText.text = "Survive " + num.ToString();
         if (!thePlayer.gameObject.GetComponent<Rigidbody>())
         {
-
             theText.text = "Respawning... ";
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update60TimesPerSecond()
     {
-        secondsPassed += Time.deltaTime;
-        secondsPassedInt = (int)secondsPassed;
-        enemySpawnTimer += Time.deltaTime;
-
-        updateTimeRemaining();
-
-        while (enemySpawnTimer > enemySpawnFunctionCallInterval) // to make enemy spawn function run 60 times per second
-                                                                 //even when FPS is above or below 60
+        if (!playerIsDead)
         {
-            enemySpawnTimer -= enemySpawnFunctionCallInterval;
             setPhase();
             WhatEnemiesShouldSpawn();
-        }
 
+            secondsPassed += 0.0166f;
+            secondsPassedInt = (int)secondsPassed;
+            updateTimeRemaining();
+        }
     }
+    
 }

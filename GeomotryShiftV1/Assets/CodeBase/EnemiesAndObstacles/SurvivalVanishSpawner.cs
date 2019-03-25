@@ -2,19 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SurvivalTutorialEnemySpawner : SurvivalLevel1EnemySpawner
+public class SurvivalVanishSpawner : SurvivalLevel1EnemySpawner
 {
+    public GameObject startingPlatform;
     float spawnLocationFloat = 0f;
     float spawnOrNot = 60f;
     // Start is called before the first frame update
 
-    void InitLevelSurvivalTutorial()
+    void InitLevelSurvivalVanish()
     {
         InvokeRepeating("Update60TimesPerSecond", 0.0166f, 0.0166f);
-
+        Destroy(startingPlatform);
         phase = 1;
 
         SurvivalLevelInit();
+
+        fastEnemyProjectileScript.goThroughWalls = true;
+        boomerangScript.goThroughWalls = true;
 
         timeToPhase = new Hashtable();//unique for each level
 
@@ -28,7 +32,6 @@ public class SurvivalTutorialEnemySpawner : SurvivalLevel1EnemySpawner
             if (fastMode)
             {
                 timeToWin = 25;
-                timeToPhase.Add(1, 1);//slow projectiles
                 timeToPhase.Add(3, 2);//slow + fast projectiles
                 timeToPhase.Add(6, 3);//homing missiles
                 timeToPhase.Add(12, 4);//boomerangs
@@ -41,7 +44,6 @@ public class SurvivalTutorialEnemySpawner : SurvivalLevel1EnemySpawner
             else
             {
                 timeToWin = 60;
-                timeToPhase.Add(1, 1);//slow projectiles
                 timeToPhase.Add(10, 2);//slow + fast projectiles
                 timeToPhase.Add(20, 3);//homing missiles
                 timeToPhase.Add(30, 4);//boomerangs
@@ -62,13 +64,13 @@ public class SurvivalTutorialEnemySpawner : SurvivalLevel1EnemySpawner
     private void OnEnable()
     {
         UniversalSurvivalOnEnable();
-        LevelOverlayUI.OnIntroFinished += InitLevelSurvivalTutorial;
+        LevelOverlayUI.OnIntroFinished += InitLevelSurvivalVanish;
     }
 
     private void OnDisable()
     {
         UniversalSurvivalOnDisable();
-        LevelOverlayUI.OnIntroFinished -= InitLevelSurvivalTutorial;
+        LevelOverlayUI.OnIntroFinished -= InitLevelSurvivalVanish;
     }
 
 
@@ -83,22 +85,24 @@ public class SurvivalTutorialEnemySpawner : SurvivalLevel1EnemySpawner
         {
             case 1:
 
-                cooldown1 = 0.5f;
+                cooldown1 = 1f;
                 cooldown1TimeCounter += enemySpawnFunctionCallInterval;
                 if (cooldown1TimeCounter > cooldown1)
                 {
+                    boomerangScript.speed = 16f;
+                    boomerangScript.accelerationPerSecond = 6f;
                     cooldown1TimeCounter -= cooldown1;
-                    //slow projectiles
+                    //boomerangs
                     Vector3 spawnPosition = new Vector3(Random.Range(-(widthOfLevel / 2), (widthOfLevel / 2)), 0f, -(lengthOfLevel / 2));
                     Quaternion spawnRotation = new Quaternion();
-                    Instantiate(slowEnemyProjectile, spawnPosition, spawnRotation, transform.parent);
+                    Instantiate(boomerang, spawnPosition, spawnRotation, transform.parent);
                     
 
                 }
                 break;
             case 2:
 
-                cooldown1 = 0.8f;
+                cooldown1 = 1.2f;
                 cooldown1TimeCounter += enemySpawnFunctionCallInterval;
 
                 if (cooldown1TimeCounter > cooldown1)
@@ -111,7 +115,7 @@ public class SurvivalTutorialEnemySpawner : SurvivalLevel1EnemySpawner
                     Instantiate(slowEnemyProjectile, spawnPosition, spawnRotation, transform.parent);
                 }
 
-                cooldown2 = 1f;
+                cooldown2 = 1.5f;
                 cooldown2TimeCounter += enemySpawnFunctionCallInterval;
 
                 if (cooldown2TimeCounter > cooldown2)
@@ -126,7 +130,7 @@ public class SurvivalTutorialEnemySpawner : SurvivalLevel1EnemySpawner
                 }
                 break;
             case 3:
-                cooldown1 = 1f;
+                cooldown1 = 1.5f;
                 cooldown1TimeCounter += enemySpawnFunctionCallInterval;
                 if (cooldown1TimeCounter > cooldown1)
                 {
@@ -144,7 +148,7 @@ public class SurvivalTutorialEnemySpawner : SurvivalLevel1EnemySpawner
                 }
                 break;
             case 4:
-                cooldown1 = 0.16f;
+                cooldown1 = 0.25f;
                 cooldown1TimeCounter += enemySpawnFunctionCallInterval;
 
                 spawnOrNot -= 1f;
@@ -156,22 +160,21 @@ public class SurvivalTutorialEnemySpawner : SurvivalLevel1EnemySpawner
                 if (cooldown1TimeCounter > cooldown1)
                 {
                     cooldown1TimeCounter -= cooldown1;
-                    boomerangScript.speed = 23f;
-                    boomerangScript.accelerationPerSecond = 12f;
+                    
 
                     Vector3 spawnPosition = new Vector3(Random.Range(-(widthOfLevel / 2), (widthOfLevel / 2)), 0f, -(lengthOfLevel / 2));
                     //Quaternion spawnRotation = new Quaternion();
                     if (spawnOrNot > 0f)
                     {
-                        spawnWave(slowEnemyProjectile, 1, 0, 0, 0, 45, spawnLocationFloat);
+                        spawnWave(slowEnemyProjectile, 1, 0, 0, 0, 15, spawnLocationFloat);
                     }
-                    
-                    spawnLocationFloat += 4.5f;
-                    
+
+                    spawnLocationFloat += 7.5f;
+
                 }
                 break;
             case 5:
-                cooldown1 = 1.2f;
+                cooldown1 = 1.8f;
                 cooldown1TimeCounter += enemySpawnFunctionCallInterval;
                 if (cooldown1TimeCounter > cooldown1)
                 {
@@ -182,7 +185,7 @@ public class SurvivalTutorialEnemySpawner : SurvivalLevel1EnemySpawner
                 }
                 break;
             case 6:
-                cooldown2 = 0.4f;
+                cooldown2 = 0.7f;
                 cooldown2TimeCounter += enemySpawnFunctionCallInterval;
                 if (cooldown2TimeCounter > cooldown2)
                 {
@@ -202,6 +205,8 @@ public class SurvivalTutorialEnemySpawner : SurvivalLevel1EnemySpawner
                 phase = -999;
                 theUI.ShowRsltScreen("You Win!" + System.Environment.NewLine + "Level Completed.", 0);
 
+                //so the player doesn't fall off the level and die during the win screen
+                GeometryShift.playerStatus.gameObject.GetComponent<Simple3DMovement>().hasWon = true;
 
                 break;
             default:

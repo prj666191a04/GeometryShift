@@ -8,13 +8,26 @@ public class SurvivalHungry : SurvivalLevel1EnemySpawner
     Hunger hungerScript;
     SurvivalFood foodScript;
     int x = 0;
-    // Start is called before the first frame update
-    void Start()
+
+    private void OnEnable()
+    {
+        UniversalSurvivalOnEnable();
+        LevelOverlayUI.OnIntroFinished += InitLevelHungry;
+    }
+
+    private void OnDisable()
+    {
+        UniversalSurvivalOnDisable();
+        LevelOverlayUI.OnIntroFinished -= InitLevelHungry;
+    }
+
+    private void InitLevelHungry()
     {
         SurvivalLevelInit();
+        InvokeRepeating("Update60TimesPerSecond", 0.0166f, 0.0166f);
 
         foodScript = theFood.gameObject.GetComponent<SurvivalFood>();
-        
+
         thePlayer.AddComponent<Hunger>();
         thePlayer.AddComponent<Simple3DMovement>();
         hungerScript = thePlayer.gameObject.GetComponent<Hunger>();
@@ -60,6 +73,13 @@ public class SurvivalHungry : SurvivalLevel1EnemySpawner
             phase = testPhase;
         }
         SpawnNewFood();
+
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        theUI.PlayIntro();
     }
 
     void SpawnNewFood()
@@ -134,7 +154,7 @@ public class SurvivalHungry : SurvivalLevel1EnemySpawner
                     boomerangScript.speed = 12f;
 
                     spawnWave(boomerang, Random.Range(1, 5), 0);
-                    
+
 
                 }
                 break;
@@ -170,7 +190,10 @@ public class SurvivalHungry : SurvivalLevel1EnemySpawner
             case -1:
 
                 //Win level
-                LevelBase.instance.AcknowledgeLevelCompletion();
+                //LevelBase.instance.AcknowledgeLevelCompletion();
+                phase = -999;
+                theUI.ShowRsltScreen("You Win!" + System.Environment.NewLine + "Level Completed.", 0);
+
 
                 break;
             default:
@@ -180,21 +203,18 @@ public class SurvivalHungry : SurvivalLevel1EnemySpawner
 
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update60TimesPerSecond()
     {
-        secondsPassed += Time.deltaTime;
-        secondsPassedInt = (int)secondsPassed;
-        enemySpawnTimer += Time.deltaTime;
-
-        updateTimeRemaining();
-
-        while (enemySpawnTimer > enemySpawnFunctionCallInterval) // to make enemy spawn function run 60 times per second
-                                                                 //even when FPS is above or below 60
+        if (!playerIsDead)
         {
-            enemySpawnTimer -= enemySpawnFunctionCallInterval;
             setPhase();
             WhatEnemiesShouldSpawn();
+
+            secondsPassed += 0.0166f;
+            secondsPassedInt = (int)secondsPassed;
+            updateTimeRemaining();
         }
     }
+
+
 }

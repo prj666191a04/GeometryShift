@@ -104,7 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72684daa7d4bada4ab2d36d9efb7cbe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fastEnemyProjectile: {fileID: 5901642169511132173, guid: 394871e8025c24a4c9ae6f770c4b4ebe,
+  fastEnemyProjectile: {fileID: 5901642169511132173, guid: ed154294ef90628459d8dbbad1ceacf1,
     type: 3}
   slowEnemyProjectile: {fileID: 4753745831770820047, guid: 65178bf0db754474a87aa356b92848ad,
     type: 3}
