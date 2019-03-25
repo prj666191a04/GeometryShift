@@ -1451,6 +1451,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WorldMapAV2
       objectReference: {fileID: 0}
+    - target: {fileID: 2519642519157319264, guid: 8602d91639a8e994f8f675f19220db23,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 118649032438313571, guid: 8602d91639a8e994f8f675f19220db23,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8841,6 +8846,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_FontData.m_MinSize
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1047202471716293817, guid: 444dd6e8c79a55e438efb546c593153c,
+        type: 3}
+      propertyPath: m_FontData.m_HorizontalOverflow
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1047202473351205628, guid: 444dd6e8c79a55e438efb546c593153c,
         type: 3}
