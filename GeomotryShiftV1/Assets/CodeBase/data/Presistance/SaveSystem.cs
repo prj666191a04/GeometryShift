@@ -51,7 +51,6 @@ public static class SaveSystem
                 json = Decrypt(json);
                 GroupedData saveData = JsonUtility.FromJson<GroupedData>(json);
                 saveData.worldState.ComfirmArraySize();
-                saveData.playerData.inventory_.ConfirmData();
                 return saveData;
             }
             catch

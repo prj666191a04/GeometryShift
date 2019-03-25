@@ -119,11 +119,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb07319b4739ae34daa1dd86d518ec42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1.5
-  speed: 5.8929343
-  maximumLifespanAllowed: 12
+  damage: 1
+  speed: 10
+  maximumLifespanAllowed: 10
   timeExistedInSeconds: 0
-  goThroughWalls: 0
+  goThroughWalls: 1
 --- !u!54 &6006496324486752084
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -12,7 +12,7 @@ public abstract class CStatus : MonoBehaviour
     public static event DeathDel OnPlayerDeath;
     public static event HitDel OnPlayerHit;
 
-
+    public CController controller_;
 
     public float value_;
     public int maxValue_;
@@ -21,6 +21,8 @@ public abstract class CStatus : MonoBehaviour
     protected float iFrameTime_ = 0.5f;
     protected bool iFrame_ = false;
 
+    protected bool invincible = false;
+
     public abstract void Damage(float ammount);
 
     public abstract void AbsoluteDamage(float ammount);
@@ -28,6 +30,8 @@ public abstract class CStatus : MonoBehaviour
     public abstract void Recover(float ammount);
 
     public abstract void Initialize(float ammount);
+
+    public abstract void RecoverItem();
 
     public abstract void Reset();
 
@@ -42,7 +46,10 @@ public abstract class CStatus : MonoBehaviour
     {
         if(OnPlayerDeath != null)
         {
-            OnPlayerDeath(method);
+            if (invincible == false)
+            {
+                OnPlayerDeath(method);
+            }
         }
     }
 
@@ -57,6 +64,7 @@ public abstract class CStatus : MonoBehaviour
     private void OnEnable()
     {
         GeometryShift.playerStatus = this;
+        controller_ = GetComponent<CController>();
     }
 
 }

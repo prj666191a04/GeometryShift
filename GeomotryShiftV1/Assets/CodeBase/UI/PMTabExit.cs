@@ -48,7 +48,8 @@ public class PMTabExit : PMTab
             GeometryShift.instance.StopSessionTimer();
             GeometryShift.instance.pauseMenue.Hide();
             GeometryShift.instance.pauseMenueActive = false;
-            Time.timeScale = 1;  
+            Time.timeScale = 1;
+            GeometryShift.instance.interactionUI.Hide();
         }
     }
 }

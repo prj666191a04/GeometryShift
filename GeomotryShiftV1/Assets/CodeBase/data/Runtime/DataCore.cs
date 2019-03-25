@@ -6,10 +6,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+
 [System.Serializable]
 public class DataCore 
 {
     public static int levelCount = 15;
+    public static int maxItemStack = 99;
 
     [SerializeField]
     public GroupedData groupedData;
@@ -70,11 +72,12 @@ public class PlayerData
         SetPosition(Vector3.zero);
     }
 
-    public PlayerData(string n, long t, Vector3 pos)
+    public PlayerData(string n, long t, Vector3 pos, GSInventory inventory)
     {
         name = n;
         playTime = t;
         SetPosition(pos);
+        inventory = inventory_;
     }
     public void SetPosition(Vector3 pos)
     {
@@ -165,24 +168,13 @@ public class Leveldata {
 [System.Serializable]
 public class GSInventory
 {
-
-
-
     [SerializeField]
-    List<SavedItem> consumeables_;
-
-    public GSInventory(List<SavedItem> consumeables)
+    public SavedItem recoverys_;
+    public GSInventory(SavedItem recoverys)
     {
-        consumeables_ = consumeables;
+        recoverys_ = recoverys;
     }
-
-    public void ConfirmData()
-    {
-        if(consumeables_ == null)
-        {
-            consumeables_ = new List<SavedItem>();
-        }
-    }
+    
 }
 
 [System.Serializable]
@@ -190,12 +182,30 @@ public class SavedItem
 {
     [SerializeField]
     public int id_;
+    [SerializeField]
     public int qty_;
 
     public SavedItem(int id, int qty)
     { 
         id_ = id;
         qty_ = qty;
+    }
+    public void Consume(int ammount)
+    {
+        qty_ -= ammount;
+        if(qty_ < 0)
+        {
+            qty_ = 0;
+        }
+    }
+    public void Add(int ammount)
+    {
+        qty_ += ammount;
+        if(qty_ > DataCore.maxItemStack)
+        {
+            qty_ = DataCore.maxItemStack;
+        }
+
     }
 }
 

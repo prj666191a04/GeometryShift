@@ -14,6 +14,7 @@ public class CController : MonoBehaviour {
     public ParticleSystem deathPs;
     public ParticleSystem hitPs;
     public ParticleSystem dashPs;
+    public ParticleSystem recoverPs;
     public float h;
     public float v;
     public CMotor motor;
@@ -126,7 +127,7 @@ public class CController : MonoBehaviour {
 	}
 
     
-    void DisableMovement()
+    public void DisableMovement()
     {
         if (!disabled)
         {

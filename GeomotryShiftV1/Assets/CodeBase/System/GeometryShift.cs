@@ -28,7 +28,11 @@ public class GeometryShift : MonoBehaviour
 
     //Data
     private string dataPath;
-    
+
+    public GameObject consumablePanel;
+
+    public GameObject infoPanel;
+    GameObject loadedInfoSet;
 
 
     private static SystemState systemState = SystemState.MainMenue;
@@ -51,6 +55,11 @@ public class GeometryShift : MonoBehaviour
 
     public InteractionUI interactionUI;
 
+
+    public static void AwardRecoveryItem (int ammount)
+    {
+        LevelLoader.instance.dataCore.groupedData.playerData.inventory_.recoverys_.Add(ammount);
+    }
     public void StartSessionTimer()
     {
         sessionTimer.enabled = true;
@@ -80,17 +89,21 @@ public class GeometryShift : MonoBehaviour
 
             case SystemState.Loading:
                 DistroyLoadedUISet();
+                consumablePanel.SetActive(false);
                 //TODO: Display Loading screen (does not yet exist)
                 break;
             case SystemState.MainMenue:
                 DistroyLoadedUISet();
                 loadedUiSet = Instantiate(mainMenuePrefab, activeUIContainer);
+                consumablePanel.SetActive(false);
                 break;
             case SystemState.WorldMap:
                 DistroyLoadedUISet();
+                consumablePanel.SetActive(false);
                 break;
             case SystemState.InLevel:
                 DistroyLoadedUISet();
+                consumablePanel.SetActive(true);
                 break;
         }
 

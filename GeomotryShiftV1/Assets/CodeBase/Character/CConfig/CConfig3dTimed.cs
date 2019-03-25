@@ -29,6 +29,7 @@ public class CConfig3dTimed : CConfig
         cc.motor.SetPhysics(cc.rBody);
         CStatusT stat = player.AddComponent<CStatusT>();
         stat.maxTime = 65;
+        stat.maxValue_ = 65;
         stat.warningThreshHold = 33;
 
         GeometryShift.instance.cameraController.SetTarget(player);

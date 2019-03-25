@@ -4,69 +4,88 @@ using UnityEngine;
 
 public class DisspearingPlatform : MonoBehaviour
 {
-    public Material defaultMaterial;
-    public Material aboutToDissapearMaterial;
-    public Material hasDissapearedMaterial;
 
-    float secondsSinceTouchedByPlayer;
-    bool dissapearing = false;
+    float health = 1.5f;
+    float maxHealth = 1.5f;
+    float regenMultiplier = 0.3f;
+
+    float timeBeforeRespawn = 2f;
+    float timeSinceDissapeared = 0f;
+
+    int timesCheckedPerSecond = 30;
+    float updateInterval;
+
     Collider[] collidersArray;
-    MeshRenderer meshRenderer;
+    Renderer theRenderer;
+    Collider theActualCollider;
+
+
+    public GameObject particlePrefab;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            dissapearing = true;
-            meshRenderer.material = aboutToDissapearMaterial;
+            InvokeRepeating("Fade", updateInterval, updateInterval);
         }
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            //do something
-        }
-    }
     // Start is called before the first frame update
     void Start()
     {
-        meshRenderer = GetComponent<MeshRenderer>();
+        updateInterval = 1f / timesCheckedPerSecond;
+        theRenderer = gameObject.GetComponent<Renderer>();
         collidersArray = GetComponents<Collider>();
+        health = maxHealth;
 
-        defaultMaterial = Resources.Load("Obstacles/DisspearingPlatform/DissapearingPlatformDefaultMaterial") as Material;
-        aboutToDissapearMaterial = Resources.Load("Obstacles/DisspearingPlatform/DissapearingPlatformAboutToDissapear") as Material;
-        hasDissapearedMaterial = Resources.Load("Obstacles/DisspearingPlatform/DissapearingPlatformHasDissapeared") as Material;
+        foreach (Collider c in collidersArray)
+        {
+            if (!c.isTrigger)
+            {
+                theActualCollider = c;
+            }
+        }
+    }
+    void Regen()
+    {
+        health = maxHealth;
+        theRenderer.material.color = new Color(
+                0.5f, 0.93f, 1f, 1f);
+        GameObject tempParticlePrefab = Instantiate(particlePrefab, transform.position, new Quaternion(), transform.parent);
 
-        meshRenderer.material = defaultMaterial;
+        tempParticlePrefab.gameObject.GetComponent<ParticleSystem>().Emit(30);
+
+        Destroy(tempParticlePrefab, 3);//clean up the empty gameobject
+
     }
 
-    // Update is called once per frame
-    void Update()
+    void WaitToRespawn()
     {
-        if (dissapearing)
+        timeSinceDissapeared += updateInterval;
+        if (timeSinceDissapeared >= timeBeforeRespawn)
         {
-            secondsSinceTouchedByPlayer += Time.deltaTime;
+            Regen();
+            CancelInvoke();
         }
-        if (secondsSinceTouchedByPlayer > 1)
-        {
-            foreach (Collider c in collidersArray)
-            {
-                c.enabled = false;
-            }
-            meshRenderer.material = hasDissapearedMaterial;
+    }
 
-        }
-        if (secondsSinceTouchedByPlayer > 2.5)
+    void Fade()
+    {
+        health -= updateInterval;
+
+        if (health <= 0)
         {
-            foreach (Collider c in collidersArray)
-            {
-                c.enabled = true;
-            }
-            meshRenderer.material = defaultMaterial;
-            dissapearing = false;
-            secondsSinceTouchedByPlayer = 0f;
+            timeSinceDissapeared = 0;
+            health = 0;
+            theActualCollider.enabled = false;
+            CancelInvoke();
+            InvokeRepeating("WaitToRespawn", updateInterval, updateInterval);
+        }
+        else
+        {
+            theActualCollider.enabled = true;
+            theRenderer.material.color = new Color(
+                1f, 1f, 1f, health / maxHealth);
         }
     }
 }

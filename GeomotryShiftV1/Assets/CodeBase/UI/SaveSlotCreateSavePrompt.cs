@@ -13,6 +13,8 @@ public class SaveSlotCreateSavePrompt : MonoBehaviour
     public InputField nameField;
     public int saveSlot;
 
+    public Text errorText;
+
     private int maxChars = 16;
 
     // Start is called before the first frame update
@@ -27,10 +29,36 @@ public class SaveSlotCreateSavePrompt : MonoBehaviour
         nameField.Select();
         nameField.ActivateInputField();
     }
+    private void OnDisable()
+    {
+        nameField.text = "";
+    }
+
+    private void Update()
+    {
+        if(!nameField.isFocused)
+        {
+            nameField.Select();
+            nameField.ActivateInputField();
+        }
+        if(Input.GetKeyDown(KeyCode.Return))
+        {
+            CreateSaveSlot();
+        }
+        if(Input.GetKeyDown(KeyCode.Tab))
+        {
+            nameField.Select();
+            nameField.ActivateInputField();
+        }
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            NoClick();
+        }
+    }
 
     public bool ValidateName()
     {
-        if (nameText.text.Length > 0 && nameText.text.Length < maxChars && !nameText.text.StartsWith(" "))
+        if (nameText.text.Length > 0 && nameText.text.Length < maxChars + 1 && !nameText.text.StartsWith(" "))
         {
            
             return true;
@@ -66,7 +94,10 @@ public class SaveSlotCreateSavePrompt : MonoBehaviour
             }
             WorldState newWorldState = new WorldState(newLevelData);
             //TODO: Inventory
-            PlayerData newPlayerData = new PlayerData(name, 0, Vector3.zero);
+
+            GSInventory newInventory = new GSInventory(new SavedItem(0, 0));
+
+            PlayerData newPlayerData = new PlayerData(name, 0, Vector3.zero, newInventory);
 
             GroupedData newGroupedData = new GroupedData(newPlayerData, newWorldState, saveSlot);
 
@@ -82,6 +113,8 @@ public class SaveSlotCreateSavePrompt : MonoBehaviour
         else
         {
             Debug.Log("name invalid");
+            errorText.enabled = true;
+            SystemSounds.instance.UIError();
         }
     }
     public void NoClick()

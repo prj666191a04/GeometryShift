@@ -45,8 +45,6 @@ public class SaveSlot : MonoBehaviour
         {
             SetUnselected();
         }
-
-
     }
 
     public void Click()
@@ -73,7 +71,7 @@ public class SaveSlot : MonoBehaviour
                 {
                     slotSelector.promptActive = true;
                     SystemSounds.instance.acUI.Play();
-                    slotSelector.AskQuestion("Overwrite save for slot " +(slotId+1).ToString()+"?"+ System.Environment.NewLine + "Warning: this cannot be undone", saveData);
+                    slotSelector.AskQuestion("Overwrite save for slot " +(slotId+1).ToString()+"?" + System.Environment.NewLine + "The file will be deleted and replaced with a new one" + System.Environment.NewLine + "Warning: this cannot be undone", saveData);
                 }
                 else
                 {

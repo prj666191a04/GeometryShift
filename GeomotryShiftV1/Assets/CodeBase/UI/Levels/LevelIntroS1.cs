@@ -9,9 +9,6 @@ using TMPro;
 
 public class LevelIntroS1 : OverlayUIAtribute
 {
-
-
-
     private RectTransform pos;
     public TMP_Text title;
     public TMP_Text counter;

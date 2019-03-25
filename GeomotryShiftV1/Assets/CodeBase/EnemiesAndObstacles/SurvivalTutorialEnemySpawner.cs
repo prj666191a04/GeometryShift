@@ -7,8 +7,11 @@ public class SurvivalTutorialEnemySpawner : SurvivalLevel1EnemySpawner
     float spawnLocationFloat = 0f;
     float spawnOrNot = 60f;
     // Start is called before the first frame update
-    void Start()
+
+    void InitLevelSurvivalTutorial()
     {
+        InvokeRepeating("Update60TimesPerSecond", 0.0166f, 0.0166f);
+
         phase = 1;
 
         SurvivalLevelInit();
@@ -54,6 +57,24 @@ public class SurvivalTutorialEnemySpawner : SurvivalLevel1EnemySpawner
         {
             phase = testPhase;
         }
+    }
+
+    private void OnEnable()
+    {
+        UniversalSurvivalOnEnable();
+        LevelOverlayUI.OnIntroFinished += InitLevelSurvivalTutorial;
+    }
+
+    private void OnDisable()
+    {
+        UniversalSurvivalOnDisable();
+        LevelOverlayUI.OnIntroFinished -= InitLevelSurvivalTutorial;
+    }
+
+
+    void Start()
+    {
+        theUI.PlayIntro();
     }
 
     void WhatEnemiesShouldSpawn()//60 times a second, no matter the FPS
@@ -177,7 +198,10 @@ public class SurvivalTutorialEnemySpawner : SurvivalLevel1EnemySpawner
             case -1:
 
                 //Win level
-                LevelBase.instance.AcknowledgeLevelCompletion();
+                //LevelBase.instance.AcknowledgeLevelCompletion();
+                phase = -999;
+                theUI.ShowRsltScreen("You Win!" + System.Environment.NewLine + "Level Completed.", 0);
+
 
                 break;
             default:
@@ -187,22 +211,13 @@ public class SurvivalTutorialEnemySpawner : SurvivalLevel1EnemySpawner
 
     }
 
-
-    // Update is called once per frame
-    void Update()
+    private void Update60TimesPerSecond()
     {
-        secondsPassed += Time.deltaTime;
+        setPhase();
+        WhatEnemiesShouldSpawn();
+
+        secondsPassed += 0.0166f;
         secondsPassedInt = (int)secondsPassed;
-        enemySpawnTimer += Time.deltaTime;
-
         updateTimeRemaining();
-
-        while (enemySpawnTimer > enemySpawnFunctionCallInterval) // to make enemy spawn function run 60 times per second
-                                                                 //even when FPS is above or below 60
-        {
-            enemySpawnTimer -= enemySpawnFunctionCallInterval;
-            setPhase();
-            WhatEnemiesShouldSpawn();
-        }
     }
 }

@@ -7,13 +7,24 @@ public class SurvivalManualAdvance : SurvivalLevel1EnemySpawner
     public GameObject advanceKey;
     public static int keysRemaining;
 
-    float spawnLocation = 0f;
-    // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
+        UniversalSurvivalOnEnable();
+        LevelOverlayUI.OnIntroFinished += InitLevelManualAdvance;
+    }
+
+    private void OnDisable()
+    {
+        UniversalSurvivalOnDisable();
+        LevelOverlayUI.OnIntroFinished -= InitLevelManualAdvance;
+    }
+
+    void InitLevelManualAdvance()
+    {
+        InvokeRepeating("Update60TimesPerSecond", 0.0166f, 0.0166f);
         keysRemaining = 0;
-        phase = 0;
         SurvivalLevelInit();
+        phase = 0;
 
         PhaseAdvanceItem.gotCollected += ShouldAdvancePhase;
 
@@ -21,6 +32,13 @@ public class SurvivalManualAdvance : SurvivalLevel1EnemySpawner
 
         ManualAdvancePhase();
         RefreshText();
+    }
+
+    float spawnLocation = 0f;
+    // Start is called before the first frame update
+    void Start()
+    {
+        theUI.PlayIntro();
     }
 
     void SpawnKey(float x, float z)
@@ -102,10 +120,11 @@ public class SurvivalManualAdvance : SurvivalLevel1EnemySpawner
                 }
                 break;
             case 6:
-                phase = -1;
                 //Win level
-                
-                LevelBase.instance.AcknowledgeLevelCompletion();
+                //LevelBase.instance.AcknowledgeLevelCompletion();
+                phase = -999;
+                theUI.ShowRsltScreen("You Win!" + System.Environment.NewLine + "Level Completed.", 0);
+
                 break;
             default:
                 print("manual advance phase has reached undefined phase: " + phase);
@@ -186,18 +205,14 @@ public class SurvivalManualAdvance : SurvivalLevel1EnemySpawner
 
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update60TimesPerSecond()
     {
-        secondsPassed += Time.deltaTime;
-        secondsPassedInt = (int)secondsPassed;
-        enemySpawnTimer += Time.deltaTime;
-
-        while (enemySpawnTimer > enemySpawnFunctionCallInterval) // to make enemy spawn function run 60 times per second
-                                                                 //even when FPS is above or below 60
+        if (!playerIsDead)
         {
-            enemySpawnTimer -= enemySpawnFunctionCallInterval;
             WhatEnemiesShouldSpawn();
+
+            secondsPassed += 0.0166f;
+            secondsPassedInt = (int)secondsPassed;
         }
     }
 
