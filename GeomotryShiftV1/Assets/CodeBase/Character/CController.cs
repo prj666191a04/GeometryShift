@@ -127,7 +127,7 @@ public class CController : MonoBehaviour {
 	}
 
     
-    void DisableMovement()
+    public void DisableMovement()
     {
         if (!disabled)
         {

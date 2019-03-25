@@ -59,6 +59,7 @@ public class CStatusT : CStatus
 
     IEnumerator DeathTrigger()
     {
+        controller_.DisableMovement();
         deathTriggered = true;
         ui.SetDangerColor();
         yield return new WaitForSeconds(0.5f);
@@ -68,7 +69,7 @@ public class CStatusT : CStatus
     IEnumerator ReadyReset()
     {
         ui.SetText(value_);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.5f);
         ready = true;
     }
 
@@ -112,10 +113,6 @@ public class CStatusT : CStatus
     {
         controller_.recoverPs.Emit(15);
         value_ += ammount;
-        if(value_ > maxValue_)
-        {
-            value_ = maxValue_;
-        }
         if(value_ > warningThreshHold)
         {
             warningTriggered = false;
@@ -124,7 +121,18 @@ public class CStatusT : CStatus
     }
     public override void RecoverItem()
     {
-        Recover(maxTime * 0.15f);        
+        float ammount = maxTime * 0.15f;
+        controller_.recoverPs.Emit(15);
+        value_ += ammount;
+        if (value_ > maxValue_)
+        {
+            value_ = maxValue_;
+        }
+        if (value_ > warningThreshHold)
+        {
+            warningTriggered = false;
+            ui.SetNormalColor();
+        }
     }
     public override void Initialize(float ammount)
     {
