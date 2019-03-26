@@ -22,7 +22,6 @@ public class CConfig3dTimed : CConfig
             cc.rBody.useGravity = true;
         }
 
-
         cc.motorPool = new CMotor[1];
         cc.motorPool[0] = player.AddComponent<TMotor3D>();
         cc.AssignMotor(cc.motorPool[0]);
@@ -35,7 +34,7 @@ public class CConfig3dTimed : CConfig
         GeometryShift.instance.cameraController.SetTarget(player);
         GeometryShift.instance.cameraController.Init(new Vector3(0f, 13f, -6f));
         GeometryShift.instance.cameraController.LookAt(new Vector3(68.931f, 0f, 0f));
-        GeometryShift.instance.cameraController.borderDistance = 5f;
+        GeometryShift.instance.cameraController.borderDistance = 4f;
 
 
     }

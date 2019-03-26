@@ -6,10 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// Its starting to look like this class might not be needed. currently a class of type cconfig could be used directly
-/// but we are keeping it for the time being for orginization It will be removed once the system is compleete if there is still no need for it.
-/// </summary>
+
 public class LevelInit : MonoBehaviour
 {
     
@@ -17,6 +14,7 @@ public class LevelInit : MonoBehaviour
     public Transform spawnPoint; //this will be replaced with save data later for open world map
     public GameObject parentObject;
     public bool mainMap = false;
+    public bool AutoStart = true;
     
     public CConfig cconfig;
 
@@ -24,12 +22,26 @@ public class LevelInit : MonoBehaviour
     void Start()
     {
         ConfigureSpawnPoint();
+        if(AutoStart)
+        {
+            //copy pasted code to simply reduce function call overhead
+            cconfig.SetupCharacter(playerPrefab, spawnPoint, parentObject);
+            if (mainMap)
+            {
+                LevelLoader.instance.AutoSave();
+            }
+        }
+    }
+
+    public void Trigger()
+    {
         cconfig.SetupCharacter(playerPrefab, spawnPoint, parentObject);
         if (mainMap)
         {
             LevelLoader.instance.AutoSave();
         }
     }
+
 
     void ConfigureSpawnPoint()
     {
@@ -61,10 +73,5 @@ public class LevelInit : MonoBehaviour
     
 
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     
 }
