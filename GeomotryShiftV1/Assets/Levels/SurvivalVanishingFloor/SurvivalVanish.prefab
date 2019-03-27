@@ -159,7 +159,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4113265675911596671}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 1, z: 0.5}
   m_Children: []
   m_Father: {fileID: 73555576179156007}
@@ -311,6 +311,7 @@ MonoBehaviour:
   spawnPoint: {fileID: 4068981889398172718}
   parentObject: {fileID: 8234680567734596330}
   mainMap: 0
+  AutoStart: 1
   cconfig: {fileID: 3343062398230182876}
 --- !u!114 &5377225097961869167
 MonoBehaviour:
@@ -373,11 +374,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 73555576179156007}
     m_Modifications:
-    - target: {fileID: 6088838421775716413, guid: 1d4c58a713be4e243b9f6329f2debc86,
-        type: 3}
-      propertyPath: m_Name
-      value: Canvas
-      objectReference: {fileID: 0}
     - target: {fileID: 6803654629823648028, guid: 1d4c58a713be4e243b9f6329f2debc86,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -483,6 +479,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6088838421775716413, guid: 1d4c58a713be4e243b9f6329f2debc86,
+        type: 3}
+      propertyPath: m_Name
+      value: Canvas
+      objectReference: {fileID: 0}
     - target: {fileID: 1988217597054647167, guid: 1d4c58a713be4e243b9f6329f2debc86,
         type: 3}
       propertyPath: m_isInputParsingRequired
@@ -514,11 +515,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 73555576179156007}
     m_Modifications:
-    - target: {fileID: 3986093631441003119, guid: 6a911b36ba0e0304badb009ca73c9efe,
-        type: 3}
-      propertyPath: m_Name
-      value: LevelCanvasRigA
-      objectReference: {fileID: 0}
     - target: {fileID: 9204990832049284820, guid: 6a911b36ba0e0304badb009ca73c9efe,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -623,6 +619,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3986093631441003119, guid: 6a911b36ba0e0304badb009ca73c9efe,
+        type: 3}
+      propertyPath: m_Name
+      value: LevelCanvasRigA
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a911b36ba0e0304badb009ca73c9efe, type: 3}

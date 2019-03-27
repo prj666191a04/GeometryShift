@@ -4,10 +4,18 @@ using UnityEngine;
 
 public class SurvivalVanishSpawner : SurvivalLevel1EnemySpawner
 {
+    public delegate void RegenPlatforms();
+    public static event RegenPlatforms regen;
+
     public GameObject startingPlatform;
     float spawnLocationFloat = 0f;
     float spawnOrNot = 60f;
     // Start is called before the first frame update
+
+    void TellThePlatformsToRegenerate()
+    {
+        regen?.Invoke();
+    }
 
     void InitLevelSurvivalVanish()
     {
@@ -65,12 +73,16 @@ public class SurvivalVanishSpawner : SurvivalLevel1EnemySpawner
     {
         UniversalSurvivalOnEnable();
         LevelOverlayUI.OnIntroFinished += InitLevelSurvivalVanish;
+        
+        LevelOverlayUI.OnRetryRequested += TellThePlatformsToRegenerate;
     }
 
     private void OnDisable()
     {
         UniversalSurvivalOnDisable();
         LevelOverlayUI.OnIntroFinished -= InitLevelSurvivalVanish;
+
+        LevelOverlayUI.OnRetryRequested -= TellThePlatformsToRegenerate;
     }
 
 
@@ -96,7 +108,7 @@ public class SurvivalVanishSpawner : SurvivalLevel1EnemySpawner
                     Vector3 spawnPosition = new Vector3(Random.Range(-(widthOfLevel / 2), (widthOfLevel / 2)), 0f, -(lengthOfLevel / 2));
                     Quaternion spawnRotation = new Quaternion();
                     Instantiate(boomerang, spawnPosition, spawnRotation, transform.parent);
-                    
+
 
                 }
                 break;
@@ -160,7 +172,7 @@ public class SurvivalVanishSpawner : SurvivalLevel1EnemySpawner
                 if (cooldown1TimeCounter > cooldown1)
                 {
                     cooldown1TimeCounter -= cooldown1;
-                    
+
 
                     Vector3 spawnPosition = new Vector3(Random.Range(-(widthOfLevel / 2), (widthOfLevel / 2)), 0f, -(lengthOfLevel / 2));
                     //Quaternion spawnRotation = new Quaternion();
@@ -205,7 +217,7 @@ public class SurvivalVanishSpawner : SurvivalLevel1EnemySpawner
                 phase = -999;
                 theUI.ShowRsltScreen("You Win!" + System.Environment.NewLine + "Level Completed.", 0);
                 CancelInvoke();
-                
+
                 break;
             default:
                 print("phase error. phase is " + phase);
