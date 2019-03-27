@@ -86,6 +86,7 @@ MonoBehaviour:
   spawnPoint: {fileID: 8008514499331089692}
   parentObject: {fileID: 2671600642174450648}
   mainMap: 0
+  AutoStart: 1
   cconfig: {fileID: 5997880305689240193}
 --- !u!114 &2146991364845831773
 MonoBehaviour:
@@ -113,7 +114,7 @@ MonoBehaviour:
     m_Bits: 0
   levelId_: 10
   init_: {fileID: 0}
-  levelName_: Survival 5
+  levelName_: Survival Endurance
   cameraPoint: {fileID: 4307212763821718065}
 --- !u!114 &5997880305689240193
 MonoBehaviour:
@@ -357,11 +358,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6219834550785862933}
     m_Modifications:
-    - target: {fileID: 6088838421775716413, guid: 1d4c58a713be4e243b9f6329f2debc86,
-        type: 3}
-      propertyPath: m_Name
-      value: Canvas
-      objectReference: {fileID: 0}
     - target: {fileID: 6803654629823648028, guid: 1d4c58a713be4e243b9f6329f2debc86,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -467,6 +463,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6088838421775716413, guid: 1d4c58a713be4e243b9f6329f2debc86,
+        type: 3}
+      propertyPath: m_Name
+      value: Canvas
+      objectReference: {fileID: 0}
     - target: {fileID: 6966011941034132261, guid: 1d4c58a713be4e243b9f6329f2debc86,
         type: 3}
       propertyPath: m_Enabled
@@ -503,11 +504,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6219834550785862933}
     m_Modifications:
-    - target: {fileID: 3986093631441003119, guid: 6a911b36ba0e0304badb009ca73c9efe,
-        type: 3}
-      propertyPath: m_Name
-      value: LevelCanvasRigA
-      objectReference: {fileID: 0}
     - target: {fileID: 9204990832049284820, guid: 6a911b36ba0e0304badb009ca73c9efe,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -612,6 +608,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3986093631441003119, guid: 6a911b36ba0e0304badb009ca73c9efe,
+        type: 3}
+      propertyPath: m_Name
+      value: LevelCanvasRigA
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a911b36ba0e0304badb009ca73c9efe, type: 3}
