@@ -12,12 +12,13 @@ public class TrapRoomA : MonoBehaviour
 
     public List<GameObject> obsticlePrefabs;
     public List<GameObject> blockage;
-    public List<Transform> spawnPositions;
+
+    public List<SpawnGroup> spawnGroups;
+
+
     public Coroutine spawnRoutine;
     bool active = false;
 
-    public float spawnInterval;
-    public float waveInterval;
     public int spawnAmmountPerWave;
 
     private void Start()
@@ -71,19 +72,40 @@ public class TrapRoomA : MonoBehaviour
     }
     public IEnumerator SpawnRoutine()
     {
-        for(int i = 0; i < obsticlePrefabs.Count; i++)
+        for(int i = 0; i < spawnGroups.Count; i++)
         {
-            for (int s = 0; s < spawnAmmountPerWave; s++)
+            for (int s = 0; s < spawnGroups[i].waveAmmount; s++)
             {
-                for (int t = 0; t < spawnPositions.Count; t++)
+                for (int t = 0; t < spawnGroups[i].spawms.Count; t++)
                 {
-                    GameObject.Instantiate(obsticlePrefabs[i], spawnPositions[t].position, spawnPositions[t].rotation, LevelBase.instance.init_.parentObject.transform);
-                    yield return new WaitForSeconds(spawnInterval);
+                    GameObject.Instantiate(spawnGroups[i].prefab, spawnGroups[i].spawms[t].position, spawnGroups[i].spawms[t].rotation, LevelBase.instance.init_.parentObject.transform);
+                    yield return new WaitForSeconds(spawnGroups[i].spawnInterval);
                 }
             }
-            yield return new WaitForSeconds(waveInterval);
+            yield return new WaitForSeconds(spawnGroups[i].nextWaveDelay);
         }
         yield break;
     }
 
+}
+
+
+
+[System.Serializable]
+public class SpawnGroup
+{
+    [SerializeField]
+    public List<Transform> spawms;
+
+    [SerializeField]
+    public int waveAmmount;
+
+    [SerializeField]
+    public float nextWaveDelay;
+
+    [SerializeField]
+    public float spawnInterval;
+
+    [SerializeField]
+    public GameObject prefab;
 }

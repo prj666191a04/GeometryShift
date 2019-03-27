@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8249096190181246348}
   - component: {fileID: 8253886423704554778}
   - component: {fileID: 748685377379913159}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 5637651793656873271}
   - component: {fileID: 2129447943363530060}
   - component: {fileID: 6967309287749401086}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Growing Projectile
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -218,6 +218,7 @@ MonoBehaviour:
   timeExistedInSeconds: 0
   goThroughWalls: 0
   sizeUp: 2
+  acceleration: 0
 --- !u!54 &6967309287749401086
 Rigidbody:
   m_ObjectHideFlags: 0

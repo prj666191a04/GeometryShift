@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3774960622915839480}
   - component: {fileID: 8675577058139652885}
   - component: {fileID: 703304488390701166}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: GameObject
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 5778817923973383766}
   - component: {fileID: 5237936859869086273}
   - component: {fileID: 9109530146391741407}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Boomerang
   m_TagString: Enemy
   m_Icon: {fileID: 0}

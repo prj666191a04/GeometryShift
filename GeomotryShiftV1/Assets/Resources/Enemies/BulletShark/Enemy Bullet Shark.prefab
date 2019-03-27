@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1148953234517147179}
   - component: {fileID: 5912948016071411228}
   - component: {fileID: 1100264713177848438}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Enemy Bullet Shark
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -148,11 +148,9 @@ MonoBehaviour:
   missileRigidBody: {fileID: 0}
   turnSpeed: 1
   fuelTime: 2
-  overrideSpeed: 8
-  overrideTurnSpeed: 0.5
-  overrideFuelTime: 999
   numberOfProjectilesToShoot: 2
   shootInterval: 0.7
+  planarExplosion: {fileID: 0}
   whatToShoot: {fileID: 0}
 --- !u!96 &1100264713177848438
 TrailRenderer:
@@ -270,7 +268,7 @@ GameObject:
   - component: {fileID: 1966806184905187752}
   - component: {fileID: 7712907319209441869}
   - component: {fileID: 7565739730289714234}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Enemy Homing Missile Component2
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -362,7 +360,7 @@ GameObject:
   - component: {fileID: 8315879559691410784}
   - component: {fileID: 2277280398913715076}
   - component: {fileID: 4836336877432284762}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Enemy Homing Missile Component2 (2)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -454,7 +452,7 @@ GameObject:
   - component: {fileID: 8347614502288021463}
   - component: {fileID: 7074964361536237122}
   - component: {fileID: 2989593494487120358}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Enemy Homing Missile Component2 (1)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
