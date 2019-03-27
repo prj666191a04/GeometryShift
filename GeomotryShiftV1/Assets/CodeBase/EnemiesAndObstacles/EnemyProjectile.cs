@@ -28,12 +28,22 @@ public class EnemyProjectile : MonoBehaviour
             }
         }
     }
-    
+
 
     // Start is called before the first frame update
     void Start()
     {
+        SurvivalLevel1EnemySpawner.despawnEnemies += DestroyThis;
+    }
 
+    private void OnDestroy()
+    {
+        SurvivalLevel1EnemySpawner.despawnEnemies -= DestroyThis;
+    }
+
+    private void DestroyThis()
+    {
+        Destroy(gameObject);
     }
 
     protected void MoveForward()

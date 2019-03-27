@@ -25,11 +25,11 @@ public class LevelIntroS1 : OverlayUIAtribute
 
     private void OnEnable()
     {
-        
+
     }
     private void OnDisable()
     {
-        
+
     }
 
     public override void Play()
@@ -39,6 +39,8 @@ public class LevelIntroS1 : OverlayUIAtribute
 
     void init()
     {
+        Simple3DMovement.movementEnabled = false;//don't let the player move
+        //until the countdown ends. For levels with Simple3DMovement (survival)
         time = 0;
         counterValue = 3f;
         destReached = false;
@@ -51,56 +53,57 @@ public class LevelIntroS1 : OverlayUIAtribute
 
     void StartIntro()
     {
-        
+
     }
 
 
     // Update is called once per frame
     void Update()
     {
-        
-            if (time < 1 && !destReached)
-                time += Time.deltaTime;
 
-            if (time > 1)
-                time = 1;
+        if (time < 1 && !destReached)
+            time += Time.deltaTime;
 
-            AnimateDown();
+        if (time > 1)
+            time = 1;
 
-            if (destReached)
+        AnimateDown();
+
+        if (destReached)
+        {
+            if (counterValue > 0)
             {
-                if (counterValue > 0)
+                counterValue -= Time.deltaTime;
+                counter.text = Mathf.Round(counterValue).ToString();
+            }
+            else
+            {
+                if (!finished)
                 {
-                    counterValue -= Time.deltaTime;
-                    counter.text = Mathf.Round(counterValue).ToString();
+                    counter.text = finishText;
+                    finished = true;
                 }
                 else
                 {
-                    if (!finished)
+                    if (time > 0)
                     {
-                        counter.text = finishText;
-                        finished = true;
+                        time -= Time.deltaTime;
                     }
                     else
                     {
-                        if(time > 0)
-                        {
-                            time -= Time.deltaTime;
-                        }
-                        else
-                        {
-                            owner_.EndIntro();
-                        }
+                        owner_.EndIntro();
+                        Simple3DMovement.movementEnabled = true;
                     }
                 }
             }
-        
+        }
+
     }
     void AnimateDown()
     {
         pos.anchoredPosition3D = Vector3.Lerp(startPos, targetPos, time);
         if (pos.anchoredPosition3D == targetPos)
             destReached = true;
-           
+
     }
 }

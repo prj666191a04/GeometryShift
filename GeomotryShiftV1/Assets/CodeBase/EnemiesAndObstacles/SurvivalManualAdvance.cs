@@ -4,19 +4,33 @@ using UnityEngine;
 
 public class SurvivalManualAdvance : SurvivalLevel1EnemySpawner
 {
+    public delegate void DespawnKeys();
+    public static event DespawnKeys despawn;
+
     public GameObject advanceKey;
     public static int keysRemaining;
+
+    private void TellTheKeysToDespawn()
+    {
+        despawn?.Invoke();
+        phase = 0;
+        ManualAdvancePhase();
+    }
 
     private void OnEnable()
     {
         UniversalSurvivalOnEnable();
         LevelOverlayUI.OnIntroFinished += InitLevelManualAdvance;
+
+        LevelOverlayUI.OnRetryRequested += TellTheKeysToDespawn;
     }
 
     private void OnDisable()
     {
         UniversalSurvivalOnDisable();
         LevelOverlayUI.OnIntroFinished -= InitLevelManualAdvance;
+
+        LevelOverlayUI.OnRetryRequested -= TellTheKeysToDespawn;
     }
 
     void InitLevelManualAdvance()

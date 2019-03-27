@@ -6,6 +6,10 @@ using Random = UnityEngine.Random;
 
 public class SurvivalLevel1EnemySpawner : MonoBehaviour
 {
+
+    public delegate void DespawnEnemiesSurvival();
+    public static event DespawnEnemiesSurvival despawnEnemies;
+
     protected int timeToWin = -1;
 
     public GameObject spawn;
@@ -67,12 +71,18 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
 
     protected GameObject thePlayer;
 
+    private void TellTheEnemiesToDespawn()
+    {
+        despawnEnemies?.Invoke();
+    }
+
     protected void UniversalSurvivalOnEnable()
     {
         CStatus.OnPlayerDeath += showRetryScreen;
 
         LevelOverlayUI.OnResultScreenFinished += LevelBase.instance.AcknowledgeLevelCompletion;
         LevelOverlayUI.OnRetryRequested += respawnPlayer;
+        LevelOverlayUI.OnRetryRequested += TellTheEnemiesToDespawn;
         LevelOverlayUI.OnLevelQuit += LevelBase.instance.TerminateLevelAttempt;
     }
 
@@ -82,6 +92,7 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
 
         LevelOverlayUI.OnResultScreenFinished -= LevelBase.instance.AcknowledgeLevelCompletion;
         LevelOverlayUI.OnRetryRequested -= respawnPlayer;
+        LevelOverlayUI.OnRetryRequested -= TellTheEnemiesToDespawn;
         LevelOverlayUI.OnLevelQuit -= LevelBase.instance.TerminateLevelAttempt;
     }
 
