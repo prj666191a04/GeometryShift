@@ -26,23 +26,7 @@ public class CStatusA : CStatus
 
     public override void AbsoluteDamage(float ammount)
     {
-        if (value_ - ammount > 0)
-        {
-            value_ -= ammount;
-            HitAnimation();
-            StartCoroutine(ActivateIFrames());
-        }
-        else
-        {
-            value_ = 0;
-            Die();
-            Reset();
-        }
-    }
-
-    public override void Damage(float ammount)
-    {
-        if (!iFrame_)
+        if (HasAlreadyWon.hasAlreadyWon == false)
         {
             if (value_ - ammount > 0)
             {
@@ -55,6 +39,28 @@ public class CStatusA : CStatus
                 value_ = 0;
                 Die();
                 Reset();
+            }
+        }
+    }
+
+    public override void Damage(float ammount)
+    {
+        if (HasAlreadyWon.hasAlreadyWon == false)
+        {
+            if (!iFrame_)
+            {
+                if (value_ - ammount > 0)
+                {
+                    value_ -= ammount;
+                    HitAnimation();
+                    StartCoroutine(ActivateIFrames());
+                }
+                else
+                {
+                    value_ = 0;
+                    Die();
+                    Reset();
+                }
             }
         }
     }

@@ -89,7 +89,7 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
     {
         UniversalSurvivalOnEnable();
         LevelOverlayUI.OnIntroFinished += InitLevel;
-
+        
     }
     
 
@@ -230,7 +230,7 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
             }
             else
             {
-                timeToWin = 300;
+                timeToWin = 3;
                 timeToPhase.Add(1, 1);//slow projectiles
                 timeToPhase.Add(15, 2);//slow + fast projectiles
                 timeToPhase.Add(35, 3);//planar explosions + fast projectiles
@@ -667,6 +667,8 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
                 //LevelBase.instance.AcknowledgeLevelCompletion();
                 phase = -999;
                 theUI.ShowRsltScreen("You Win!" + System.Environment.NewLine + "Level Completed.", 0);
+                CancelInvoke();
+
 
                 break;
             default:

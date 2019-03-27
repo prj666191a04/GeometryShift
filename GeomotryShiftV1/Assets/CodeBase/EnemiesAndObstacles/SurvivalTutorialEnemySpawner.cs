@@ -201,7 +201,7 @@ public class SurvivalTutorialEnemySpawner : SurvivalLevel1EnemySpawner
                 //LevelBase.instance.AcknowledgeLevelCompletion();
                 phase = -999;
                 theUI.ShowRsltScreen("You Win!" + System.Environment.NewLine + "Level Completed.", 0);
-
+                CancelInvoke();
 
                 break;
             default:

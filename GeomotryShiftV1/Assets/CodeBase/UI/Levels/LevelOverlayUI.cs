@@ -70,6 +70,12 @@ public class LevelOverlayUI : MonoBehaviour
     //ToDo: tie rewards into ressult screen
     public void ShowRsltScreen(string rsltText, int returnCode)
     {
+        HasAlreadyWon.hasAlreadyWon = true;//this makes it so CStatusA.Damage
+        //and CStatusA.absoluteDamage don't kill the player after the player
+        //has already won the level. This bool is set to false in the function
+        //LevelBase.instance.AcknowledgeLevelCompletion so it doesn't stay on
+        //between levels.
+
         rsltScreenInstance.SetActive(true);
         levelExitCode = returnCode;
         rsltScript.Play();

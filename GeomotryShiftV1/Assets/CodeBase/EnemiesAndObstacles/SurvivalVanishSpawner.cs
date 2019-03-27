@@ -204,10 +204,8 @@ public class SurvivalVanishSpawner : SurvivalLevel1EnemySpawner
                 //LevelBase.instance.AcknowledgeLevelCompletion();
                 phase = -999;
                 theUI.ShowRsltScreen("You Win!" + System.Environment.NewLine + "Level Completed.", 0);
-
-                //so the player doesn't fall off the level and die during the win screen
-                GeometryShift.playerStatus.gameObject.GetComponent<Simple3DMovement>().hasWon = true;
-
+                CancelInvoke();
+                
                 break;
             default:
                 print("phase error. phase is " + phase);
