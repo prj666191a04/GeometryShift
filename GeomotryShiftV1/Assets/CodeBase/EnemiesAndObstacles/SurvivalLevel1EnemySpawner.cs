@@ -239,7 +239,7 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
             }
             else
             {
-                timeToWin = 3;
+                timeToWin = 300;
                 timeToPhase.Add(1, 1);//slow projectiles
                 timeToPhase.Add(15, 2);//slow + fast projectiles
                 timeToPhase.Add(35, 3);//planar explosions + fast projectiles
