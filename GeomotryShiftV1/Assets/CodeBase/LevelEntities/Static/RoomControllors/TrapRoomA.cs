@@ -7,12 +7,11 @@ using UnityEngine;
 
 public class TrapRoomA : MonoBehaviour
 {
+    public int roomID;
     public delegate void TrapRoomDel(int id);
     public static event TrapRoomDel OnTrapCleared;
 
-    public List<GameObject> obsticlePrefabs;
     public List<GameObject> blockage;
-
     public List<SpawnGroup> spawnGroups;
 
 
@@ -46,7 +45,8 @@ public class TrapRoomA : MonoBehaviour
     }
     void ResetTrap()
     {
-
+        active = false;
+        RemoveBlockage();
     }
 
     void CancleSpawnRoutine(int m = 0)
@@ -67,11 +67,12 @@ public class TrapRoomA : MonoBehaviour
     {
         foreach(GameObject b in blockage)
         {
-            b.SetActive(true);
+            b.SetActive(false);
         }
     }
     public IEnumerator SpawnRoutine()
     {
+        AddBlockage();
         for(int i = 0; i < spawnGroups.Count; i++)
         {
             for (int s = 0; s < spawnGroups[i].waveAmmount; s++)
@@ -84,7 +85,15 @@ public class TrapRoomA : MonoBehaviour
             }
             yield return new WaitForSeconds(spawnGroups[i].nextWaveDelay);
         }
+        Debug.Log("trapEnd");
+        RemoveBlockage();
+        if(OnTrapCleared != null)
+        {
+            OnTrapCleared(roomID);
+        }
+
         yield break;
+      
     }
 
 }
