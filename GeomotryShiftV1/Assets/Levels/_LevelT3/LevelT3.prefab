@@ -224,9 +224,9 @@ MonoBehaviour:
   - {fileID: 3737789109653862854}
   - {fileID: 8683298064219991194}
   keys:
+  - {fileID: 8683298064833937929}
   - {fileID: 8683298063915453846}
   - {fileID: 8683298064199427370}
-  - {fileID: 8683298064833937929}
 --- !u!114 &8683298063594396841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2658,6 +2658,24 @@ PrefabInstance:
       propertyPath: roomID
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7686150048472401656, guid: 4fd3ff8b6b9b5fb488cc4201d6493ff4,
+        type: 3}
+      propertyPath: spawnGroups.Array.data[6].prefab
+      value: 
+      objectReference: {fileID: 6203089242671580772, guid: 3d04dea424784e94a90b8cf6ca0988f3,
+        type: 3}
+    - target: {fileID: 7686150048472401656, guid: 4fd3ff8b6b9b5fb488cc4201d6493ff4,
+        type: 3}
+      propertyPath: spawnGroups.Array.data[8].prefab
+      value: 
+      objectReference: {fileID: 6203089242671580772, guid: 3d04dea424784e94a90b8cf6ca0988f3,
+        type: 3}
+    - target: {fileID: 7686150048472401656, guid: 4fd3ff8b6b9b5fb488cc4201d6493ff4,
+        type: 3}
+      propertyPath: spawnGroups.Array.data[7].prefab
+      value: 
+      objectReference: {fileID: 6203089242671580772, guid: 3d04dea424784e94a90b8cf6ca0988f3,
+        type: 3}
     - target: {fileID: 7686150049660907498, guid: 4fd3ff8b6b9b5fb488cc4201d6493ff4,
         type: 3}
       propertyPath: m_ReceiveShadows
