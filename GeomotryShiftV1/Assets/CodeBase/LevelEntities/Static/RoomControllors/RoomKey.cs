@@ -31,10 +31,7 @@ public class RoomKey : MonoBehaviour
             rend.enabled = false;
             room.UpdateStatus();
         }
-        else
-        {
-            Debug.LogError("Key not assigned to any blockages");
-        }
+
     }
 
     public virtual void ResetKey()
