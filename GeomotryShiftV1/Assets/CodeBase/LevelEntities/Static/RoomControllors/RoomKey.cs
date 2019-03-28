@@ -25,7 +25,7 @@ public class RoomKey : MonoBehaviour
 
     public virtual void Collect()
     {
-        if(room != null)
+        if(room != null && !collected)
         {
             collected = true;
             rend.enabled = false;

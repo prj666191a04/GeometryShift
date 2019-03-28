@@ -55,6 +55,10 @@ public class TrapRoomA : MonoBehaviour
         {
             StopCoroutine(spawnRoutine);
         }
+        else
+        {
+            Debug.Log("Spawn Routine null");
+        }
     }
     public void AddBlockage()
     {
@@ -87,11 +91,11 @@ public class TrapRoomA : MonoBehaviour
         }
         Debug.Log("trapEnd");
         RemoveBlockage();
+        
         if(OnTrapCleared != null)
         {
             OnTrapCleared(roomID);
         }
-
         yield break;
       
     }

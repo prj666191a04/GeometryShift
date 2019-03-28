@@ -28,12 +28,17 @@ public class EnemyProjectile : MonoBehaviour
             }
         }
     }
-    
-
-    // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
-
+        LevelBase.OnLevelReset += Die;
+    }
+    private void OnDisable()
+    {
+        LevelBase.OnLevelReset -= Die;
+    }
+    void Die()
+    {
+        GameObject.Destroy(this.gameObject);
     }
 
     protected void MoveForward()

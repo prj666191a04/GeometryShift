@@ -10,6 +10,7 @@ public class CStatusT : CStatus
     public float maxTime;
     public float warningThreshHold;
     public float hp = 3;
+    public float maxHp = 3;
     public bool ready = true;
 
     bool warningTriggered = false;
@@ -71,6 +72,7 @@ public class CStatusT : CStatus
     IEnumerator ReadyReset()
     {
         ui.SetText(value_);
+        ui.SetNormalColor();
         yield return new WaitForSeconds(0.5f);
         ready = true;
     }
@@ -97,15 +99,17 @@ public class CStatusT : CStatus
     {
         if (!iFrame_)
         {
-            if (value_ - ammount > 0)
+            if (value_ - ammount > 0 && hp - ammount > 0)
             {
                 value_ -= ammount;
+                hp -= ammount;
                 HitAnimation();
                 StartCoroutine(ActivateIFrames());
             }
             else
             {
                 value_ = 0;
+                ready = false;
                 Die();
                 //Reset();
             }
@@ -115,6 +119,7 @@ public class CStatusT : CStatus
     {
         controller_.recoverPs.Emit(15);
         value_ += ammount;
+        hp = maxHp;
         if(value_ > warningThreshHold)
         {
             warningTriggered = false;
@@ -144,6 +149,7 @@ public class CStatusT : CStatus
     {
         value_ = maxTime;
         dspValue_ = maxTime;
+        hp = maxHp;
         warningTriggered = false;
         deathTriggered = false;
         ui.SetNormalColor();

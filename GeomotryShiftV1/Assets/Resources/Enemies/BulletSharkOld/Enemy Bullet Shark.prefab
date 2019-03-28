@@ -139,7 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cdd99d7de4123c418cc07b19fe6ae2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1.5
+  damage: 1
   speed: 6
   maximumLifespanAllowed: 2
   timeExistedInSeconds: 0
@@ -148,11 +148,9 @@ MonoBehaviour:
   missileRigidBody: {fileID: 0}
   turnSpeed: 1
   fuelTime: 2
-  overrideSpeed: 8
-  overrideTurnSpeed: 0.5
-  overrideFuelTime: 999
   numberOfProjectilesToShoot: 2
   shootInterval: 0.7
+  planarExplosion: {fileID: 0}
   whatToShoot: {fileID: 0}
 --- !u!96 &1100264713177848438
 TrailRenderer:

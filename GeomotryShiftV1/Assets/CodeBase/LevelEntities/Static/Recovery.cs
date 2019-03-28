@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿//Author Atilla Puskas
+//Decription meant to be used in combination with a room key
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

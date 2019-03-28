@@ -18,6 +18,22 @@ public class TimerCanvas : MonoBehaviour
     
      Color targetColor;
 
+
+    private void OnEnable()
+    {
+        CStatus.OnPlayerDeath += DeathReset;
+    }
+    private void OnDisable()
+    {
+        CStatus.OnPlayerDeath -= DeathReset;
+    }
+
+    void DeathReset(int m = 0)
+    {
+        StopAllCoroutines();
+        SetNormalColor();
+    }
+
     // Start is called before the first frame update
     void Awake()
     {
