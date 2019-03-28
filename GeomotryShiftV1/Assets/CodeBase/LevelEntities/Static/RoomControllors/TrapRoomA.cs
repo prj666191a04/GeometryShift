@@ -22,7 +22,7 @@ public class TrapRoomA : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(SpawnRoutine());
+        //StartCoroutine(SpawnRoutine());
     }
 
     private void OnEnable()

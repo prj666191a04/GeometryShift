@@ -9723,7 +9723,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactText_: Access secure node 03
-  levelObject: {fileID: 3757590840735843817, guid: 6aa276edc6f78024c9ea6016493a4297,
+  levelObject: {fileID: 7467552982028877086, guid: 5d2731701810d4149826bf378d30bcf5,
     type: 3}
   exitLocation: {fileID: 1569973734}
 --- !u!1 &738818886
@@ -44699,6 +44699,7 @@ MonoBehaviour:
   spawnPoint: {fileID: 7416202169129823131}
   parentObject: {fileID: 2519642519157319264}
   mainMap: 1
+  AutoStart: 1
   cconfig: {fileID: 2039382081425651951}
 --- !u!114 &2039382081425651951
 MonoBehaviour:
