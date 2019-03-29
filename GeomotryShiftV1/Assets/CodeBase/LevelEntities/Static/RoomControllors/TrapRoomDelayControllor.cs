@@ -4,15 +4,26 @@ using UnityEngine;
 
 public class TrapRoomDelayControllor : MonoBehaviour
 {
+    public MonoBehaviour trapScript;
+    public float TriggerTime;
+    float currentTime;
     // Start is called before the first frame update
     void Start()
     {
-        
+        trapScript.enabled = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerStay(Collider other)
     {
         
     }
+    IEnumerator TrapScriptStartDelay()
+    {
+        yield return new WaitForSeconds(TriggerTime);
+        trapScript.enabled = true;
+        yield break;
+    }
+
+
+
 }
