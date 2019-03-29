@@ -102,8 +102,6 @@ public class TrapRoomA : MonoBehaviour
 
 }
 
-
-
 [System.Serializable]
 public class SpawnGroup
 {
