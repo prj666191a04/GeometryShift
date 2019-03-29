@@ -12,6 +12,7 @@ public class InteractionUI : MonoBehaviour
     public Text subText;
     // Start is called before the first frame update
 
+ 
     public void Apear(string text)
     {
         subText.text = text;

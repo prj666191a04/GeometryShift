@@ -8,9 +8,12 @@ using UnityEngine;
 public class TrapRoomA : MonoBehaviour
 {
     public int roomID;
+    public float startDelay = 0;
     public delegate void TrapRoomDel(int id);
     public static event TrapRoomDel OnTrapCleared;
-
+    public bool autoStart = false;
+    public bool looping = false;
+    public bool disabled = false;
     public List<GameObject> blockage;
     public List<SpawnGroup> spawnGroups;
 
@@ -22,30 +25,75 @@ public class TrapRoomA : MonoBehaviour
 
     private void Start()
     {
-        //StartCoroutine(SpawnRoutine());
+        if (autoStart)
+        {
+            StartCoroutine(SpawnRoutine());
+        }
     }
 
     private void OnEnable()
     {
         CStatus.OnPlayerDeath += CancleSpawnRoutine;
         LevelBase.OnLevelReset += ResetTrap;
+        DefenceTerminal.OnTerminalMessage += ToggleDisabledState;
     }
     private void OnDisable()
     {
         CStatus.OnPlayerDeath -= CancleSpawnRoutine;
         LevelBase.OnLevelReset -= ResetTrap;
+        DefenceTerminal.OnTerminalMessage -= ToggleDisabledState;
     }
+
+    void ToggleDisabledState(int id)
+    {
+        if (roomID == id)
+        {
+            disabled = !disabled;
+            if (disabled)
+            {
+                StopAllCoroutines();
+            }
+            else
+            {
+                if(autoStart)
+                {
+                    spawnRoutine = StartCoroutine(SpawnRoutine());
+                    Debug.Log("restarting autoTrap");
+                }
+            }
+        }
+    }
+
+
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player") && !active)
+        if(other.CompareTag("Player") && !active && startDelay <= 0 && !disabled)
         {
             active = true;
             spawnRoutine = StartCoroutine(SpawnRoutine());
         }
+        else if (other.CompareTag("Player") && !active && !disabled)
+        {
+            StartCoroutine(DelayedStart());
+        }
+    }
+    IEnumerator DelayedStart()
+    {
+        yield return new WaitForSeconds(startDelay);
+        active = true;
+        spawnRoutine = StartCoroutine(SpawnRoutine());
+        yield break;
     }
     void ResetTrap()
     {
+        StopAllCoroutines();
         active = false;
+        disabled = false;
+        if (autoStart)
+        {
+            spawnRoutine = StartCoroutine(SpawnRoutine());
+            Debug.Log("restarting autoTrap");
+        }
         RemoveBlockage();
     }
 
@@ -54,6 +102,7 @@ public class TrapRoomA : MonoBehaviour
         if(spawnRoutine != null)
         {
             StopCoroutine(spawnRoutine);
+            StopAllCoroutines();
         }
         else
         {
@@ -95,6 +144,10 @@ public class TrapRoomA : MonoBehaviour
         if(OnTrapCleared != null)
         {
             OnTrapCleared(roomID);
+        }
+        if (looping)
+        {
+            StartCoroutine(SpawnRoutine());
         }
         yield break;
       

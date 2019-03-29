@@ -6776,6 +6776,7 @@ MonoBehaviour:
   spawnPoint: {fileID: 1469554748}
   parentObject: {fileID: 1227219625}
   mainMap: 0
+  AutoStart: 1
   cconfig: {fileID: 1227219628}
 --- !u!1 &1276610072
 GameObject:

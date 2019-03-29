@@ -11,5 +11,9 @@ public class StaticKillCube : MonoBehaviour
             GeometryShift.playerStatus.AbsoluteDamage(9000);
             Debug.Log("damage");
         }
+        else if(other.CompareTag("Enemy"))
+        {
+            Destroy(other.gameObject);
+        }
     }
 }

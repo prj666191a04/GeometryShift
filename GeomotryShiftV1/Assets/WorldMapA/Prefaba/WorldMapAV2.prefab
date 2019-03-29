@@ -9613,7 +9613,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactText_: Access secure node 05
-  levelObject: {fileID: 3757590840735843817, guid: 6aa276edc6f78024c9ea6016493a4297,
+  levelObject: {fileID: 7540214088679352603, guid: d353b652cac342f4ebf7aac1cfdd2a24,
     type: 3}
   exitLocation: {fileID: 1276861643}
 --- !u!1 &550039132
