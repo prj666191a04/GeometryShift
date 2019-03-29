@@ -7,6 +7,13 @@ using UnityEngine;
 
 public class DefenceTerminal : CInteractable
 {
+
+    public Color armedColor;
+    public Color disarmedColor;
+
+    public MeshRenderer crystalRend;
+    Material crystalMat;
+
     public delegate void TerminalDel(int id);
     public static event TerminalDel OnTerminalMessage;
 
@@ -29,6 +36,7 @@ public class DefenceTerminal : CInteractable
                 OnTerminalMessage(targetID);
                 activated = !activated;
                 SetText();
+                GeometryShift.instance.interactionUI.Apear(interactText_);
             }
         }
         else
@@ -41,10 +49,12 @@ public class DefenceTerminal : CInteractable
         if(activated)
         {
             interactText_ = alturnateText;
+            crystalMat.color = disarmedColor;
         }
         else
         {
             interactText_ = orginalText;
+            crystalMat.color = armedColor;
         }
     }
     private void OnEnable()
@@ -64,6 +74,7 @@ public class DefenceTerminal : CInteractable
     void Start()
     {
         orginalText = interactText_;
+        crystalMat = crystalRend.materials[0];
     }
 }
 
