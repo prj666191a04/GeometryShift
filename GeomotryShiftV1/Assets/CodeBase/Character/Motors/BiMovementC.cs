@@ -12,6 +12,9 @@ public class BiMovementC : CMotor
     Quaternion targetRotation;
     Vector3 targetDirection;
     CharacterController cc;
+
+    public bool inversed = false;
+
     private void Start()
     {
         targetRotation = transform.rotation;
@@ -24,6 +27,8 @@ public class BiMovementC : CMotor
         RotateCharacter();
     }
 
+
+
     void FixedUpdate()
     {
         
@@ -33,6 +38,10 @@ public class BiMovementC : CMotor
             speed_ = maxSpeed_;
         }
         Vector3 movementVector = new Vector3(maxSpeed_ - speed_, 0, 0);
+        if(inversed)
+        {
+            movementVector = new Vector3( speed_ * -1  - maxSpeed_, 0, 0) ;
+        }
 
         if (Input.GetKey(KeyCode.Space))
         {
