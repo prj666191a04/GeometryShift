@@ -75,6 +75,7 @@ public class DefenceTerminal : CInteractable
     {
         orginalText = interactText_;
         crystalMat = crystalRend.materials[0];
+        crystalMat.color = armedColor;
     }
 }
 
