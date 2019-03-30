@@ -11,6 +11,9 @@ GameObject:
   - component: {fileID: 281373222}
   - component: {fileID: 281373221}
   - component: {fileID: 281373220}
+  - component: {fileID: 854610091}
+  - component: {fileID: 854610092}
+  - component: {fileID: 854610093}
   m_Layer: 0
   m_Name: ShardA
   m_TagString: Untagged
@@ -25,7 +28,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 281373219}
-  m_LocalRotation: {x: -0.43595436, y: 0.556726, z: 0.556726, w: 0.43595436}
+  m_LocalRotation: {x: -0.43595567, y: 0.55672497, z: 0.55672497, w: 0.43595567}
   m_LocalPosition: {x: -0.19375546, y: 0, z: 0.0015709698}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children: []
@@ -78,3 +81,40 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &854610091
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 281373219}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.01325501, y: 0.03265038, z: 0.048026245}
+  m_Center: {x: 0.00013262629, y: 8.619275e-13, z: -0.0012328816}
+--- !u!114 &854610092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 281373219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba2512e9958e0244cace6b5f575845aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &854610093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 281373219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de85ea94d234d7f43990c618a5ef1175, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
