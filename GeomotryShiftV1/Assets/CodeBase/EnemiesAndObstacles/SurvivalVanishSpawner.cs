@@ -51,7 +51,7 @@ public class SurvivalVanishSpawner : SurvivalLevel1EnemySpawner
             }
             else
             {
-                timeToWin = 2;
+                timeToWin = 60;
                 timeToPhase.Add(10, 2);//slow + fast projectiles
                 timeToPhase.Add(20, 3);//homing missiles
                 timeToPhase.Add(30, 4);//boomerangs
