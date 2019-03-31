@@ -43,7 +43,6 @@ public class LevelBase : MonoBehaviour
     //id is the id number of the level, code is the return value for how the level was compleeted, return 0 if no special conditions exist
     public virtual void AcknowledgeLevelCompletion(int code = 0)
     {
-        HasAlreadyWon.hasAlreadyWon = false;
         if(OnLevelCompleeted != null)
         {
             OnLevelCompleeted(levelId_, code);

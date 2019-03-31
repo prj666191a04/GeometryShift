@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HasAlreadyWon : MonoBehaviour
 {
-    public static bool hasAlreadyWon = false;
+    //public static bool hasAlreadyWon = false;
     // Start is called before the first frame update
     void Start()
     {

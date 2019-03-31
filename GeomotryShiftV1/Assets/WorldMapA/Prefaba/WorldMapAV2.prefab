@@ -34822,7 +34822,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactText_: Test Portal
-  levelObject: {fileID: 2671600642174450648, guid: 2e05779a954ad2941bbdced9b0f7c93d,
+  levelObject: {fileID: 3155111293681833359, guid: ac8244ca05bbbde4289abb997eb0a3af,
     type: 3}
   exitLocation: {fileID: 6567708176591256991}
 --- !u!1 &1892918979740458621

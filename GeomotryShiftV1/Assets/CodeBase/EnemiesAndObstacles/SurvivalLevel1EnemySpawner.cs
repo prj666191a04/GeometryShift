@@ -677,6 +677,7 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
                 phase = -999;
                 theUI.ShowRsltScreen("You Win!" + System.Environment.NewLine + "Level Completed.", 0);
                 CancelInvoke();
+                Destroy(GeometryShift.playerStatus.gameObject);
 
 
                 break;

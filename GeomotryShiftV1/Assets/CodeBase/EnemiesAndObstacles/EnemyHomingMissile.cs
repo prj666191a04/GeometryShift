@@ -57,8 +57,11 @@ public class EnemyHomingMissile: EnemyProjectile
     void Update()
     {
         shouldDespawn();//inherited from EnemyProjectile
-        RotateTowardsTarget();
-        MoveForward();//inherited from EnemyProjectile
+        if (GeometryShift.playerStatus != null)
+        {
+            RotateTowardsTarget();
+            MoveForward();//inherited from EnemyProjectile
+        }
         
     }
 }

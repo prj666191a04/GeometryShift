@@ -26,7 +26,23 @@ public class CStatusA : CStatus
 
     public override void AbsoluteDamage(float ammount)
     {
-        if (HasAlreadyWon.hasAlreadyWon == false)
+        if (value_ - ammount > 0)
+        {
+            value_ -= ammount;
+            HitAnimation();
+            StartCoroutine(ActivateIFrames());
+        }
+        else
+        {
+            value_ = 0;
+            Die();
+            Reset();
+        }
+    }
+
+    public override void Damage(float ammount)
+    {
+        if (!iFrame_)
         {
             if (value_ - ammount > 0)
             {
@@ -42,33 +58,11 @@ public class CStatusA : CStatus
             }
         }
     }
-
-    public override void Damage(float ammount)
-    {
-        if (HasAlreadyWon.hasAlreadyWon == false)
-        {
-            if (!iFrame_)
-            {
-                if (value_ - ammount > 0)
-                {
-                    value_ -= ammount;
-                    HitAnimation();
-                    StartCoroutine(ActivateIFrames());
-                }
-                else
-                {
-                    value_ = 0;
-                    Die();
-                    Reset();
-                }
-            }
-        }
-    }
     public override void Recover(float ammount)
     {
         controller_.recoverPs.Emit(15);
         value_ += ammount;
-        if(value_ > maxValue_)
+        if (value_ > maxValue_)
         {
             value_ = maxValue_;
         }

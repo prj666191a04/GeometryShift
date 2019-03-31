@@ -51,7 +51,7 @@ public class SurvivalVanishSpawner : SurvivalLevel1EnemySpawner
             }
             else
             {
-                timeToWin = 60;
+                timeToWin = 2;
                 timeToPhase.Add(10, 2);//slow + fast projectiles
                 timeToPhase.Add(20, 3);//homing missiles
                 timeToPhase.Add(30, 4);//boomerangs
@@ -217,6 +217,8 @@ public class SurvivalVanishSpawner : SurvivalLevel1EnemySpawner
                 phase = -999;
                 theUI.ShowRsltScreen("You Win!" + System.Environment.NewLine + "Level Completed.", 0);
                 CancelInvoke();
+                Destroy(GeometryShift.playerStatus.gameObject);
+                
 
                 break;
             default:

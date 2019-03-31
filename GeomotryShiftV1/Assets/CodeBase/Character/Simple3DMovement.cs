@@ -24,8 +24,7 @@ public class Simple3DMovement : CMotor
     public float maxSpeed = 10f;
     public float acellSpeed = 3f;
     public float decellSpeed = 3f;
-
-    public static bool movementEnabled = true;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -61,7 +60,7 @@ public class Simple3DMovement : CMotor
         {
             theRB = GetComponent<Rigidbody>(); 
         }
-        if (theRB && movementEnabled)
+        if (theRB)
         {
             if (transform.position.y < -2)//player dies if they fall off the map
             {

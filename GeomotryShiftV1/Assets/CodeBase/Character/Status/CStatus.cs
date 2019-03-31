@@ -21,8 +21,6 @@ public abstract class CStatus : MonoBehaviour
     protected float iFrameTime_ = 0.5f;
     protected bool iFrame_ = false;
 
-    protected bool invincible = false;
-
     public abstract void Damage(float ammount);
 
     public abstract void AbsoluteDamage(float ammount);
@@ -44,23 +42,20 @@ public abstract class CStatus : MonoBehaviour
 
     protected void Die(int method = 0)
     {
-        if(OnPlayerDeath != null)
+        if (OnPlayerDeath != null)
         {
-            if (invincible == false)
-            {
-                OnPlayerDeath(method);
-            }
+            OnPlayerDeath(method);
         }
     }
 
-   protected void HitAnimation()
+    protected void HitAnimation()
     {
-        if(OnPlayerHit != null)
+        if (OnPlayerHit != null)
         {
             OnPlayerHit();
         }
     }
-    
+
     private void OnEnable()
     {
         GeometryShift.playerStatus = this;

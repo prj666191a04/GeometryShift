@@ -39,8 +39,6 @@ public class LevelIntroS1 : OverlayUIAtribute
 
     void init()
     {
-        Simple3DMovement.movementEnabled = false;//don't let the player move
-        //until the countdown ends. For levels with Simple3DMovement (survival)
         time = 0;
         counterValue = 3f;
         destReached = false;
@@ -92,7 +90,6 @@ public class LevelIntroS1 : OverlayUIAtribute
                     else
                     {
                         owner_.EndIntro();
-                        Simple3DMovement.movementEnabled = true;
                     }
                 }
             }
