@@ -69,6 +69,7 @@ public class DefenceTerminal : CInteractable
     {
         activated = false;
         interactText_ = orginalText;
+        crystalMat.color = armedColor;
     }
     // Start is called before the first frame update
     void Start()

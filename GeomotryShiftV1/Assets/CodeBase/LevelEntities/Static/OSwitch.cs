@@ -33,7 +33,15 @@ public class OSwitch : MonoBehaviour
 
     private void ResetSwitch()
     {
-        
+        active = false;
+        foreach (GameObject g in groupOne)
+        {
+            g.SetActive(false);
+        }
+        foreach (GameObject g in groupTwo)
+        {
+            g.SetActive(true);
+        }
     }
 
     void Toggle(int id)
