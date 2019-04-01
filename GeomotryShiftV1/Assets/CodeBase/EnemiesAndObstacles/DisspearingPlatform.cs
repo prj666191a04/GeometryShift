@@ -5,11 +5,10 @@ using UnityEngine;
 public class DisspearingPlatform : MonoBehaviour
 {
 
-    float health = 1.5f;
-    float maxHealth = 1.5f;
-    float regenMultiplier = 0.3f;
+    float health = 1.8f;
+    float maxHealth = 1.8f;
 
-    float timeBeforeRespawn = 2f;
+    float timeBeforeRespawn = 1f;
     float timeSinceDissapeared = 0f;
 
     int timesCheckedPerSecond = 30;
@@ -33,6 +32,8 @@ public class DisspearingPlatform : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SurvivalVanishSpawner.regen += Regen;
+
         updateInterval = 1f / timesCheckedPerSecond;
         theRenderer = gameObject.GetComponent<Renderer>();
         collidersArray = GetComponents<Collider>();
@@ -46,8 +47,17 @@ public class DisspearingPlatform : MonoBehaviour
             }
         }
     }
+
+
+    private void OnDestroy()
+    {
+        SurvivalVanishSpawner.regen -= Regen;
+    }
+    
+
     void Regen()
     {
+        CancelInvoke();
         health = maxHealth;
         theRenderer.material.color = new Color(
                 0.5f, 0.93f, 1f, 1f);
@@ -56,7 +66,6 @@ public class DisspearingPlatform : MonoBehaviour
         tempParticlePrefab.gameObject.GetComponent<ParticleSystem>().Emit(30);
 
         Destroy(tempParticlePrefab, 3);//clean up the empty gameobject
-
     }
 
     void WaitToRespawn()
@@ -65,7 +74,6 @@ public class DisspearingPlatform : MonoBehaviour
         if (timeSinceDissapeared >= timeBeforeRespawn)
         {
             Regen();
-            CancelInvoke();
         }
     }
 

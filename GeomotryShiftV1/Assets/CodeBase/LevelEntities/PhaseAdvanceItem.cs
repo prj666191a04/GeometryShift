@@ -26,7 +26,17 @@ public class PhaseAdvanceItem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        SurvivalManualAdvance.despawn += DestroyThis;
+    }
+
+    private void OnDestroy()
+    {
+        SurvivalManualAdvance.despawn -= DestroyThis;
+    }
+
+    private void DestroyThis()
+    {
+        Destroy(gameObject);
     }
 
     // Update is called once per frame

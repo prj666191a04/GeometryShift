@@ -1,11 +1,13 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class SurvivalLevel1EnemySpawner : MonoBehaviour
 {
+
+    public delegate void DespawnEnemiesSurvival();
+    public static event DespawnEnemiesSurvival despawnEnemies;
+
     protected int timeToWin = -1;
 
     public GameObject spawn;
@@ -67,12 +69,18 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
 
     protected GameObject thePlayer;
 
+    private void TellTheEnemiesToDespawn()
+    {
+        despawnEnemies?.Invoke();
+    }
+
     protected void UniversalSurvivalOnEnable()
     {
         CStatus.OnPlayerDeath += showRetryScreen;
 
         LevelOverlayUI.OnResultScreenFinished += LevelBase.instance.AcknowledgeLevelCompletion;
         LevelOverlayUI.OnRetryRequested += respawnPlayer;
+        LevelOverlayUI.OnRetryRequested += TellTheEnemiesToDespawn;
         LevelOverlayUI.OnLevelQuit += LevelBase.instance.TerminateLevelAttempt;
     }
 
@@ -82,6 +90,7 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
 
         LevelOverlayUI.OnResultScreenFinished -= LevelBase.instance.AcknowledgeLevelCompletion;
         LevelOverlayUI.OnRetryRequested -= respawnPlayer;
+        LevelOverlayUI.OnRetryRequested -= TellTheEnemiesToDespawn;
         LevelOverlayUI.OnLevelQuit -= LevelBase.instance.TerminateLevelAttempt;
     }
 
@@ -89,7 +98,7 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
     {
         UniversalSurvivalOnEnable();
         LevelOverlayUI.OnIntroFinished += InitLevel;
-
+        
     }
     
 
@@ -667,6 +676,9 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
                 //LevelBase.instance.AcknowledgeLevelCompletion();
                 phase = -999;
                 theUI.ShowRsltScreen("You Win!" + System.Environment.NewLine + "Level Completed.", 0);
+                CancelInvoke();
+                Destroy(GeometryShift.playerStatus.gameObject);
+
 
                 break;
             default:
