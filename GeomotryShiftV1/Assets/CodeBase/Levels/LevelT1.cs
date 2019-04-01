@@ -64,7 +64,9 @@ public class LevelT1 : LevelBase
     {
         CStatusT status = (CStatusT)GeometryShift.playerStatus;
         float timeScore = status.value_ * 100;
-        return "Score: " + timeScore;
+        GeometryShift.AwardRecoveryItem(1);
+        return "Score: " + timeScore + System.Environment.NewLine + "Rewards: 1 X Recovery";
+        
     }
 
 

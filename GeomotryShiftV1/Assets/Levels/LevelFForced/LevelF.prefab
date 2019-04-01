@@ -867,6 +867,7 @@ MonoBehaviour:
   spawnPoint: {fileID: 1054557795599245953}
   parentObject: {fileID: 7546831976466090702}
   mainMap: 0
+  AutoStart: 1
   cconfig: {fileID: 2126032205029025649}
 --- !u!114 &2126032205029025649
 MonoBehaviour:
@@ -904,7 +905,7 @@ MonoBehaviour:
   layerSet3:
     serializedVersion: 2
     m_Bits: 0
-  levelId_: 0
+  levelId_: 6
   init_: {fileID: 3170386527480099780}
   levelName_: 
   cameraPoint: {fileID: 0}

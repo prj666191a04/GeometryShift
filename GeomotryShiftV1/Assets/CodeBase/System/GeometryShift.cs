@@ -18,7 +18,6 @@ public class GeometryShift : MonoBehaviour
 
     public static GeometryShift instance;
 
-    //referance might be removed from this script but for now it seems like a good place to store it.
     public static CStatus playerStatus;
 
     public PMTopLevel pauseMenue;
@@ -32,7 +31,10 @@ public class GeometryShift : MonoBehaviour
     public GameObject consumablePanel;
 
     public GameObject infoPanel;
+    public InfoImages inImages;
     GameObject loadedInfoSet;
+
+    bool infoInterupt = false;
 
 
     private static SystemState systemState = SystemState.MainMenue;
@@ -55,6 +57,13 @@ public class GeometryShift : MonoBehaviour
 
     public InteractionUI interactionUI;
 
+    public void DspInfo(int id)
+    {
+        infoInterupt = true;
+        inImages.SetImage(id);
+        infoPanel.SetActive(true);
+        GeometryShift.playerStatus.GetComponent<CController>().DisableMovement();
+    }
 
     public static void AwardRecoveryItem (int ammount)
     {
@@ -188,9 +197,9 @@ public class GeometryShift : MonoBehaviour
 
     private void SystemInput()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if(Input.GetKeyDown(KeyCode.Escape) && !infoInterupt)
         {
-            if (systemState == SystemState.InLevel || systemState == SystemState.WorldMap)
+            if (systemState == SystemState.InLevel || systemState == SystemState.WorldMap )
             {
                 pauseMenueActive = !pauseMenueActive;
 
@@ -208,6 +217,14 @@ public class GeometryShift : MonoBehaviour
 
             }
         }
+        else if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            infoPanel.SetActive(false);
+            infoInterupt = false;
+            GeometryShift.playerStatus.GetComponent<CController>().EnableMovement();
+        }
+                 
+
     }
 
 

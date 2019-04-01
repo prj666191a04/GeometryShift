@@ -11,6 +11,8 @@ public class SystemSounds : MonoBehaviour
 {
     public AudioSource acUI;
     public AudioSource acEffects;
+    public AudioSource acBgMusic;
+
     public AudioClip deathEffect1;
     public AudioClip uiClick;
     public AudioClip uiError;

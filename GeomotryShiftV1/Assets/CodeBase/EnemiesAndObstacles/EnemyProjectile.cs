@@ -28,7 +28,7 @@ public class EnemyProjectile : MonoBehaviour
             }
         }
     }
-<<<<<<< HEAD
+
     private void OnEnable()
     {
         LevelBase.OnLevelReset += Die;
@@ -40,8 +40,8 @@ public class EnemyProjectile : MonoBehaviour
     void Die()
     {
         GameObject.Destroy(this.gameObject);
-=======
 
+    }
     protected void InitializeEvents()
     {
         SurvivalLevel1EnemySpawner.despawnEnemies += DestroyThis;
@@ -65,7 +65,6 @@ public class EnemyProjectile : MonoBehaviour
     protected virtual void DestroyThis()
     {
         Destroy(gameObject);
->>>>>>> SurvivalLevelsMarch27
     }
 
     protected void MoveForward()

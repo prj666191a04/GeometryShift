@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DataNode : CInteractable
 {
+    public int id = 0;
     public GameObject infoPackage;
     public override void Respond()
     {
@@ -12,7 +13,8 @@ public class DataNode : CInteractable
 
     public override void Trigger()
     {
-        Debug.Log("Data node triggered");
+        GeometryShift.instance.DspInfo(id);
+        
     }
 
 

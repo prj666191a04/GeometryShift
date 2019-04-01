@@ -25,7 +25,7 @@ public class rotateFloat : MonoBehaviour
     }
     void Rotate()
     {
-        transform.Rotate(new Vector3(0,0, 1) * (Time.deltaTime * 50));
+        transform.Rotate(new Vector3(0,0, 1) * (Time.deltaTime * 35));
     }
 
     void Hover()
