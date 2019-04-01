@@ -850,39 +850,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< HEAD
---- !u!114 &6265355686130443570
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7546831976466090702}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73bd658ce7e254c45b79f0c5699f611d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  layerSet0:
-    serializedVersion: 2
-    m_Bits: 0
-  layerSet1:
-    serializedVersion: 2
-    m_Bits: 0
-  layerSet2:
-    serializedVersion: 2
-    m_Bits: 0
-  layerSet3:
-    serializedVersion: 2
-    m_Bits: 0
-  levelId_: 5
-  init_: {fileID: 3170386527480099780}
-  levelName_: 
-  cameraPoint: {fileID: 0}
-  spawn: {fileID: 1054557795599245956}
-  levelUi: {fileID: 5799605761330726085}
-=======
->>>>>>> HarleyMMC2
 --- !u!114 &3170386527480099780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2113,16 +2080,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 961965753515333466}
     m_Modifications:
-<<<<<<< HEAD
-    - target: {fileID: 571560615976341440, guid: 45adcad553a59a041827ad009e8e062c,
-=======
     - target: {fileID: 2722043933022025838, guid: ba5f54bbf1fdf704d90b99990fa8270a,
         type: 3}
       propertyPath: m_Name
       value: WallCubes (82)
       objectReference: {fileID: 0}
     - target: {fileID: 2722043933022025835, guid: ba5f54bbf1fdf704d90b99990fa8270a,
->>>>>>> HarleyMMC2
         type: 3}
       propertyPath: m_LocalPosition.x
       value: -24.699951
@@ -2175,46 +2138,7 @@ PrefabInstance:
     - target: {fileID: 2722043933022025835, guid: ba5f54bbf1fdf704d90b99990fa8270a,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-<<<<<<< HEAD
-      value: 45.000004
-      objectReference: {fileID: 0}
-    - target: {fileID: 571560615976341440, guid: 45adcad553a59a041827ad009e8e062c,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 571560615976341440, guid: 45adcad553a59a041827ad009e8e062c,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.7791
-      objectReference: {fileID: 0}
-    - target: {fileID: 571560615976341440, guid: 45adcad553a59a041827ad009e8e062c,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 571560615976341445, guid: 45adcad553a59a041827ad009e8e062c,
-        type: 3}
-      propertyPath: m_Name
-      value: MovingLargeObstacle
-      objectReference: {fileID: 0}
-    - target: {fileID: 2726547478710349915, guid: 45adcad553a59a041827ad009e8e062c,
-        type: 3}
-      propertyPath: interval
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2726547478710349915, guid: 45adcad553a59a041827ad009e8e062c,
-        type: 3}
-      propertyPath: moveSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2726547478710349915, guid: 45adcad553a59a041827ad009e8e062c,
-        type: 3}
-      propertyPath: offsetY
-      value: -25
-=======
       value: 0
->>>>>>> HarleyMMC2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba5f54bbf1fdf704d90b99990fa8270a, type: 3}
@@ -5367,16 +5291,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2271858944299179944}
     m_Modifications:
-<<<<<<< HEAD
-    - target: {fileID: 571560615976341440, guid: 45adcad553a59a041827ad009e8e062c,
-=======
     - target: {fileID: 2722043933022025838, guid: ba5f54bbf1fdf704d90b99990fa8270a,
         type: 3}
       propertyPath: m_Name
       value: WallCubes (80)
       objectReference: {fileID: 0}
     - target: {fileID: 2722043933022025835, guid: ba5f54bbf1fdf704d90b99990fa8270a,
->>>>>>> HarleyMMC2
         type: 3}
       propertyPath: m_LocalPosition.x
       value: -187.03967
@@ -5429,41 +5349,7 @@ PrefabInstance:
     - target: {fileID: 2722043933022025835, guid: ba5f54bbf1fdf704d90b99990fa8270a,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-<<<<<<< HEAD
-      value: 90.00001
-      objectReference: {fileID: 0}
-    - target: {fileID: 571560615976341440, guid: 45adcad553a59a041827ad009e8e062c,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 571560615976341440, guid: 45adcad553a59a041827ad009e8e062c,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 571560615976341445, guid: 45adcad553a59a041827ad009e8e062c,
-        type: 3}
-      propertyPath: m_Name
-      value: MovingLargeObstacle (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 2726547478710349915, guid: 45adcad553a59a041827ad009e8e062c,
-        type: 3}
-      propertyPath: interval
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2726547478710349915, guid: 45adcad553a59a041827ad009e8e062c,
-        type: 3}
-      propertyPath: moveSpeed
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2726547478710349915, guid: 45adcad553a59a041827ad009e8e062c,
-        type: 3}
-      propertyPath: offsetY
-      value: 25
-=======
       value: 0
->>>>>>> HarleyMMC2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba5f54bbf1fdf704d90b99990fa8270a, type: 3}
@@ -5555,16 +5441,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6443026484977409740}
     m_Modifications:
-<<<<<<< HEAD
-    - target: {fileID: 5345453373975672497, guid: afaa422c7b283a642bde620686bea990,
-=======
     - target: {fileID: 2722043933022025838, guid: ba5f54bbf1fdf704d90b99990fa8270a,
         type: 3}
       propertyPath: m_Name
       value: WallCubes (8)
       objectReference: {fileID: 0}
     - target: {fileID: 2722043933022025835, guid: ba5f54bbf1fdf704d90b99990fa8270a,
->>>>>>> HarleyMMC2
         type: 3}
       propertyPath: m_LocalPosition.x
       value: -409.7699
@@ -5619,59 +5501,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-<<<<<<< HEAD
-    - target: {fileID: 5345453373975672497, guid: afaa422c7b283a642bde620686bea990,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5345453373975672497, guid: afaa422c7b283a642bde620686bea990,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5345453373975672502, guid: afaa422c7b283a642bde620686bea990,
-        type: 3}
-      propertyPath: m_Name
-      value: MovingCubeObstacle (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1501965105437714861, guid: afaa422c7b283a642bde620686bea990,
-        type: 3}
-      propertyPath: interval
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1501965105437714861, guid: afaa422c7b283a642bde620686bea990,
-        type: 3}
-      propertyPath: moveSpeed
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1501965105437714861, guid: afaa422c7b283a642bde620686bea990,
-        type: 3}
-      propertyPath: offset
-      value: -46
-      objectReference: {fileID: 0}
-    - target: {fileID: 1501965105437714861, guid: afaa422c7b283a642bde620686bea990,
-        type: 3}
-      propertyPath: offsetX
-      value: -45
-      objectReference: {fileID: 0}
-    - target: {fileID: 7077024900913472576, guid: afaa422c7b283a642bde620686bea990,
-        type: 3}
-      propertyPath: offset
-      value: -46
-      objectReference: {fileID: 0}
-    - target: {fileID: 7077024900913472576, guid: afaa422c7b283a642bde620686bea990,
-        type: 3}
-      propertyPath: moveSpeed
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7077024900913472576, guid: afaa422c7b283a642bde620686bea990,
-        type: 3}
-      propertyPath: interval
-      value: 1
-      objectReference: {fileID: 0}
-=======
->>>>>>> HarleyMMC2
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba5f54bbf1fdf704d90b99990fa8270a, type: 3}
 --- !u!4 &3093577629033227421 stripped
@@ -8117,16 +7946,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1203355582220317251}
     m_Modifications:
-<<<<<<< HEAD
-    - target: {fileID: 7230935633948523027, guid: ab422692f10feb34d9f748974c74478a,
-=======
     - target: {fileID: 2722043933022025838, guid: ba5f54bbf1fdf704d90b99990fa8270a,
         type: 3}
       propertyPath: m_Name
       value: WallCubes (2)
       objectReference: {fileID: 0}
     - target: {fileID: 2722043933022025835, guid: ba5f54bbf1fdf704d90b99990fa8270a,
->>>>>>> HarleyMMC2
         type: 3}
       propertyPath: m_LocalPosition.x
       value: -96.78552
@@ -8181,24 +8006,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-<<<<<<< HEAD
-    - target: {fileID: 7230935633948523027, guid: ab422692f10feb34d9f748974c74478a,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7230935633948523027, guid: ab422692f10feb34d9f748974c74478a,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7230935633948523024, guid: ab422692f10feb34d9f748974c74478a,
-        type: 3}
-      propertyPath: m_Name
-      value: CrossObstacle (1)
-      objectReference: {fileID: 0}
-=======
->>>>>>> HarleyMMC2
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba5f54bbf1fdf704d90b99990fa8270a, type: 3}
 --- !u!4 &4461869867945821790 stripped
@@ -8214,16 +8021,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6443026484977409740}
     m_Modifications:
-<<<<<<< HEAD
-    - target: {fileID: 7230935633948523027, guid: ab422692f10feb34d9f748974c74478a,
-=======
     - target: {fileID: 2722043933022025838, guid: ba5f54bbf1fdf704d90b99990fa8270a,
         type: 3}
       propertyPath: m_Name
       value: WallCubes (9)
       objectReference: {fileID: 0}
     - target: {fileID: 2722043933022025835, guid: ba5f54bbf1fdf704d90b99990fa8270a,
->>>>>>> HarleyMMC2
         type: 3}
       propertyPath: m_LocalPosition.x
       value: -401.79993
@@ -8278,24 +8081,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-<<<<<<< HEAD
-    - target: {fileID: 7230935633948523027, guid: ab422692f10feb34d9f748974c74478a,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7230935633948523027, guid: ab422692f10feb34d9f748974c74478a,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7230935633948523024, guid: ab422692f10feb34d9f748974c74478a,
-        type: 3}
-      propertyPath: m_Name
-      value: CrossObstacle
-      objectReference: {fileID: 0}
-=======
->>>>>>> HarleyMMC2
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba5f54bbf1fdf704d90b99990fa8270a, type: 3}
 --- !u!4 &4397227445493886173 stripped
@@ -10790,16 +10575,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1166195659929004885}
     m_Modifications:
-<<<<<<< HEAD
-    - target: {fileID: 571560615976341440, guid: 45adcad553a59a041827ad009e8e062c,
-=======
     - target: {fileID: 2722043933022025838, guid: ba5f54bbf1fdf704d90b99990fa8270a,
         type: 3}
       propertyPath: m_Name
       value: WallCubes
       objectReference: {fileID: 0}
     - target: {fileID: 2722043933022025835, guid: ba5f54bbf1fdf704d90b99990fa8270a,
->>>>>>> HarleyMMC2
         type: 3}
       propertyPath: m_LocalPosition.x
       value: -395.4
@@ -10852,41 +10633,7 @@ PrefabInstance:
     - target: {fileID: 2722043933022025835, guid: ba5f54bbf1fdf704d90b99990fa8270a,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-<<<<<<< HEAD
-      value: 90.00001
-      objectReference: {fileID: 0}
-    - target: {fileID: 571560615976341440, guid: 45adcad553a59a041827ad009e8e062c,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 571560615976341440, guid: 45adcad553a59a041827ad009e8e062c,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 571560615976341445, guid: 45adcad553a59a041827ad009e8e062c,
-        type: 3}
-      propertyPath: m_Name
-      value: MovingLargeObstacle (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 2726547478710349915, guid: 45adcad553a59a041827ad009e8e062c,
-        type: 3}
-      propertyPath: interval
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2726547478710349915, guid: 45adcad553a59a041827ad009e8e062c,
-        type: 3}
-      propertyPath: moveSpeed
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2726547478710349915, guid: 45adcad553a59a041827ad009e8e062c,
-        type: 3}
-      propertyPath: offsetY
-      value: -25
-=======
       value: 0
->>>>>>> HarleyMMC2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba5f54bbf1fdf704d90b99990fa8270a, type: 3}
@@ -13188,16 +12935,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5543130968105735977}
     m_Modifications:
-<<<<<<< HEAD
-    - target: {fileID: 5345453373975672497, guid: afaa422c7b283a642bde620686bea990,
-=======
     - target: {fileID: 2722043933022025838, guid: ba5f54bbf1fdf704d90b99990fa8270a,
         type: 3}
       propertyPath: m_Name
       value: WallCubes (111)
       objectReference: {fileID: 0}
     - target: {fileID: 2722043933022025835, guid: ba5f54bbf1fdf704d90b99990fa8270a,
->>>>>>> HarleyMMC2
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 20.54
@@ -13252,59 +12995,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-<<<<<<< HEAD
-    - target: {fileID: 5345453373975672497, guid: afaa422c7b283a642bde620686bea990,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5345453373975672497, guid: afaa422c7b283a642bde620686bea990,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5345453373975672502, guid: afaa422c7b283a642bde620686bea990,
-        type: 3}
-      propertyPath: m_Name
-      value: MovingCubeObstacle (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1501965105437714861, guid: afaa422c7b283a642bde620686bea990,
-        type: 3}
-      propertyPath: interval
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1501965105437714861, guid: afaa422c7b283a642bde620686bea990,
-        type: 3}
-      propertyPath: moveSpeed
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1501965105437714861, guid: afaa422c7b283a642bde620686bea990,
-        type: 3}
-      propertyPath: offset
-      value: 46
-      objectReference: {fileID: 0}
-    - target: {fileID: 1501965105437714861, guid: afaa422c7b283a642bde620686bea990,
-        type: 3}
-      propertyPath: offsetX
-      value: 45
-      objectReference: {fileID: 0}
-    - target: {fileID: 7077024900913472576, guid: afaa422c7b283a642bde620686bea990,
-        type: 3}
-      propertyPath: offset
-      value: -46
-      objectReference: {fileID: 0}
-    - target: {fileID: 7077024900913472576, guid: afaa422c7b283a642bde620686bea990,
-        type: 3}
-      propertyPath: moveSpeed
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7077024900913472576, guid: afaa422c7b283a642bde620686bea990,
-        type: 3}
-      propertyPath: interval
-      value: 1
-      objectReference: {fileID: 0}
-=======
->>>>>>> HarleyMMC2
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba5f54bbf1fdf704d90b99990fa8270a, type: 3}
 --- !u!4 &1027331082597115824 stripped
@@ -14145,16 +13835,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6443026484977409740}
     m_Modifications:
-<<<<<<< HEAD
-    - target: {fileID: 5345453373975672497, guid: afaa422c7b283a642bde620686bea990,
-=======
     - target: {fileID: 2722043933022025838, guid: ba5f54bbf1fdf704d90b99990fa8270a,
         type: 3}
       propertyPath: m_Name
       value: WallCubes
       objectReference: {fileID: 0}
     - target: {fileID: 2722043933022025835, guid: ba5f54bbf1fdf704d90b99990fa8270a,
->>>>>>> HarleyMMC2
         type: 3}
       propertyPath: m_LocalPosition.x
       value: -435.25122
@@ -14209,59 +13895,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-<<<<<<< HEAD
-    - target: {fileID: 5345453373975672497, guid: afaa422c7b283a642bde620686bea990,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5345453373975672497, guid: afaa422c7b283a642bde620686bea990,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5345453373975672502, guid: afaa422c7b283a642bde620686bea990,
-        type: 3}
-      propertyPath: m_Name
-      value: MovingCubeObstacle
-      objectReference: {fileID: 0}
-    - target: {fileID: 1501965105437714861, guid: afaa422c7b283a642bde620686bea990,
-        type: 3}
-      propertyPath: interval
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1501965105437714861, guid: afaa422c7b283a642bde620686bea990,
-        type: 3}
-      propertyPath: moveSpeed
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1501965105437714861, guid: afaa422c7b283a642bde620686bea990,
-        type: 3}
-      propertyPath: offset
-      value: 46
-      objectReference: {fileID: 0}
-    - target: {fileID: 1501965105437714861, guid: afaa422c7b283a642bde620686bea990,
-        type: 3}
-      propertyPath: offsetX
-      value: 45
-      objectReference: {fileID: 0}
-    - target: {fileID: 7077024900913472576, guid: afaa422c7b283a642bde620686bea990,
-        type: 3}
-      propertyPath: offset
-      value: -46
-      objectReference: {fileID: 0}
-    - target: {fileID: 7077024900913472576, guid: afaa422c7b283a642bde620686bea990,
-        type: 3}
-      propertyPath: moveSpeed
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7077024900913472576, guid: afaa422c7b283a642bde620686bea990,
-        type: 3}
-      propertyPath: interval
-      value: 1
-      objectReference: {fileID: 0}
-=======
->>>>>>> HarleyMMC2
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba5f54bbf1fdf704d90b99990fa8270a, type: 3}
 --- !u!4 &1544693066219830291 stripped
@@ -14352,16 +13985,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5255044795337356191}
     m_Modifications:
-<<<<<<< HEAD
-    - target: {fileID: 7230935633948523027, guid: ab422692f10feb34d9f748974c74478a,
-=======
     - target: {fileID: 2722043933022025838, guid: ba5f54bbf1fdf704d90b99990fa8270a,
         type: 3}
       propertyPath: m_Name
       value: WallCubes (57)
       objectReference: {fileID: 0}
     - target: {fileID: 2722043933022025835, guid: ba5f54bbf1fdf704d90b99990fa8270a,
->>>>>>> HarleyMMC2
         type: 3}
       propertyPath: m_LocalPosition.x
       value: -119.01111
@@ -14416,24 +14045,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-<<<<<<< HEAD
-    - target: {fileID: 7230935633948523027, guid: ab422692f10feb34d9f748974c74478a,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7230935633948523027, guid: ab422692f10feb34d9f748974c74478a,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7230935633948523024, guid: ab422692f10feb34d9f748974c74478a,
-        type: 3}
-      propertyPath: m_Name
-      value: CrossObstacle (1)
-      objectReference: {fileID: 0}
-=======
->>>>>>> HarleyMMC2
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba5f54bbf1fdf704d90b99990fa8270a, type: 3}
 --- !u!4 &1505097860644783955 stripped
@@ -14834,16 +14445,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5255044795337356191}
     m_Modifications:
-<<<<<<< HEAD
-    - target: {fileID: 7230935633948523027, guid: ab422692f10feb34d9f748974c74478a,
-=======
     - target: {fileID: 2722043933022025838, guid: ba5f54bbf1fdf704d90b99990fa8270a,
         type: 3}
       propertyPath: m_Name
       value: WallCubes (42)
       objectReference: {fileID: 0}
     - target: {fileID: 2722043933022025835, guid: ba5f54bbf1fdf704d90b99990fa8270a,
->>>>>>> HarleyMMC2
         type: 3}
       propertyPath: m_LocalPosition.x
       value: -131.06238
@@ -14898,24 +14505,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-<<<<<<< HEAD
-    - target: {fileID: 7230935633948523027, guid: ab422692f10feb34d9f748974c74478a,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7230935633948523027, guid: ab422692f10feb34d9f748974c74478a,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7230935633948523024, guid: ab422692f10feb34d9f748974c74478a,
-        type: 3}
-      propertyPath: m_Name
-      value: CrossObstacle
-      objectReference: {fileID: 0}
-=======
->>>>>>> HarleyMMC2
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba5f54bbf1fdf704d90b99990fa8270a, type: 3}
 --- !u!4 &1627664300113444731 stripped
@@ -15306,16 +14895,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8494090099698833371}
     m_Modifications:
-<<<<<<< HEAD
-    - target: {fileID: 5345453373975672497, guid: afaa422c7b283a642bde620686bea990,
-=======
     - target: {fileID: 2722043933022025838, guid: ba5f54bbf1fdf704d90b99990fa8270a,
         type: 3}
       propertyPath: m_Name
       value: WallCubes (39)
       objectReference: {fileID: 0}
     - target: {fileID: 2722043933022025835, guid: ba5f54bbf1fdf704d90b99990fa8270a,
->>>>>>> HarleyMMC2
         type: 3}
       propertyPath: m_LocalPosition.x
       value: -353.8999
@@ -15370,59 +14955,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-<<<<<<< HEAD
-    - target: {fileID: 5345453373975672497, guid: afaa422c7b283a642bde620686bea990,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5345453373975672497, guid: afaa422c7b283a642bde620686bea990,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5345453373975672502, guid: afaa422c7b283a642bde620686bea990,
-        type: 3}
-      propertyPath: m_Name
-      value: MovingCubeObstacle (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1501965105437714861, guid: afaa422c7b283a642bde620686bea990,
-        type: 3}
-      propertyPath: interval
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1501965105437714861, guid: afaa422c7b283a642bde620686bea990,
-        type: 3}
-      propertyPath: moveSpeed
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1501965105437714861, guid: afaa422c7b283a642bde620686bea990,
-        type: 3}
-      propertyPath: offset
-      value: -46
-      objectReference: {fileID: 0}
-    - target: {fileID: 1501965105437714861, guid: afaa422c7b283a642bde620686bea990,
-        type: 3}
-      propertyPath: offsetX
-      value: -45
-      objectReference: {fileID: 0}
-    - target: {fileID: 7077024900913472576, guid: afaa422c7b283a642bde620686bea990,
-        type: 3}
-      propertyPath: offset
-      value: 46
-      objectReference: {fileID: 0}
-    - target: {fileID: 7077024900913472576, guid: afaa422c7b283a642bde620686bea990,
-        type: 3}
-      propertyPath: moveSpeed
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7077024900913472576, guid: afaa422c7b283a642bde620686bea990,
-        type: 3}
-      propertyPath: interval
-      value: 1
-      objectReference: {fileID: 0}
-=======
->>>>>>> HarleyMMC2
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba5f54bbf1fdf704d90b99990fa8270a, type: 3}
 --- !u!4 &1156779581044630077 stripped
@@ -16588,16 +16120,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1203355582220317251}
     m_Modifications:
-<<<<<<< HEAD
-    - target: {fileID: 7230935633948523027, guid: ab422692f10feb34d9f748974c74478a,
-=======
     - target: {fileID: 2722043933022025838, guid: ba5f54bbf1fdf704d90b99990fa8270a,
         type: 3}
       propertyPath: m_Name
       value: WallCubes (46)
       objectReference: {fileID: 0}
     - target: {fileID: 2722043933022025835, guid: ba5f54bbf1fdf704d90b99990fa8270a,
->>>>>>> HarleyMMC2
         type: 3}
       propertyPath: m_LocalPosition.x
       value: -89.44995
@@ -16651,11 +16179,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7230935633948523024, guid: ab422692f10feb34d9f748974c74478a,
-        type: 3}
-      propertyPath: m_Name
-      value: CrossObstacle (5)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba5f54bbf1fdf704d90b99990fa8270a, type: 3}
@@ -16972,16 +16495,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6443026484977409740}
     m_Modifications:
-<<<<<<< HEAD
-    - target: {fileID: 571560615976341440, guid: 45adcad553a59a041827ad009e8e062c,
-=======
     - target: {fileID: 2722043933022025838, guid: ba5f54bbf1fdf704d90b99990fa8270a,
         type: 3}
       propertyPath: m_Name
       value: WallCubes (4)
       objectReference: {fileID: 0}
     - target: {fileID: 2722043933022025835, guid: ba5f54bbf1fdf704d90b99990fa8270a,
->>>>>>> HarleyMMC2
         type: 3}
       propertyPath: m_LocalPosition.x
       value: -420.1698
@@ -17034,44 +16553,6 @@ PrefabInstance:
     - target: {fileID: 2722043933022025835, guid: ba5f54bbf1fdf704d90b99990fa8270a,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-<<<<<<< HEAD
-      value: 45.000004
-      objectReference: {fileID: 0}
-    - target: {fileID: 571560615976341440, guid: 45adcad553a59a041827ad009e8e062c,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 571560615976341440, guid: 45adcad553a59a041827ad009e8e062c,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.76845
-      objectReference: {fileID: 0}
-    - target: {fileID: 571560615976341440, guid: 45adcad553a59a041827ad009e8e062c,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 571560615976341445, guid: 45adcad553a59a041827ad009e8e062c,
-        type: 3}
-      propertyPath: m_Name
-      value: MovingLargeObstacle (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 2726547478710349915, guid: 45adcad553a59a041827ad009e8e062c,
-        type: 3}
-      propertyPath: interval
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2726547478710349915, guid: 45adcad553a59a041827ad009e8e062c,
-        type: 3}
-      propertyPath: moveSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2726547478710349915, guid: 45adcad553a59a041827ad009e8e062c,
-        type: 3}
-      propertyPath: offsetX
-=======
->>>>>>> HarleyMMC2
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -17089,16 +16570,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7546831976831998017}
     m_Modifications:
-<<<<<<< HEAD
-    - target: {fileID: 7230935633948523027, guid: ab422692f10feb34d9f748974c74478a,
-=======
     - target: {fileID: 6492362454175368677, guid: 56b950d3c1ed96c449e4831679244087,
         type: 3}
       propertyPath: m_Name
       value: GenericLargeObstacle (8)
       objectReference: {fileID: 0}
     - target: {fileID: 6492362454175368672, guid: 56b950d3c1ed96c449e4831679244087,
->>>>>>> HarleyMMC2
         type: 3}
       propertyPath: m_LocalPosition.x
       value: -44.119995
@@ -17162,11 +16639,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7230935633948523024, guid: ab422692f10feb34d9f748974c74478a,
-        type: 3}
-      propertyPath: m_Name
-      value: CrossObstacle (4)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56b950d3c1ed96c449e4831679244087, type: 3}
