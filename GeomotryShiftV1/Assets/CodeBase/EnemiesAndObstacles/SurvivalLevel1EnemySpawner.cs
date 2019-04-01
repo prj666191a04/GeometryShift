@@ -94,13 +94,20 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
         LevelOverlayUI.OnLevelQuit -= LevelBase.instance.TerminateLevelAttempt;
     }
 
+    protected void completeSurvivalLevel()
+    {
+        phase = -999;
+        theUI.ShowRsltScreen("You Win!" + System.Environment.NewLine + "Level Completed.", 0);
+        CancelInvoke();
+        GeometryShift.playerStatus.gameObject.SetActive(false);
+    }
+
     private void OnEnable()
     {
         UniversalSurvivalOnEnable();
         LevelOverlayUI.OnIntroFinished += InitLevel;
         
     }
-    
 
     private void OnDisable()
     {
@@ -674,10 +681,7 @@ public class SurvivalLevel1EnemySpawner : MonoBehaviour
 
                 //Win level
                 //LevelBase.instance.AcknowledgeLevelCompletion();
-                phase = -999;
-                theUI.ShowRsltScreen("You Win!" + System.Environment.NewLine + "Level Completed.", 0);
-                CancelInvoke();
-                Destroy(GeometryShift.playerStatus.gameObject);
+                completeSurvivalLevel();
 
 
                 break;
