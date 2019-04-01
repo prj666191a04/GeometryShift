@@ -1199,68 +1199,55 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2519642519157319264, guid: 8602d91639a8e994f8f675f19220db23,
-        type: 3}
+    - target: {fileID: 1318, guid: 8602d91639a8e994f8f675f19220db23, type: 3}
       propertyPath: m_Name
       value: WorldMapAV3
       objectReference: {fileID: 0}
-    - target: {fileID: 2519642519157319264, guid: 8602d91639a8e994f8f675f19220db23,
-        type: 3}
+    - target: {fileID: 1318, guid: 8602d91639a8e994f8f675f19220db23, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 118649032438313571, guid: 8602d91639a8e994f8f675f19220db23,
-        type: 3}
+    - target: {fileID: 3977, guid: 8602d91639a8e994f8f675f19220db23, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 118649032438313571, guid: 8602d91639a8e994f8f675f19220db23,
-        type: 3}
+    - target: {fileID: 3977, guid: 8602d91639a8e994f8f675f19220db23, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 118649032438313571, guid: 8602d91639a8e994f8f675f19220db23,
-        type: 3}
+    - target: {fileID: 3977, guid: 8602d91639a8e994f8f675f19220db23, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 118649032438313571, guid: 8602d91639a8e994f8f675f19220db23,
-        type: 3}
+    - target: {fileID: 3977, guid: 8602d91639a8e994f8f675f19220db23, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 118649032438313571, guid: 8602d91639a8e994f8f675f19220db23,
-        type: 3}
+    - target: {fileID: 3977, guid: 8602d91639a8e994f8f675f19220db23, type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 118649032438313571, guid: 8602d91639a8e994f8f675f19220db23,
-        type: 3}
+    - target: {fileID: 3977, guid: 8602d91639a8e994f8f675f19220db23, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 118649032438313571, guid: 8602d91639a8e994f8f675f19220db23,
-        type: 3}
+    - target: {fileID: 3977, guid: 8602d91639a8e994f8f675f19220db23, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 118649032438313571, guid: 8602d91639a8e994f8f675f19220db23,
-        type: 3}
+    - target: {fileID: 3977, guid: 8602d91639a8e994f8f675f19220db23, type: 3}
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 118649032438313571, guid: 8602d91639a8e994f8f675f19220db23,
-        type: 3}
+    - target: {fileID: 3977, guid: 8602d91639a8e994f8f675f19220db23, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 118649032438313571, guid: 8602d91639a8e994f8f675f19220db23,
-        type: 3}
+    - target: {fileID: 3977, guid: 8602d91639a8e994f8f675f19220db23, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 118649032438313571, guid: 8602d91639a8e994f8f675f19220db23,
-        type: 3}
+    - target: {fileID: 3977, guid: 8602d91639a8e994f8f675f19220db23, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
@@ -2508,8 +2495,7 @@ PrefabInstance:
         type: 3}
       propertyPath: openWorldPreFab
       value: 
-      objectReference: {fileID: 2519642519157319264, guid: 8602d91639a8e994f8f675f19220db23,
-        type: 3}
+      objectReference: {fileID: 1318, guid: 8602d91639a8e994f8f675f19220db23, type: 3}
     - target: {fileID: 4186783359682332449, guid: 42506a4054ff6b84c9e27633d61c6c65,
         type: 3}
       propertyPath: wMapColLayer.m_Bits
