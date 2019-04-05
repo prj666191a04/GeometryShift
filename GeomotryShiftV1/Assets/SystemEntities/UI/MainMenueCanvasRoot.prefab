@@ -313,6 +313,7 @@ MonoBehaviour:
     type: 3}
   slotSelectorN: {fileID: 3186373339940946338, guid: d6fb191451f7009408cda49b9ccda488,
     type: 3}
+  settings: {fileID: 514928410785533832, guid: 8c2494d6713f0e040a319c9500692da3, type: 3}
   continueButton: {fileID: 510647069057494137}
 --- !u!1 &4246315756079742913
 GameObject:
@@ -778,7 +779,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5258451132448264493}
-        m_MethodName: 
+        m_MethodName: SettingsBtn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
