@@ -210,10 +210,10 @@ RectTransform:
   m_Father: {fileID: 2099413724}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.085270844, y: 0.3012042}
-  m_AnchorMax: {x: 0.883, y: 0.7326021}
-  m_AnchoredPosition: {x: -3, y: -1.5}
-  m_SizeDelta: {x: 2023.8, y: 1629.2}
+  m_AnchorMin: {x: 0.085270844, y: 0.5}
+  m_AnchorMax: {x: 0.87833357, y: 0.7326021}
+  m_AnchoredPosition: {x: -3, y: -10}
+  m_SizeDelta: {x: 2032.8, y: 849.6001}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &444390480
 MonoBehaviour:
@@ -540,6 +540,7 @@ GameObject:
   - component: {fileID: 1752280396}
   - component: {fileID: 1752280398}
   - component: {fileID: 1752280397}
+  - component: {fileID: 1752280399}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -603,6 +604,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1752280395}
   m_CullTransparentMesh: 0
+--- !u!114 &1752280399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1752280395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b311ac49e889d884798d05301890f011, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  acceptBtn: {fileID: 2104056815}
+  declineBtn: {fileID: 977415770}
 --- !u!1 &1896644752
 GameObject:
   m_ObjectHideFlags: 0
@@ -1024,7 +1039,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2104056816}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2091789428}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &2104056816
