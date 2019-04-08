@@ -11,24 +11,25 @@ public class TOS : MonoBehaviour
 
     void Start()
     {
-        if (PlayerPrefs.GetInt("TOSAccept") == 1)
+        if (PlayerPrefs.GetInt("TOS") == 1)
         {
             SceneManager.LoadScene("GameTestA");
+            Debug.Log("Tos allready accepted");
         }
-        acceptBtn.onClick.AddListener(AcceptTOS);
-        declineBtn.onClick.AddListener(DeclineTOS);
+       // acceptBtn.onClick.AddListener(AcceptTOS);
+       // declineBtn.onClick.AddListener(DeclineTOS);
     }
 
-    void AcceptTOS()
+    public void AcceptTOS()
     {
-        PlayerPrefs.SetInt("TOSAccept", 1); // Sets 1 for yes
+        PlayerPrefs.SetInt("TOS", 1); // Sets 1 for yes
         Debug.Log("Accept TOS");
         SceneManager.LoadScene("GameTestA");
     }
 
-    void DeclineTOS()
+    public void DeclineTOS()
     {
-        PlayerPrefs.SetInt("TOSAccept", 0); // Sets 0 for no
+        PlayerPrefs.SetInt("TOS", 0); // Sets 0 for no
         Debug.Log("Declined TOS");
         Application.Quit();
     }
