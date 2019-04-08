@@ -19,6 +19,7 @@ public class SettingMenueV2 : MonoBehaviour
     public Slider masterVolumeSlider;
     public Slider effectsVolumeSlider;
     public Slider guiVolumeSlider;
+    public Slider musicVolumeSlider;
 
     GameConfig config;    
     [SerializeField]
@@ -75,6 +76,7 @@ public class SettingMenueV2 : MonoBehaviour
             GeometryShift.instance.mainMixer.SetFloat("masterVolume", loadedSettings.masterVolume);
             GeometryShift.instance.mainMixer.SetFloat("effectsVolume", loadedSettings.effectsVolume);
             GeometryShift.instance.mainMixer.SetFloat("uiVolume", loadedSettings.guiVolume);
+            GeometryShift.instance.mainMixer.SetFloat("musicVolume", loadedSettings.musicVolume);
             if (loadedSettings.vSync)
             {
                 QualitySettings.vSyncCount = 1;
@@ -170,6 +172,8 @@ public class SettingMenueV2 : MonoBehaviour
         effectsVolumeSlider.value = tmpValue;
         GeometryShift.instance.mainMixer.GetFloat("uiVolume", out tmpValue);
         guiVolumeSlider.value = tmpValue;
+        GeometryShift.instance.mainMixer.GetFloat("musicVolume", out tmpValue);
+        musicVolumeSlider.value = tmpValue;
 
     }
 
@@ -187,6 +191,11 @@ public class SettingMenueV2 : MonoBehaviour
     {
         GeometryShift.instance.mainMixer.SetFloat("uiVolume", volume);
         config.guiVolume = volume;
+    }
+    public void SetMusicVolume(float volume)
+    {
+        GeometryShift.instance.mainMixer.SetFloat("musicVolume", volume);
+        config.musicVolume = volume;
     }
 
     public void SetVsync(bool vSync)
@@ -256,6 +265,8 @@ public class GameConfig {
     public float effectsVolume;
     [SerializeField]
     public float guiVolume;
+    [SerializeField]
+    public float musicVolume;
 
 
     public GameConfig(int w, int h, int r)
@@ -270,6 +281,7 @@ public class GameConfig {
         masterVolume = 0;
         effectsVolume = 0;
         guiVolume = 0;
+        musicVolume = 0;
     }
 
 }
