@@ -12,6 +12,7 @@ public class MainMenue : MonoBehaviour
 
     public GameObject slotSelector;
     public GameObject slotSelectorN;
+    public GameObject settings;
 
     public Button continueButton;
     bool continueHasData;
@@ -33,6 +34,11 @@ public class MainMenue : MonoBehaviour
     }
 
     //tmp
+    public void SettingsBtn()
+    {
+        GeometryShift.instance.DistroyLoadedUISet();
+        GeometryShift.instance.loadedUiSet = Instantiate(settings, GeometryShift.instance.activeUIContainer.transform);
+    }
     public void NewGameBtn()
     {
         GeometryShift.instance.DistroyLoadedUISet();

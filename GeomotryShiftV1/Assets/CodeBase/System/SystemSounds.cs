@@ -30,26 +30,26 @@ public class SystemSounds : MonoBehaviour
 
     public void UIClick()
     {
-        acUI.PlayOneShot(uiClick);
+        acUI.PlayOneShot(uiClick, Volume.GetVolumeMultiplier());
     }
     public void UIError()
     {
-        acUI.PlayOneShot(uiError);
+        acUI.PlayOneShot(uiError, Volume.GetVolumeMultiplier());
     }
     public void UIAdavance()
     {
-        acUI.PlayOneShot(uiAdvance);
+        acUI.PlayOneShot(uiAdvance, Volume.GetVolumeMultiplier());
     }
     public void UIRollOver()
     {
-        acUI.PlayOneShot(uiRollOver);
+        acUI.PlayOneShot(uiRollOver, Volume.GetVolumeMultiplier());
     }
     public void EffectsHit()
     {
-        acEffects.PlayOneShot(effectsHit);
+        acEffects.PlayOneShot(effectsHit, Volume.GetVolumeMultiplier());
     }
     public void EffectDeath()
     {
-        acEffects.PlayOneShot(deathEffect1);
+        acEffects.PlayOneShot(deathEffect1, Volume.GetVolumeMultiplier());
     }
 }
