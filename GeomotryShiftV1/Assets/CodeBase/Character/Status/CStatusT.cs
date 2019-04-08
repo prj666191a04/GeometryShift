@@ -118,6 +118,7 @@ public class CStatusT : CStatus
     public override void Recover(float ammount)
     {
         controller_.recoverPs.Emit(15);
+        SystemSounds.instance.EffectHeal();
         value_ += ammount;
         hp = maxHp;
         if(value_ > warningThreshHold)
@@ -128,8 +129,10 @@ public class CStatusT : CStatus
     }
     public override void RecoverItem()
     {
+        hp = 3;
         float ammount = maxTime * 0.15f;
         controller_.recoverPs.Emit(15);
+        SystemSounds.instance.EffectHeal();
         value_ += ammount;
         if (value_ > maxValue_)
         {

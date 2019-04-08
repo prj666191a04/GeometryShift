@@ -61,6 +61,7 @@ public class CStatusA : CStatus
     public override void Recover(float ammount)
     {
         controller_.recoverPs.Emit(15);
+        SystemSounds.instance.EffectHeal();
         value_ += ammount;
         if(value_ > maxValue_)
         {
@@ -70,6 +71,7 @@ public class CStatusA : CStatus
     public override void RecoverItem()
     {
         controller_.recoverPs.Emit(15);
+        SystemSounds.instance.EffectHeal();
         value_ = maxValue_;
     }
     public override void Initialize(float ammount)

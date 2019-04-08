@@ -22,6 +22,7 @@ public static class SaveSystem
         string json = setUpSaveData();
         json = Encrypt(json);
         File.WriteAllText(filePath, json);
+        
     }
 
     private static string setUpSaveData()

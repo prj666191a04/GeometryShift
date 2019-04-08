@@ -4,16 +4,16 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.Audio;
 
 
 //INPORTANT values ending with Prefab Should not be modified at runtime.
 
 public class GeometryShift : MonoBehaviour
 {
-    //tmp
+
     public static Camera mainCamera;
 
-    //tmp
     public CameraControllerA cameraController;
 
     public static GeometryShift instance;
@@ -25,10 +25,10 @@ public class GeometryShift : MonoBehaviour
 
     public SessionTimer sessionTimer;
 
-    //Data
     private string dataPath;
 
     public GameObject consumablePanel;
+    public AudioMixer mainMixer;
 
     public GameObject infoPanel;
     public InfoImages inImages;
@@ -176,14 +176,8 @@ public class GeometryShift : MonoBehaviour
     //Starts the game
     private void Initalize()
     {
-        //TODO: Check if user agreed to tos
-
-        //TODO: If they have beginloading the game to the main menue if not prompt them to read and agree
-
-
-        //TODO: Read save file names into memory and prepare them for use
+        SettingMenueV2.LoadSavedSettings();
         SaveFileCheck();
-
         loadedUiSet = Instantiate(mainMenuePrefab, activeUIContainer);
 
 
