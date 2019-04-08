@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/TOSScreen.unity
+    guid: 4e2c0fa99029cdc4d92bc8c3ef5c5d78
+  - enabled: 1
     path: Assets/Scenes/GameTestA.unity
     guid: 0e0ed0e5a20e8c041840380727d57ee9
   m_configObjects: {}
