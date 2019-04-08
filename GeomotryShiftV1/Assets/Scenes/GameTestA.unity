@@ -1622,7 +1622,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   acUI: {fileID: 281123117}
   acEffects: {fileID: 705145224}
-  acBgMusic: {fileID: 0}
+  acBgMusic: {fileID: 921637258}
   deathEffect1: {fileID: 8300000, guid: 868ca39d7624db944a50920f0ed79775, type: 3}
   healEffect1: {fileID: 8300000, guid: 7af08250615513448ae4e7deb678d769, type: 3}
   uiClick: {fileID: 8300000, guid: 83366d7416d5b8b4fbda30ab512f6da2, type: 3}
@@ -1630,6 +1630,10 @@ MonoBehaviour:
   uiAdvance: {fileID: 8300000, guid: 2bb764664fa3d96418e6e158a70eebea, type: 3}
   uiRollOver: {fileID: 8300000, guid: 5849b2863b4588b4ab634b2789f55f66, type: 3}
   effectsHit: {fileID: 8300000, guid: d5b3e7b2d581254478bc3e37f8dd6ac0, type: 3}
+  menueMusic: {fileID: 8300000, guid: 6af0e6845ba33444fb27672476ddb463, type: 3}
+  levelMusic: {fileID: 8300000, guid: 4ff7f0b793181824aa83f73643746c7f, type: 3}
+  levelMusic2: {fileID: 0}
+  worldMusic: {fileID: 8300000, guid: 6af0e6845ba33444fb27672476ddb463, type: 3}
 --- !u!1 &848835425
 GameObject:
   m_ObjectHideFlags: 0
@@ -1942,6 +1946,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 921637257}
+  - component: {fileID: 921637258}
   m_Layer: 0
   m_Name: BGMusicSrc
   m_TagString: Untagged
@@ -1963,6 +1968,102 @@ Transform:
   m_Father: {fileID: 828323073}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &921637258
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 921637256}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &979247014 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1047202472584767180, guid: 444dd6e8c79a55e438efb546c593153c,

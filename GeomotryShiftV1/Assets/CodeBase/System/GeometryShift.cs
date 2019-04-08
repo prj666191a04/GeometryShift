@@ -105,14 +105,17 @@ public class GeometryShift : MonoBehaviour
                 DistroyLoadedUISet();
                 loadedUiSet = Instantiate(mainMenuePrefab, activeUIContainer);
                 consumablePanel.SetActive(false);
+                SystemSounds.instance.ChangeMusic(SystemSounds.instance.menueMusic);
                 break;
             case SystemState.WorldMap:
                 DistroyLoadedUISet();
                 consumablePanel.SetActive(false);
+                SystemSounds.instance.ChangeMusic(SystemSounds.instance.worldMusic);
                 break;
             case SystemState.InLevel:
                 DistroyLoadedUISet();
                 consumablePanel.SetActive(true);
+                SystemSounds.instance.ChangeMusic(SystemSounds.instance.levelMusic);
                 break;
         }
 
