@@ -21,7 +21,6 @@ public class CController : MonoBehaviour {
     public Rigidbody rBody;
     public CMotor[] motorPool;
 
-    //ignore the value for now
     public CStatus activeStatus;
 
     public bool autoInit = false;
@@ -98,7 +97,6 @@ public class CController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        //TODO: motor selector
         if(autoInit)
         {
             DefaultInitialization();
@@ -113,7 +111,6 @@ public class CController : MonoBehaviour {
         
         h = GSInput.GetHAxis();
         v = GSInput.GetVAxis();
-        //TODO manipulate data
         if (!isDead)
         {
             motor.h_ = h;

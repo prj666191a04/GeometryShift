@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿//Author Atilla Puskas
+//Descriotion: Displays help info to the player.
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
